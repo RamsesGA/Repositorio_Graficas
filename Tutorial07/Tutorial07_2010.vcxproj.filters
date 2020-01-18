@@ -1,35 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns:atg="http://atg.xbox.com" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<ItemGroup>
-<Filter Include="Resource Files">
-<UniqueIdentifier>{8e114980-c1a3-4ada-ad7c-83caadf5daeb}</UniqueIdentifier>
-<Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
-</Filter>
-<Filter Include="DXUT">
-<UniqueIdentifier>{a43c5c25-0e86-4a20-b64a-883785ff74fd}</UniqueIdentifier>
-</Filter>
-<Filter Include="Shaders">
-<UniqueIdentifier>{2c3d4c8c-5d1a-459a-a05a-a4e4b608a44e}</UniqueIdentifier>
-<Extensions>fx;fxh;hlsl</Extensions>
-</Filter>
-</ItemGroup>
-<ItemGroup />
-<ItemGroup>
-      <ClCompile Include="Tutorial07.cpp" />
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{8e114980-c1a3-4ada-ad7c-83caadf5daeb}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="DXUT">
+      <UniqueIdentifier>{a43c5c25-0e86-4a20-b64a-883785ff74fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{2c3d4c8c-5d1a-459a-a05a-a4e4b608a44e}</UniqueIdentifier>
+      <Extensions>fx;fxh;hlsl</Extensions>
+    </Filter>
+    <Filter Include="includes">
+      <UniqueIdentifier>{f1eaf313-af15-469c-b2bd-9492401de4cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\mathfu">
+      <UniqueIdentifier>{78b3e6ed-62df-4b96-ae83-5d4fda9b016f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\mathfu\internals">
+      <UniqueIdentifier>{14a4f555-eb82-4ab5-9fab-5174fde4b507}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
-<ItemGroup>
-      <None Include="Tutorial07.fx">
-<Filter>Shaders</Filter>
-</None>
+  <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="includes\mathfu\constants.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\glsl_mappings.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\hlsl_mappings.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\io.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\matrix.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\quaternion.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\rect.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\utilities.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\vector.h">
+      <Filter>includes\mathfu</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\disable_warnings_begin.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\disable_warnings_end.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\vector_2.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\vector_2_simd.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\vector_3.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\vector_3_simd.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\vector_4.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathfu\internal\vector_4_simd.h">
+      <Filter>includes\mathfu\internals</Filter>
+    </ClInclude>
   </ItemGroup>
-<ItemGroup>
-      <CLInclude Include="resource.h">
-<Filter>Resource Files</Filter>
-</CLInclude>
-      <ResourceCompile Include="Tutorial07.rc">
-<Filter>Resource Files</Filter>
-</ResourceCompile>
+  <ItemGroup>
+    <ClCompile Include="Tutorial07.cpp" />
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
-<ItemGroup>
-</ItemGroup>
+  <ItemGroup>
+    <None Include="Tutorial07.fx">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CLInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </CLInclude>
+    <ResourceCompile Include="Tutorial07.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
 </Project>

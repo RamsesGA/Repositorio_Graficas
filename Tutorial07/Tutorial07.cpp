@@ -12,6 +12,7 @@
 #include <xnamath.h>
 #include "resource.h"
 
+#include "Camera.h"
 //--------------------------------------------------------------------------------------
 // Structures
 //--------------------------------------------------------------------------------------
@@ -23,12 +24,14 @@ struct SimpleVertex
 
 struct CBNeverChanges
 {
-    XMMATRIX mView;
+    //XMMATRIX mView;
+    mathfu::float4x4 mView;
 };
 
 struct CBChangeOnResize
 {
-    XMMATRIX mProjection;
+    //XMMATRIX mProjection;
+    mathfu::float4x4 mProjection;
 };
 
 struct CBChangesEveryFrame
@@ -65,12 +68,13 @@ XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
+Camera QuieroDormir_Camara;
 
 
 //Ramses´s functions
 void Resize() {
 
-    if (g_pSwapChain){
+    if (g_pSwapChain) {
         RECT rc;
         GetClientRect(g_hWnd, &rc);
         //g_pd3dDeviceContext->OMSetRenderTargets(0, 0, 0); 
@@ -125,8 +129,7 @@ void Resize() {
         descDSV.Texture2D.MipSlice = 0;
         hr = g_pd3dDevice->CreateDepthStencilView(g_pDepthStencil, &descDSV, &g_pDepthStencilView);
         if (FAILED(hr))
-            return ;
-
+            return;
         // Set up the viewport.
         D3D11_VIEWPORT vp;
         UINT width = rc.right - rc.left;
@@ -143,7 +146,34 @@ void Resize() {
         g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f);
 
         CBChangeOnResize cbChangesOnResize;
-        cbChangesOnResize.mProjection = XMMatrixTranspose(g_Projection);
+        //cbChangesOnResize.mProjection = XMMatrixTranspose(g_Projection);
+        g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
+        //Lo pasamos a lo de abajo
+
+        CameraDescriptor camDesc;
+        camDesc.s_At = { 0,1,0 };
+        camDesc.s_Eye = { 0,3,-6 };
+        camDesc.s_Up = { 0,1,0 };
+        camDesc.s_Far = 1000;
+        camDesc.s_Near = 0.01;
+        camDesc.s_FoV = XM_PIDIV4;
+        camDesc.s_Height = height;
+        camDesc.s_Widht = width;
+        QuieroDormir_Camara.Init(camDesc);
+        CBNeverChanges cbNeverChanges;
+
+        //cbNeverChanges.mView = XMMatrixTranspose( g_View );
+        cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+
+        g_pImmediateContext->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
+
+        // Initialize the projection matrix
+        //g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
+
+        //CBChangeOnResize cbChangesOnResize;
+
+        //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
+        cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
         g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
     }
 }
@@ -561,19 +591,34 @@ HRESULT InitDevice()
 
     // Initialize the view matrix
     XMVECTOR Eye = XMVectorSet( 0.0f, 3.0f, -6.0f, 0.0f );
-    XMVECTOR At = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
-    XMVECTOR Up = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
-    g_View = XMMatrixLookAtLH( Eye, At, Up );
-
+    XMVECTOR At = XMVectorSet ( 0.0f, 1.0f, 0.0f, 0.0f );
+    XMVECTOR Up = XMVectorSet ( 0.0f, 1.0f, 0.0f, 0.0f );
+   // g_View = XMMatrixLookAtLH( Eye, At, Up );
+    
+    CameraDescriptor camDesc;
+    camDesc.s_At = {0,1,0};
+    camDesc.s_Eye = {0,3,-6};
+    camDesc.s_Up = {0,1,0};
+    camDesc.s_Far = 1000;
+    camDesc.s_Near = 0.01;
+    camDesc.s_FoV = XM_PIDIV4;
+    camDesc.s_Height = height;
+    camDesc.s_Widht = width;
+    QuieroDormir_Camara.Init(camDesc);
     CBNeverChanges cbNeverChanges;
-    cbNeverChanges.mView = XMMatrixTranspose( g_View );
+    
+    //cbNeverChanges.mView = XMMatrixTranspose( g_View );
+    cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+    
     g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
 
     // Initialize the projection matrix
-    g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
+    //g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
     
     CBChangeOnResize cbChangesOnResize;
-    cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
+    
+    //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
+    cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
     g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
 
     return S_OK;
@@ -627,6 +672,14 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 
         case WM_SIZE:
             Resize();
+            break;
+
+        case WM_KEYDOWN:
+            QuieroDormir_Camara.Move(wParam);
+            break;
+            
+        case WM_KEYUP:
+            QuieroDormir_Camara.PitchX(wParam);
             break;
 
         default:
@@ -683,6 +736,12 @@ void Render()
     cb.mWorld = XMMatrixTranspose( g_World );
     cb.vMeshColor = g_vMeshColor;
     g_pImmediateContext->UpdateSubresource( g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0 );
+
+    //-----
+    CBNeverChanges cbNeverChanges;
+    cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+
+    g_pImmediateContext->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
 
     //
     // Render the cube
