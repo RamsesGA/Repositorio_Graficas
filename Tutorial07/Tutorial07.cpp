@@ -596,8 +596,8 @@ HRESULT InitDevice()
    // g_View = XMMatrixLookAtLH( Eye, At, Up );
     
     CameraDescriptor camDesc;
-    camDesc.s_At = {0,1,0};
-    camDesc.s_Eye = {0,3,-6};
+    camDesc.s_At = {0,0,0};
+    camDesc.s_Eye = {0,0,-6};
     camDesc.s_Up = {0,1,0};
     camDesc.s_Far = 1000;
     camDesc.s_Near = 0.01;
@@ -675,13 +675,13 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             break;
 
         case WM_KEYDOWN:
-            QuieroDormir_Camara.Move(wParam);
+            QuieroDormir_Camara.inputs(wParam);
             break;
             
-        case WM_KEYUP:
-            QuieroDormir_Camara.PitchX(wParam);
-            break;
-
+        //case WM_KEYUP:
+        //    QuieroDormir_Camara.PitchX(wParam);
+        //    break;
+        //
         default:
             return DefWindowProc( hWnd, message, wParam, lParam );
     }

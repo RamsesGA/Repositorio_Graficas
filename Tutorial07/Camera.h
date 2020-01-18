@@ -117,7 +117,8 @@ class Camera {
 		void
 		PitchX(WPARAM _param);
 
-
+		void
+		inputs(WPARAM _param);
 
 		//Constructor and Destructor-----
 		Camera();

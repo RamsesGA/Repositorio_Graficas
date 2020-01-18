@@ -282,7 +282,7 @@ class Matrix {
   /// @param s33 Value of the fourth row and column.
   inline Matrix(T s00, T s10, T s20, T s30, T s01, T s11, T s21, T s31, T s02,
                 T s12, T s22, T s32, T s03, T s13, T s23, T s33) {
-    MATHFU_STATIC_ASSERT(Rows == 4 && Cols == 4);
+  //  MATHFU_STATIC_ASSERT(Rows == 4 && Cols == 4);
     data_[0] = Vector<T, Rows>(s00, s10, s20, s30);
     data_[1] = Vector<T, Rows>(s01, s11, s21, s31);
     data_[2] = Vector<T, Rows>(s02, s12, s22, s32);

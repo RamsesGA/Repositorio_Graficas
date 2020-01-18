@@ -141,7 +141,7 @@ void Camera::UpdateVM(){
 
 	//m_Desc.s_Eye = {m_Projection.data_[0].w, m_Projection.data_[1].w , m_Projection.data_[2].w };
 	m_Right = { m_View.data_[0].x, m_View.data_[0].y, m_View.data_[0].z };
-	m_Desc.s_Up = { m_View.data_[1].x, m_View.data_[1].y, m_View.data_[1].z };
+	m_Up = { m_View.data_[1].x, m_View.data_[1].y, m_View.data_[1].z };
 	m_Front = { m_View.data_[2].x, m_View.data_[2].y, m_View.data_[2].z };
 }
 
@@ -204,11 +204,19 @@ void Camera::Move(WPARAM _param){
 	}
 	else if (_param == 'a' || _param == 'A') {
 
-		m_Right -= m_Desc.s_Eye;
+		m_Desc.s_Eye -= m_Right;
 	}
 	else if (_param == 'd' || _param == 'D') {
 
-		m_Right += m_Desc.s_Eye;
+		m_Desc.s_Eye += m_Right;
+	}
+	else if (_param == 'q' || _param == 'Q') {
+
+		m_Desc.s_Eye += m_Up;
+	}
+	else if (_param == 'e' || _param == 'E') {
+
+		m_Desc.s_Eye -= m_Up;
 	}
 
 	//-----
@@ -236,29 +244,44 @@ void Camera::Move(WPARAM _param){
 void Camera::PitchX(WPARAM _param){
 
 	mathfu::float4x4 rot;
-	float speedrot = 1;
+	float speedrot = 0.10f;
+
 	if (_param == VK_UP) {
-		rot = {
+		rot = 
+		{
 		1,0,0,0,
-		0,cos(speedrot),-sin(speedrot),0,
-		0,sin(speedrot),cos(speedrot),0,
+		0,cosf(speedrot),-sinf(speedrot),0,
+		0,sinf(speedrot),cosf(speedrot),0,
 		0,0,0,1
 		};
 
-		m_View *= rot;
-		m_View = rot;
+		//rot *= m_View;
+		//m_View = rot;
 	}
 	else if (_param == VK_DOWN) {
 
 		rot = {
 		1,0,0,0,
-		0,cos(-speedrot),-sin(-speedrot),0,
-		0,sin(-speedrot),cos(-speedrot),0,
+		0,cosf(-speedrot),-sinf(-speedrot),0,
+		0,sinf(-speedrot),cosf(-speedrot),0,
 		0,0,0,1
 		};
-		rot *= m_View;
-		m_View = rot;
+		//rot *= m_View;
+		//m_View = rot;
 	}
+	m_View *= rot;
 
 	UpdateVM();
+}
+
+void Camera::inputs(WPARAM _param)
+{
+	if (_param == VK_UP || _param == VK_DOWN)
+	{
+		PitchX(_param);
+	}
+	else
+	{
+		Move(_param);
+	}
 }
