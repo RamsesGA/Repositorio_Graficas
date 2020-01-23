@@ -377,6 +377,7 @@
   <ItemGroup />
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FirstCamera.cpp" />
     <ClCompile Include="Tutorial07.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +385,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="FirstCamera.h" />
     <ClInclude Include="includes\mathfu\constants.h" />
     <ClInclude Include="includes\mathfu\glsl_mappings.h" />
     <ClInclude Include="includes\mathfu\hlsl_mappings.h" />

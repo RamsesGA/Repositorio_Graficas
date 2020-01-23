@@ -25,6 +25,9 @@ class Camera {
 		CameraDescriptor m_Desc;
 
 		//-----
+		mathfu::float2 OriginalMousePos;
+
+		//-----
 		mathfu::float3 m_Up;
 		mathfu::float3 m_Front;
 		mathfu::float3 m_Right;
@@ -116,6 +119,15 @@ class Camera {
 		Move(WPARAM _param);
 		void
 		PitchX(WPARAM _param);
+		void
+		YawZ(WPARAM _param);
+		void
+		RollY(WPARAM _param);
+		void
+		MouseRotation();
+		void
+		SetOriginalMousePos(float _x, float _y) { OriginalMousePos = { _x, _y }; };
+
 
 		void
 		inputs(WPARAM _param);

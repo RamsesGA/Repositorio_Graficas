@@ -13,6 +13,7 @@
 #include "resource.h"
 
 #include "Camera.h"
+#include "FirstCamera.h"
 //--------------------------------------------------------------------------------------
 // Structures
 //--------------------------------------------------------------------------------------
@@ -68,8 +69,11 @@ XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
-Camera QuieroDormir_Camara;
 
+//
+Camera QuieroDormir_Camara;
+FirstCamera QuieroDormir2_Camara;
+bool ClickPressed = false;
 
 //Ramses´s functions
 void Resize() {
@@ -150,28 +154,10 @@ void Resize() {
         g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
         //Lo pasamos a lo de abajo
 
-        CameraDescriptor camDesc;
-        camDesc.s_At = { 0,1,0 };
-        camDesc.s_Eye = { 0,3,-6 };
-        camDesc.s_Up = { 0,1,0 };
-        camDesc.s_Far = 1000;
-        camDesc.s_Near = 0.01;
-        camDesc.s_FoV = XM_PIDIV4;
-        camDesc.s_Height = height;
-        camDesc.s_Widht = width;
-        QuieroDormir_Camara.Init(camDesc);
-        CBNeverChanges cbNeverChanges;
-
-        //cbNeverChanges.mView = XMMatrixTranspose( g_View );
-        cbNeverChanges.mView = QuieroDormir_Camara.GetView();
-
-        g_pImmediateContext->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
-
-        // Initialize the projection matrix
-        //g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
-
         //CBChangeOnResize cbChangesOnResize;
-
+        QuieroDormir_Camara.SetHeight(height);
+        QuieroDormir_Camara.SetWidht(width);
+        QuieroDormir_Camara.GenerateProjectionMatrix();
         //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
         cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
         g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
@@ -658,6 +644,7 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 {
     PAINTSTRUCT ps;
     HDC hdc;
+    POINT Temp;
 
     switch( message )
     {
@@ -678,6 +665,16 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             QuieroDormir_Camara.inputs(wParam);
             break;
             
+        case WM_LBUTTONDOWN:
+            GetCursorPos(&Temp);
+            QuieroDormir_Camara.SetOriginalMousePos(Temp.x, Temp.y);
+            ClickPressed = true;
+            break;
+
+        case WM_LBUTTONUP:
+            ClickPressed = false;
+            break;
+
         //case WM_KEYUP:
         //    QuieroDormir_Camara.PitchX(wParam);
         //    break;
@@ -695,6 +692,12 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 //--------------------------------------------------------------------------------------
 void Render()
 {
+    //-----
+    if (ClickPressed) {
+
+        QuieroDormir_Camara.MouseRotation();
+    }
+
     // Update our time
     static float t = 0.0f;
     if( g_driverType == D3D_DRIVER_TYPE_REFERENCE )
@@ -711,7 +714,8 @@ void Render()
     }
 
     // Rotate cube around the origin
-    g_World = XMMatrixRotationY( t );
+    //g_World = XMMatrixRotationY( t );
+    //g_World = XMMatrixTranslation(-3, 0, 0);
 
     // Modify the color
     g_vMeshColor.x = ( sinf( t * 1.0f ) + 1.0f ) * 0.5f;
@@ -722,7 +726,7 @@ void Render()
     // Clear the back buffer
     //
     float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
-    g_pImmediateContext->ClearRenderTargetView( g_pRenderTargetView, ClearColor );
+    g_pImmediateContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
 
     //
     // Clear the depth buffer to 1.0 (max depth)
@@ -755,9 +759,9 @@ void Render()
     g_pImmediateContext->PSSetShaderResources( 0, 1, &g_pTextureRV );
     g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerLinear );
     g_pImmediateContext->DrawIndexed( 36, 0, 0 );
-
+    
     //
     // Present our back buffer to our front buffer
     //
-    g_pSwapChain->Present( 0, 0 );
+    g_pSwapChain->Present( 0, 0 ); 
 }

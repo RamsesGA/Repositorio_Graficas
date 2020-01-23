@@ -45,11 +45,13 @@ mathfu::float3 Camera::GetMUp(){
 
 	return m_Up;
 }
+
 //-----
 mathfu::float3 Camera::GetMFront(){
 
 	return m_Front;
 }
+
 //-----
 mathfu::float3 Camera::GetMRight(){
 
@@ -145,6 +147,7 @@ void Camera::UpdateVM(){
 	m_Front = { m_View.data_[2].x, m_View.data_[2].y, m_View.data_[2].z };
 }
 
+//-----
 void Camera::GenerateProjectionMatrix(){
 
 	m_MProjection = XMMatrixPerspectiveFovLH(m_Desc.s_FoV, m_Desc.s_Widht / m_Desc.s_Height, m_Desc.s_Near, m_Desc.s_Far);
@@ -160,6 +163,7 @@ void Camera::GenerateProjectionMatrix(){
 	m_Projection = m_Projection.Transpose();
 }
 
+//-----
 void Camera::CreateView() {
 
 	//Usamos left hand
@@ -187,6 +191,7 @@ void Camera::CreateView() {
 		0,0,1, -m_Desc.s_Eye.z,
 		0,0,0,1
 	};
+
 	m_Position *= m_Axis;
 	m_View = m_Position; //Ya está la matriz view
 }
@@ -241,18 +246,20 @@ void Camera::Move(WPARAM _param){
 	UpdateVM();
 }
 
+//-----
 void Camera::PitchX(WPARAM _param){
 
 	mathfu::float4x4 rot;
 	float speedrot = 0.10f;
 
 	if (_param == VK_UP) {
+
 		rot = 
 		{
-		1,0,0,0,
-		0,cosf(speedrot),-sinf(speedrot),0,
-		0,sinf(speedrot),cosf(speedrot),0,
-		0,0,0,1
+			1,	0,				0,					0,
+			0,	cosf(speedrot),	-sinf(speedrot),	0,
+			0,	sinf(speedrot),	cosf(speedrot),		0,
+			0,	0,				0,					1
 		};
 
 		//rot *= m_View;
@@ -260,11 +267,12 @@ void Camera::PitchX(WPARAM _param){
 	}
 	else if (_param == VK_DOWN) {
 
-		rot = {
-		1,0,0,0,
-		0,cosf(-speedrot),-sinf(-speedrot),0,
-		0,sinf(-speedrot),cosf(-speedrot),0,
-		0,0,0,1
+		rot = 
+		{
+			1,	0,					0,					0,
+			0,	cosf(-speedrot),	-sinf(-speedrot),	0,
+			0,	sinf(-speedrot),	cosf(-speedrot),	0,
+			0,	0,					0,					1
 		};
 		//rot *= m_View;
 		//m_View = rot;
@@ -274,14 +282,173 @@ void Camera::PitchX(WPARAM _param){
 	UpdateVM();
 }
 
-void Camera::inputs(WPARAM _param)
-{
-	if (_param == VK_UP || _param == VK_DOWN)
+//-----
+void Camera::YawZ(WPARAM _param){
+
+	mathfu::float4x4 rot;
+	float speedrot = 0.10f;
+
+	if (_param == 'z'|| _param == 'Z') {
+
+		rot =
+		{
+			cosf(speedrot),		0,	sinf(speedrot),	0,
+			0,					1,	0,				0,
+			-sinf(speedrot),	0,	cosf(speedrot),	0,
+			0,					0,	0,				1
+		};
+		//rot *= m_View;
+		//m_View = rot;
+	}
+	else if (_param == 'c' || _param == 'C') {
+
+		rot = 
+		{
+			cosf(-speedrot),		0,	sinf(-speedrot),	0,
+			0,						1,	0,					0,
+			-sinf(-speedrot),		0,	cosf(-speedrot),	0,
+			0,						0,	0,					1
+		};
+		//rot *= m_View;
+		//m_View = rot;
+	}
+	m_View *= rot;
+
+	UpdateVM();
+}
+
+//-----
+void Camera::RollY(WPARAM _param){
+
+	mathfu::float4x4 rot;
+	float speedrot = 0.10f;
+
+	if (_param == VK_RIGHT) {
+
+		rot =
+		{
+			cosf(speedrot),	-sinf(speedrot),	0,	0,
+			sinf(speedrot),	cosf(speedrot),		0,	0,
+			0,				0,					1,	0,
+			0,				0,					0,	1
+		};
+		//rot *= m_View;
+		//m_View = rot;
+	}
+	else if (_param == VK_LEFT) {
+
+		rot = 
+		{
+			cosf(-speedrot),	-sinf(-speedrot),		0,		0,
+			sinf(-speedrot),	cosf(-speedrot),		0,		0,
+			0,				0,							1,		0,
+			0,				0,							0,		1
+		};
+		//rot *= m_View;
+		//m_View = rot;
+	}
+	m_View *= rot;
+
+	UpdateVM();
+}
+
+void Camera::MouseRotation(){
+
+	mathfu::float2 FirstPos;
+	mathfu::float2 SecondPos;
+	float SpeedRot = 0.0015f;
+	
+	mathfu::float4x4 Yaw =
 	{
+		1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		0,0,0,1
+	};
+	mathfu::float4x4 Pitch =
+	{
+		1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		0,0,0,1
+	};
+	
+	POINT Temp;
+	GetCursorPos(&Temp);
+
+	FirstPos.x = Temp.x;
+	SecondPos.y = Temp.y;
+
+	if (FirstPos.x < OriginalMousePos.x) {
+
+			Yaw =
+			{
+				cosf(SpeedRot),		0,	sinf(SpeedRot),	0,
+				0,					1,	0,				0,
+				-sinf(SpeedRot),	0,	cosf(SpeedRot),	0,
+				0,					0,	0,				1
+			};
+		}
+	if (FirstPos.x > OriginalMousePos.x) {
+
+			Yaw =
+			{
+				cosf(-SpeedRot),		0,	sinf(-SpeedRot),	0,
+				0,						1,	0,					0,
+				-sinf(-SpeedRot),		0,	cosf(-SpeedRot),	0,
+				0,						0,	0,					1
+			};
+		}
+	if (SecondPos.y < OriginalMousePos.y) {
+			
+			Pitch =
+			{
+				1,	0,				0,					0,
+				0,	cosf(SpeedRot),	-sinf(SpeedRot),	0,
+				0,	sinf(SpeedRot),	cosf(SpeedRot),		0,
+				0,	0,				0,					1
+			};
+		}
+	if (SecondPos.y > OriginalMousePos.y) {
+
+			Pitch =
+			{
+				1,	0,					0,					0,
+				0,	cosf(-SpeedRot),	-sinf(-SpeedRot),	0,
+				0,	sinf(-SpeedRot),	cosf(-SpeedRot),	0,
+				0,	0,					0,					1
+			};
+		}
+	
+	SetCursorPos(OriginalMousePos.x, OriginalMousePos.y);
+	m_View *= Yaw;
+	UpdateVM();
+	m_View *= Pitch;
+	UpdateVM();
+}
+
+
+//-----
+void Camera::inputs(WPARAM _param){
+
+	if (_param == VK_UP || _param == VK_DOWN){
+
 		PitchX(_param);
 	}
-	else
-	{
+	if (_param == VK_RIGHT || _param == VK_LEFT) {
+
+		RollY(_param);
+	}
+	if (_param == 'z' || _param == 'Z') {
+
+		YawZ(_param);
+	}
+	if (_param == 'c' || _param == 'C') {
+
+		YawZ(_param);
+	}
+	else{
+
 		Move(_param);
 	}
 }

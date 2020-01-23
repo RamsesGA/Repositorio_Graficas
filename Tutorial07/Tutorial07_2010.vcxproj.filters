@@ -75,10 +75,12 @@
     <ClInclude Include="includes\mathfu\internal\vector_4_simd.h">
       <Filter>includes\mathfu\internals</Filter>
     </ClInclude>
+    <ClInclude Include="FirstCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tutorial07.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FirstCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tutorial07.fx">
