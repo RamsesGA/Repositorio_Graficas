@@ -280,7 +280,7 @@ void Camera::PitchX(WPARAM _param){
 	m_View *= rot;
 
 	UpdateVM();
-}
+}  
 
 //-----
 void Camera::YawZ(WPARAM _param){
@@ -352,6 +352,7 @@ void Camera::RollY(WPARAM _param){
 	UpdateVM();
 }
 
+//-----
 void Camera::MouseRotation(){
 
 	mathfu::float2 FirstPos;

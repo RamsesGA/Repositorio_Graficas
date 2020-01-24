@@ -23,6 +23,9 @@ class FirstCamera{
 	
 		//Variables-----
 		FirstCameraDescriptor m_FirstDesc;
+
+		//-----
+		mathfu::float2 OriginalMousePos;
 	
 		//-----
 		mathfu::float3 m_Up;
@@ -42,95 +45,97 @@ class FirstCamera{
 	
 		//Functions-----
 		int
-		Init(FirstCameraDescriptor _FirstCameraDesc);
+			FInit(FirstCameraDescriptor _FirstCameraDesc);
 	
 		//Get
 		mathfu::float3 
-		GetMUp() {};
+		FGetMUp() { return m_Up; };
 		mathfu::float3 
-		GetMFront() {};
+		FGetMFront() { return m_Front; };
 		mathfu::float3
-		GetMRight() {};
+		FGetMRight() { return m_Right; };
 	
 		//-----
 		void
-		SetProjection(mathfu::float4x4 _matProj);
+		FSetProjection(mathfu::float4x4 _matProj);
 		mathfu::float4x4
-		GetProjection() { return m_Projection; };
+		FGetProjection() { return m_Projection; };
 		//-----
 		void
-		SetView(mathfu::float4x4 _view);
+		FSetView(mathfu::float4x4 _view);
 		mathfu::float4x4
-		GetView() { return m_View; };
+		FGetView() { return m_View; };
 	
 		//Set/Get structure
 		void
-		SetWidht(float _widht);
+		FSetWidht(float _widht);
 		float
-		GetWidht();
+		FGetWidht() { return m_FirstDesc.s_Widht; };
 	
 		//-----
 		void
-		SetHeight(float _height);
+		FSetHeight(float _height);
 		float
-		GetHeight();
+		FGetHeight() { return m_FirstDesc.s_Height; };
 	
 		//-----
 		void
-		SetNear(float _near);
+		FSetNear(float _near);
 		float
-		GetNear();
+		FGetNear() { return m_FirstDesc.s_Near; };
 	
 		//-----
 		void
-		SetFar(float _far);
+		FSetFar(float _far);
 		float
-		GetFar();
+		FGetFar() { return m_FirstDesc.s_Far; };
 	
 		//-----
 		void
-		SetFoV(float _fOv);
+		FSetFoV(float _fOv);
 		float
-		GetFoV();
+		FGetFoV() { return m_FirstDesc.s_FoV; };
 	
 		//-----
 		void
-		SetEye(mathfu::float3 _vec3);
+		FSetEye(mathfu::float3 _vec3);
 		mathfu::float3
-		GetEye();
+		FGetEye() { return m_FirstDesc.s_Eye; };
 	
 		//-----
 		void
-		SetAt(mathfu::float3 _vec3);
+		FSetAt(mathfu::float3 _vec3);
 		mathfu::float3
-		GetAt();
+		FGetAt() { return m_FirstDesc.s_At; };
 	
 		//-----
 		void
-		SetUp(mathfu::float3 _vec3);
+		FSetUp(mathfu::float3 _vec3);
 		mathfu::float3 
-		GetUp();
+		FGetUp() { return m_FirstDesc.s_Up; };
 	
 		//-----
 		void
-		UpdateVM();
+		FUpdateVM();
 		void
-		GenerateProjectionMatrix();
+		FGenerateProjectionMatrix();
 		void
-		CreateView();
+		FCreateView();
 		void
-		Move(WPARAM _param);
+		FMove(WPARAM _param);
 		void
-		PitchX(WPARAM _param);
+		FPitchX(WPARAM _param);
 		void
-		YawZ(WPARAM _param);
+		FYawZ(WPARAM _param);
 		void
-		RollY(WPARAM _param);
+		FRollY(WPARAM _param);
 		void
-		MouseRotation(WPARAM _param, HWND _hWnd);
+		FMouseRotation();
+		void
+		FSetOriginalMousePos(float _x, float _y) { OriginalMousePos = { _x, _y }; };
 	
-		void
-		inputs(WPARAM _param);
+		/*void
+		Finputs(WPARAM _param);*/
 	
 		//Constructor and Destructor-----
 		FirstCamera();
