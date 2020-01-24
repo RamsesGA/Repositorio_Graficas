@@ -40,7 +40,7 @@ class Camera {
 
 		//-----
 		XMMATRIX m_MProjection;
-		float limit = 0.0f;
+		
 	public:
 
 		//Functions-----

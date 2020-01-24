@@ -319,7 +319,9 @@ void FirstCamera::FMouseRotation(){
 	FirstPos.x = Temp.x;
 	SecondPos.y = Temp.y;
 
-	if (FirstPos.x < OriginalMousePos.x) {
+	if (FirstPos.x < OriginalMousePos.x && m_limit != 0.0012f) {
+		
+		m_limit = m_limit + SpeedRot;
 
 		Yaw =
 		{
@@ -328,8 +330,12 @@ void FirstCamera::FMouseRotation(){
 			-sinf(SpeedRot),	0,	cosf(SpeedRot),	0,
 			0,					0,	0,				1
 		};
+		m_View *= Yaw;
+		FUpdateVM();
 	}
-	if (FirstPos.x > OriginalMousePos.x) {
+	if (FirstPos.x > OriginalMousePos.x && m_limit != -0.0012f) {
+
+		m_limit = m_limit - SpeedRot;
 
 		Yaw =
 		{
@@ -338,8 +344,13 @@ void FirstCamera::FMouseRotation(){
 			-sinf(-SpeedRot),		0,	cosf(-SpeedRot),	0,
 			0,						0,	0,					1
 		};
+		m_View *= Yaw;
+		FUpdateVM();
 	}
-	if (SecondPos.y < OriginalMousePos.y) {
+
+	if (SecondPos.y < OriginalMousePos.y && m_limit != 0.0012f) {
+
+		m_limit = m_limit + SpeedRot;
 
 		Pitch =
 		{
@@ -348,8 +359,12 @@ void FirstCamera::FMouseRotation(){
 			0,	sinf(SpeedRot),	cosf(SpeedRot),		0,
 			0,	0,				0,					1
 		};
+		m_View *= Pitch;
+		FUpdateVM();
 	}
-	if (SecondPos.y > OriginalMousePos.y) {
+	if (SecondPos.y > OriginalMousePos.y&& m_limit != -0.0012f) {
+
+		m_limit = m_limit - SpeedRot;
 
 		Pitch =
 		{
@@ -358,13 +373,12 @@ void FirstCamera::FMouseRotation(){
 			0,	sinf(-SpeedRot),	cosf(-SpeedRot),	0,
 			0,	0,					0,					1
 		};
+		m_View *= Pitch;
+		FUpdateVM();
 	}
 
 	SetCursorPos(OriginalMousePos.x, OriginalMousePos.y);
-	m_View *= Yaw;
-	FUpdateVM();
-	m_View *= Pitch;
-	FUpdateVM();
+	
 }
 
 /*

@@ -41,6 +41,7 @@ class FirstCamera{
 		//-----
 		XMMATRIX m_MProjection;
 	
+		float m_limit = 0.0f;
 	public:
 	
 		//Functions-----
