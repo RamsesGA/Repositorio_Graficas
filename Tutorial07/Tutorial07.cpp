@@ -14,6 +14,13 @@
 
 #include "Camera.h"
 #include "FirstCamera.h"
+#include <fstream>
+#include <iostream>
+#include <io.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
+
 //--------------------------------------------------------------------------------------
 // Structures
 //--------------------------------------------------------------------------------------
@@ -70,10 +77,13 @@ XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
 
-//
+//Mis variables
 Camera QuieroDormir_Camara;
 FirstCamera QuieroDormir2_Camara;
 bool ClickPressed = false;
+int WholeLevel[50][50] = { 0 };
+int Rows = 0;
+int Columns = 0;
 
 //Ramses´s functions
 void Resize() {
@@ -152,16 +162,60 @@ void Resize() {
         CBChangeOnResize cbChangesOnResize;
         //cbChangesOnResize.mProjection = XMMatrixTranspose(g_Projection);
         g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
+        
         //Lo pasamos a lo de abajo
 
         //CBChangeOnResize cbChangesOnResize;
         QuieroDormir_Camara.SetHeight(height);
         QuieroDormir_Camara.SetWidht(width);
         QuieroDormir_Camara.GenerateProjectionMatrix();
+
+        QuieroDormir2_Camara.SetHeight(height);
+        QuieroDormir2_Camara.SetWidht(width);
+        QuieroDormir2_Camara.GenerateProjectionMatrix();
+
         //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-        cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
+        //cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
+
+        cbChangesOnResize.mProjection = QuieroDormir2_Camara.GetProjection();
         g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
     }
+}
+
+enum LevelStuff
+{
+    Paredes = 1,
+    Vacio = 2,
+    Enemigos = 3,
+    Pilares = 4,
+    NotColideWalls = 5
+
+};
+
+void Level(std::string FileLevelName)
+{
+    std::ifstream MapFile;
+    MapFile.open(FileLevelName);
+
+    MapFile >> Columns >> Rows;
+
+    for (int i = 0; i < Rows; i++)
+    {
+        for (int j = 0; j < Columns; j++)
+        {
+            MapFile >> WholeLevel[i][j];
+        }
+    }
+
+    for (int i = 0; i < Rows; i++)
+    {
+        for (int j = 0; j < Columns; j++)
+        {
+            std::cout << WholeLevel[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    MapFile.close();
 }
 
 //--------------------------------------------------------------------------------------
@@ -173,6 +227,46 @@ void CleanupDevice();
 LRESULT CALLBACK    WndProc( HWND, UINT, WPARAM, LPARAM );
 void Render();
 
+void activateConsole()
+{
+    //Create a console for this application
+    AllocConsole();
+    // Get STDOUT handle
+    HANDLE ConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    int SystemOutput = _open_osfhandle(intptr_t(ConsoleOutput), _O_TEXT);
+    FILE* COutputHandle = _fdopen(SystemOutput, "w");
+
+    // Get STDERR handle
+    HANDLE ConsoleError = GetStdHandle(STD_ERROR_HANDLE);
+    int SystemError = _open_osfhandle(intptr_t(ConsoleError), _O_TEXT);
+    FILE* CErrorHandle = _fdopen(SystemError, "w");
+
+    // Get STDIN handle
+    HANDLE ConsoleInput = GetStdHandle(STD_INPUT_HANDLE);
+    int SystemInput = _open_osfhandle(intptr_t(ConsoleInput), _O_TEXT);
+    FILE* CInputHandle = _fdopen(SystemInput, "r");
+
+    //make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog point to console as well
+    std::ios::sync_with_stdio(true);
+
+    // Redirect the CRT standard input, output, and error handles to the console
+    freopen_s(&CInputHandle, "CONIN$", "r", stdin);
+    freopen_s(&COutputHandle, "CONOUT$", "w", stdout);
+    freopen_s(&CErrorHandle, "CONOUT$", "w", stderr);
+
+    //Clear the error state for each of the C++ standard stream objects. We need to do this, as
+    //attempts to access the standard streams before they refer to a valid target will cause the
+    //iostream objects to enter an error state. In versions of Visual Studio after 2005, this seems
+    //to always occur during startup regardless of whether anything has been read from or written to
+    //the console or not.
+    std::wcout.clear();
+    std::cout.clear();
+    std::wcerr.clear();
+    std::cerr.clear();
+    std::wcin.clear();
+    std::cin.clear();
+
+}
 
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
@@ -208,7 +302,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
     }
 
     CleanupDevice();
-
+    Level("Mapa.txt");
     return ( int )msg.wParam;
 }
 
@@ -218,6 +312,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 //--------------------------------------------------------------------------------------
 HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 {
+    activateConsole();
     // Register class
     WNDCLASSEX wcex;
     wcex.cbSize = sizeof( WNDCLASSEX );
@@ -246,7 +341,7 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
         return E_FAIL;
 
     ShowWindow( g_hWnd, nCmdShow );
-
+    Level("Mapa.txt");
     return S_OK;
 }
 
@@ -591,10 +686,12 @@ HRESULT InitDevice()
     camDesc.s_Height = height;
     camDesc.s_Widht = width;
     QuieroDormir_Camara.Init(camDesc);
+    QuieroDormir2_Camara.Init(camDesc);
     CBNeverChanges cbNeverChanges;
     
     //cbNeverChanges.mView = XMMatrixTranspose( g_View );
-    cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+    //cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+    cbNeverChanges.mView = QuieroDormir2_Camara.GetView();
     
     g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
 
@@ -604,7 +701,8 @@ HRESULT InitDevice()
     CBChangeOnResize cbChangesOnResize;
     
     //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-    cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
+   // cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
+    cbChangesOnResize.mProjection = QuieroDormir2_Camara.GetProjection();
     g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
 
     return S_OK;
@@ -662,12 +760,14 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             break;
 
         case WM_KEYDOWN:
-            QuieroDormir_Camara.inputs(wParam);
+            //QuieroDormir_Camara.inputs(wParam);
+            QuieroDormir2_Camara.inputs(wParam);
             break;
             
         case WM_LBUTTONDOWN:
             GetCursorPos(&Temp);
-            QuieroDormir_Camara.SetOriginalMousePos(Temp.x, Temp.y);
+           // QuieroDormir_Camara.SetOriginalMousePos(Temp.x, Temp.y);
+            QuieroDormir2_Camara.SetOriginalMousePos(Temp.x, Temp.y);
             ClickPressed = true;
             break;
 
@@ -692,25 +792,30 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 //--------------------------------------------------------------------------------------
 void Render()
 {
+    int DistanceX = 0;
+    int DistanceY = 0;
+
+
     //-----
     if (ClickPressed) {
 
-        QuieroDormir_Camara.MouseRotation();
+        //QuieroDormir_Camara.MouseRotation();
+        QuieroDormir2_Camara.MouseRotation();
     }
 
     // Update our time
     static float t = 0.0f;
-    if( g_driverType == D3D_DRIVER_TYPE_REFERENCE )
+    if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
     {
-        t += ( float )XM_PI * 0.0125f;
+        t += (float)XM_PI * 0.0125f;
     }
     else
     {
         static DWORD dwTimeStart = 0;
         DWORD dwTimeCur = GetTickCount64();
-        if( dwTimeStart == 0 )
+        if (dwTimeStart == 0)
             dwTimeStart = dwTimeCur;
-        t = ( dwTimeCur - dwTimeStart ) / 1000.0f;
+        t = (dwTimeCur - dwTimeStart) / 1000.0f;
     }
 
     // Rotate cube around the origin
@@ -718,9 +823,9 @@ void Render()
     //g_World = XMMatrixTranslation(-3, 0, 0);
 
     // Modify the color
-    g_vMeshColor.x = ( sinf( t * 1.0f ) + 1.0f ) * 0.5f;
-    g_vMeshColor.y = ( cosf( t * 3.0f ) + 1.0f ) * 0.5f;
-    g_vMeshColor.z = ( sinf( t * 5.0f ) + 1.0f ) * 0.5f;
+    g_vMeshColor.x = (sinf(t * 1.0f) + 1.0f) * 0.5f;
+    g_vMeshColor.y = (cosf(t * 3.0f) + 1.0f) * 0.5f;
+    g_vMeshColor.z = (sinf(t * 5.0f) + 1.0f) * 0.5f;
 
     //
     // Clear the back buffer
@@ -731,35 +836,75 @@ void Render()
     //
     // Clear the depth buffer to 1.0 (max depth)
     //
-    g_pImmediateContext->ClearDepthStencilView( g_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0 );
+    g_pImmediateContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
     //
     // Update variables that change once per frame
     //
     CBChangesEveryFrame cb;
-    cb.mWorld = XMMatrixTranspose( g_World );
+    cb.mWorld = XMMatrixTranspose(g_World);
     cb.vMeshColor = g_vMeshColor;
-    g_pImmediateContext->UpdateSubresource( g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0 );
+    g_pImmediateContext->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
 
     //-----
     CBNeverChanges cbNeverChanges;
-    cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+    //cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+    cbNeverChanges.mView = QuieroDormir2_Camara.GetView();
 
     g_pImmediateContext->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
 
     //
     // Render the cube
     //
-    g_pImmediateContext->VSSetShader( g_pVertexShader, NULL, 0 );
-    g_pImmediateContext->VSSetConstantBuffers( 0, 1, &g_pCBNeverChanges );
-    g_pImmediateContext->VSSetConstantBuffers( 1, 1, &g_pCBChangeOnResize );
-    g_pImmediateContext->VSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
-    g_pImmediateContext->PSSetShader( g_pPixelShader, NULL, 0 );
-    g_pImmediateContext->PSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
-    g_pImmediateContext->PSSetShaderResources( 0, 1, &g_pTextureRV );
-    g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerLinear );
-    g_pImmediateContext->DrawIndexed( 36, 0, 0 );
-    
+    g_pImmediateContext->VSSetShader(g_pVertexShader, NULL, 0);
+    g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
+    g_pImmediateContext->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
+    g_pImmediateContext->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+    g_pImmediateContext->PSSetShader(g_pPixelShader, NULL, 0);
+    g_pImmediateContext->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+    g_pImmediateContext->PSSetShaderResources(0, 1, &g_pTextureRV);
+    g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
+    g_pImmediateContext->DrawIndexed(36, 0, 0);
+
+    for (int i = 0; i < Rows; i++)
+    {
+        for (int j = 0; j < Columns; j++)
+        {
+            if (WholeLevel[i][j])
+            {
+
+                DistanceX += 2.5;
+            }
+
+            else if (WholeLevel[i][j] == Pilares)
+            {
+                DistanceX += 2.5;
+            }
+            else
+            {
+                DistanceX += 2.5;
+            }
+            //g_World = XMMatrixTranslation(DistanceX, 0, DistanceY);
+            if (WholeLevel[i][j] != 0)
+            {
+                g_pImmediateContext->VSSetShader(g_pVertexShader, NULL, 0);
+                g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
+                g_pImmediateContext->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
+                g_pImmediateContext->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+                g_pImmediateContext->PSSetShader(g_pPixelShader, NULL, 0);
+                g_pImmediateContext->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+                g_pImmediateContext->PSSetShaderResources(0, 1, &g_pTextureRV);
+                g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
+                g_pImmediateContext->DrawIndexed(36, 0, 0);
+            }
+            g_World = XMMatrixTranslation(DistanceX, 0, DistanceY);
+            cb.mWorld = XMMatrixTranspose(g_World);
+            cb.vMeshColor = g_vMeshColor;
+            g_pImmediateContext->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
+        }
+        DistanceY += 2.5;
+        DistanceX = 0;
+    }
     //
     // Present our back buffer to our front buffer
     //

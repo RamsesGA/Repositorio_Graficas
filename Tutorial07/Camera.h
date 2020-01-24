@@ -19,7 +19,7 @@ struct CameraDescriptor {
 
 class Camera {
 
-	private:
+	protected:
 
 		//Variables-----
 		CameraDescriptor m_Desc;
@@ -30,7 +30,14 @@ class Camera {
 		//-----
 		mathfu::float3 m_Up;
 		mathfu::float3 m_Front;
+		mathfu::float3 m_locketFront;
+		mathfu::float3 m_onlyXnY;
+		mathfu::float3 m_locketonlyXnY;
 		mathfu::float3 m_Right;
+		
+		mathfu::float3 originalEye;
+		mathfu::float3 OriginalUp;
+		mathfu::float3 OriginalAt;
 
 		//-----
 		mathfu::float4x4 m_View;
@@ -40,7 +47,9 @@ class Camera {
 
 		//-----
 		XMMATRIX m_MProjection;
-		
+		float angule;
+		float maxAngule = 60;
+
 	public:
 
 		//Functions-----
@@ -109,25 +118,35 @@ class Camera {
 		mathfu::float3 GetUp();
 		
 		//-----
-		void 
+		virtual void 
 		UpdateVM();
+		
 		void
 		GenerateProjectionMatrix();
-		void
+		
+		virtual void
 		CreateView();
+		
 		void 
 		Move(WPARAM _param);
+		
 		void
 		PitchX(WPARAM _param);
+		
 		void
 		YawZ(WPARAM _param);
+		
 		void
 		RollY(WPARAM _param);
-		void
+		
+		virtual void
 		MouseRotation();
+		
 		void
 		SetOriginalMousePos(float _x, float _y) { OriginalMousePos = { _x, _y }; };
-
+		
+		void
+		ResetCamera();
 
 		void
 		inputs(WPARAM _param);
