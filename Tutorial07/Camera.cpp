@@ -241,6 +241,7 @@ void Camera::Move(WPARAM _param){
 		0,	0,	0,	1
 	};
 
+
 	m_Position *= m_Axis;
 	m_View = m_Position; //Ya está la matriz view
 	UpdateVM();

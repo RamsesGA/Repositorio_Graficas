@@ -38,6 +38,7 @@ class Camera {
 		mathfu::float3 originalEye;
 		mathfu::float3 OriginalUp;
 		mathfu::float3 OriginalAt;
+		mathfu::float3 m_UpLimit;
 
 		//-----
 		mathfu::float4x4 m_View;
@@ -145,9 +146,6 @@ class Camera {
 		void
 		SetOriginalMousePos(float _x, float _y) { OriginalMousePos = { _x, _y }; };
 		
-		void
-		ResetCamera();
-
 		void
 		inputs(WPARAM _param);
 

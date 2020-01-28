@@ -52,6 +52,7 @@ void FirstCamera::MouseRotation(){
 
 	mathfu::float2 FirstPos;
 	mathfu::float2 SecondPos;
+
 	float SpeedRot = 0.015f;
 	float speedAngule = 2;
 
@@ -87,6 +88,7 @@ void FirstCamera::MouseRotation(){
 		//};
 		m_Desc.s_At -= m_Right * SpeedRot;
 		m_Desc.s_Up = m_Up;
+
 		CreateView();
 	}
 	if (FirstPos.x > OriginalMousePos.x) {
@@ -147,6 +149,7 @@ void FirstCamera::MouseRotation(){
 	SetCursorPos(OriginalMousePos.x, OriginalMousePos.y);
 	m_View *= Yaw;
 	UpdateVM();
+
 	m_View *= Pitch;
 	UpdateVM();
 }

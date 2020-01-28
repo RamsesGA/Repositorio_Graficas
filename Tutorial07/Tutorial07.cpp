@@ -76,14 +76,16 @@ XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
-
+UINT width;
+UINT height;
 //Mis variables
 Camera QuieroDormir_Camara;
 FirstCamera QuieroDormir2_Camara;
 bool ClickPressed = false;
-int WholeLevel[50][50] = { 0 };
+int LevelCubes[10][10] = { 0 };
 int Rows = 0;
 int Columns = 0;
+int SwitchCamera = -1;
 
 //Ramses´s functions
 void Resize() {
@@ -182,40 +184,64 @@ void Resize() {
     }
 }
 
-enum LevelStuff
-{
-    Paredes = 1,
-    Vacio = 2,
-    Enemigos = 3,
+enum LevelStuff{
+
+    Wall = 1,
+    Void = 2,
     Pilares = 4,
     NotColideWalls = 5
-
 };
 
-void Level(std::string FileLevelName)
-{
-    std::ifstream MapFile;
-    MapFile.open(FileLevelName);
+void LevelMap(std::string FileLevelName){
 
-    MapFile >> Columns >> Rows;
+    std::ifstream File;
+    File.open(FileLevelName);
 
-    for (int i = 0; i < Rows; i++)
-    {
-        for (int j = 0; j < Columns; j++)
-        {
-            MapFile >> WholeLevel[i][j];
+    File >> Columns >> Rows;
+
+    for (int i = 0; i < Rows; i++){
+
+        for (int j = 0; j < Columns; j++){
+
+            File >> LevelCubes[i][j];
         }
     }
 
-    for (int i = 0; i < Rows; i++)
-    {
-        for (int j = 0; j < Columns; j++)
-        {
-            std::cout << WholeLevel[i][j] << " ";
+    for (int i = 0; i < Rows; i++){
+
+        for (int j = 0; j < Columns; j++){
+
+            std::cout << LevelCubes[i][j] << " ";
         }
         std::cout << std::endl;
     }
-    MapFile.close();
+    File.close();
+}
+
+void InitCameras() {
+
+    CameraDescriptor GodCamera;
+    GodCamera.s_At = { 0,0,0 };
+    GodCamera.s_Eye = { 0,0,-6 };
+    GodCamera.s_Up = { 0,1,0 };
+    GodCamera.s_Far = 1000;
+    GodCamera.s_Near = 0.01;
+    GodCamera.s_FoV = XM_PIDIV4;
+    GodCamera.s_Height = height;
+    GodCamera.s_Widht = width;
+
+    CameraDescriptor FirstCamera;
+    FirstCamera.s_At = { 0,0,0 };
+    FirstCamera.s_Eye = { 0,0,-6 };
+    FirstCamera.s_Up = { 0,1,0 };
+    FirstCamera.s_Far = 1000;
+    FirstCamera.s_Near = 0.01;
+    FirstCamera.s_FoV = XM_PIDIV4;
+    FirstCamera.s_Height = height;
+    FirstCamera.s_Widht = width;
+    
+    QuieroDormir_Camara.Init(GodCamera);
+    QuieroDormir2_Camara.Init(FirstCamera);
 }
 
 //--------------------------------------------------------------------------------------
@@ -302,7 +328,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
     }
 
     CleanupDevice();
-    Level("Mapa.txt");
+    LevelMap("Mapa.txt");
     return ( int )msg.wParam;
 }
 
@@ -341,7 +367,7 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
         return E_FAIL;
 
     ShowWindow( g_hWnd, nCmdShow );
-    Level("Mapa.txt");
+    LevelMap("Mapa.txt");
     return S_OK;
 }
 
@@ -387,8 +413,8 @@ HRESULT InitDevice()
 
     RECT rc;
     GetClientRect( g_hWnd, &rc );
-    UINT width = rc.right - rc.left;
-    UINT height = rc.bottom - rc.top;
+    width = rc.right - rc.left;
+    height = rc.bottom - rc.top;
 
     UINT createDeviceFlags = 0;
 #ifdef _DEBUG
@@ -676,17 +702,7 @@ HRESULT InitDevice()
     XMVECTOR Up = XMVectorSet ( 0.0f, 1.0f, 0.0f, 0.0f );
    // g_View = XMMatrixLookAtLH( Eye, At, Up );
     
-    CameraDescriptor camDesc;
-    camDesc.s_At = {0,0,0};
-    camDesc.s_Eye = {0,0,-6};
-    camDesc.s_Up = {0,1,0};
-    camDesc.s_Far = 1000;
-    camDesc.s_Near = 0.01;
-    camDesc.s_FoV = XM_PIDIV4;
-    camDesc.s_Height = height;
-    camDesc.s_Widht = width;
-    QuieroDormir_Camara.Init(camDesc);
-    QuieroDormir2_Camara.Init(camDesc);
+    InitCameras();
     CBNeverChanges cbNeverChanges;
     
     //cbNeverChanges.mView = XMMatrixTranspose( g_View );
@@ -760,20 +776,39 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             break;
 
         case WM_KEYDOWN:
-            //QuieroDormir_Camara.inputs(wParam);
-            QuieroDormir2_Camara.inputs(wParam);
+            if (SwitchCamera == -1) {
+
+                QuieroDormir_Camara.inputs(wParam);
+            }
+            else if (SwitchCamera == 1) {
+
+                QuieroDormir2_Camara.inputs(wParam);
+            }
             break;
             
         case WM_LBUTTONDOWN:
-            GetCursorPos(&Temp);
-           // QuieroDormir_Camara.SetOriginalMousePos(Temp.x, Temp.y);
-            QuieroDormir2_Camara.SetOriginalMousePos(Temp.x, Temp.y);
-            ClickPressed = true;
+            if (SwitchCamera == -1) {
+
+                GetCursorPos(&Temp);
+                QuieroDormir_Camara.SetOriginalMousePos(Temp.x, Temp.y);
+                ClickPressed = true;
+            }
+            else if (SwitchCamera == 1) {
+
+                GetCursorPos(&Temp);
+                QuieroDormir2_Camara.SetOriginalMousePos(Temp.x, Temp.y);
+                ClickPressed = true;
+            }
             break;
 
         case WM_LBUTTONUP:
             ClickPressed = false;
             break;
+
+        case WM_RBUTTONDOWN:
+            SwitchCamera *= -1;
+            break;
+
 
         //case WM_KEYUP:
         //    QuieroDormir_Camara.PitchX(wParam);
@@ -782,7 +817,6 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
         default:
             return DefWindowProc( hWnd, message, wParam, lParam );
     }
-
     return 0;
 }
 
@@ -790,16 +824,18 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 //--------------------------------------------------------------------------------------
 // Render a frame
 //--------------------------------------------------------------------------------------
-void Render()
-{
-    int DistanceX = 0;
-    int DistanceY = 0;
+void Render(){
 
+    int MapX = 0;
+    int MapY = 0;
 
     //-----
-    if (ClickPressed) {
+    if (ClickPressed && SwitchCamera == -1) {
 
-        //QuieroDormir_Camara.MouseRotation();
+        QuieroDormir_Camara.MouseRotation();
+    }
+    else if (ClickPressed && SwitchCamera == 1) {
+
         QuieroDormir2_Camara.MouseRotation();
     }
 
@@ -820,7 +856,7 @@ void Render()
 
     // Rotate cube around the origin
     //g_World = XMMatrixRotationY( t );
-    //g_World = XMMatrixTranslation(-3, 0, 0);
+    //g_World = XMMatrixTranslation(-6, 0, 0);
 
     // Modify the color
     g_vMeshColor.x = (sinf(t * 1.0f) + 1.0f) * 0.5f;
@@ -848,8 +884,15 @@ void Render()
 
     //-----
     CBNeverChanges cbNeverChanges;
-    //cbNeverChanges.mView = QuieroDormir_Camara.GetView();
-    cbNeverChanges.mView = QuieroDormir2_Camara.GetView();
+
+    if (SwitchCamera == -1) {
+
+        cbNeverChanges.mView = QuieroDormir_Camara.GetView();
+    }
+    else if (SwitchCamera == 1) {
+
+        cbNeverChanges.mView = QuieroDormir2_Camara.GetView();
+    }
 
     g_pImmediateContext->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
 
@@ -866,27 +909,25 @@ void Render()
     g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
     g_pImmediateContext->DrawIndexed(36, 0, 0);
 
-    for (int i = 0; i < Rows; i++)
-    {
-        for (int j = 0; j < Columns; j++)
-        {
-            if (WholeLevel[i][j])
-            {
+    for (int i = 0; i < Rows; i++){
 
-                DistanceX += 2.5;
-            }
+        for (int j = 0; j < Columns; j++){
 
-            else if (WholeLevel[i][j] == Pilares)
-            {
-                DistanceX += 2.5;
+            if (LevelCubes[i][j]){
+
+                MapX += 2.5;
             }
-            else
-            {
-                DistanceX += 2.5;
+            else if (LevelCubes[i][j] == Pilares){
+
+                MapX += 2.5;
             }
-            //g_World = XMMatrixTranslation(DistanceX, 0, DistanceY);
-            if (WholeLevel[i][j] != 0)
-            {
+            else{
+
+                MapX += 2.5;
+            }
+            //g_World = XMMatrixTranslation(MapX, 0, MapY);
+            if (LevelCubes[i][j] != 0){
+
                 g_pImmediateContext->VSSetShader(g_pVertexShader, NULL, 0);
                 g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
                 g_pImmediateContext->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
@@ -897,13 +938,13 @@ void Render()
                 g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
                 g_pImmediateContext->DrawIndexed(36, 0, 0);
             }
-            g_World = XMMatrixTranslation(DistanceX, 0, DistanceY);
+            g_World = XMMatrixTranslation(MapX, 0, MapY);
             cb.mWorld = XMMatrixTranspose(g_World);
             cb.vMeshColor = g_vMeshColor;
             g_pImmediateContext->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
         }
-        DistanceY += 2.5;
-        DistanceX = 0;
+        MapY += 2.5;
+        MapX = 0;
     }
     //
     // Present our back buffer to our front buffer
