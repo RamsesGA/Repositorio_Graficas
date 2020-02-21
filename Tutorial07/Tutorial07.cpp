@@ -12,6 +12,8 @@
 #include <xnamath.h>
 #include "resource.h"
 
+
+//Ramses´s libraries
 #include "Camera.h"
 #include "FirstCamera.h"
 #include <fstream>
@@ -20,6 +22,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <vector>
+#include "Encabezados/ClaseDevice.h"
+#include "Encabezados/ClaseDeviceContext.h"
+#include "Encabezados/ClaseSwapChain.h"
+#include "Encabezados/ClaseRenderTargetView.h"
+#include "Encabezados/ClaseRenderTarget.h"
+#include "Encabezados/ClaseSampleState.h"
+#include "Encabezados/ClaseDepthStencil.h"
+#include "Encabezados/ClaseViewport.h"
+#include "Encabezados/ClaseShader.h"
 
 //--------------------------------------------------------------------------------------
 // Structures
@@ -54,73 +66,111 @@ struct CBChangesEveryFrame
 //--------------------------------------------------------------------------------------
 HINSTANCE                           g_hInst = NULL;
 HWND                                g_hWnd = NULL;
-D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
-D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
-ID3D11Device*                       g_pd3dDevice = NULL;
-ID3D11DeviceContext*                g_pImmediateContext = NULL;
-IDXGISwapChain*                     g_pSwapChain = NULL;
-ID3D11RenderTargetView*             g_pRenderTargetView = NULL;
-ID3D11Texture2D*                    g_pDepthStencil = NULL;
-ID3D11DepthStencilView*             g_pDepthStencilView = NULL;
-ID3D11VertexShader*                 g_pVertexShader = NULL;
-ID3D11PixelShader*                  g_pPixelShader = NULL;
-ID3D11InputLayout*                  g_pVertexLayout = NULL;
-ID3D11Buffer*                       g_pVertexBuffer = NULL;
-ID3D11Buffer*                       g_pIndexBuffer = NULL;
-ID3D11Buffer*                       g_pCBNeverChanges = NULL;
+
+//ID3D11RenderTargetView*             g_pRenderTargetView = NULL;//en render Target
+//ID3D11Texture2D*                    g_pDepthStencil = NULL;//en render Target
+//ID3D11DepthStencilView*             g_pDepthStencilView = NULL;//en render Target
+//ID3D11VertexShader*                 g_pVertexShader = NULL;//en vertex shader derivado de clase shader
+
+ID3D11PixelShader*                  g_pPixelShader = NULL;//en pixel shader derivado de clase shader
+//ID3D11InputLayout*                  g_pVertexLayout = NULL;//en input layout
+ID3D11Buffer*                       g_pVertexBuffer = NULL;//en clase mesh como miebro de tipo buffer
+ID3D11Buffer*                       g_pIndexBuffer = NULL;//en clase mesh como miebro de tipo buffer
+ID3D11Buffer*                       g_pCBNeverChanges = NULL;//en una clase buffer
 ID3D11Buffer*                       g_pCBChangeOnResize = NULL;
 ID3D11Buffer*                       g_pCBChangesEveryFrame = NULL;
-ID3D11ShaderResourceView*           g_pTextureRV = NULL;
-ID3D11SamplerState*                 g_pSamplerLinear = NULL;
+ID3D11ShaderResourceView*           g_pTextureRV = NULL;//en clase material o shaderResources
+
+//ID3D11SamplerState*                 g_pSamplerLinear = NULL;// en clase samplerState 
+
 XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
+
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
-UINT width;
-UINT height;
-//Mis variables
+
+
+//Ramses´s global variables
+
+ClaseDevice CDev;
+ClaseDeviceContext CDevCont;
+ClaseSwapChain CSwap;
+ClaseRenderTargetView CRendTarView;
+RenderTarget CRendTar;
+ClaseSampleState CSampleS;
+ClaseDepthStencil CDepthS;
+ClaseViewport CView;
+ClaseShader CShader;
+
 Camera QuieroDormir_Camara;
 FirstCamera QuieroDormir2_Camara;
+
 bool ClickPressed = false;
 int LevelCubes[10][10] = { 0 };
 int Rows = 0;
 int Columns = 0;
 int SwitchCamera = -1;
 
+UINT width;
+UINT height;
+
+ID3D11InputLayout* Layout;
+
+
 //Ramses´s functions
 void Resize() {
 
-    if (g_pSwapChain) {
+    if (CSwap.g_pSwapChainD3D11) {
         RECT rc;
         GetClientRect(g_hWnd, &rc);
         //g_pd3dDeviceContext->OMSetRenderTargets(0, 0, 0); 
-        g_pImmediateContext->OMSetRenderTargets(0, 0, 0);
+        CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(0, 0, 0);
 
         // Release all outstanding references to the swap chain's buffers.
-        g_pRenderTargetView->Release();
-        g_pDepthStencilView->Release();
-        g_pDepthStencil->Release();
-
+        CRendTarView.g_pRenderTargetViewD3D11->Release();
+        //g_pRenderTargetView->Release();
+        CDepthS.g_pDepthStencilViewD3D11->Release();
+        //g_pDepthStencil->Release();
+        CRendTar.g_pDepthStencilD3D11->Release();
 
         HRESULT hr;
         // Preserve the existing buffer count and format.
         // Automatically choose the width and height to match the client rect for HWNDs.
-        hr = g_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+        hr = CSwap.g_pSwapChainD3D11->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
 
         // Get buffer and create a render-target-view.
         ID3D11Texture2D* pBuffer;
-        hr = g_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer);
+        hr = CSwap.g_pSwapChainD3D11->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer);
         // Perform error handling here!
 
-        hr = g_pd3dDevice->CreateRenderTargetView(pBuffer, NULL, &g_pRenderTargetView);
+        
+        //hr = CDev.m_DescDevice.g_pd3dDevice->CreateRenderTargetView(pBuffer, NULL, &g_pRenderTargetView);
+        hr = CDev.g_pd3dDeviceD3D11->CreateRenderTargetView(pBuffer, NULL, &CRendTarView.g_pRenderTargetViewD3D11);
         // Perform error handling here!
         pBuffer->Release();
 
+        
         //g_pd3dDeviceContext->OMSetRenderTargets(1, &g_pRenderTargetView, NULL);
-        g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, NULL);
+        //CDevCont.m_DescDCont.g_pImmediateContext->OMSetRenderTargets(1, &g_pRenderTargetView, NULL);
+        CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(1, &CRendTarView.g_pRenderTargetViewD3D11, NULL);
 
         // Create depth stencil texture
-        D3D11_TEXTURE2D_DESC descDepth;
+        DepthStencilDesc descDepth2;
+        descDepth2.Width = rc.right - rc.left;
+        descDepth2.Height = rc.bottom - rc.top;
+        descDepth2.MipLevels = 1;
+        descDepth2.ArraySize = 1;
+        descDepth2.Format = FORMAT_D24_UNORM_S8_UINT;
+        descDepth2.SampleDesc.My_Count = 1;
+        descDepth2.SampleDesc.My_Quality = 0;
+        descDepth2.Usage = USAGE_DEFAULT;
+        descDepth2.BindFlags = BIND_DEPTH_STENCIL;
+        descDepth2.CPUAccessFlags = 0;
+        descDepth2.MiscFlags = 0;
+
+        CDepthS.Init(descDepth2);
+
+        /*D3D11_TEXTURE2D_DESC descDepth;
         ZeroMemory(&descDepth, sizeof(descDepth));
         descDepth.Width = rc.right - rc.left;
         descDepth.Height = rc.bottom - rc.top;
@@ -132,22 +182,27 @@ void Resize() {
         descDepth.Usage = D3D11_USAGE_DEFAULT;
         descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
         descDepth.CPUAccessFlags = 0;
-        descDepth.MiscFlags = 0;
-        hr = g_pd3dDevice->CreateTexture2D(&descDepth, NULL, &g_pDepthStencil);
+        descDepth.MiscFlags = 0;*/
+
+        //hr = CDev.m_DescDevice.g_pd3dDevice->CreateTexture2D(&descDepth, NULL, &g_pDepthStencil);
+        hr = CDev.g_pd3dDeviceD3D11->CreateTexture2D(&CDepthS.descDepthD3D11, NULL, &CRendTar.g_pDepthStencilD3D11);
         if (FAILED(hr))
             return;
 
         // Create the depth stencil view
         D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
         ZeroMemory(&descDSV, sizeof(descDSV));
-        descDSV.Format = descDepth.Format;
+        descDSV.Format = CDepthS.descDepthD3D11.Format;
         descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
         descDSV.Texture2D.MipSlice = 0;
-        hr = g_pd3dDevice->CreateDepthStencilView(g_pDepthStencil, &descDSV, &g_pDepthStencilView);
+        //hr = CDev.m_DescDevice.g_pd3dDevice->CreateDepthStencilView(g_pDepthStencil, &descDSV, &g_pDepthStencilView);
+        hr = CDev.g_pd3dDeviceD3D11->CreateDepthStencilView(CRendTar.g_pDepthStencilD3D11, &descDSV, &CDepthS.g_pDepthStencilViewD3D11);
         if (FAILED(hr))
             return;
+        
+        
         // Set up the viewport.
-        D3D11_VIEWPORT vp;
+        /*D3D11_VIEWPORT vp;
         UINT width = rc.right - rc.left;
         UINT height = rc.bottom - rc.top;
         vp.Width = width;
@@ -155,15 +210,28 @@ void Resize() {
         vp.MinDepth = 0.0f;
         vp.MaxDepth = 1.0f;
         vp.TopLeftX = 0;
-        vp.TopLeftY = 0;
+        vp.TopLeftY = 0;*/
+
+        ViewportDesc vp2;
+        UINT width = rc.right - rc.left;
+        UINT height = rc.bottom - rc.top;
+        vp2.Width = width;
+        vp2.Height = height;
+        vp2.MinDepth = 0.0f;
+        vp2.MaxDepth = 1.0f;
+        vp2.TopLeftX = 0;
+        vp2.TopLeftY = 0;
+
+        CView.Init(vp2);
+
         //g_pd3dDeviceContext->RSSetViewports(1, &vp);
-        g_pImmediateContext->RSSetViewports(1, &vp);
+        CDevCont.g_pImmediateContextD3D11->RSSetViewports(1, &CView.vpD3D11);
 
         g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f);
 
         CBChangeOnResize cbChangesOnResize;
         //cbChangesOnResize.mProjection = XMMatrixTranspose(g_Projection);
-        g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
+        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
         
         //Lo pasamos a lo de abajo
 
@@ -180,7 +248,7 @@ void Resize() {
         //cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
 
         cbChangesOnResize.mProjection = QuieroDormir2_Camara.GetProjection();
-        g_pImmediateContext->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
+        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
     }
 }
 
@@ -243,6 +311,10 @@ void InitCameras() {
     QuieroDormir_Camara.Init(GodCamera);
     QuieroDormir2_Camara.Init(FirstCamera);
 }
+
+
+
+
 
 //--------------------------------------------------------------------------------------
 // Forward declarations
@@ -332,7 +404,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
     return ( int )msg.wParam;
 }
 
-
 //--------------------------------------------------------------------------------------
 // Register class and create window
 //--------------------------------------------------------------------------------------
@@ -371,7 +442,6 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
     return S_OK;
 }
 
-
 //--------------------------------------------------------------------------------------
 // Helper for compiling shaders with D3DX11
 //--------------------------------------------------------------------------------------
@@ -388,9 +458,10 @@ HRESULT CompileShaderFromFile( WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR sz
     dwShaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 
-    ID3DBlob* pErrorBlob;
+    ID3DBlob* pErrorBlob; //Un buffer que va a contener el resultado del shader.
     hr = D3DX11CompileFromFile( szFileName, NULL, NULL, szEntryPoint, szShaderModel, 
         dwShaderFlags, 0, NULL, ppBlobOut, &pErrorBlob, NULL );
+
     if( FAILED(hr) )
     {
         if( pErrorBlob != NULL )
@@ -403,6 +474,74 @@ HRESULT CompileShaderFromFile( WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR sz
     return S_OK;
 }
 
+HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID3D11Device* pD3DDevice, ID3D11InputLayout** pInputLayout)
+{
+    // Reflect shader info
+    ID3D11ShaderReflection* pVertexShaderReflection = NULL;
+    if (FAILED(D3DReflect(pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), IID_ID3D11ShaderReflection, (void**)&pVertexShaderReflection)))
+    {
+        return S_FALSE;
+    }
+
+    //Get shader info
+    D3D11_SHADER_DESC shaderDesc;
+    pVertexShaderReflection->GetDesc(&shaderDesc);
+
+    //Read input layout description from shader info
+    std::vector<D3D11_INPUT_ELEMENT_DESC> inputLayoutDesc;
+    int offset = 0;
+
+    for (int i = 0; i < shaderDesc.InputParameters; i++)
+    {
+        D3D11_SIGNATURE_PARAMETER_DESC paramDesc;
+        pVertexShaderReflection->GetInputParameterDesc(i, &paramDesc);
+
+        //Fill out input element desc
+        D3D11_INPUT_ELEMENT_DESC elementDesc;
+        elementDesc.SemanticName = paramDesc.SemanticName;
+        elementDesc.SemanticIndex = paramDesc.SemanticIndex;
+        elementDesc.InputSlot = 0;
+        elementDesc.AlignedByteOffset = offset;
+        elementDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+        elementDesc.InstanceDataStepRate = 0;
+
+        //Determine DXGI format
+        if (paramDesc.Mask == 1)
+        {
+            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32_UINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32_SINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32_FLOAT;
+        }
+        else if (paramDesc.Mask <= 3)
+        {
+            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32G32_UINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32G32_SINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
+        }
+        else if (paramDesc.Mask <= 15)
+        {
+            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32_UINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32_SINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32G32B32_FLOAT; offset += 12;
+        }
+        else if (paramDesc.Mask <= 7)
+        {
+            if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32A32_UINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32A32_SINT;
+            else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+        }
+
+        //save element desc
+        inputLayoutDesc.push_back(elementDesc);
+    }
+
+    // Try to create Input Layout
+    HRESULT hr = pD3DDevice->CreateInputLayout(&inputLayoutDesc[0], inputLayoutDesc.size(), pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pInputLayout);
+
+    //Free allocation shader reflection memory
+    pVertexShaderReflection->Release();
+    return hr;
+}
 
 //--------------------------------------------------------------------------------------
 // Create Direct3D device and swap chain
@@ -424,9 +563,10 @@ HRESULT InitDevice()
     D3D_DRIVER_TYPE driverTypes[] =
     {
         D3D_DRIVER_TYPE_HARDWARE,
-        D3D_DRIVER_TYPE_WARP,
+        D3D_DRIVER_TYPE_WARP,//Trabaja de manera combinada
         D3D_DRIVER_TYPE_REFERENCE,
     };
+
     UINT numDriverTypes = ARRAYSIZE( driverTypes );
 
     D3D_FEATURE_LEVEL featureLevels[] =
@@ -435,9 +575,20 @@ HRESULT InitDevice()
         D3D_FEATURE_LEVEL_10_1,
         D3D_FEATURE_LEVEL_10_0,
     };
+
     UINT numFeatureLevels = ARRAYSIZE( featureLevels );
 
-    DXGI_SWAP_CHAIN_DESC sd;
+    //Mis movimientos
+    DeviceDescriptor objDev;
+    objDev.g_driverType = DRIVER_TYPE_NULL;
+    //objDev.g_featureLevel;
+    CDev.g_pd3dDeviceD3D11 = NULL;
+    objDev.s_createDeviceFlags = 2;
+    objDev.s_numFeatureLevels = 3;
+
+    CDev.Init(objDev);
+
+    /*DXGI_SWAP_CHAIN_DESC sd;
     ZeroMemory( &sd, sizeof( sd ) );
     sd.BufferCount = 1;
     sd.BufferDesc.Width = width;
@@ -449,27 +600,47 @@ HRESULT InitDevice()
     sd.OutputWindow = g_hWnd;
     sd.SampleDesc.Count = 1;
     sd.SampleDesc.Quality = 0;
-    sd.Windowed = TRUE;
+    sd.Windowed = TRUE;*/
+
+    SwapChainDescriptor objSd;
+    objSd.BufferCount = 1;
+    objSd.BufferDesc.My_Width = width;
+    objSd.BufferDesc.My_Height = height;
+    objSd.BufferDesc.My_Format = FORMAT_R8G8B8A8_UNORM;
+    objSd.BufferDesc.My_RefreshRate.My_Numerator = 60;
+    objSd.BufferDesc.My_RefreshRate.My_Denominator = 1;
+    objSd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+    objSd.OutputWindow = g_hWnd;
+    objSd.SampleDesc.My_Count = 1;
+    objSd.SampleDesc.My_Quality = 0;
+    objSd.Windowed = TRUE;
+
+    CSwap.Init(objSd);
 
     for( UINT driverTypeIndex = 0; driverTypeIndex < numDriverTypes; driverTypeIndex++ )
-    {
-        g_driverType = driverTypes[driverTypeIndex];
-        hr = D3D11CreateDeviceAndSwapChain( NULL, g_driverType, NULL, createDeviceFlags, featureLevels, numFeatureLevels,
-                                            D3D11_SDK_VERSION, &sd, &g_pSwapChain, &g_pd3dDevice, &g_featureLevel, &g_pImmediateContext );
+    {        
+        CDev.g_driverTypeD3D11 = driverTypes[driverTypeIndex];
+        hr = D3D11CreateDeviceAndSwapChain( NULL, CDev.g_driverTypeD3D11, NULL, objDev.s_createDeviceFlags, featureLevels, objDev.s_numFeatureLevels,
+                                            D3D11_SDK_VERSION, &CSwap.sdD3D11, &CSwap.g_pSwapChainD3D11, &CDev.g_pd3dDeviceD3D11, &CDev.g_featureLevelD3D11, &CDevCont.g_pImmediateContextD3D11);
         if( SUCCEEDED( hr ) )
             break;
     }
+    
     if( FAILED( hr ) )
         return hr;
 
     // Create a render target view
     ID3D11Texture2D* pBackBuffer = NULL;
-    hr = g_pSwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&pBackBuffer );
+    hr = CSwap.g_pSwapChainD3D11->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&pBackBuffer );
+    
     if( FAILED( hr ) )
         return hr;
 
-    hr = g_pd3dDevice->CreateRenderTargetView( pBackBuffer, NULL, &g_pRenderTargetView );
+    //hr = CDev.m_DescDevice.g_pd3dDevice->CreateRenderTargetView( pBackBuffer, NULL, &g_pRenderTargetView );
+
+    hr = CDev.g_pd3dDeviceD3D11->CreateRenderTargetView( pBackBuffer, NULL, &CRendTarView.g_pRenderTargetViewD3D11);
     pBackBuffer->Release();
+
     if( FAILED( hr ) )
         return hr;
 
@@ -487,7 +658,11 @@ HRESULT InitDevice()
     descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
     descDepth.CPUAccessFlags = 0;
     descDepth.MiscFlags = 0;
-    hr = g_pd3dDevice->CreateTexture2D( &descDepth, NULL, &g_pDepthStencil );
+
+    //hr = CDev.m_DescDevice.g_pd3dDevice->CreateTexture2D( &descDepth, NULL, &g_pDepthStencil );
+
+    hr = CDev.g_pd3dDeviceD3D11->CreateTexture2D( &descDepth, NULL, &CRendTar.g_pDepthStencilD3D11);
+
     if( FAILED( hr ) )
         return hr;
 
@@ -497,25 +672,43 @@ HRESULT InitDevice()
     descDSV.Format = descDepth.Format;
     descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
     descDSV.Texture2D.MipSlice = 0;
-    hr = g_pd3dDevice->CreateDepthStencilView( g_pDepthStencil, &descDSV, &g_pDepthStencilView );
+
+    //hr = CDev.m_DescDevice.g_pd3dDevice->CreateDepthStencilView( g_pDepthStencil, &descDSV, &g_pDepthStencilView );
+
+    hr = CDev.g_pd3dDeviceD3D11->CreateDepthStencilView(CRendTar.g_pDepthStencilD3D11, &descDSV, &CDepthS.g_pDepthStencilViewD3D11);
+    
     if( FAILED( hr ) )
         return hr;
 
-    g_pImmediateContext->OMSetRenderTargets( 1, &g_pRenderTargetView, g_pDepthStencilView );
+    //CDevCont.m_DescDCont.g_pImmediateContext->OMSetRenderTargets( 1, &g_pRenderTargetView, g_pDepthStencilView );
+    
+    CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets( 1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthS.g_pDepthStencilViewD3D11);
 
     // Setup the viewport
-    D3D11_VIEWPORT vp;
+    /*D3D11_VIEWPORT vp;
     vp.Width = (FLOAT)width;
     vp.Height = (FLOAT)height;
     vp.MinDepth = 0.0f;
     vp.MaxDepth = 1.0f;
     vp.TopLeftX = 0;
-    vp.TopLeftY = 0;
-    g_pImmediateContext->RSSetViewports( 1, &vp );
+    vp.TopLeftY = 0;*/
+
+    ViewportDesc  vp2;
+    vp2.Width = (FLOAT)width;
+    vp2.Height = (FLOAT)height;
+    vp2.MinDepth = 0.0f;
+    vp2.MaxDepth = 1.0f;
+    vp2.TopLeftX = 0;
+    vp2.TopLeftY = 0;
+    
+    CView.Init(vp2);
+
+    CDevCont.g_pImmediateContextD3D11->RSSetViewports( 1, &CView.vpD3D11);
 
     // Compile the vertex shader
-    ID3DBlob* pVSBlob = NULL;
-    hr = CompileShaderFromFile( L"Tutorial07.fx", "VS", "vs_4_0", &pVSBlob );
+    //ID3DBlob* pVSBlob = NULL;
+
+    hr = CompileShaderFromFile( L"Tutorial07.fx", "VS", "vs_4_0", &CShader.m_pVSBlobD3D11 );
     if( FAILED( hr ) )
     {
         MessageBox( NULL,
@@ -524,30 +717,36 @@ HRESULT InitDevice()
     }
 
     // Create the vertex shader
-    hr = g_pd3dDevice->CreateVertexShader( pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), NULL, &g_pVertexShader );
+    hr = CDev.g_pd3dDeviceD3D11->CreateVertexShader(CShader.m_pVSBlobD3D11->GetBufferPointer(), CShader.m_pVSBlobD3D11->GetBufferSize(), NULL, &CShader.g_pVertexShaderD3D11 );
     if( FAILED( hr ) )
     {    
-        pVSBlob->Release();
+        CShader.m_pVSBlobD3D11->Release();
         return hr;
     }
 
-    // Define the input layout
+     /*Define the input layout
     D3D11_INPUT_ELEMENT_DESC layout[] =
     {
         { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
         { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
     };
-    UINT numElements = ARRAYSIZE( layout );
 
-    // Create the input layout
-    hr = g_pd3dDevice->CreateInputLayout( layout, numElements, pVSBlob->GetBufferPointer(),
-                                          pVSBlob->GetBufferSize(), &g_pVertexLayout );
-    pVSBlob->Release();
-    if( FAILED( hr ) )
+    UINT numElements = ARRAYSIZE( layout );*/
+
+
+    //Create input layout from compiled VS
+    hr = CreateInputLayoutDescFromVertexShaderSignature(CShader.m_pVSBlobD3D11, CDev.g_pd3dDeviceD3D11, &Layout);
+    if (FAILED(hr))
         return hr;
 
+    /*// Create the input layout
+    hr = CDev.m_DescDevice.g_pd3dDevice->CreateInputLayout( layout, numElements, CShader.m_pVSBlob->GetBufferPointer(), CShader.m_pVSBlob->GetBufferSize(), &g_pVertexLayout );
+    CShader.m_pVSBlobD3D11->Release();
+    if( FAILED( hr ) )
+        return hr;*/
+
     // Set the input layout
-    g_pImmediateContext->IASetInputLayout( g_pVertexLayout );
+    CDevCont.g_pImmediateContextD3D11->IASetInputLayout(Layout);
 
     // Compile the pixel shader
     ID3DBlob* pPSBlob = NULL;
@@ -560,7 +759,7 @@ HRESULT InitDevice()
     }
 
     // Create the pixel shader
-    hr = g_pd3dDevice->CreatePixelShader( pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), NULL, &g_pPixelShader );
+    hr = CDev.g_pd3dDeviceD3D11->CreatePixelShader( pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), NULL, &g_pPixelShader );
     pPSBlob->Release();
     if( FAILED( hr ) )
         return hr;
@@ -608,14 +807,14 @@ HRESULT InitDevice()
     D3D11_SUBRESOURCE_DATA InitData;
     ZeroMemory( &InitData, sizeof(InitData) );
     InitData.pSysMem = vertices;
-    hr = g_pd3dDevice->CreateBuffer( &bd, &InitData, &g_pVertexBuffer );
+    hr = CDev.g_pd3dDeviceD3D11->CreateBuffer( &bd, &InitData, &g_pVertexBuffer );
     if( FAILED( hr ) )
         return hr;
 
     // Set vertex buffer
     UINT stride = sizeof( SimpleVertex );
     UINT offset = 0;
-    g_pImmediateContext->IASetVertexBuffers( 0, 1, &g_pVertexBuffer, &stride, &offset );
+    CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers( 0, 1, &g_pVertexBuffer, &stride, &offset );
 
     // Create index buffer
     // Create vertex buffer
@@ -645,51 +844,64 @@ HRESULT InitDevice()
     bd.BindFlags = D3D11_BIND_INDEX_BUFFER;
     bd.CPUAccessFlags = 0;
     InitData.pSysMem = indices;
-    hr = g_pd3dDevice->CreateBuffer( &bd, &InitData, &g_pIndexBuffer );
+    hr = CDev.g_pd3dDeviceD3D11->CreateBuffer( &bd, &InitData, &g_pIndexBuffer );
     if( FAILED( hr ) )
         return hr;
 
     // Set index buffer
-    g_pImmediateContext->IASetIndexBuffer( g_pIndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
+    CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer( g_pIndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
 
     // Set primitive topology
-    g_pImmediateContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+    CDevCont.g_pImmediateContextD3D11->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
     // Create the constant buffers
     bd.Usage = D3D11_USAGE_DEFAULT;
     bd.ByteWidth = sizeof(CBNeverChanges);
     bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     bd.CPUAccessFlags = 0;
-    hr = g_pd3dDevice->CreateBuffer( &bd, NULL, &g_pCBNeverChanges );
+    hr = CDev.g_pd3dDeviceD3D11->CreateBuffer( &bd, NULL, &g_pCBNeverChanges );
     if( FAILED( hr ) )
         return hr;
     
     bd.ByteWidth = sizeof(CBChangeOnResize);
-    hr = g_pd3dDevice->CreateBuffer( &bd, NULL, &g_pCBChangeOnResize );
+    hr = CDev.g_pd3dDeviceD3D11->CreateBuffer( &bd, NULL, &g_pCBChangeOnResize );
     if( FAILED( hr ) )
         return hr;
     
     bd.ByteWidth = sizeof(CBChangesEveryFrame);
-    hr = g_pd3dDevice->CreateBuffer( &bd, NULL, &g_pCBChangesEveryFrame );
+    hr = CDev.g_pd3dDeviceD3D11->CreateBuffer( &bd, NULL, &g_pCBChangesEveryFrame );
     if( FAILED( hr ) )
         return hr;
 
     // Load the Texture
-    hr = D3DX11CreateShaderResourceViewFromFile( g_pd3dDevice, L"seafloor.dds", NULL, NULL, &g_pTextureRV, NULL );
+    hr = D3DX11CreateShaderResourceViewFromFile(CDev.g_pd3dDeviceD3D11, L"seafloor.dds", NULL, NULL, &g_pTextureRV, NULL );
     if( FAILED( hr ) )
         return hr;
 
     // Create the sample state
-    D3D11_SAMPLER_DESC sampDesc;
+
+    SampleStateDesc sampDesc2;
+    sampDesc2.Filter = FILTER_MIN_MAG_MIP_LINEAR;
+    sampDesc2.AddressU = TEXTURE_ADDRESS_WRAP;
+    sampDesc2.AddressV = TEXTURE_ADDRESS_WRAP;
+    sampDesc2.AddressW = TEXTURE_ADDRESS_WRAP;
+    sampDesc2.ComparisonFunc = COMPARISON_NEVER;
+    sampDesc2.MinLOD = 0;
+    sampDesc2.MaxLOD = D3D11_FLOAT32_MAX;
+
+    CSampleS.Init(sampDesc2);
+
+    /*D3D11_SAMPLER_DESC sampDesc;
     ZeroMemory( &sampDesc, sizeof(sampDesc) );
-    sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-    sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.Filter         = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+    sampDesc.AddressU       = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressV       = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressW       = D3D11_TEXTURE_ADDRESS_WRAP;
     sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-    sampDesc.MinLOD = 0;
-    sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
-    hr = g_pd3dDevice->CreateSamplerState( &sampDesc, &g_pSamplerLinear );
+    sampDesc.MinLOD         = 0;
+    sampDesc.MaxLOD         = D3D11_FLOAT32_MAX;*/
+
+    hr = CDev.g_pd3dDeviceD3D11->CreateSamplerState( &CSampleS.sampDescD3D11, &CSampleS.g_pSamplerLinearD3D11 );
     if( FAILED( hr ) )
         return hr;
 
@@ -709,7 +921,7 @@ HRESULT InitDevice()
     //cbNeverChanges.mView = QuieroDormir_Camara.GetView();
     cbNeverChanges.mView = QuieroDormir2_Camara.GetView();
     
-    g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource( g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
 
     // Initialize the projection matrix
     //g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
@@ -719,37 +931,37 @@ HRESULT InitDevice()
     //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
    // cbChangesOnResize.mProjection = QuieroDormir_Camara.GetProjection();
     cbChangesOnResize.mProjection = QuieroDormir2_Camara.GetProjection();
-    g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource( g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
 
     return S_OK;
 }
-
 
 //--------------------------------------------------------------------------------------
 // Clean up the objects we've created
 //--------------------------------------------------------------------------------------
 void CleanupDevice()
 {
-    if( g_pImmediateContext ) g_pImmediateContext->ClearState();
+    if(CDevCont.g_pImmediateContextD3D11) CDevCont.g_pImmediateContextD3D11->ClearState();
 
-    if( g_pSamplerLinear ) g_pSamplerLinear->Release();
+    if(CSampleS.g_pSamplerLinearD3D11 ) CSampleS.g_pSamplerLinearD3D11->Release();
     if( g_pTextureRV ) g_pTextureRV->Release();
     if( g_pCBNeverChanges ) g_pCBNeverChanges->Release();
     if( g_pCBChangeOnResize ) g_pCBChangeOnResize->Release();
     if( g_pCBChangesEveryFrame ) g_pCBChangesEveryFrame->Release();
     if( g_pVertexBuffer ) g_pVertexBuffer->Release();
     if( g_pIndexBuffer ) g_pIndexBuffer->Release();
-    if( g_pVertexLayout ) g_pVertexLayout->Release();
-    if( g_pVertexShader ) g_pVertexShader->Release();
+    if(Layout) Layout->Release();
+    if(CShader.g_pVertexShaderD3D11) CShader.g_pVertexShaderD3D11->Release();
     if( g_pPixelShader ) g_pPixelShader->Release();
-    if( g_pDepthStencil ) g_pDepthStencil->Release();
-    if( g_pDepthStencilView ) g_pDepthStencilView->Release();
-    if( g_pRenderTargetView ) g_pRenderTargetView->Release();
-    if( g_pSwapChain ) g_pSwapChain->Release();
-    if( g_pImmediateContext ) g_pImmediateContext->Release();
-    if( g_pd3dDevice ) g_pd3dDevice->Release();
+    //if( g_pDepthStencil ) g_pDepthStencil->Release();
+    if(CRendTar.g_pDepthStencilD3D11) CRendTar.g_pDepthStencilD3D11->Release();
+    if(CDepthS.g_pDepthStencilViewD3D11) CDepthS.g_pDepthStencilViewD3D11->Release();
+    //if( g_pRenderTargetView ) g_pRenderTargetView->Release();
+    if(CRendTarView.g_pRenderTargetViewD3D11) CRendTarView.g_pRenderTargetViewD3D11->Release();
+    if(CSwap.g_pSwapChainD3D11) CSwap.g_pSwapChainD3D11->Release();
+    if(CDevCont.g_pImmediateContextD3D11) CDevCont.g_pImmediateContextD3D11->Release();
+    if(CDev.g_pd3dDeviceD3D11) CDev.g_pd3dDeviceD3D11->Release();
 }
-
 
 //--------------------------------------------------------------------------------------
 // Called every time the application receives a message
@@ -771,10 +983,12 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             PostQuitMessage( 0 );
             break;
 
+            //WM_SIZE: It is sent to a window after its size has changed.
         case WM_SIZE:
             Resize();
             break;
 
+            //WM_KEYDOWN: A window receives keyboard input in the form of keystroke messages and character messages.
         case WM_KEYDOWN:
             if (SwitchCamera == -1) {
 
@@ -786,14 +1000,15 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             }
             break;
             
+            //WM_LBUTTONDOWN: Posted when the user presses the left mouse button while the cursor is in the client area of a window.
         case WM_LBUTTONDOWN:
-            if (SwitchCamera == -1) {
+            if (SwitchCamera == -1) {//In this case We can move the free camera
 
                 GetCursorPos(&Temp);
                 QuieroDormir_Camara.SetOriginalMousePos(Temp.x, Temp.y);
                 ClickPressed = true;
             }
-            else if (SwitchCamera == 1) {
+            else if (SwitchCamera == 1) {//In this case We can move the first camera
 
                 GetCursorPos(&Temp);
                 QuieroDormir2_Camara.SetOriginalMousePos(Temp.x, Temp.y);
@@ -801,10 +1016,12 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             }
             break;
 
+            //WM_LBUTTONUP: Posted when the user releases the left mouse button while the cursor is in the client area of a window.
         case WM_LBUTTONUP:
             ClickPressed = false;
             break;
 
+            //WM_RBUTTONDOWN: Posted when the user presses the right mouse button while the cursor is in the client area of a window
         case WM_RBUTTONDOWN:
             SwitchCamera *= -1;
             break;
@@ -820,7 +1037,6 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
     return 0;
 }
 
-
 //--------------------------------------------------------------------------------------
 // Render a frame
 //--------------------------------------------------------------------------------------
@@ -829,8 +1045,7 @@ void Render(){
     int MapX = 0;
     int MapY = 0;
 
-    //-----
-    if (ClickPressed && SwitchCamera == -1) {
+    if (ClickPressed && SwitchCamera == -1) {//If we are in free camera 
 
         QuieroDormir_Camara.MouseRotation();
     }
@@ -841,7 +1056,7 @@ void Render(){
 
     // Update our time
     static float t = 0.0f;
-    if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
+    if (CDev.m_DescDevice.g_driverType == D3D_DRIVER_TYPE_REFERENCE)
     {
         t += (float)XM_PI * 0.0125f;
     }
@@ -867,12 +1082,13 @@ void Render(){
     // Clear the back buffer
     //
     float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
-    g_pImmediateContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
+    //CDevCont.m_DescDCont.g_pImmediateContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
+    CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
 
     //
     // Clear the depth buffer to 1.0 (max depth)
     //
-    g_pImmediateContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+    CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthS.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
     //
     // Update variables that change once per frame
@@ -880,7 +1096,7 @@ void Render(){
     CBChangesEveryFrame cb;
     cb.mWorld = XMMatrixTranspose(g_World);
     cb.vMeshColor = g_vMeshColor;
-    g_pImmediateContext->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
 
     //-----
     CBNeverChanges cbNeverChanges;
@@ -894,20 +1110,20 @@ void Render(){
         cbNeverChanges.mView = QuieroDormir2_Camara.GetView();
     }
 
-    g_pImmediateContext->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
 
     //
     // Render the cube
     //
-    g_pImmediateContext->VSSetShader(g_pVertexShader, NULL, 0);
-    g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-    g_pImmediateContext->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-    g_pImmediateContext->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-    g_pImmediateContext->PSSetShader(g_pPixelShader, NULL, 0);
-    g_pImmediateContext->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-    g_pImmediateContext->PSSetShaderResources(0, 1, &g_pTextureRV);
-    g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
-    g_pImmediateContext->DrawIndexed(36, 0, 0);
+    CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+    CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
+    CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &g_pTextureRV);
+    CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
+    CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
 
     for (int i = 0; i < Rows; i++){
 
@@ -928,20 +1144,20 @@ void Render(){
             //g_World = XMMatrixTranslation(MapX, 0, MapY);
             if (LevelCubes[i][j] != 0){
 
-                g_pImmediateContext->VSSetShader(g_pVertexShader, NULL, 0);
-                g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-                g_pImmediateContext->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-                g_pImmediateContext->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                g_pImmediateContext->PSSetShader(g_pPixelShader, NULL, 0);
-                g_pImmediateContext->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                g_pImmediateContext->PSSetShaderResources(0, 1, &g_pTextureRV);
-                g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
-                g_pImmediateContext->DrawIndexed(36, 0, 0);
+                CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
+                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
+                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
+                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+                CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
+                CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
+                CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &g_pTextureRV);
+                CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
+                CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
             }
             g_World = XMMatrixTranslation(MapX, 0, MapY);
             cb.mWorld = XMMatrixTranspose(g_World);
             cb.vMeshColor = g_vMeshColor;
-            g_pImmediateContext->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
+            CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
         }
         MapY += 2.5;
         MapX = 0;
@@ -949,5 +1165,5 @@ void Render(){
     //
     // Present our back buffer to our front buffer
     //
-    g_pSwapChain->Present( 0, 0 ); 
+    CSwap.g_pSwapChainD3D11->Present( 0, 0 );
 }

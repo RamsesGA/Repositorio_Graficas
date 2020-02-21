@@ -377,6 +377,18 @@
   <ItemGroup />
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CPP\ClaseBuffer.cpp" />
+    <ClCompile Include="CPP\ClaseDepthStencil.cpp" />
+    <ClCompile Include="CPP\ClaseDevice.cpp" />
+    <ClCompile Include="CPP\ClaseDeviceContext.cpp" />
+    <ClCompile Include="CPP\ClaseRenderTarget.cpp" />
+    <ClCompile Include="CPP\ClaseRenderTargetView.cpp" />
+    <ClCompile Include="CPP\ClaseSampleState.cpp" />
+    <ClCompile Include="CPP\ClaseShader.cpp" />
+    <ClCompile Include="CPP\ClaseSwapChain.cpp" />
+    <ClCompile Include="CPP\ClaseTexture2D.cpp" />
+    <ClCompile Include="CPP\ClaseVertexBuffer.cpp" />
+    <ClCompile Include="CPP\ClaseViewport.cpp" />
     <ClCompile Include="FirstCamera.cpp" />
     <ClCompile Include="Tutorial07.cpp" />
   </ItemGroup>
@@ -385,6 +397,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Encabezados\ClaseBuffer.h" />
+    <ClInclude Include="Encabezados\ClaseDepthStencil.h" />
+    <ClInclude Include="Encabezados\ClaseDevice.h" />
+    <ClInclude Include="Encabezados\ClaseDeviceContext.h" />
+    <ClInclude Include="Encabezados\ClaseRenderTarget.h" />
+    <ClInclude Include="Encabezados\ClaseRenderTargetView.h" />
+    <ClInclude Include="Encabezados\ClaseSampleState.h" />
+    <ClInclude Include="Encabezados\ClaseShader.h" />
+    <ClInclude Include="Encabezados\ClaseSwapChain.h" />
+    <ClInclude Include="Encabezados\ClaseTexture2D.h" />
+    <ClInclude Include="Encabezados\ClaseVertexBuffer.h" />
+    <ClInclude Include="Encabezados\ClaseViewport.h" />
+    <ClInclude Include="Encabezados\Defines.h" />
     <ClInclude Include="FirstCamera.h" />
     <ClInclude Include="includes\mathfu\constants.h" />
     <ClInclude Include="includes\mathfu\glsl_mappings.h" />

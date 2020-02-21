@@ -1,0 +1,1 @@
+#include "../Encabezados/ClaseTexture2D.h"
