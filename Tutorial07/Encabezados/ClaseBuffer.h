@@ -20,7 +20,7 @@ class ClaseBuffer {
 		
 		BufferDescriptor m_DescBuff;
 
-		ClaseBuffer() {};
+		ClaseBuffer() { m_BufferD3D11 = NULL; };
 		~ClaseBuffer() {};
 
 		/*//Abstractions
@@ -56,14 +56,16 @@ class ClaseBuffer {
 
 		//Functions
 		void
-		Init();
-
+		Init(BufferDescriptor _buff);
 		void
 		Update();
-
 		void
 		Delete();
-
 		void
 		Render();
+
+#ifdef D3D11
+		ID3D11Buffer* m_BufferD3D11;
+		D3D11_BUFFER_DESC m_BufferDescD3D11;
+#endif
 };

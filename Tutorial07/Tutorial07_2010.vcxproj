@@ -381,6 +381,7 @@
     <ClCompile Include="CPP\ClaseDepthStencil.cpp" />
     <ClCompile Include="CPP\ClaseDevice.cpp" />
     <ClCompile Include="CPP\ClaseDeviceContext.cpp" />
+    <ClCompile Include="CPP\ClaseManagerInterfaz.cpp" />
     <ClCompile Include="CPP\ClaseRenderTarget.cpp" />
     <ClCompile Include="CPP\ClaseRenderTargetView.cpp" />
     <ClCompile Include="CPP\ClaseSampleState.cpp" />
@@ -401,6 +402,7 @@
     <ClInclude Include="Encabezados\ClaseDepthStencil.h" />
     <ClInclude Include="Encabezados\ClaseDevice.h" />
     <ClInclude Include="Encabezados\ClaseDeviceContext.h" />
+    <ClInclude Include="Encabezados\ClaseManagerInterfaz.h" />
     <ClInclude Include="Encabezados\ClaseRenderTarget.h" />
     <ClInclude Include="Encabezados\ClaseRenderTargetView.h" />
     <ClInclude Include="Encabezados\ClaseSampleState.h" />

@@ -1,6 +1,15 @@
 #include "..\Encabezados\ClaseBuffer.h"
 
-void ClaseBuffer::Init(){
+void ClaseBuffer::Init(BufferDescriptor _buff){
+
+	m_DescBuff = _buff;
+
+	ZeroMemory(&m_BufferDescD3D11, sizeof(m_BufferDescD3D11));
+
+	m_BufferDescD3D11.Usage = (D3D11_USAGE)m_DescBuff.Usage;
+	m_BufferDescD3D11.ByteWidth = m_DescBuff.ByteWidth;
+	m_BufferDescD3D11.BindFlags = m_DescBuff.BindFlags;
+	m_BufferDescD3D11.CPUAccessFlags = m_DescBuff.CPUAccessFlags;
 }
 
 void ClaseBuffer::Update(){

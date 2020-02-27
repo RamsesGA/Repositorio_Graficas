@@ -6,6 +6,14 @@
 	Device
 ***********/
 
+struct SUBRESOURCE_DATA {
+
+    const void* My_pSysMem;
+    unsigned int My_SysMemPitch;
+    unsigned int My_SysMemSlicePitch;
+};
+
+
 //D3D_DRIVER_TYPE		g_driverType
 enum DRIVER_TYPE{
 

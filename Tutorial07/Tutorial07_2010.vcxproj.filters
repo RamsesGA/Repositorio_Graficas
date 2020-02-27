@@ -89,6 +89,7 @@
     <ClInclude Include="Encabezados\ClaseViewport.h" />
     <ClInclude Include="Encabezados\ClaseShader.h" />
     <ClInclude Include="Encabezados\Defines.h" />
+    <ClInclude Include="Encabezados\ClaseManagerInterfaz.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tutorial07.cpp" />
@@ -106,6 +107,7 @@
     <ClCompile Include="CPP\ClaseDepthStencil.cpp" />
     <ClCompile Include="CPP\ClaseViewport.cpp" />
     <ClCompile Include="CPP\ClaseShader.cpp" />
+    <ClCompile Include="CPP\ClaseManagerInterfaz.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tutorial07.fx">

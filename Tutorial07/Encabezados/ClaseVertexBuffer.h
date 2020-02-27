@@ -1,11 +1,5 @@
 #pragma once
-#include "Defines.h"
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
-struct VertexBufferDesc {
-
-};
+#include "ClaseBuffer.h"
 
 class ClaseVertexBuffer {
 
@@ -13,8 +7,10 @@ class ClaseVertexBuffer {
 		ClaseVertexBuffer() {};
 		~ClaseVertexBuffer() {};
 
+		ClaseBuffer m_Buffer;
+
 		void
-		Init();
+		Init(SUBRESOURCE_DATA _data, BufferDescriptor _buffer);
 
 		void
 		Update();
@@ -26,5 +22,6 @@ class ClaseVertexBuffer {
 		Render();
 
 #ifdef D3D11
+		D3D11_SUBRESOURCE_DATA m_SubDataD3D11;
 #endif // D3D11
 };
