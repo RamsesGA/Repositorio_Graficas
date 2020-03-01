@@ -1,12 +1,8 @@
 #pragma once
 #include "Defines.h"
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
 
 struct Texture2Desc {
 
-#ifdef D3D11
     UINT Width;
     UINT Height;
     UINT MipLevels;
@@ -19,7 +15,6 @@ struct Texture2Desc {
     UINT BindFlags;
     UINT CPUAccessFlags;
     UINT MiscFlags;
-#endif
 };
 
 class ClaseTextura2D {

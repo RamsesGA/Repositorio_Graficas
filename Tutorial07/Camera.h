@@ -1,9 +1,6 @@
 #pragma once
+#include "Encabezados/Defines.h"
 #include "mathfu/hlsl_mappings.h"
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
-#include <xnamath.h>
 
 struct CameraDescriptor {
 
@@ -41,17 +38,21 @@ class Camera {
 		mathfu::float3 m_UpLimit;
 
 		//-----
-		mathfu::float4x4 m_View;
 		mathfu::float4x4 m_Projection;
 		mathfu::float4x4 m_Axis;
 		mathfu::float4x4 m_Position;
 
 		//-----
+#ifdef D3D11
 		XMMATRIX m_MProjection;
+#endif // D3D11
+
 		float angule;
 		float maxAngule = 60;
 
 	public:
+
+		mathfu::float4x4 m_View;
 
 		//Functions-----
 		int 

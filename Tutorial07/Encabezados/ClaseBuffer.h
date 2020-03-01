@@ -1,8 +1,5 @@
 #pragma once
 #include "Defines.h"
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
 
 struct BufferDescriptor {
 
@@ -20,7 +17,12 @@ class ClaseBuffer {
 		
 		BufferDescriptor m_DescBuff;
 
-		ClaseBuffer() { m_BufferD3D11 = NULL; };
+		ClaseBuffer() {
+
+#ifdef D3D11
+			m_BufferD3D11 = NULL;
+#endif // D3D11
+		};
 		~ClaseBuffer() {};
 
 		/*//Abstractions

@@ -3,7 +3,7 @@
 void ClaseDepthStencil::Init(DepthStencilDesc _stencilDesc){
 
 	m_DepthDesc = _stencilDesc;
-
+#ifdef D3D11
 	ZeroMemory(&descDepthD3D11, sizeof(descDepthD3D11));
 
    descDepthD3D11.Width                     = m_DepthDesc.Width;
@@ -17,4 +17,5 @@ void ClaseDepthStencil::Init(DepthStencilDesc _stencilDesc){
    descDepthD3D11.BindFlags                 = m_DepthDesc.BindFlags;
    descDepthD3D11.CPUAccessFlags            = m_DepthDesc.CPUAccessFlags;
    descDepthD3D11.MiscFlags                 = m_DepthDesc.MiscFlags;
+#endif
 }

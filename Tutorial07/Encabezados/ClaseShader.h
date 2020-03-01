@@ -1,8 +1,5 @@
 #pragma once
 #include "Defines.h"
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
 
 struct ShaderDesc {
 
@@ -11,7 +8,12 @@ struct ShaderDesc {
 class ClaseShader {
 
 	public:
-		ClaseShader() { m_pVSBlobD3D11 = NULL; };
+		ClaseShader() {
+#ifdef D3D11
+			m_pVSBlobD3D11 = NULL;
+#endif // D3D11
+			 };
+
 		~ClaseShader() {};
 
 		ShaderDesc m_ShaderD;

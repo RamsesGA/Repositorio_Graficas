@@ -3,6 +3,8 @@
 void ClaseTextura2D::Init(Texture2Desc _text){
 
 	m_TextDesc = _text;
+
+#ifdef D3D11
 	ZeroMemory(&m_TextDescD3D11, sizeof(m_TextDescD3D11));
 
 	m_TextDescD3D11.Width = m_TextDesc.Width;
@@ -16,4 +18,5 @@ void ClaseTextura2D::Init(Texture2Desc _text){
 	m_TextDescD3D11.BindFlags = m_TextDesc.BindFlags;
 	m_TextDescD3D11.CPUAccessFlags = m_TextDesc.CPUAccessFlags;
 	m_TextDescD3D11.MiscFlags = m_TextDesc.MiscFlags;
+#endif
 }

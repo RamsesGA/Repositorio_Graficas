@@ -4,6 +4,7 @@ void ClaseRenderTargetView::Init(RenderTargetViewDesc _rtvd){
 
 	m_renderTVD = _rtvd;
 
+#ifdef D3D11
 	m_renderTVD3D11.Buffer.ElementOffset						= m_renderTVD.Buffer.My_ElementOffset;
 	m_renderTVD3D11.Buffer.ElementWidth							= m_renderTVD.Buffer.My_ElementWidth;
 	m_renderTVD3D11.Buffer.FirstElement							= m_renderTVD.Buffer.My_FirstElement;
@@ -24,4 +25,5 @@ void ClaseRenderTargetView::Init(RenderTargetViewDesc _rtvd){
 	m_renderTVD3D11.Texture3D.MipSlice							= m_renderTVD.Texture3D.My_MipSlice;
 	m_renderTVD3D11.Texture3D.WSize								= m_renderTVD.Texture3D.My_WSize;
 	m_renderTVD3D11.ViewDimension								= (D3D11_RTV_DIMENSION)m_renderTVD.ViewDimension;
+#endif
 }

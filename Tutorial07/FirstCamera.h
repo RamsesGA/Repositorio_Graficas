@@ -1,10 +1,6 @@
 #pragma once
-
+#include"Encabezados/Defines.h"
 #include "mathfu/hlsl_mappings.h"
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
-#include <xnamath.h>
 #include "Camera.h"
 
 struct FirstCameraDescriptor {

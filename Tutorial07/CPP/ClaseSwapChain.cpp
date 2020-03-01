@@ -4,6 +4,7 @@ void ClaseSwapChain::Init(SwapChainDescriptor _desc){
 
 	m_ChainDesc = _desc;
 
+#ifdef D3D11
 	ZeroMemory(&sdD3D11, sizeof(sdD3D11));
 	
 	sdD3D11.BufferCount							= m_ChainDesc.BufferCount;
@@ -17,6 +18,7 @@ void ClaseSwapChain::Init(SwapChainDescriptor _desc){
 	sdD3D11.SampleDesc.Count					= m_ChainDesc.SampleDesc.My_Count;
 	sdD3D11.SampleDesc.Quality					= m_ChainDesc.SampleDesc.My_Quality;
 	sdD3D11.Windowed							= m_ChainDesc.Windowed;
+#endif
 }
 
 /*void ClaseSwapChain::SetSwapChain(IDXGISwapChain* _chain){

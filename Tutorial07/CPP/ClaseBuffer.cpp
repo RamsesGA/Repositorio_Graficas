@@ -3,13 +3,14 @@
 void ClaseBuffer::Init(BufferDescriptor _buff){
 
 	m_DescBuff = _buff;
-
+#ifdef D3D11
 	ZeroMemory(&m_BufferDescD3D11, sizeof(m_BufferDescD3D11));
 
 	m_BufferDescD3D11.Usage = (D3D11_USAGE)m_DescBuff.Usage;
 	m_BufferDescD3D11.ByteWidth = m_DescBuff.ByteWidth;
 	m_BufferDescD3D11.BindFlags = m_DescBuff.BindFlags;
 	m_BufferDescD3D11.CPUAccessFlags = m_DescBuff.CPUAccessFlags;
+#endif
 }
 
 void ClaseBuffer::Update(){

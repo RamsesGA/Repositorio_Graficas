@@ -3,7 +3,8 @@
 void RenderTarget::Init(RenderTargetDesc _rtd) {
 
 	m_RenderTDesc = _rtd;
-	
+
+#ifdef D3D11
 	m_RenderTD3D11.ArraySize			= m_RenderTDesc.ArraySize;
 	m_RenderTD3D11.BindFlags			= m_RenderTDesc.BindFlags;
 	m_RenderTD3D11.CPUAccessFlags		= m_RenderTDesc.CPUAccessFlags;
@@ -15,4 +16,5 @@ void RenderTarget::Init(RenderTargetDesc _rtd) {
 	m_RenderTD3D11.SampleDesc.Quality	= m_RenderTDesc.SampleDesc.My_Quality;
 	m_RenderTD3D11.Usage				= (D3D11_USAGE)m_RenderTDesc.Usage;
 	m_RenderTD3D11.Width				= m_RenderTDesc.Width;
+#endif
 }

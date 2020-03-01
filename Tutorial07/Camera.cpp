@@ -150,8 +150,9 @@ void Camera::UpdateVM(){
 //-----
 void Camera::GenerateProjectionMatrix(){
 
+#ifdef D3D11
 	m_MProjection = XMMatrixPerspectiveFovLH(m_Desc.s_FoV, m_Desc.s_Widht / m_Desc.s_Height, m_Desc.s_Near, m_Desc.s_Far);
-	
+
 	m_Projection =
 	{
 		m_MProjection._11, m_MProjection._12, m_MProjection._13, m_MProjection._14,
@@ -161,6 +162,7 @@ void Camera::GenerateProjectionMatrix(){
 	};
 
 	m_Projection = m_Projection.Transpose();
+#endif
 }
 
 //-----
