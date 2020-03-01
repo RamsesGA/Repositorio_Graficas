@@ -424,7 +424,7 @@ void Camera::MouseRotation(){
 			};
 	}
 	
-	SetCursorPos(OriginalMousePos.x, OriginalMousePos.y);
+	//SetCursorPos(OriginalMousePos.x, OriginalMousePos.y);
 	m_View *= Yaw;
 	UpdateVM();
 	m_View *= Pitch;

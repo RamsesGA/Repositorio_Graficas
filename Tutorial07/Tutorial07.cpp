@@ -428,20 +428,22 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
         }
         else
         {
-            ImVec2 ScreenImGui(240, 240);
+            ImVec2 ScreenImGui(200, 200);
 
             ImGui_ImplDX11_NewFrame();
             ImGui_ImplWin32_NewFrame();
 
             ImGui::NewFrame();
-            ImGui::Begin("Hi Hi");
-
+            ImGui::Begin("Button for Change Cameras");
+            if (ImGui::Button("Click me"))
+            {
+                SwitchCamera = SwitchCamera * (-1);
+            }
             ImGui::End();
-            ImGui::Begin("DirectX11 Texture Test");
 
-            ImGui::Image(g_pTextureRV, ScreenImGui);
+            ImGui::Begin("Shader from Camera");
+            ImGui::Image(InactiveSRV, ScreenImGui);
             ImGui::GetIO().FontGlobalScale;
-
             ImGui::End();
             Render();
         }
@@ -1173,6 +1175,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 
     if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam)){
+
+        std::cout << "Hola, soy la ventanita\n";
         return true;
     }
 
