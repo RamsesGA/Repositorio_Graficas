@@ -34,18 +34,16 @@
 #include "imgui/imgui_impl_win32.h"
 #include "imgui/imgui_impl_dx11.h"
 
-extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+//API
+#include "Encabezados/GraphicApi.h"
+#include "Encabezados/SceneManager.h"
 
+//extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 //--------------------------------------------------------------------------------------
 // Structures
 //--------------------------------------------------------------------------------------
-struct SimpleVertex
-{
-    //XMFLOAT3 Pos;
-    mathfu::float3 Pos;
-    //XMFLOAT2 Tex;
-    mathfu::float2 Tex;
-};
+
 
 struct CBNeverChanges
 {
@@ -59,13 +57,7 @@ struct CBChangeOnResize
     mathfu::float4x4 mProjection;
 };
 
-struct CBChangesEveryFrame
-{
-    //XMMATRIX mWorld;
-    mathfu::float4x4 mWorld;
-    //XMFLOAT4 vMeshColor;
-    mathfu::float4 vMeshColor;
-};
+
 
 
 //--------------------------------------------------------------------------------------
@@ -135,6 +127,9 @@ Camera* SecondCamera    = NULL;
 Camera CamaraLibre;
 Camera CamaraPrimeraPersona;
 
+//API
+SCENEMANAGER G_SceneManager;
+GraphicApi   G_GraphicApi;
 
 #if defined(D3D11)
 ID3D11Device* ptrDEV;
@@ -950,7 +945,8 @@ HRESULT InitDevice()
     if (FAILED(hr))
         return hr;
 
-    // Set index buffer
+    // Set index bufferUINT stride = sizeof(SimpleVertex);
+
     CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
 
     // Set primitive topology
@@ -1149,7 +1145,11 @@ HRESULT InitDevice()
 #endif
     InitCameras();
 
-    
+    //API GRAPHIC
+    //G_GraphicApi.ChargeMesh("noivern/Noivern.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
+    G_GraphicApi.ChargeMesh("ugandan-knuckles/source/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
+
+
 
     return S_OK;
 }
@@ -1203,12 +1203,13 @@ void CleanupDevice()
 //--------------------------------------------------------------------------------------
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-
-    if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam)){
-
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    if (io.WantCaptureMouse)
+    {
+        ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam);
         return true;
     }
-
     PAINTSTRUCT ps;
     HDC hdc;
     POINT Temp;
@@ -1275,373 +1276,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 //--------------------------------------------------------------------------------------
 // Render a frame
 //--------------------------------------------------------------------------------------
-/*void Render() {
-
-#ifdef D3D11
-    int MapX = 0;
-    int MapY = 0;
-
-    if (ClickPressed && SwitchCamera == -1) {//If we are in free camera 
-
-        FreeCamera.MouseRotation();
-    }
-    else if (ClickPressed && SwitchCamera == 1) {
-
-        FPSCamera.MouseRotation();
-    }
-
-    // Update our time
-    static float t = 0.0f;
-    if (CDev.m_DescDevice.g_driverType == D3D_DRIVER_TYPE_REFERENCE)
-    {
-        t += (float)XM_PI * 0.0125f;
-    }
-    else
-    {
-        static DWORD dwTimeStart = 0;
-        DWORD dwTimeCur = GetTickCount64();
-        if (dwTimeStart == 0)
-            dwTimeStart = dwTimeCur;
-        t = (dwTimeCur - dwTimeStart) / 1000.0f;
-    }
-
-    // Rotate cube around the origin
-    //g_World = XMMatrixRotationY( t );
-    //g_World = XMMatrixTranslation(-6, 0, 0);
-
-    // Modify the color
-    g_vMeshColor.x = (sinf(t * 1.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.y = (cosf(t * 3.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.z = (sinf(t * 5.0f) + 1.0f) * 0.5f;
-
-    // Clear the back buffer
-    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
-    //CDevCont.m_DescDCont.g_pImmediateContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
-
-    CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(1, &InactiveRTV.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
-    CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(InactiveRTV.g_pRenderTargetViewD3D11, ClearColor);
-
-    // Clear the depth buffer to 1.0 (max depth)
-    CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
-
-    // Update variables that change once per frame
-    CBChangesEveryFrame cb;
-    //cb.mWorld = XMMatrixTranspose(g_World);
-    cb.mWorld = g_World.Transpose();
-    cb.vMeshColor = g_vMeshColor;
-
-    //-----
-    CBNeverChanges cbNeverChanges;
-
-    if (SwitchCamera == -1) {
-    
-        cbNeverChanges.mView = FreeCamera.GetView();
-        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FCNeverChange.m_BufferD3D11, 0, NULL, &cbNeverChanges, 0, 0);
-    }
-    else if (SwitchCamera == 1) {
-    
-        cbNeverChanges.mView = FPSCamera.GetView();
-        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FPCNeverChange.m_BufferD3D11, 0, NULL, &cbNeverChanges, 0, 0);
-    }
-
-    if (SwitchCamera == -1)
-    {
-        //Dibujar camara inactiva en render target view inactivo
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-        //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FPCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FPCNeverChange.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FPCOnResize.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &g_pTextureRV);
-        CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-        CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-
-        for (int i = 0; i < Rows; i++) {
-
-            for (int j = 0; j < Columns; j++) {
-
-                if (LevelCubes[i][j]) {
-
-                    MapX += 2.5;
-                }
-                else if (LevelCubes[i][j] == Pilares) {
-
-                    MapX += 2.5;
-                }
-                else {
-
-                    MapX += 2.5;
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                if (LevelCubes[i][j] != 0) {
-
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                    //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                    CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FPCNeverChange.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FPCOnResize.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &g_pTextureRV);
-                    CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-                    CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-                    ID3D11ShaderResourceView* temp = NULL;
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &temp);
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(MapX, 0.f, MapY));
-                //cb.mWorld = XMMatrixTranspose(g_World);
-                cb.mWorld = g_World.Transpose();
-                cb.vMeshColor = g_vMeshColor;
-                //CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
-                CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-            }
-            MapY += 2.5;
-            MapX = 0;
-        }
-
-        //Dibujar camara activa en backbuffer (render targetview activo)
-        CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
-        CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
-        
-        // Clear the depth buffer to 1.0 (max depth)
-        CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
-
-        // Update variables that change once per frame
-        //cb.mWorld = XMMatrixTranspose(g_World);
-        cb.mWorld = g_World.Transpose();
-        cb.vMeshColor = g_vMeshColor;
-        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FCNeverChange.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FCOnResize.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &G_InactiveSRV);
-        CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-        CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-        //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-
-        
-        for (int i = 0; i < Rows; i++) {
-
-            for (int j = 0; j < Columns; j++) {
-
-                if (LevelCubes[i][j]) {
-
-                    MapX += 2.5;
-                }
-                else if (LevelCubes[i][j] == Pilares) {
-
-                    MapX += 2.5;
-                }
-                else {
-
-                    MapX += 2.5;
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                if (LevelCubes[i][j] != 0) {
-
-                    
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                    //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                    CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FCNeverChange.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FCOnResize.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &G_InactiveSRV);
-                    CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-                    CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-                    ID3D11ShaderResourceView* temp = NULL;
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &temp);
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(MapX, 0.f, MapY));
-                //cb.mWorld = XMMatrixTranspose(g_World);
-                cb.mWorld = g_World.Transpose();
-                cb.vMeshColor = g_vMeshColor;
-                //CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
-                CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-            }
-            MapY += 2.5;
-            MapX = 0;
-        }
-    }
-    else
-    {
-        //Dibujar camara inactiva en render target view inactivo
-
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-        //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-
-        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FCNeverChange.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FCOnResize.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &g_pTextureRV);
-        CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-        CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-
-        for (int i = 0; i < Rows; i++) {
-
-            for (int j = 0; j < Columns; j++) {
-
-                if (LevelCubes[i][j]) {
-
-                    MapX += 2.5;
-                }
-                else if (LevelCubes[i][j] == Pilares) {
-
-                    MapX += 2.5;
-                }
-                else {
-
-                    MapX += 2.5;
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                if (LevelCubes[i][j] != 0) {
-
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                    //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-
-                    CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FCNeverChange.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FCOnResize.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &g_pTextureRV);
-                    CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-                    CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-                    ID3D11ShaderResourceView* temp = NULL;
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &temp);
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(MapX, 0.f, MapY));
-                //cb.mWorld = XMMatrixTranspose(g_World);
-                cb.mWorld = g_World.Transpose();
-                cb.vMeshColor = g_vMeshColor;
-                //CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
-                CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-            }
-            MapY += 2.5;
-            MapX = 0;
-        }
-
-        //Dibujar camara activa en backbuffer (render targetview activo)
-
-        CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
-        CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
-        //
-        // Clear the depth buffer to 1.0 (max depth)
-        //
-        CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
-
-        //
-        // Update variables that change once per frame
-        //
-        //cb.mWorld = XMMatrixTranspose(g_World);
-        cb.mWorld = g_World.Transpose();
-        cb.vMeshColor = g_vMeshColor;
-        CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FPCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FPCNeverChange.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FPCOnResize.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-        CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-        CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &G_InactiveSRV);
-        CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-        CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-        //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-        //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-
-
-        for (int i = 0; i < Rows; i++) {
-
-            for (int j = 0; j < Columns; j++) {
-
-                if (LevelCubes[i][j]) {
-
-                    MapX += 2.5;
-                }
-                else if (LevelCubes[i][j] == Pilares) {
-
-                    MapX += 2.5;
-                }
-                else {
-
-                    MapX += 2.5;
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                if (LevelCubes[i][j] != 0) {
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
-                    //CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-                    //CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-
-                    CDevCont.g_pImmediateContextD3D11->VSSetShader(CShader.g_pVertexShaderD3D11, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &FPCNeverChange.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &FPCOnResize.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShader(g_pPixelShader, NULL, 0);
-                    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &FPCChangeEveryFrame.m_BufferD3D11);
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &G_InactiveSRV);
-                    CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
-                    CDevCont.g_pImmediateContextD3D11->DrawIndexed(36, 0, 0);
-                    ID3D11ShaderResourceView* temp = NULL;
-                    CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &temp);
-                }
-                //g_World = XMMatrixTranslation(MapX, 0, MapY);
-                g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(MapX, 0.f, MapY));
-                //cb.mWorld = XMMatrixTranspose(g_World);
-                cb.mWorld = g_World.Transpose();
-                cb.vMeshColor = g_vMeshColor;
-                //CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0);
-                CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FPCChangeEveryFrame.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-            }
-            MapY += 2.5;
-            MapX = 0;
-        }
-    }
-
-    ImGui::Render();
-    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-    // Present our back buffer to our front buffer
-    CSwap.g_pSwapChainD3D11->Present(0, 0);
-#endif
-}*/
-
 void Render()
 {
 #ifdef D3D11
 
+    G_SceneManager.Update(); 
     // Update our time
     static float t = 0.0f;
     if (CDev.m_DescDevice.g_driverType == D3D_DRIVER_TYPE_REFERENCE){
@@ -1675,6 +1314,10 @@ void Render()
 
     // Update variables that change once per frame
     // Render the cube
+    UINT stride = sizeof(SimpleVertex);
+    UINT offset = 0;
+    CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers(0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
+    CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
     CDevCont.g_pImmediateContextD3D11->VSSetShader            (CShader.g_pVertexShaderD3D11, NULL, 0);
     CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (0, 1, &MainCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
     CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (1, 1, &MainCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
@@ -1683,7 +1326,9 @@ void Render()
     CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers   (2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
     CDevCont.g_pImmediateContextD3D11->PSSetShaderResources   (0, 1, &g_pTextureRV);
     CDevCont.g_pImmediateContextD3D11->PSSetSamplers          (0, 1, &CSampleS.g_pSamplerLinearD3D11);
-    CDevCont.g_pImmediateContextD3D11->DrawIndexed            (36, 0, 0);
+    //CDevCont.g_pImmediateContextD3D11->DrawIndexed            (36, 0, 0);
+
+
 
     int DistanceX = 0;
     int DistanceY = 0;
@@ -1725,14 +1370,58 @@ void Render()
         DistanceY += 2.5;
         DistanceX = 0;
     }
+    CBChangesEveryFrame m_MeshData;
+    m_MeshData.mWorld = {
+        1,0,0,MainCamera->GetEye().x,
+        0,1,0,MainCamera->GetEye().y,
+        0,0,1,MainCamera->GetEye().z,
+       0,0,0,1
+    };
 
+    m_MeshData.vMeshColor = { 1,1,1,1 };
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &m_MeshData, 0, 0);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+
+    for (size_t i = 0; i < G_SceneManager.m_MeshInScene.size(); i++)
+     {
+         CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &G_SceneManager.m_MeshInScene[i]->m_Materials->m_TexDif);
+         UINT stride = sizeof(SimpleVertex);
+         UINT offset = 0;
+    
+         CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers
+         (0,
+             1,//numero de buffers que estamos utilizando
+             &G_SceneManager.m_MeshInScene[i]->m_VertexBuffer->m_BufferD3D11,//puntero a la lista buffers
+             &stride,//un uint que indica el tamaño de un unico vertice
+             &offset
+         );//un uint que indica el numero del byte en el vertice del que se quiere comenzar a pintar
+    
+         CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer
+         (
+             G_SceneManager.m_MeshInScene[i]->m_Index->m_BufferD3D11,
+             DXGI_FORMAT_R16_UINT,
+             0
+         );
+    
+         //Tipo de topologia
+         /*Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.*/
+         //_devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    
+          //Dibuja el búfer de vértices en el búfer posterior 
+         CDevCont.g_pImmediateContextD3D11->DrawIndexed(G_SceneManager.m_MeshInScene[i]->m_IndexNum, 0, 0);
+     }
     CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets   (1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
     CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
     CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
+ 
+ 
+    CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers(0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
+    CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
 
     // Render the cube
     DistanceX = 0;
     DistanceY = 0;
+
     for (int i = 0; i < Rows; i++){
 
         for (int j = 0; j < Columns; j++){
@@ -1771,11 +1460,53 @@ void Render()
         DistanceY += 2.5;
         DistanceX = 0;
     }
+    m_MeshData.mWorld = {
+        1,0,0,SecondCamera->GetEye().x,
+        0,1,0,SecondCamera->GetEye().y,
+        0,0,1,SecondCamera->GetEye().z,
+       0,0,0,1
+    };
+
+    m_MeshData.vMeshColor = { 1,1,1,1 };
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &m_MeshData, 0, 0);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+
+    for (size_t i = 0; i < G_SceneManager.m_MeshInScene.size(); i++)
+    {
+        CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &G_SceneManager.m_MeshInScene[i]->m_Materials->m_TexDif);
+        UINT stride = sizeof(SimpleVertex);
+        UINT offset = 0;
+
+        CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers
+        (0,
+            1,//numero de buffers que estamos utilizando
+            &G_SceneManager.m_MeshInScene[i]->m_VertexBuffer->m_BufferD3D11,//puntero a la lista buffers
+            &stride,//un uint que indica el tamaño de un unico vertice
+            &offset
+        );//un uint que indica el numero del byte en el vertice del que se quiere comenzar a pintar
+
+        CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer
+        (
+            G_SceneManager.m_MeshInScene[i]->m_Index->m_BufferD3D11,
+            DXGI_FORMAT_R16_UINT,
+            0
+        );
+
+        //Tipo de topologia
+        /*Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.*/
+        //_devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+         //Dibuja el búfer de vértices en el búfer posterior 
+        CDevCont.g_pImmediateContextD3D11->DrawIndexed(G_SceneManager.m_MeshInScene[i]->m_IndexNum, 0, 0);
+    }
+    //G_SceneManager.Render(&CDevCont, &SecondCamera->g_pCBChangesEveryFrameCamera, &CDev);
+
     
+
     // Present our back buffer to our front buffer
     ImGui::Render();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-    
+
     // Present our back buffer to our front buffer
     CSwap.g_pSwapChainD3D11->Present(0, 0);
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "Defines.h"
+#include "ClaseDevice.h"
+#include "../assimp/scene.h"
 
 struct BufferDescriptor {
 
@@ -65,6 +67,9 @@ class ClaseBuffer {
 		Delete();
 		void
 		Render();
+
+		static void createVertexBuffer(int _numvertex, const aiScene* _model, SimpleVertex* _vertex, ID3D11Buffer*& _buffer, ClaseDevice* _dev);
+		static void createIndexBuffer(int numindices, const aiScene* _model, WORD* _index, ID3D11Buffer*& _buffer, ClaseDevice* _dev);
 
 #ifdef D3D11
 		ID3D11Buffer* m_BufferD3D11;

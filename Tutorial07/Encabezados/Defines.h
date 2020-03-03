@@ -1,6 +1,7 @@
 #pragma once
 #define D3D11
 #include <windows.h>
+#include "mathfu/hlsl_mappings.h"
 
 #ifdef D3D11
 #include <d3d11.h>
@@ -8,6 +9,25 @@
 #include <d3dcompiler.h>
 #include <xnamath.h>
 #endif // D3D11
+
+
+
+
+struct SimpleVertex
+{
+    //XMFLOAT3 Pos;
+    mathfu::float3 Pos;
+    //XMFLOAT2 Tex;
+    mathfu::float2 Tex;
+};
+
+struct CBChangesEveryFrame
+{
+    //XMMATRIX mWorld;
+    mathfu::float4x4 mWorld;
+    //XMFLOAT4 vMeshColor;
+    mathfu::float4 vMeshColor;
+};
 
 /***********
 	Device
@@ -35,7 +55,6 @@ struct SUBRESOURCE_DATA {
     unsigned int My_SysMemSlicePitch;
 };
 
-
 //D3D_DRIVER_TYPE		g_driverType
 enum DRIVER_TYPE{
 
@@ -58,7 +77,6 @@ enum FEATURE_LEVEL{
 	FEATURE_LEVEL_11_0 = 0xb000
 };
 
-
 /***********
 	Viewport
 ***********/
@@ -73,7 +91,6 @@ struct VIEWPORT{
 	float My_MinDepth;
 	float My_MaxDepth;
 };
-
 
 /***********
 	Texture2D
@@ -201,7 +218,6 @@ enum USAGE{
     USAGE_STAGING = 3
 };
 
-
 /***********
     Swap Chain
 ***********/
@@ -261,7 +277,6 @@ struct SWAP_CHAIN_DESC {
 /***********
     Sample State
 ***********/
-
 
 //D3D11_FILTER Filter
 enum FILTER {
@@ -402,7 +417,6 @@ struct TEX3D_RTV{
     unsigned int My_WSize;
 };
 
-
 /***********
     Depth Stencil
 ***********/
@@ -432,4 +446,14 @@ enum BIND_FLAG {
     BIND_RENDER_TARGET = 0x20L,
     BIND_DEPTH_STENCIL = 0x40L,
     BIND_UNORDERED_ACCESS = 0x80L
+};
+
+struct BUFFER_DESC
+{
+    UINT ByteWidth;
+    USAGE Usage;
+    UINT BindFlags;
+    UINT CPUAccessFlags;
+    UINT MiscFlags;
+    UINT StructureByteStride;
 };

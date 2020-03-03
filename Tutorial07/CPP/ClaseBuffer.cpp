@@ -22,6 +22,41 @@ void ClaseBuffer::Delete(){
 void ClaseBuffer::Render(){
 }
 
+void ClaseBuffer::createVertexBuffer(int _numvertex, const aiScene* _model, SimpleVertex* _vertex, ID3D11Buffer*& _buffer, ClaseDevice* _dev){
+
+	D3D11_BUFFER_DESC bd;
+	D3D11_SUBRESOURCE_DATA InitData;
+	ZeroMemory(&bd, sizeof(bd));
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(SimpleVertex) * _numvertex;
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bd.CPUAccessFlags = 0;
+	ZeroMemory(&InitData, sizeof(InitData));
+	InitData.pSysMem = _vertex;
+	_dev->g_pd3dDeviceD3D11->CreateBuffer(&bd, &InitData, &_buffer);
+}
+
+void ClaseBuffer::createIndexBuffer(int numindices, const aiScene* _model, WORD* _index, ID3D11Buffer*& _buffer, ClaseDevice* _dev){
+
+	D3D11_BUFFER_DESC bd;
+	D3D11_SUBRESOURCE_DATA InitData; 
+	ZeroMemory(&bd, sizeof(bd));
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(WORD) * numindices;
+	bd.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	bd.CPUAccessFlags = 0;
+	bd.MiscFlags = 0;
+
+	ZeroMemory(&InitData, sizeof(InitData));
+	InitData.pSysMem = _index;
+	InitData.SysMemPitch = 0;
+	InitData.SysMemSlicePitch = 0;
+
+	HRESULT hr = _dev->g_pd3dDeviceD3D11->CreateBuffer(&bd, &InitData, &_buffer);
+	if (FAILED(hr))
+		return;
+}
+
 /*//Set
 void ClaseBuffer::SetByteW(UINT _byte){
 
