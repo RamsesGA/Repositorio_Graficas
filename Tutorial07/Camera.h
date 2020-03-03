@@ -1,6 +1,7 @@
 #pragma once
 #include "Encabezados/Defines.h"
 #include "mathfu/hlsl_mappings.h"
+#include "Encabezados/ClaseBuffer.h"
 
 struct CameraDescriptor {
 
@@ -22,7 +23,7 @@ class Camera {
 		CameraDescriptor m_Desc;
 
 		//-----
-		mathfu::float2 OriginalMousePos;
+		
 
 		//-----
 		mathfu::float3 m_Up;
@@ -51,6 +52,14 @@ class Camera {
 		float maxAngule = 60;
 
 	public:
+
+		mathfu::float2 OriginalMousePos;
+
+		ClaseBuffer		g_pCBNeverChangesCamera;
+		ClaseBuffer		g_pCBChangeOnResizeCamera;
+		ClaseBuffer		g_pCBChangesEveryFrameCamera;
+
+		bool m_ClickPressed = false;
 
 		mathfu::float4x4 m_View;
 

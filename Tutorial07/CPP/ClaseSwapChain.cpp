@@ -21,6 +21,14 @@ void ClaseSwapChain::Init(SwapChainDescriptor _desc){
 #endif
 }
 
+void* ClaseSwapChain::GetSwap()
+{
+#if defined(D3D11)
+	return  g_pSwapChainD3D11;
+#endif
+	return nullptr;
+}
+
 /*void ClaseSwapChain::SetSwapChain(IDXGISwapChain* _chain){
 
 	m_ChainDesc.g_pSwapChain = _chain;

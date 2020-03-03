@@ -69,5 +69,6 @@ class ClaseBuffer {
 #ifdef D3D11
 		ID3D11Buffer* m_BufferD3D11;
 		D3D11_BUFFER_DESC m_BufferDescD3D11;
+
 #endif
 };

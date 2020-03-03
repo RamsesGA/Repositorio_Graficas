@@ -15,6 +15,14 @@ void ClaseDevice::Render(){
 void ClaseDevice::Delete(){
 }
 
+void* ClaseDevice::GetDev(){
+
+#if defined(D3D11)
+	return  g_pd3dDeviceD3D11;
+#endif
+	return nullptr;
+}
+
 /*//-----
 HRESULT ClaseDevice::CreateRenderTargetView(ID3D11Resource* pResource, const D3D11_RENDER_TARGET_VIEW_DESC* pDesc, ID3D11RenderTargetView** ppRTView){
 

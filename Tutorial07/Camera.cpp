@@ -58,6 +58,10 @@ mathfu::float3 Camera::GetMRight(){
 	return m_Right;
 }
 
+void Camera::SetView(mathfu::float4x4 _view)
+{
+}
+
 //-----
 void Camera::SetWidht(float _widht){
 
@@ -358,7 +362,7 @@ void Camera::RollY(WPARAM _param){
 //-----
 void Camera::MouseRotation(){
 
-	mathfu::float2 FirstPos;
+	//mathfu::float2 FirstPos;
 	mathfu::float2 SecondPos;
 	float SpeedRot = 0.0015f;
 	
@@ -380,10 +384,10 @@ void Camera::MouseRotation(){
 	POINT Temp;
 	GetCursorPos(&Temp);
 
-	FirstPos.x = Temp.x;
+	SecondPos.x = Temp.x;
 	SecondPos.y = Temp.y;
 
-	if (FirstPos.x < OriginalMousePos.x) {
+	if (OriginalMousePos.x < OriginalMousePos.x) {
 
 			Yaw =
 			{
@@ -393,7 +397,7 @@ void Camera::MouseRotation(){
 				0,					0,	0,				1
 			};
 	}
-	if (FirstPos.x > OriginalMousePos.x) {
+	if (OriginalMousePos.x > OriginalMousePos.x) {
 
 			Yaw =
 			{

@@ -33,6 +33,9 @@ class ClaseSwapChain {
 		void
 		Init(SwapChainDescriptor _desc);
 
+		void*
+		GetSwap();
+
 		/*//
 		void 
 		SetSwapChain(IDXGISwapChain* _chain);

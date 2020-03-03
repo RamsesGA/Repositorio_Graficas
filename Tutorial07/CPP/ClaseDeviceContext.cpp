@@ -15,3 +15,11 @@ void ClaseDeviceContext::Render(){
 
 void ClaseDeviceContext::Delete(){
 }
+
+void* ClaseDeviceContext::GetDevCont()
+{
+#if defined(D3D11)
+	return  g_pImmediateContextD3D11;
+#endif
+	return nullptr;
+}

@@ -48,6 +48,9 @@ class ClaseDevice {
 		void
 		Delete();
 
+		void*
+		GetDev();
+
 		/*//Abstraction
 		HRESULT 
 		CreateRenderTargetView(ID3D11Resource* pResource, const D3D11_RENDER_TARGET_VIEW_DESC* pDesc, ID3D11RenderTargetView** ppRTView);

@@ -6,7 +6,7 @@ FirstCamera::~FirstCamera(){}
 
 void FirstCamera::UpdateVM() {
 
-	m_Right = { m_View.data_[0].x,	0,				   m_View.data_[0].z };
+	m_Right = { m_View.data_[0].x,	m_View.data_[0].y, m_View.data_[0].z };
 	m_Up	= { m_View.data_[1].x,	m_View.data_[1].y, m_View.data_[1].z };
 	m_Front = { m_View.data_[2].x,	m_View.data_[2].y, m_View.data_[2].z };
 

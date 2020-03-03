@@ -32,6 +32,9 @@ class ClaseTextura2D {
 		void
 		Init(Texture2Desc _text);
 
+        void*
+        GetDepth();
+
 #ifdef D3D11
         ID3D11Texture2D* m_TextureD3D11;
         D3D11_TEXTURE2D_DESC m_TextDescD3D11;

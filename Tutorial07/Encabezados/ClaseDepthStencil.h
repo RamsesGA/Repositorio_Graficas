@@ -1,20 +1,11 @@
 #pragma once
 #include "Defines.h"
 
-struct DepthStencilDesc {
-
-	TEXTURE2D_DESC descDepth;
-
-	UINT Width;
-	UINT Height;
-	UINT MipLevels;
-	UINT ArraySize;
+struct DepthStencilViewDesc {
 	FORMAT Format;
-	SAMPLE_DESC SampleDesc;
-	USAGE Usage;
-	UINT BindFlags;
-	UINT CPUAccessFlags;
-	UINT MiscFlags;
+	DSV_DIMENSION ViewDimension;
+	UINT Flags;
+	TEX2D_DSV Texture2D;
 };
 
 class ClaseDepthStencil {
@@ -23,10 +14,10 @@ class ClaseDepthStencil {
 		ClaseDepthStencil() {};
 		~ClaseDepthStencil() {};
 
-		DepthStencilDesc m_DepthDesc;
+		DepthStencilViewDesc m_DepthDesc;
 
 		void
-		Init(DepthStencilDesc _stencilDesc);
+		Init(DepthStencilViewDesc _stencilDesc);
 
 		void
 		Render();
@@ -39,6 +30,6 @@ class ClaseDepthStencil {
 
 #ifdef D3D11
 		ID3D11DepthStencilView* g_pDepthStencilViewD3D11;
-		D3D11_TEXTURE2D_DESC descDepthD3D11;
+		D3D11_DEPTH_STENCIL_VIEW_DESC descDepthViewD3D11;
 #endif // D3D11
 };

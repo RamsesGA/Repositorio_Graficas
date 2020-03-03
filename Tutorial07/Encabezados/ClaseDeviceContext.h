@@ -31,6 +31,9 @@ class ClaseDeviceContext {
 		void
 		Delete();
 
+		void*
+		GetDevCont();
+
 		/*//
 		void
 		SetDeviceContext(ID3D11DeviceContext* _context);
