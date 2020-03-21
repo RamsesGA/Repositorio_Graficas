@@ -43,3 +43,15 @@ void SCENEMANAGER::Shutdown(){
 		m_MeshInScene[i]->Delete();
 	}
 }
+
+void SCENEMANAGER::Init(){
+
+	if (m_initialize) {
+
+		return;
+	}
+	glGenVertexArrays(1, &m_VertexArrayID);
+	glBindVertexArray(m_VertexArrayID);
+	
+	m_initialize = true;
+}

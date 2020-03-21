@@ -38,40 +38,36 @@
 #include "Encabezados/GraphicApi.h"
 #include "Encabezados/SceneManager.h"
 
+//GLFW
+#if _WIN32 || _WIN64
+#if _WIN64
+#include <GLFWInclude/x64/glfw3.h>
+#else
+#include "Encabezados/ClaseOpenGL.h"
+#endif
+#endif
+
+
+//--------------------------------------------------------------------------------------
 //extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 //--------------------------------------------------------------------------------------
 // Structures
-//--------------------------------------------------------------------------------------
-
-
 struct CBNeverChanges
 {
-    //XMMATRIX mView;
     mathfu::float4x4 mView;
 };
 
 struct CBChangeOnResize
 {
-    //XMMATRIX mProjection;
     mathfu::float4x4 mProjection;
 };
 
-
-
-
 //--------------------------------------------------------------------------------------
 // Global Variables
-//--------------------------------------------------------------------------------------
 HINSTANCE                           g_hInst = NULL;
 HWND                                g_hWnd = NULL;
-
-//ID3D11SamplerState*                 g_pSamplerLinear = NULL;// en clase samplerState 
-//ID3D11RenderTargetView*             g_pRenderTargetView = NULL;//en render Target
-//ID3D11Texture2D*                    g_pDepthStencil = NULL;//en render Target
-//ID3D11DepthStencilView*             g_pDepthStencilView = NULL;//en render Target
-//ID3D11VertexShader*                 g_pVertexShader = NULL;//en vertex shader derivado de clase shader
-//ID3D11InputLayout*                  g_pVertexLayout = NULL;//en input layout
 
 #ifdef D3D11
 ID3D11PixelShader*          g_pPixelShader  = NULL;//en pixel shader derivado de clase shader
@@ -79,73 +75,71 @@ ID3D11ShaderResourceView*   g_pTextureRV    = NULL;//en clase material o shaderR
 ID3D11ShaderResourceView*   G_InactiveSRV   = NULL;
 #endif
 
-/*ID3D11Buffer*               g_pVertexBuffer = NULL;//en clase mesh como miebro de tipo buffer
-ID3D11Buffer*               g_pIndexBuffer = NULL;//en clase mesh como miebro de tipo buffer
-ID3D11Buffer*               g_pCBNeverChanges = NULL;//en una clase buffer
-ID3D11Buffer*               g_pCBChangeOnResize = NULL;
-ID3D11Buffer*               g_pCBChangesEveryFrame = NULL;
-XMMATRIX                            g_View;
-XMMATRIX                            g_Projection;
-//XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
-XMMATRIX                            g_World;*/
-
 mathfu::float4x4            g_World;
-mathfu::float4             g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
+mathfu::float4              g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
 
+//--------------------------------------------------------------------------------------
 //Ramses´s global variables
-ClaseDevice CDev;
-ClaseDeviceContext CDevCont;
-ClaseSwapChain CSwap;
-ClaseRenderTargetView CRendTarView;
-RenderTarget CRendTar;
-ClaseSampleState CSampleS;
-ClaseDepthStencil CDepthStencilView;
-ClaseViewport CView;
-ClaseShader CShader;
+ClaseDevice                 CDev;
+ClaseDeviceContext          CDevCont;
+ClaseSwapChain              CSwap;
+ClaseRenderTargetView       CRendTarView;
+RenderTarget                CRendTar;
+ClaseSampleState            CSampleS;
+ClaseDepthStencil           CDepthStencilView;
+ClaseViewport               CView;
+ClaseShader                 CShader;
 
-ClaseBuffer FCNeverChange;
-ClaseBuffer FCOnResize;
-ClaseBuffer FCChangeEveryFrame;
+ClaseBuffer                 FCNeverChange;
+ClaseBuffer                 FCOnResize;
+ClaseBuffer                 FCChangeEveryFrame;
 
-ClaseVertexBuffer CVertexBuffer;
-ClaseVertexBuffer CIndexBuffer;
+ClaseVertexBuffer           CVertexBuffer;
+ClaseVertexBuffer           CIndexBuffer;
 
-Camera FreeCamera;
-FirstCamera FPSCamera;
+Camera                      FreeCamera;
+FirstCamera                 FPSCamera;
 
-ClaseBuffer FPCNeverChange;
-ClaseBuffer FPCOnResize;
-ClaseBuffer FPCChangeEveryFrame;
+ClaseBuffer                 FPCNeverChange;
+ClaseBuffer                 FPCOnResize;
+ClaseBuffer                 FPCChangeEveryFrame;
 
-ClaseTextura2D InactiveTexture;
-ClaseTextura2D G_DepthStencil;
+ClaseTextura2D              InactiveTexture;
+ClaseTextura2D              G_DepthStencil;
 
-ClaseRenderTargetView InactiveRTV;
+ClaseRenderTargetView       InactiveRTV;
 
-Camera* MainCamera      = NULL;
-Camera* SecondCamera    = NULL;
-Camera CamaraLibre;
-Camera CamaraPrimeraPersona;
+Camera*                     MainCamera      = NULL;
+Camera*                     SecondCamera    = NULL;
+Camera                      CamaraLibre;
+Camera                      CamaraPrimeraPersona;
 
+//--------------------------------------------------------------------------------------
 //API
-SCENEMANAGER G_SceneManager;
-GraphicApi   G_GraphicApi;
+SCENEMANAGER                G_SceneManager;
+GraphicApi                  G_GraphicApi;
 
 #if defined(D3D11)
-ID3D11Device* ptrDEV;
-IDXGISwapChain* ptrSwap;
-ID3D11DeviceContext* ptrDevCont;
+ID3D11Device*               ptrDEV;
+IDXGISwapChain*             ptrSwap;
+ID3D11DeviceContext*        ptrDevCont;
 //ID3D11Texture2D* ptrDepht 
 #endif
 
-int LevelCubes[10][10] = { 0 };
-int Rows = 0;
-int Columns = 0;
-int SwitchCamera = -1;
+int                         LevelCubes[10][10] = { 0 };
+int                         Rows = 0;
+int                         Columns = 0;
+int                         SwitchCamera = -1;
 
-UINT width;
-UINT height;
+UINT                        width;
+UINT                        height;
 
+//--------------------------------------------------------------------------------------
+//OpenGl variables
+unsigned int g_ColorShaderID;
+ClaseOpenGL g_OpenGlObj;
+
+//--------------------------------------------------------------------------------------
 //Ramses´s functions
 void Resize(){
 
@@ -253,8 +247,6 @@ void Resize(){
             G_DepthStencil.Init(DepthDesc);
 
             h = ptrDEV->CreateTexture2D(&G_DepthStencil.m_TextDescD3D11, NULL, &G_DepthStencil.m_TextureD3D11);
-
-
 
             DepthStencilViewDesc DSVD;
             ZeroMemory(&DSVD, sizeof(DSVD));
@@ -401,32 +393,30 @@ void activateConsole()
 
 //--------------------------------------------------------------------------------------
 // Forward declarations
-//--------------------------------------------------------------------------------------
 HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);
 HRESULT InitDevice();
 void CleanupDevice();
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void Render();
 
-
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
 // loop. Idle time is used to render the scene.
-//--------------------------------------------------------------------------------------
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     if (FAILED(InitWindow(hInstance, nCmdShow)))
         return 0;
 
+#ifdef D3D11
     if (FAILED(InitDevice()))
     {
         CleanupDevice();
         return 0;
     }
+#endif // D3D11
 
     // Main message loop
     MSG msg = { 0 };
@@ -459,10 +449,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
             ImGui::Image(G_InactiveSRV, ScreenImGui);
             ImGui::GetIO().FontGlobalScale;
             ImGui::End();
-#endif // D3D11
-
-            
             Render();
+#endif // D3D11
         }
     }
 
@@ -473,12 +461,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 //--------------------------------------------------------------------------------------
 // Register class and create window
-//--------------------------------------------------------------------------------------
-HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow)
-{
-    activateConsole();
-    // Register class
-    WNDCLASSEX wcex;
+HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow){
+
+    activateConsole();    
+    //Register class
+    /*WNDCLASSEX wcex;
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = WndProc;
@@ -496,7 +483,7 @@ HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow)
 
     // Create window
     g_hInst = hInstance;
-    RECT rc = { 0, 0, 640, 480 };
+    RECT rc = { 0, 0, 800, 800 };
     AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
     g_hWnd = CreateWindow(L"TutorialWindowClass", L"Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
@@ -505,13 +492,15 @@ HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow)
         return E_FAIL;
 
     ShowWindow(g_hWnd, nCmdShow);
-    LevelMap("Mapa.txt");
+
+    LevelMap("Mapa.txt");*/
+
+    g_OpenGlObj.WindowGLFW();
     return S_OK;
 }
 
 //--------------------------------------------------------------------------------------
 // Helper for compiling shaders with D3DX11
-//--------------------------------------------------------------------------------------
 #ifdef D3D11
 HRESULT CompileShaderFromFile(WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
 {
@@ -617,7 +606,7 @@ HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID
 
 //--------------------------------------------------------------------------------------
 // Create Direct3D device and swap chain
-//--------------------------------------------------------------------------------------
+#ifdef D3D11
 HRESULT InitDevice()
 {
     HRESULT hr = S_OK;
@@ -626,11 +615,11 @@ HRESULT InitDevice()
     GetClientRect(g_hWnd, &rc);
     width = rc.right - rc.left;
     height = rc.bottom - rc.top;
-#ifdef D3D11
+    //#ifdef D3D11
     UINT createDeviceFlags = 0;
-#ifdef _DEBUG
+    //#ifdef _DEBUG
     createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif
+    //#endif
 
     D3D_DRIVER_TYPE driverTypes[] =
     {
@@ -653,26 +642,11 @@ HRESULT InitDevice()
     //Mis movimientos
     DeviceDescriptor objDev;
     objDev.g_driverType = DRIVER_TYPE_NULL;
-    //objDev.g_featureLevel;
     CDev.g_pd3dDeviceD3D11 = NULL;
     objDev.s_createDeviceFlags = 2;
     objDev.s_numFeatureLevels = 3;
 
     CDev.Init(objDev);
-
-    /*DXGI_SWAP_CHAIN_DESC sd;
-    ZeroMemory( &sd, sizeof( sd ) );
-    sd.BufferCount = 1;
-    sd.BufferDesc.Width = width;
-    sd.BufferDesc.Height = height;
-    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-    sd.BufferDesc.RefreshRate.Numerator = 60;
-    sd.BufferDesc.RefreshRate.Denominator = 1;
-    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-    sd.OutputWindow = g_hWnd;
-    sd.SampleDesc.Count = 1;
-    sd.SampleDesc.Quality = 0;
-    sd.Windowed = TRUE;*/
 
     SwapChainDescriptor objSd;
     objSd.BufferCount = 1;
@@ -700,7 +674,7 @@ HRESULT InitDevice()
 
     ptrDEV = static_cast<ID3D11Device*>(CDev.GetDev());
     ptrDevCont = static_cast<ID3D11DeviceContext*>(CDevCont.GetDevCont());
-    ptrSwap =   static_cast<IDXGISwapChain*>(CSwap.GetSwap());
+    ptrSwap = static_cast<IDXGISwapChain*>(CSwap.GetSwap());
 
     if (FAILED(hr))
         return hr;
@@ -711,8 +685,6 @@ HRESULT InitDevice()
 
     if (FAILED(hr))
         return hr;
-
-    //hr = CDev.m_DescDevice.g_pd3dDevice->CreateRenderTargetView( pBackBuffer, NULL, &g_pRenderTargetView );
 
     hr = CDev.g_pd3dDeviceD3D11->CreateRenderTargetView(pBackBuffer, NULL, &CRendTarView.g_pRenderTargetViewD3D11);
     pBackBuffer->Release();
@@ -735,8 +707,6 @@ HRESULT InitDevice()
     descDepth.CPUAccessFlags = 0;
     descDepth.MiscFlags = 0;
 
-    //hr = CDev.m_DescDevice.g_pd3dDevice->CreateTexture2D( &descDepth, NULL, &g_pDepthStencil );
-
     hr = CDev.g_pd3dDeviceD3D11->CreateTexture2D(&descDepth, NULL, &CRendTar.g_pDepthStencilD3D11);
 
     if (FAILED(hr))
@@ -749,26 +719,14 @@ HRESULT InitDevice()
     descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
     descDSV.Texture2D.MipSlice = 0;
 
-    //hr = CDev.m_DescDevice.g_pd3dDevice->CreateDepthStencilView( g_pDepthStencil, &descDSV, &g_pDepthStencilView );
-
     hr = CDev.g_pd3dDeviceD3D11->CreateDepthStencilView(CRendTar.g_pDepthStencilD3D11, &descDSV, &CDepthStencilView.g_pDepthStencilViewD3D11);
 
     if (FAILED(hr))
         return hr;
 
-    //CDevCont.m_DescDCont.g_pImmediateContext->OMSetRenderTargets( 1, &g_pRenderTargetView, g_pDepthStencilView );
-
     CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
 
     // Setup the viewport
-    /*D3D11_VIEWPORT vp;
-    vp.Width = (FLOAT)width;
-    vp.Height = (FLOAT)height;
-    vp.MinDepth = 0.0f;
-    vp.MaxDepth = 1.0f;
-    vp.TopLeftX = 0;
-    vp.TopLeftY = 0;*/
-
     ViewportDesc  vp2;
     vp2.Width = (FLOAT)width;
     vp2.Height = (FLOAT)height;
@@ -776,14 +734,11 @@ HRESULT InitDevice()
     vp2.MaxDepth = 1.0f;
     vp2.TopLeftX = 0;
     vp2.TopLeftY = 0;
-
     CView.Init(vp2);
 
     CDevCont.g_pImmediateContextD3D11->RSSetViewports(1, &CView.vpD3D11);
 
     // Compile the vertex shader
-    //ID3DBlob* pVSBlob = NULL;
-
     hr = CompileShaderFromFile(L"Tutorial07.fx", "VS", "vs_4_0", &CShader.m_pVSBlobD3D11);
     if (FAILED(hr))
     {
@@ -800,26 +755,14 @@ HRESULT InitDevice()
         return hr;
     }
 
-    /*Define the input layout
-   D3D11_INPUT_ELEMENT_DESC layout[] =
-   {
-       { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-       { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-   };
-   UINT numElements = ARRAYSIZE( layout );*/
-
-   //Create input layout from compiled VS
+    //Define the input layout
+    //Create input layout from compiled VS
     hr = CreateInputLayoutDescFromVertexShaderSignature(CShader.m_pVSBlobD3D11, CDev.g_pd3dDeviceD3D11, &CShader.LayoutD3D11);
     if (FAILED(hr))
         return hr;
 
     // Create the input layout
-    /*hr = CDev.m_DescDevice.g_pd3dDevice->CreateInputLayout(layout, numElements, CShader.m_pVSBlob->GetBufferPointer(), CShader.m_pVSBlob->GetBufferSize(), &g_pVertexLayout);
-    CShader.m_pVSBlobD3D11->Release();
-    if( FAILED( hr ) )
-        return hr;*/
-
-        // Set the input layout
+    // Set the input layout
     CDevCont.g_pImmediateContextD3D11->IASetInputLayout(CShader.LayoutD3D11);
 
     // Compile the pixel shader
@@ -872,16 +815,6 @@ HRESULT InitDevice()
         {  mathfu::float3(-1.0f, 1.0f, 1.0f),  mathfu::float2(0.0f, 1.0f) },
     };
 
-    /*D3D11_BUFFER_DESC bd;
-    ZeroMemory( &bd, sizeof(bd) );
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof( SimpleVertex ) * 24;
-    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-    bd.CPUAccessFlags = 0;
-    D3D11_SUBRESOURCE_DATA InitData;
-    ZeroMemory( &InitData, sizeof(InitData) );
-    InitData.pSysMem = vertices;*/
-
     BufferDescriptor bd2;
     ZeroMemory(&bd2, sizeof(bd2));
     bd2.Usage = USAGE_DEFAULT;
@@ -926,12 +859,6 @@ HRESULT InitDevice()
         23,20,22
     };
 
-    /*bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof( WORD ) * 36;
-    bd.BindFlags = D3D11_BIND_INDEX_BUFFER;
-    bd.CPUAccessFlags = 0;
-    InitData.pSysMem = indices;*/
-
     bd2.Usage = USAGE_DEFAULT;
     bd2.ByteWidth = sizeof(WORD) * 36;
     bd2.BindFlags = BIND_INDEX_BUFFER;
@@ -946,17 +873,12 @@ HRESULT InitDevice()
         return hr;
 
     // Set index bufferUINT stride = sizeof(SimpleVertex);
-
     CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
 
     // Set primitive topology
     CDevCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
     // Create the constant buffers
-   /* bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(CBNeverChanges);
-    bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    bd.CPUAccessFlags = 0;*/
     bd2.Usage = USAGE_DEFAULT;
     bd2.ByteWidth = sizeof(CBNeverChanges);
     bd2.BindFlags = BIND_CONSTANT_BUFFER;
@@ -1016,29 +938,16 @@ HRESULT InitDevice()
     sampDesc2.MinLOD = 0;
     sampDesc2.MaxLOD = D3D11_FLOAT32_MAX;
     CSampleS.Init(sampDesc2);
-    /*D3D11_SAMPLER_DESC sampDesc;
-    ZeroMemory( &sampDesc, sizeof(sampDesc) );
-    sampDesc.Filter         = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-    sampDesc.AddressU       = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressV       = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressW       = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-    sampDesc.MinLOD         = 0;
-    sampDesc.MaxLOD         = D3D11_FLOAT32_MAX;*/
 
     hr = CDev.g_pd3dDeviceD3D11->CreateSamplerState(&CSampleS.sampDescD3D11, &CSampleS.g_pSamplerLinearD3D11);
     if (FAILED(hr))
         return hr;
 
-#endif
-    // Initialize the world matrices
-    //g_World = XMMatrixIdentity();
+    //#endif
+        // Initialize the world matrices
     g_World = g_World.Identity();
 
     // Initialize the view matrix
-    /*XMVECTOR Eye = XMVectorSet(0.0f, 3.0f, -6.0f, 0.0f);
-    XMVECTOR At = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-    XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);*/
     mathfu::Vector<float, 4> Eye(0.0f, 3.0f, -6.0f, 0.0f);
     mathfu::Vector<float, 4> At(0.0f, 1.0f, 0.0f, 0.0f);
     mathfu::Vector<float, 4> Up(0.0f, 1.0f, 0.0f, 0.0f);
@@ -1046,38 +955,32 @@ HRESULT InitDevice()
     // g_View = XMMatrixLookAtLH( Eye, At, Up );
 
     InitCameras();
-    
+
     CBNeverChanges cbNeverChanges;
-    /*cbNeverChanges.mView = XMMatrixTranspose( g_View );
-    cbNeverChanges.mView = FreeCamera.GetView();*/
     cbNeverChanges.mView = FPSCamera.GetView();
 
-#ifdef D3D11
+    //#ifdef D3D11
     CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FPSCamera.g_pCBNeverChangesCamera.m_BufferD3D11, 0, NULL, &cbNeverChanges, 0, 0);
-#endif
+    //#endif
 
     cbNeverChanges.mView = FreeCamera.GetView();
 
-#ifdef D3D11
+    //#ifdef D3D11
     CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FreeCamera.g_pCBNeverChangesCamera.m_BufferD3D11, 0, NULL, &cbNeverChanges, 0, 0);
-#endif
+    //#endif
 
-    // Initialize the projection matrix
-    //g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
-
+        // Initialize the projection matrix
     CBChangeOnResize cbChangesOnResize;
-    //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-   // cbChangesOnResize.mProjection = FreeCamera.GetProjection();*/
     cbChangesOnResize.mProjection = FPSCamera.GetProjection();
-#ifdef D3D11
+    //#ifdef D3D11
     CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FPSCamera.g_pCBChangeOnResizeCamera.m_BufferD3D11, 0, NULL, &cbChangesOnResize, 0, 0);
-#endif
+    //#endif
 
     cbChangesOnResize.mProjection = FreeCamera.GetProjection();
 
-#ifdef D3D11
+    //#ifdef D3D11
     CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FreeCamera.g_pCBChangeOnResizeCamera.m_BufferD3D11, 0, NULL, &cbChangesOnResize, 0, 0);
-#endif
+    //#endif
 
     Texture2Desc T;
     ZeroMemory(&T, sizeof(T));
@@ -1088,17 +991,17 @@ HRESULT InitDevice()
     T.SampleDesc.My_Count = 1;
     T.Usage = USAGE_DEFAULT;
     T.BindFlags = BIND_SHADER_RESOURCE | BIND_RENDER_TARGET;
-#ifdef D3D11
+    //#ifdef D3D11
     T.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-#endif
+    //#endif
     T.MiscFlags = 0;
 
     InactiveTexture.Init(T);
 
-#ifdef D3D11
+    //#ifdef D3D11
     hr = CDev.g_pd3dDeviceD3D11->CreateTexture2D(&InactiveTexture.m_TextDescD3D11, NULL, &InactiveTexture.m_TextureD3D11);
-#endif
-    if (FAILED(hr)){
+    //#endif
+    if (FAILED(hr)) {
 
         return hr;
     }
@@ -1111,87 +1014,73 @@ HRESULT InitDevice()
 
     InactiveRTV.Init(RTVDesc);
 
-#ifdef D3D11
+    //#ifdef D3D11
     hr = CDev.g_pd3dDeviceD3D11->CreateRenderTargetView(InactiveTexture.m_TextureD3D11, &InactiveRTV.m_renderTVD3D11, &InactiveRTV.g_pRenderTargetViewD3D11);
-#endif
-    if (FAILED(hr)){
+    //#endif
+    if (FAILED(hr)) {
 
         return hr;
     }
 
-#ifdef D3D11
+    //#ifdef D3D11
     D3D11_SHADER_RESOURCE_VIEW_DESC SRVDesc;
     SRVDesc.Format = (DXGI_FORMAT)T.Format;
     SRVDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
     SRVDesc.Texture2D.MostDetailedMip = 0;
     SRVDesc.Texture2D.MipLevels = 1;
-#endif
+    //#endif
 
-#ifdef D3D11
+    //#ifdef D3D11
     hr = CDev.g_pd3dDeviceD3D11->CreateShaderResourceView(InactiveTexture.m_TextureD3D11, &SRVDesc, &G_InactiveSRV);
-#endif
-    if (FAILED(hr)){
+    //#endif
+    if (FAILED(hr)) {
 
         return hr;
     }
 
-#ifdef D3D11
+    //#ifdef D3D11
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     ImGui_ImplWin32_Init(g_hWnd);
     ImGui_ImplDX11_Init(CDev.g_pd3dDeviceD3D11, CDevCont.g_pImmediateContextD3D11);
     ImGui::StyleColorsDark();
-#endif
+    //#endif
     InitCameras();
 
     //API GRAPHIC
     //G_GraphicApi.ChargeMesh("noivern/Noivern.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
     G_GraphicApi.ChargeMesh("ugandan-knuckles/source/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
 
-
-
     return S_OK;
 }
+#endif // D3D11
 
 //--------------------------------------------------------------------------------------
 // Clean up the objects we've created
-//--------------------------------------------------------------------------------------
 void CleanupDevice()
 {
 #ifdef D3D11
     if (CDevCont.g_pImmediateContextD3D11) CDevCont.g_pImmediateContextD3D11->ClearState();
-
     if (CSampleS.g_pSamplerLinearD3D11) CSampleS.g_pSamplerLinearD3D11->Release();
     if (g_pTextureRV) g_pTextureRV->Release();
-    //if( g_pCBNeverChanges ) g_pCBNeverChanges->Release();
     if (FCNeverChange.m_BufferD3D11)FCNeverChange.m_BufferD3D11->Release();
-    //if( g_pCBChangeOnResize ) g_pCBChangeOnResize->Release();
     if (FCOnResize.m_BufferD3D11)FCOnResize.m_BufferD3D11->Release();
-    //if( g_pCBChangesEveryFrame ) g_pCBChangesEveryFrame->Release();
     if (FCChangeEveryFrame.m_BufferD3D11)FCChangeEveryFrame.m_BufferD3D11->Release();
-    //if( g_pVertexBuffer ) g_pVertexBuffer->Release();
     if (CVertexBuffer.m_Buffer.m_BufferD3D11)CVertexBuffer.m_Buffer.m_BufferD3D11->Release();
-    //if( g_pIndexBuffer ) g_pIndexBuffer->Release();
     if (CIndexBuffer.m_Buffer.m_BufferD3D11)CIndexBuffer.m_Buffer.m_BufferD3D11->Release();
     if (CShader.LayoutD3D11) CShader.LayoutD3D11->Release();
     if (CShader.g_pVertexShaderD3D11) CShader.g_pVertexShaderD3D11->Release();
     if (g_pPixelShader) g_pPixelShader->Release();
-    //if( g_pDepthStencil ) g_pDepthStencil->Release();
     if (CRendTar.g_pDepthStencilD3D11) CRendTar.g_pDepthStencilD3D11->Release();
     if (CDepthStencilView.g_pDepthStencilViewD3D11) CDepthStencilView.g_pDepthStencilViewD3D11->Release();
-    //if( g_pRenderTargetView ) g_pRenderTargetView->Release();
     if (CRendTarView.g_pRenderTargetViewD3D11) CRendTarView.g_pRenderTargetViewD3D11->Release();
     if (CSwap.g_pSwapChainD3D11) CSwap.g_pSwapChainD3D11->Release();
     if (CDevCont.g_pImmediateContextD3D11) CDevCont.g_pImmediateContextD3D11->Release();
     if (CDev.g_pd3dDeviceD3D11) CDev.g_pd3dDeviceD3D11->Release();
-
     if (FPCNeverChange.m_BufferD3D11)FPCNeverChange.m_BufferD3D11->Release();
-    //if( g_pCBChangeOnResize ) g_pCBChangeOnResize->Release();
     if (FPCOnResize.m_BufferD3D11)FPCOnResize.m_BufferD3D11->Release();
-    //if( g_pCBChangesEveryFrame ) g_pCBChangesEveryFrame->Release();
     if (FPCChangeEveryFrame.m_BufferD3D11)FPCChangeEveryFrame.m_BufferD3D11->Release();
-
     if (InactiveTexture.m_TextureD3D11)  InactiveTexture.m_TextureD3D11->Release();
     if (InactiveRTV.g_pRenderTargetViewD3D11) InactiveRTV.g_pRenderTargetViewD3D11->Release();
     if (G_InactiveSRV)G_InactiveSRV->Release();
@@ -1200,7 +1089,6 @@ void CleanupDevice()
 
 //--------------------------------------------------------------------------------------
 // Called every time the application receives a message
-//--------------------------------------------------------------------------------------
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     ImGui::CreateContext();
@@ -1275,11 +1163,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 //--------------------------------------------------------------------------------------
 // Render a frame
-//--------------------------------------------------------------------------------------
+#ifdef D3D11
 void Render()
 {
-#ifdef D3D11
-
     G_SceneManager.Update(); 
     // Update our time
     static float t = 0.0f;
@@ -1306,18 +1192,18 @@ void Render()
     // Clear the back buffer
     float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
 
-    CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets     (1, &InactiveRTV.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
-    CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView  (InactiveRTV.g_pRenderTargetViewD3D11, ClearColor);
+    CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets       (1, &InactiveRTV.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
+    CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView    (InactiveRTV.g_pRenderTargetViewD3D11, ClearColor);
     
     // Clear the depth buffer to 1.0 (max depth)
-    CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
+    CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView    (CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
     // Update variables that change once per frame
     // Render the cube
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
-    CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers(0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
-    CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
+    CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers     (0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
+    CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer       (CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
     CDevCont.g_pImmediateContextD3D11->VSSetShader            (CShader.g_pVertexShaderD3D11, NULL, 0);
     CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (0, 1, &MainCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
     CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (1, 1, &MainCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
@@ -1327,8 +1213,6 @@ void Render()
     CDevCont.g_pImmediateContextD3D11->PSSetShaderResources   (0, 1, &g_pTextureRV);
     CDevCont.g_pImmediateContextD3D11->PSSetSamplers          (0, 1, &CSampleS.g_pSamplerLinearD3D11);
     //CDevCont.g_pImmediateContextD3D11->DrawIndexed            (36, 0, 0);
-
-
 
     int DistanceX = 0;
     int DistanceY = 0;
@@ -1370,6 +1254,7 @@ void Render()
         DistanceY += 2.5;
         DistanceX = 0;
     }
+
     CBChangesEveryFrame m_MeshData;
     m_MeshData.mWorld = {
         1,0,0,MainCamera->GetEye().x,
@@ -1383,7 +1268,7 @@ void Render()
     CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
 
     for (size_t i = 0; i < G_SceneManager.m_MeshInScene.size(); i++)
-     {
+    {
          CDevCont.g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &G_SceneManager.m_MeshInScene[i]->m_Materials->m_TexDif);
          UINT stride = sizeof(SimpleVertex);
          UINT offset = 0;
@@ -1404,16 +1289,15 @@ void Render()
          );
     
          //Tipo de topologia
-         /*Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.*/
+         //Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.
          //_devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     
-          //Dibuja el búfer de vértices en el búfer posterior 
+         //Dibuja el búfer de vértices en el búfer posterior 
          CDevCont.g_pImmediateContextD3D11->DrawIndexed(G_SceneManager.m_MeshInScene[i]->m_IndexNum, 0, 0);
-     }
+    }
     CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets   (1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
     CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
     CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
- 
  
     CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers(0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
     CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
@@ -1493,7 +1377,7 @@ void Render()
         );
 
         //Tipo de topologia
-        /*Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.*/
+        //Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.
         //_devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
          //Dibuja el búfer de vértices en el búfer posterior 
@@ -1501,7 +1385,6 @@ void Render()
     }
     //G_SceneManager.Render(&CDevCont, &SecondCamera->g_pCBChangesEveryFrameCamera, &CDev);
 
-    
 
     // Present our back buffer to our front buffer
     ImGui::Render();
@@ -1509,6 +1392,5 @@ void Render()
 
     // Present our back buffer to our front buffer
     CSwap.g_pSwapChainD3D11->Present(0, 0);
-
-#endif
 }
+#endif

@@ -161,6 +161,12 @@
     <ClInclude Include="Encabezados\SceneManager.h">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="Encabezados\ClaseOpenGL.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Encabezados\stb_image.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -239,6 +245,9 @@
       <Filter>CPP</Filter>
     </ClCompile>
     <ClCompile Include="CPP\SceneManager.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="CPP\ClaseOpenGL.cpp">
       <Filter>CPP</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,8 +23,17 @@ class RenderTarget {
 
         RenderTargetDesc m_RenderTDesc;
 
+        //Miembros OpenGL
+        GLuint m_IdRenderTarget = 0;
+        bool m_initialize = false;
+
+
         void
         Init(RenderTargetDesc _rtd);
+
+        //Funciones OpenGL
+        void
+        InitFrameBuffer();
 
 #ifdef D3D11
         ID3D11Texture2D* g_pDepthStencilD3D11;

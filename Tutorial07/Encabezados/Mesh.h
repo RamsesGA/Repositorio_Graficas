@@ -52,14 +52,16 @@ class MESH
 		ClaseBuffer*&
 		GetVertexBuffer() { return m_VertexBuffer; };
 		
-		void 
+#ifdef D3D11
+		void
 		SetVertexBuffer(ID3D11Buffer* _pVertexB) { m_VertexBuffer->m_BufferD3D11 = _pVertexB; };
+
+		void
+		SetIndexBuffer(ID3D11Buffer* _pIndexB) { m_Index->m_BufferD3D11 = _pIndexB; };
+#endif // D3D11
 		
 		ClaseBuffer*&
 		GetIndexBuffer() { return m_Index; };
-		
-		void 
-		SetIndexBuffer(ID3D11Buffer* _pIndexB) { m_Index->m_BufferD3D11 = _pIndexB; };
 		
 		void 
 		SetSceneID(int ID) { m_SceneId = ID; };
@@ -70,7 +72,8 @@ class MESH
 
 		//Variables-----
 		std::string		m_DifuceName;
-		MaterialApi*	m_Materials;
+		MaterialApi* m_Materials;
+
 
 	public:
 		//Variables-----
@@ -85,4 +88,5 @@ class MESH
 		int					m_IndexNum		= 0;
 		int					m_SceneId		= -1;
 		CBChangesEveryFrame m_MeshData;
+
 };

@@ -95,7 +95,7 @@
     <ExecutablePath>$(DXSDK_DIR)Utilities\bin\x86;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)dbg</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
     <TargetName>aplication</TargetName>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <PreLinkEventUseInBuild>false</PreLinkEventUseInBuild>
@@ -107,6 +107,7 @@
     <ExecutablePath>$(DXSDK_DIR)Utilities\bin\x64;$(DXSDK_DIR)Utilities\bin\x86;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x64;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -156,7 +157,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/include;DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir)/GLFWInclude/x32;$(SolutionDir);$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/include/GL;$(SolutionDir)/OpenGLRoot/ExternalResources/GLFW32/include/GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -164,7 +165,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;assimp.lib;
+      <AdditionalDependencies>glew32s.lib;glew32.lib;opengl32.lib;glfw3.lib;d3d11.lib;d3dcompiler.lib;assimp.lib;
 assimp-vc140-mt.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -174,7 +175,7 @@ assimp-vc140-mt.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\Win32;$(SolutionDir)/GLFWLibs/x32;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -201,14 +202,14 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir)/GLFWInclude/x64;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;d3d11.lib;d3dcompiler.lib;assimp.lib;assimp-vc140-mt.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -217,6 +218,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>$(SolutionDir)/GLFWLibs/x64;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -241,13 +243,13 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/include;DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir)/GLFWInclude/x32;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;assimp.lib;
+      <AdditionalDependencies>glew32s.lib;glew32.lib;opengl32.lib;glfw3.lib;d3d11.lib;d3dcompiler.lib;assimp.lib;
 assimp-vc140-mt.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -259,7 +261,7 @@ assimp-vc140-mt.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\Win32;$(SolutionDir)/GLFWLibs/x32;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -287,13 +289,13 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir)/GLFWInclude/x64;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;d3d11.lib;d3dcompiler.lib;assimp.lib;assimp-vc140-mt.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -304,6 +306,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>$(SolutionDir)/GLFWLibs/x64;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -328,13 +331,13 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/include;DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir)/GLFWInclude/x32;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;assimp.lib;
+      <AdditionalDependencies>glew32s.lib;glew32.lib;opengl32.lib;glfw3.lib;d3d11.lib;d3dcompiler.lib;assimp.lib;
 assimp-vc140-mt.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -346,7 +349,7 @@ assimp-vc140-mt.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\Win32;$(SolutionDir)/GLFWLibs/x32;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -374,14 +377,13 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;%(AdditionalIncludeDirectories)
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(SolutionDir)/includes/;$(SolutionDir)/GLFWInclude/x64;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;d3d11.lib;d3dcompiler.lib;assimp.lib;assimp-vc140-mt.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -392,6 +394,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>$(SolutionDir)/GLFWLibs/x64;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -413,6 +416,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
     <ClCompile Include="CPP\ClaseDevice.cpp" />
     <ClCompile Include="CPP\ClaseDeviceContext.cpp" />
     <ClCompile Include="CPP\ClaseManagerInterfaz.cpp" />
+    <ClCompile Include="CPP\ClaseOpenGL.cpp" />
     <ClCompile Include="CPP\ClaseRenderTarget.cpp" />
     <ClCompile Include="CPP\ClaseRenderTargetView.cpp" />
     <ClCompile Include="CPP\ClaseSampleState.cpp" />
@@ -444,6 +448,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
     <ClInclude Include="Encabezados\ClaseDevice.h" />
     <ClInclude Include="Encabezados\ClaseDeviceContext.h" />
     <ClInclude Include="Encabezados\ClaseManagerInterfaz.h" />
+    <ClInclude Include="Encabezados\ClaseOpenGL.h" />
     <ClInclude Include="Encabezados\ClaseRenderTarget.h" />
     <ClInclude Include="Encabezados\ClaseRenderTargetView.h" />
     <ClInclude Include="Encabezados\ClaseSampleState.h" />
@@ -457,6 +462,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
     <ClInclude Include="Encabezados\MaterialApi.h" />
     <ClInclude Include="Encabezados\Mesh.h" />
     <ClInclude Include="Encabezados\SceneManager.h" />
+    <ClInclude Include="Encabezados\stb_image.h" />
     <ClInclude Include="FirstCamera.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />

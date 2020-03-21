@@ -12,8 +12,12 @@ MaterialApi::~MaterialApi(){
 
 void MaterialApi::Shutdown(){
 
-	if (m_TexDif){
+#ifdef D3D11
+	if (m_TexDif) {
 
 		m_TexDif->Release();
-	}
+}
+#endif // D3D11
+
+	
 }

@@ -22,7 +22,8 @@ void ClaseBuffer::Delete(){
 void ClaseBuffer::Render(){
 }
 
-void ClaseBuffer::createVertexBuffer(int _numvertex, const aiScene* _model, SimpleVertex* _vertex, ID3D11Buffer*& _buffer, ClaseDevice* _dev){
+#ifdef D3D11
+void ClaseBuffer::createVertexBuffer(int _numvertex, const aiScene* _model, SimpleVertex* _vertex, ID3D11Buffer*& _buffer, ClaseDevice* _dev) {
 
 	D3D11_BUFFER_DESC bd;
 	D3D11_SUBRESOURCE_DATA InitData;
@@ -36,10 +37,10 @@ void ClaseBuffer::createVertexBuffer(int _numvertex, const aiScene* _model, Simp
 	_dev->g_pd3dDeviceD3D11->CreateBuffer(&bd, &InitData, &_buffer);
 }
 
-void ClaseBuffer::createIndexBuffer(int numindices, const aiScene* _model, WORD* _index, ID3D11Buffer*& _buffer, ClaseDevice* _dev){
+void ClaseBuffer::createIndexBuffer(int numindices, const aiScene* _model, WORD* _index, ID3D11Buffer*& _buffer, ClaseDevice* _dev) {
 
 	D3D11_BUFFER_DESC bd;
-	D3D11_SUBRESOURCE_DATA InitData; 
+	D3D11_SUBRESOURCE_DATA InitData;
 	ZeroMemory(&bd, sizeof(bd));
 	bd.Usage = D3D11_USAGE_DEFAULT;
 	bd.ByteWidth = sizeof(WORD) * numindices;
@@ -56,34 +57,60 @@ void ClaseBuffer::createIndexBuffer(int numindices, const aiScene* _model, WORD*
 	if (FAILED(hr))
 		return;
 }
+#endif // D3D11
 
-/*//Set
-void ClaseBuffer::SetByteW(UINT _byte){
 
-	m_DescBuff.ByteWidth = _byte;
+
+void ClaseBuffer::OpenGLVAO(){
+
+	//VAO
+
+	// An array of 3 vectors which represents 3 vertices
+	static const GLfloat g_vertex_buffer_data[] =
+	{
+	   -1.0f, -1.0f, 0.0f,
+	   0.0f, -1.0f, 0.0f,
+	   1.0f,  1.0f, 0.0f,
+	   0.0f,  1.0f, 0.0f,
+	};
+
+	// This will identify our vertex buffer
+	//GLuint vertexbuffer;
+	// Generate 1 buffer, put the resulting identifier in vertexbuffer
+	glGenBuffers(1, &m_vertexbuffer);
+	// The following commands will talk about our 'vertexbuffer' buffer
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexbuffer);
+	// Give our vertices to OpenGL.
+	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+	unsigned int index[] =
+	{
+		0,1,3,
+		1,2,3
+	};
+
+	//GLuint elementbuffer;// Index Buffer
+	glGenBuffers(1, &m_elementbuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementbuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), &index[0], GL_STATIC_DRAW);
 }
 
-void ClaseBuffer::SetUsage(D3D11_USAGE _usage){
+//VertexBuffer OpenGl
+void ClaseBuffer::createVertexBuffer(int _numvertex, SimpleVertex* _vertex, GLuint& _buffer){
 
-	m_DescBuff.Usage = _usage;
+	// Generate 1 buffer, put the resulting identifier in vertexbuffer
+	glGenBuffers(1, &_buffer);
+	// The following commands will talk about our 'vertexbuffer' buffer
+	glBindBuffer(GL_ARRAY_BUFFER, _buffer);
+	// Give our vertices to OpenGL.
+	glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * _numvertex, _vertex, GL_STATIC_DRAW);
 }
 
-void ClaseBuffer::SetBindF(UINT _bFlags){
+//IndexBufferOpenGL
+void ClaseBuffer::createIndexBuffer(int numindices, WORD* _index, GLuint& _buffer){
 
-	m_DescBuff.BindFlags = _bFlags;
+	//GLuint elementbuffer;// Index Buffer
+	glGenBuffers(1, &_buffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _buffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, numindices * sizeof(WORD), &_index[0], GL_STATIC_DRAW);
 }
-
-void ClaseBuffer::SetCPUAccess(UINT _cpu){
-
-	m_DescBuff.CPUAccessFlags = _cpu;
-}
-
-void ClaseBuffer::SetMiscF(UINT _misc) {
-
-	m_DescBuff.MiscFlags = _misc;
-}
-
-void ClaseBuffer::SetStructB(UINT _struct) {
-
-	m_DescBuff.StructureByteStride = _struct;
-}*/

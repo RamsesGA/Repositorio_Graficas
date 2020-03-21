@@ -24,9 +24,15 @@ class SCENEMANAGER
 		
 		void 
 		Shutdown();
+
+		void
+		Init();
 		
 		//Variables
 		ClaseBuffer* meshData;
+		GLuint m_VertexArrayID;
+		bool m_initialize = false;
+		
 
 		std::vector<MESH*> m_MeshInScene;
 	private:

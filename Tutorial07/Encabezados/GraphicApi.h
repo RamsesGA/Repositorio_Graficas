@@ -9,7 +9,6 @@
 #include "Mesh.h"
 #include "SceneManager.h"
 
-
 class GraphicApi {
 
 	public:
@@ -22,10 +21,19 @@ class GraphicApi {
 		bool
 		ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer* _importer, ClaseDevice* _dev);
 
+		bool
+		ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager);
+
 	private:
 		void
 		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev);
 
 		void
+		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex);
+
+		void
 		ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev);
+
+		void
+		ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex);
 };

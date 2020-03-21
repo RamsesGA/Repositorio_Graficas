@@ -1,8 +1,16 @@
 #pragma once
 #define D3D11
+#define OPENGL
+
 #include <windows.h>
 #include "mathfu/hlsl_mappings.h"
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
+//DIRECTX
 #ifdef D3D11
 #include <d3d11.h>
 #include <d3dx11.h>
@@ -10,6 +18,9 @@
 #include <xnamath.h>
 #endif // D3D11
 
+//OPENGL
+#include <glew.h>
+#include <GLFWInclude/x32/glfw3.h>
 
 
 

@@ -23,6 +23,8 @@ class ClaseRenderTargetView {
 
         RenderTargetViewDesc m_renderTVD;
 
+        //Miembros OpenGL
+        GLuint m_IdRenderTargetView = 0;
 
         void
         Init(RenderTargetViewDesc _rtvd);
