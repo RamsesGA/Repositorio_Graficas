@@ -5,7 +5,8 @@
 #include <Windows.h>
 #include "Encabezados/ClaseBuffer.h"
 #include "SceneManager.h"
-
+#include "Camera.h"
+#include "FirstCamera.h"
 class ClaseOpenGL {
 
 	public:
@@ -22,6 +23,8 @@ class ClaseOpenGL {
 		GLuint m_programShaderID;
 		ClaseBuffer m_Buffers;
 		GLFWwindow* m_window;
+		Camera                      m_FreeCamera;
+		FirstCamera                 m_FPSCamera;
 		//Si no funciona, recuerdaa mover a window en su función correspondiente 
 
 		//------------------
@@ -31,9 +34,11 @@ class ClaseOpenGL {
 		HRESULT 
 		FrameBuffer();
 		void 
-		processInput(GLFWwindow* window);
+		processInput(GLFWwindow* window, int key, int scancode, int action, int mods);
 		int 
 		WindowGLFW();
 		void 
 		GameLoop();
+		void 
+		InitCameras();
 };

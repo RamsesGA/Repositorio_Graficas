@@ -1,17 +1,17 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(445,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  GraphicApi.cpp
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  ClaseOpenGL.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(12,1): warning C4005: 'DXGI_STATUS_OCCLUDED': redefinición de macro
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55840): message : vea la definición anterior de 'DXGI_STATUS_OCCLUDED'
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(13,1): warning C4005: 'DXGI_STATUS_CLIPPED': redefinición de macro
@@ -130,10 +130,20 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\Encabezados\Mesh.h(41,44): warning C4100: 'numVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\Encabezados\Mesh.h(41,30): warning C4100: 'MyVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\CPP\GraphicApi.cpp(219,11): warning C4189: 'direcTextur': la variable local se ha inicializado pero no se hace referencia a ella
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\CPP\GraphicApi.cpp(211,12): warning C4101: 'wtext': variable local sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\CPP\GraphicApi.cpp(259,11): warning C4189: 'direcTextur': la variable local se ha inicializado pero no se hace referencia a ella
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\CPP\GraphicApi.cpp(251,12): warning C4101: 'wtext': variable local sin referencia
-  Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\bin\Win32\Debug\aplication.exe
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(8,44): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(75,91): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(75,79): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(75,65): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(75,56): warning C4100: 'key': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(83,85): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(83,73): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(83,59): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(83,38): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(98,66): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(98,54): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(89,76): warning C4100: '_mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(89,37): warning C4100: '_window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(197,27): warning C4018: '<': no coinciden signed/unsigned
+  Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\bin\Win32\Debug\aplication.exe

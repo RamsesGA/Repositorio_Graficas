@@ -23,9 +23,6 @@ class Camera {
 		CameraDescriptor m_Desc;
 
 		//-----
-		
-
-		//-----
 		mathfu::float3 m_Up;
 		mathfu::float3 m_Front;
 		mathfu::float3 m_locketFront;
@@ -158,6 +155,23 @@ class Camera {
 		
 		void
 		inputs(WPARAM _param);
+
+		//Sobrecarga de funciones para OpenGL
+		void
+		Input(int _param);
+
+		void
+		Move(int _param);
+
+		void
+		PitchX(int _param);
+
+		void
+		YawZ(int _param);
+
+		void
+		RollY(int _param);
+
 
 		//Constructor and Destructor-----
 		Camera();

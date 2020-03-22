@@ -455,3 +455,165 @@ void Camera::inputs(WPARAM _param){
 		Move(_param);
 	}
 }
+
+
+//Sobrecarga de funciones para OpenGL
+void Camera::Input(int _param){
+
+	if (_param == GLFW_KEY_UP || _param == GLFW_KEY_DOWN) {
+
+		PitchX(_param);
+	}
+	if (_param == GLFW_KEY_RIGHT || _param == GLFW_KEY_LEFT) {
+
+		RollY(_param);
+	}
+	if (_param == GLFW_KEY_Z || _param == GLFW_KEY_C) {
+
+		YawZ(_param);
+	}
+	else {
+
+		Move(_param);
+	}
+}
+
+void Camera::Move(int _param){
+
+	if (_param == GLFW_KEY_W) {
+
+		m_Desc.s_Eye += m_Front;
+	}
+	else if (_param == GLFW_KEY_S) {
+
+		m_Desc.s_Eye -= m_Front;
+	}
+	else if (_param == GLFW_KEY_A) {
+
+		m_Desc.s_Eye -= m_Right;
+	}
+	else if (_param == GLFW_KEY_D) {
+
+		m_Desc.s_Eye += m_Right;
+	}
+	else if (_param == GLFW_KEY_Q) {
+
+		m_Desc.s_Eye += m_Up;
+	}
+	else if (_param == GLFW_KEY_E) {
+
+		m_Desc.s_Eye -= m_Up;
+	}
+
+	//-----
+	m_Axis =
+	{
+		m_Right.x,	m_Right.y,	m_Right.z,	0,
+		m_Up.x,		m_Up.y,		m_Up.z,		0,
+		m_Front.x,	m_Front.y,	m_Front.z,	0,
+		0,			0,			0,			1
+	};
+
+	m_Position =
+	{
+		1,	0,	0, -m_Desc.s_Eye.x,
+		0,	1,	0, -m_Desc.s_Eye.y,
+		0,	0,	1, -m_Desc.s_Eye.z,
+		0,	0,	0,	1
+	};
+
+
+	m_Position *= m_Axis;
+	m_View = m_Position; //Ya está la matriz view
+	UpdateVM();
+}
+
+void Camera::PitchX(int _param){
+
+	mathfu::float4x4 rot;
+	float speedrot = 0.10f;
+
+	if (_param == GLFW_KEY_UP) {
+
+		rot =
+		{
+			1,	0,				0,					0,
+			0,	cosf(speedrot),	-sinf(speedrot),	0,
+			0,	sinf(speedrot),	cosf(speedrot),		0,
+			0,	0,				0,					1
+		};
+	}
+	else if (_param == GLFW_KEY_DOWN) {
+
+		rot =
+		{
+			1,	0,					0,					0,
+			0,	cosf(-speedrot),	-sinf(-speedrot),	0,
+			0,	sinf(-speedrot),	cosf(-speedrot),	0,
+			0,	0,					0,					1
+		};
+	}
+	m_View *= rot;
+
+	UpdateVM();
+}
+
+void Camera::YawZ(int _param) {
+
+	mathfu::float4x4 rot;
+	float speedrot = 0.10f;
+
+	if (_param == GLFW_KEY_Z) {
+
+		rot =
+		{
+			cosf(speedrot),		0,	sinf(speedrot),	0,
+			0,					1,	0,				0,
+			-sinf(speedrot),	0,	cosf(speedrot),	0,
+			0,					0,	0,				1
+		};
+	}
+	else if (_param == GLFW_KEY_C) {
+
+		rot =
+		{
+			cosf(-speedrot),		0,	sinf(-speedrot),	0,
+			0,						1,	0,					0,
+			-sinf(-speedrot),		0,	cosf(-speedrot),	0,
+			0,						0,	0,					1
+		};
+	}
+	m_View *= rot;
+
+	UpdateVM();
+}
+
+void Camera::RollY(int _param){
+
+	mathfu::float4x4 rot;
+	float speedrot = 0.10f;
+
+	if (_param == GLFW_KEY_RIGHT) {
+
+		rot =
+		{
+			cosf(speedrot),	-sinf(speedrot),	0,	0,
+			sinf(speedrot),	cosf(speedrot),		0,	0,
+			0,				0,					1,	0,
+			0,				0,					0,	1
+		};
+	}
+	else if (_param == GLFW_KEY_LEFT) {
+
+		rot =
+		{
+			cosf(-speedrot),	-sinf(-speedrot),		0,		0,
+			sinf(-speedrot),	cosf(-speedrot),		0,		0,
+			0,				0,							1,		0,
+			0,				0,							0,		1
+		};
+	}
+	m_View *= rot;
+
+	UpdateVM();
+}
