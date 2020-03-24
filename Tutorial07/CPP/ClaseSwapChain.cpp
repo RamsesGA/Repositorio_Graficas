@@ -1,5 +1,8 @@
 #include "..\Encabezados\ClaseSwapChain.h"
 
+///
+/// function to initialize swapchain values
+///
 void ClaseSwapChain::Init(SwapChainDescriptor _desc){
 
 	m_ChainDesc = _desc;
@@ -21,6 +24,9 @@ void ClaseSwapChain::Init(SwapChainDescriptor _desc){
 #endif
 }
 
+///
+/// function to get swap data
+///
 void* ClaseSwapChain::GetSwap()
 {
 #if defined(D3D11)
@@ -28,63 +34,3 @@ void* ClaseSwapChain::GetSwap()
 #endif
 	return nullptr;
 }
-
-/*void ClaseSwapChain::SetSwapChain(IDXGISwapChain* _chain){
-
-	m_ChainDesc.g_pSwapChain = _chain;
-}
-
-void ClaseSwapChain::SetMode(DXGI_MODE_DESC _buffer){
-
-	m_ChainDesc.BufferDesc = _buffer;
-}
-
-void ClaseSwapChain::SetSample(DXGI_SAMPLE_DESC _sample){
-
-	m_ChainDesc.SampleDesc = _sample;
-}
-
-void ClaseSwapChain::SetUsage(DXGI_USAGE _usage){
-
-	m_ChainDesc.BufferUsage = _usage;
-}
-
-void ClaseSwapChain::SetBufferC(UINT _int){
-
-	m_ChainDesc.BufferCount = _int;
-}
-
-void ClaseSwapChain::SetWindow(HWND _hwnd){
-
-	m_ChainDesc.OutputWindow = _hwnd;
-}
-
-void ClaseSwapChain::SetWindowed(BOOL _bool){
-
-	m_ChainDesc.Windowed = _bool;
-}
-
-void ClaseSwapChain::SetSwap(DXGI_SWAP_EFFECT _swapEffect){
-
-	m_ChainDesc.SwapEffect = _swapEffect;
-}
-
-void ClaseSwapChain::SetFlags(UINT _int){
-
-	m_ChainDesc.Flags = _int;
-}
-
-HRESULT ClaseSwapChain::ResizeBuffers(UINT BufferCount, UINT Width, UINT Height, DXGI_FORMAT NewFormat, UINT SwapChainFlags){
-
-	return E_NOTIMPL;
-}
-
-HRESULT ClaseSwapChain::GetBackBuffer(UINT Buffer, REFIID riid, void** ppSurface){
-
-	return E_NOTIMPL;
-}
-
-HRESULT ClaseSwapChain::Present(UINT SyncInterval, UINT Flags){
-
-	return E_NOTIMPL;
-}*/

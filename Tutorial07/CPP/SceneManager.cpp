@@ -4,6 +4,9 @@ SCENEMANAGER::SCENEMANAGER(){}
 
 SCENEMANAGER::~SCENEMANAGER(){}
 
+///
+/// function to be able to add the data of the mesh member
+///
 void SCENEMANAGER::AddMesh(MESH* newMesh){
 
 	newMesh->SetSceneID(m_ID);
@@ -11,6 +14,9 @@ void SCENEMANAGER::AddMesh(MESH* newMesh){
 	m_MeshInScene.push_back(newMesh);
 }
 
+///
+/// function to get the mesh
+///
 MESH*& SCENEMANAGER::GetMesh(int meshID){
 
 	for (size_t i = 0; i < m_MeshInScene.size(); i++){
@@ -20,6 +26,9 @@ MESH*& SCENEMANAGER::GetMesh(int meshID){
 	}
 }
 
+///
+/// function to use the mesh on stage
+///
 void SCENEMANAGER::Update(){
 
 	for (size_t i = 0; i < m_MeshInScene.size(); i++){
@@ -28,6 +37,9 @@ void SCENEMANAGER::Update(){
 	}
 }
 
+///
+/// function to render the mesh
+///
 void SCENEMANAGER::Render(ClaseDeviceContext *_deviceCon, ClaseBuffer* _buff, ClaseDevice* _dev){
 
 	for (size_t i = 0; i < m_MeshInScene.size(); i++){
@@ -36,6 +48,9 @@ void SCENEMANAGER::Render(ClaseDeviceContext *_deviceCon, ClaseBuffer* _buff, Cl
 	}
 }
 
+///
+/// function to remove data from a mesh on stage
+///
 void SCENEMANAGER::Shutdown(){
 
 	for (size_t i = 0; i < m_MeshInScene.size(); i++){
@@ -44,6 +59,9 @@ void SCENEMANAGER::Shutdown(){
 	}
 }
 
+///
+/// Function to initialize the vertex generator and bind the vertices
+///
 void SCENEMANAGER::Init(){
 
 	if (m_initialize) {

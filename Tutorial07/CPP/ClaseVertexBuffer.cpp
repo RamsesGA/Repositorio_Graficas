@@ -1,5 +1,9 @@
 #include "..\Encabezados\ClaseVertexBuffer.h"
 
+
+///
+/// function to initialize vertex buffer values
+///
 void ClaseVertexBuffer::Init(SUBRESOURCE_DATA _data, BufferDescriptor _buffer){
 
 	m_Buffer.Init(_buffer);

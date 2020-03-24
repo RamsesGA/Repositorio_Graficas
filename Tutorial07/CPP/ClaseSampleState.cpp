@@ -1,5 +1,8 @@
 #include "..\Encabezados\ClaseSampleState.h"
 
+///
+/// function to initialize SampleState values
+///
 void ClaseSampleState::Init(SampleStateDesc _sampleDesc){
 
 	m_SampleDesc = _sampleDesc;

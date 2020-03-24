@@ -1,5 +1,8 @@
 #include "../Encabezados/ClaseTexture2D.h"
 
+///
+/// function to initialize 2D texture values
+///
 void ClaseTextura2D::Init(Texture2Desc _text){
 
 	m_TextDesc = _text;
@@ -21,6 +24,10 @@ void ClaseTextura2D::Init(Texture2Desc _text){
 #endif
 }
 
+
+///
+/// function to obtain the depth
+///
 void* ClaseTextura2D::GetDepth()
 {
 #if defined(D3D11)

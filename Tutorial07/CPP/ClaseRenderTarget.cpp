@@ -1,5 +1,8 @@
 #include "../Encabezados/ClaseRenderTarget.h"
 
+///
+/// function to initialize the Render target values
+///
 void RenderTarget::Init(RenderTargetDesc _rtd) {
 
 	m_RenderTDesc = _rtd;
@@ -21,6 +24,9 @@ void RenderTarget::Init(RenderTargetDesc _rtd) {
 
 }
 
+///
+/// function to initialize Frame Buffer values
+///
 void RenderTarget::InitFrameBuffer(){
 
     if (m_initialize) {
@@ -31,35 +37,55 @@ void RenderTarget::InitFrameBuffer(){
     glGenFramebuffers(1, &m_IdRenderTarget);
     glBindFramebuffer(GL_FRAMEBUFFER, m_IdRenderTarget);
 
-    // The texture we're going to render to
+    ///
+    /// The texture we're going to render to
+    ///
     GLuint renderedTexture;
     glGenTextures(1, &renderedTexture);
 
-    // "Bind" the newly created texture : all future texture functions will modify this texture
+    ///
+    /// "Bind" the newly created texture : all future texture functions will modify this texture
+    ///
     glBindTexture(GL_TEXTURE_2D, renderedTexture);
 
-    // Give an empty image to OpenGL ( the last "0" )
+    ///
+    /// Give an empty image to OpenGL ( the last "0" )
+    ///
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1024, 768, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
 
-    // Poor filtering. Needed !
+    ///
+    /// Poor filtering. Needed !
+    ///
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-    // The depth buffer
+    ///
+    /// The depth buffer
+    ///
     GLuint depthrenderbuffer;
     glGenRenderbuffers(1, &depthrenderbuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, depthrenderbuffer);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1024, 768);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthrenderbuffer);
 
-    // Set "renderedTexture" as our colour attachement #0
+    ///
+    /// Set "renderedTexture" as our colour attachement #0
+    ///
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
 
-    // Set the list of draw buffers.
+    ///
+    /// Set the list of draw buffers.
+    ///
     GLenum DrawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-    glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
 
-    // Always check that our framebuffer is ok
+    ///
+    /// "1" is the size of DrawBuffers
+    ///
+    glDrawBuffers(1, DrawBuffers);
+
+    ///
+    /// Always check that our framebuffer is ok
+    ///
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {}
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

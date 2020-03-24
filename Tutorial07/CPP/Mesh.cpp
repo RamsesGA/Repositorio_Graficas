@@ -4,6 +4,10 @@
 #include "../imgui/imgui_impl_win32.h"
 #include "../imgui/imgui_impl_dx11.h"
 
+
+///
+/// initializer
+///
 MESH::MESH(){
 
 	m_VertexBuffer	= new ClaseBuffer;
@@ -18,19 +22,26 @@ MESH::MESH(){
 	m_MeshData.vMeshColor = { 1,0,0,1 };
 }
 
+///
+/// DESTROYER
+///
 MESH::~MESH(){}
 
-//Creación de nuevos buffers
+///
+/// Creation of new buffers
+///
 void MESH::Init() {
 
 	m_VertexBuffer	= new ClaseBuffer;
 	m_Index			= new ClaseBuffer;
 }
 
-//
 void MESH::Update(){
 }
 
+///
+/// function to start rendering the Meshs
+///
 void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseDevice* _dev){
 
 	m_MeshData.mWorld = {
@@ -73,15 +84,29 @@ void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseD
 
 #ifdef D3D11
 
-
-
 	_devCont->g_pImmediateContextD3D11->IASetVertexBuffers
 	(	0,
-		1,//numero de buffers que estamos utilizando
-		&m_VertexBuffer->m_BufferD3D11,//puntero a la lista buffers
-		&stride,//un uint que indica el tamaño de un unico vertice
+
+		///
+		/// number of buffers we are using
+		///
+		1,
+
+		///
+		/// pointer to the buffers list
+		///
+		&m_VertexBuffer->m_BufferD3D11,
+
+		///
+		/// a uint indicating the size of a single vertex
+		///
+		&stride,
+
+		///
+		/// a uint that indicates the number of the byte in the vertex from which you want to start painting
+		///
 		&offset
-	);//un uint que indica el numero del byte en el vertice del que se quiere comenzar a pintar
+	);
 
 	_devCont->g_pImmediateContextD3D11->IASetIndexBuffer
 	(
@@ -90,17 +115,29 @@ void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseD
 		0
 	);
 
-	//Tipo de topologia
-	/*Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.*/
-	//_devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	///
+	/// Topology type
+	///
 
-	 //Dibuja el búfer de vértices en el búfer posterior 
+	///
+	/// This second function tells Direct3D what type of primitive is used.
+	///
+
+	///
+	/// _devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	///
+
+	///
+	/// Draws the vertex buffer in the back buffer
+	///
 	_devCont->g_pImmediateContextD3D11->DrawIndexed(m_IndexNum, 0, 0);
 	if (m_Children.size() > 0){}
 #endif // D3D11
 }
 
-
+///
+/// function to be able to delete data
+///
 void MESH::Delete(){
 
 	m_Materials->Shutdown();
@@ -124,22 +161,34 @@ void MESH::Delete(){
 	}
 }
 
+///
+/// function to set child data
+///
 void MESH::AddChildren(MESH* _newChild){
 
 	m_Children.push_back(_newChild);
 }
 
+///
+/// function to set parent data
+///
 void MESH::SetParent(MESH* _parent){
 
 	m_Parent = _parent;
 }
 
+///
+/// function to set vertices
+///
 void MESH::SetVertex(SimpleVertex* MyVertex, int numVertex){
 
 	m_VertexNum = numVertex;
 	m_MyVertex	= MyVertex;
 }
 
+///
+/// function to set the indexes
+///
 void MESH::SetIndexList(WORD* _index, int numIndex) {
 
 	m_MyIndex	= _index;

@@ -7,6 +7,7 @@
 class SCENEMANAGER
 {
 	public:
+
 		SCENEMANAGER();
 		~SCENEMANAGER();
 
@@ -28,15 +29,18 @@ class SCENEMANAGER
 		void
 		Init();
 		
-		//Variables
+		///
+		/// Variables
+		///
 		ClaseBuffer* meshData;
 		GLuint m_VertexArrayID;
 		bool m_initialize = false;
-		
-
 		std::vector<MESH*> m_MeshInScene;
+
 	private:
-		//Variables
-	
+		
+		///
+		/// Variables
+		///
 		int m_ID = 0;
 };

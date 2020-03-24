@@ -1,5 +1,8 @@
 #include "../Encabezados/ClaseRenderTargetView.h"
 
+///
+/// function to initialize render values target view
+///
 void ClaseRenderTargetView::Init(RenderTargetViewDesc _rtvd){
 
 	m_renderTVD = _rtvd;

@@ -1,5 +1,8 @@
 #include "..\Encabezados\ClaseDeviceContext.h"
 
+///
+/// function to initialize the Device Context variable
+///
 #ifdef D3D11
 void ClaseDeviceContext::Init(ID3D11DeviceContext* _context){
 
@@ -16,6 +19,9 @@ void ClaseDeviceContext::Render(){
 void ClaseDeviceContext::Delete(){
 }
 
+///
+/// function to get data from Dev Cont
+///
 void* ClaseDeviceContext::GetDevCont()
 {
 #if defined(D3D11)

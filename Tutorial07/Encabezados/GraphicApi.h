@@ -15,24 +15,30 @@ class GraphicApi {
 		GraphicApi();
 		~GraphicApi();
 
-		const aiScene* m_Model = new const aiScene();
-		Assimp::Importer* m_Importer=new Assimp::Importer();
-
+		//DIRECTX Methods
 		bool
 		ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer* _importer, ClaseDevice* _dev);
 
+		//OPENGL Methods
 		bool
 		ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager);
 
+		//ASSIMP
+		const aiScene* m_Model = new const aiScene();
+		Assimp::Importer* m_Importer=new Assimp::Importer();
+
 	private:
+
+		//DIRECTX Methods
 		void
 		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev);
 
 		void
-		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex);
-
-		void
 		ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev);
+
+		//OPENGL Methods
+		void
+		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex);
 
 		void
 		ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex);

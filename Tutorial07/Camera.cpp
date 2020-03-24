@@ -1,6 +1,8 @@
 #include "Camera.h"
 
-//-----
+///
+/// Camera initializer
+///
 Camera::Camera(){
 	
 	m_Desc.s_Widht = 0.0f;
@@ -16,10 +18,14 @@ Camera::Camera(){
 	m_Desc.s_At = mathfu::float3(0.0f, 0.0f, 0.0f);
 }
 
-//-----
+///
+/// Camera destructor
+///
 Camera::~Camera(){}
 
-//-----
+///
+/// Camera Init
+///
 int Camera::Init(CameraDescriptor _cameraDesc){
 
 	m_Desc = _cameraDesc;
@@ -40,19 +46,25 @@ int Camera::Init(CameraDescriptor _cameraDesc){
 	return 0;
 }
 
-//-----
+///
+/// Camera GetMUp
+///
 mathfu::float3 Camera::GetMUp(){
 
 	return m_Up;
 }
 
-//-----
+///
+/// Camera GetMFront
+///
 mathfu::float3 Camera::GetMFront(){
 
 	return m_Front;
 }
 
-//-----
+///
+/// Camera GetMRight
+///
 mathfu::float3 Camera::GetMRight(){
 
 	return m_Right;
@@ -62,7 +74,9 @@ void Camera::SetView(mathfu::float4x4 _view)
 {
 }
 
-//-----
+///
+/// Camera SetWidht, GetWidht 
+///
 void Camera::SetWidht(float _widht){
 
 	m_Desc.s_Widht = _widht;
@@ -72,7 +86,9 @@ float Camera::GetWidht(){
 	return m_Desc.s_Widht;
 }
 
-//-----
+///
+/// Camera SetHeight, GetHeight
+///
 void Camera::SetHeight(float _height){
 
 	m_Desc.s_Height = _height;
@@ -82,7 +98,9 @@ float Camera::GetHeight(){
 	return m_Desc.s_Height;
 }
 
-//-----
+///
+/// Camera SetNear, GetNear
+///
 void Camera::SetNear(float _near){
 
 	m_Desc.s_Near = _near;
@@ -92,7 +110,9 @@ float Camera::GetNear(){
 	return m_Desc.s_Near;
 }
 
-//-----
+///
+/// Camera SetFar, GetFar
+///
 void Camera::SetFar(float _far){
 
 	m_Desc.s_Far = _far;
@@ -102,7 +122,9 @@ float Camera::GetFar(){
 	return m_Desc.s_Far;
 }
 
-//-----
+///
+/// Camera SetFoV, GetFoV
+///
 void Camera::SetFoV(float _fOv){
 
 	m_Desc.s_FoV = _fOv;
@@ -112,7 +134,9 @@ float Camera::GetFoV(){
 	return m_Desc.s_FoV;
 }
 
-//-----
+///
+/// Camera SetEye, GetEye
+///
 void Camera::SetEye(mathfu::float3 _vec3){
 
 	m_Desc.s_Eye = _vec3;
@@ -122,7 +146,9 @@ mathfu::float3 Camera::GetEye(){
 	return m_Desc.s_Eye;
 }
 
-//-----
+///
+/// Camera SetAt, GetAt
+///
 void Camera::SetAt(mathfu::float3 _vec3){
 
 	m_Desc.s_At = _vec3;
@@ -132,7 +158,9 @@ mathfu::float3 Camera::GetAt(){
 	return m_Desc.s_At;
 }
 
-//-----
+///
+/// Camera SetUp, GetUp
+///
 void Camera::SetUp(mathfu::float3 _vec3){
 
 	m_Desc.s_Up = _vec3;
@@ -142,7 +170,9 @@ mathfu::float3 Camera::GetUp(){
 	return m_Desc.s_Up;
 }
 
-//-----
+///
+/// Camera UpdateVM
+///
 void Camera::UpdateVM(){
 
 	//m_Desc.s_Eye = {m_Projection.data_[0].w, m_Projection.data_[1].w , m_Projection.data_[2].w };
@@ -151,7 +181,9 @@ void Camera::UpdateVM(){
 	m_Front = { m_View.data_[2].x, m_View.data_[2].y, m_View.data_[2].z };
 }
 
-//-----
+///
+/// Camera GenerateProjectionMatrix
+///
 void Camera::GenerateProjectionMatrix(){
 
 #ifdef D3D11
@@ -169,7 +201,9 @@ void Camera::GenerateProjectionMatrix(){
 #endif
 }
 
-//-----
+///
+/// Camera CreateView
+///
 void Camera::CreateView() {
 
 	//Usamos left hand
@@ -202,7 +236,9 @@ void Camera::CreateView() {
 	m_View = m_Position; //Ya está la matriz view
 }
 
-//-----
+///
+/// Camera Move
+///
 void Camera::Move(WPARAM _param){
 
 	if (_param == 'w' || _param == 'W') {
@@ -253,7 +289,9 @@ void Camera::Move(WPARAM _param){
 	UpdateVM();
 }
 
-//-----
+///
+/// Camera PitchX
+///
 void Camera::PitchX(WPARAM _param){
 
 	mathfu::float4x4 rot;
@@ -289,7 +327,9 @@ void Camera::PitchX(WPARAM _param){
 	UpdateVM();
 }  
 
-//-----
+///
+/// Camera YawZ
+///
 void Camera::YawZ(WPARAM _param){
 
 	mathfu::float4x4 rot;
@@ -324,7 +364,9 @@ void Camera::YawZ(WPARAM _param){
 	UpdateVM();
 }
 
-//-----
+///
+/// Camera RollY
+///
 void Camera::RollY(WPARAM _param){
 
 	mathfu::float4x4 rot;
@@ -359,7 +401,9 @@ void Camera::RollY(WPARAM _param){
 	UpdateVM();
 }
 
-//-----
+///
+/// Camera MouseRotation
+///
 void Camera::MouseRotation(){
 
 	//mathfu::float2 FirstPos;
@@ -435,7 +479,9 @@ void Camera::MouseRotation(){
 	UpdateVM();
 }
 
-//-----
+///
+/// Camera inputs
+///
 void Camera::inputs(WPARAM _param){
 
 	if (_param == VK_UP || _param == VK_DOWN){
@@ -457,7 +503,9 @@ void Camera::inputs(WPARAM _param){
 }
 
 
-//Sobrecarga de funciones para OpenGL
+///
+/// Function overload for OpenGL
+///
 void Camera::Input(int _param){
 
 	if (_param == GLFW_KEY_UP || _param == GLFW_KEY_DOWN) {

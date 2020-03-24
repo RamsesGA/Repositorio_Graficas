@@ -9,7 +9,9 @@
 #include "resource.h"
 #include "Encabezados/Defines.h"
 
-//Ramses´s libraries
+///
+/// Ramses´s libraries
+///
 #include "Camera.h"
 #include "FirstCamera.h"
 #include <fstream>
@@ -47,39 +49,47 @@
 #endif
 #endif
 
-
 //--------------------------------------------------------------------------------------
 //extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-//--------------------------------------------------------------------------------------
-// Structures
+///
+/// Structures
+///
 struct CBNeverChanges
 {
     mathfu::float4x4 mView;
 };
-
 struct CBChangeOnResize
 {
     mathfu::float4x4 mProjection;
 };
 
-//--------------------------------------------------------------------------------------
-// Global Variables
+///
+/// Global Variables
+///
 HINSTANCE                           g_hInst = NULL;
 HWND                                g_hWnd = NULL;
 
 #ifdef D3D11
-ID3D11PixelShader*          g_pPixelShader  = NULL;//en pixel shader derivado de clase shader
-ID3D11ShaderResourceView*   g_pTextureRV    = NULL;//en clase material o shaderResources
+///
+/// in pixel shader derived from shader class
+///
+ID3D11PixelShader*          g_pPixelShader  = NULL;
+
+///
+/// in material class or shader Resources
+///
+ID3D11ShaderResourceView*   g_pTextureRV    = NULL;
 ID3D11ShaderResourceView*   G_InactiveSRV   = NULL;
 #endif
 
 mathfu::float4x4            g_World;
 mathfu::float4              g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
 
-//--------------------------------------------------------------------------------------
-//Ramses´s global variables
+///
+/// Ramses´s global variables
+///
 ClaseDevice                 CDev;
 ClaseDeviceContext          CDevCont;
 ClaseSwapChain              CSwap;
@@ -114,8 +124,9 @@ Camera*                     SecondCamera    = NULL;
 Camera                      CamaraLibre;
 Camera                      CamaraPrimeraPersona;
 
-//--------------------------------------------------------------------------------------
-//API
+///
+/// API
+///
 SCENEMANAGER                G_SceneManager;
 GraphicApi                  G_GraphicApi;
 
@@ -134,40 +145,55 @@ int                         SwitchCamera = -1;
 UINT                        width;
 UINT                        height;
 
-//--------------------------------------------------------------------------------------
-//OpenGl variables
+///
+/// OpenGl variables
+///
 unsigned int g_ColorShaderID;
 ClaseOpenGL g_OpenGlObj;
 
-//--------------------------------------------------------------------------------------
-//Ramses´s functions
+///
+/// Function for resize in DIRECTX
+///
 void Resize(){
 
 #ifdef D3D11
 
     if (CDevCont.g_pImmediateContextD3D11 != nullptr) {
 
-        //Get new window dimensions
+        ///
+        /// Get new window dimensions
+        ///
         RECT rc;
         GetClientRect(g_hWnd, &rc);
         UINT width = rc.right - rc.left;
         UINT height = rc.bottom - rc.top;
 
-        //Regenerate world matrix as identity
+        ///
+        /// Regenerate world matrix as identity
+        ///
         g_World = g_World.Identity();
 
-        //Set w and h for camera
+        ///
+        ///Set w and h for camera 
+        ///
         MainCamera->SetHeight(height);
         MainCamera->SetWidht(width);
-        //Update projection matrix with new params
+
+        ///
+        /// Update projection matrix with new params
+        ///
         MainCamera->UpdateVM();
 
-        //Update CB
+        ///
+        /// Update CB
+        ///
         CBChangeOnResize cbChangesOnResize;
         cbChangesOnResize.mProjection = MainCamera->GetProjection();
         ptrDevCont->UpdateSubresource(MainCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11, 0, NULL, &cbChangesOnResize, 0, 0);
 
-        //camara inactiva
+        ///
+        /// inactive camera
+        ///
         SecondCamera->SetHeight(height);
         SecondCamera->SetWidht(width);
         SecondCamera->UpdateVM();
@@ -180,12 +206,16 @@ void Resize(){
 
             HRESULT h;
 
-            //Release inactive camera texture, SRV and RTV
+            ///
+            /// Release inactive camera texture, SRV and RTV
+            ///
             InactiveTexture.m_TextureD3D11->Release();
             G_InactiveSRV->Release();
             InactiveRTV.g_pRenderTargetViewD3D11->Release();
-
-            //Resize inactive camera texture					
+	
+            ///
+            /// Resize inactive camera texture	
+            ///
             Texture2Desc TD;
             ZeroMemory(&TD, sizeof(TD));
             TD.Width = width;
@@ -219,7 +249,9 @@ void Resize(){
 
             h = ptrDEV->CreateShaderResourceView(InactiveTexture.m_TextureD3D11, &SRV, &G_InactiveSRV);
 
-            //Camara activa
+            ///
+            /// Camara activa
+            ///
             CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(0, 0, 0);
             CRendTarView.g_pRenderTargetViewD3D11->Release();
 
@@ -279,6 +311,9 @@ void Resize(){
 #endif
 }
 
+///
+/// Function for level data
+///
 enum LevelStuff {
 
     Wall = 1,
@@ -287,6 +322,9 @@ enum LevelStuff {
     NotColideWalls = 5
 };
 
+///
+/// Function to generate the map
+///
 void LevelMap(std::string FileLevelName) {
 
     std::ifstream File;
@@ -313,6 +351,9 @@ void LevelMap(std::string FileLevelName) {
     File.close();
 }
 
+///
+/// Function to initialize cameras
+///
 void InitCameras() {
 
     CameraDescriptor GodCamera;
@@ -350,38 +391,60 @@ void InitCameras() {
     SecondCamera = &FreeCamera;
 }
 
+///
+/// Function to activate the console
+///
 void activateConsole()
 {
-    //Create a console for this application
+    ///
+    /// Create a console for this application
+    ///
     AllocConsole();
-    // Get STDOUT handle
+
+    ///
+    /// Get STDOUT handle
+    ///
     HANDLE ConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
     int SystemOutput = _open_osfhandle(intptr_t(ConsoleOutput), _O_TEXT);
     FILE* COutputHandle = _fdopen(SystemOutput, "w");
 
-    // Get STDERR handle
+    ///
+    /// Get STDERR handle
+    ///
     HANDLE ConsoleError = GetStdHandle(STD_ERROR_HANDLE);
     int SystemError = _open_osfhandle(intptr_t(ConsoleError), _O_TEXT);
     FILE* CErrorHandle = _fdopen(SystemError, "w");
 
-    // Get STDIN handle
+    ///
+    /// Get STDIN handle
+    ///
     HANDLE ConsoleInput = GetStdHandle(STD_INPUT_HANDLE);
     int SystemInput = _open_osfhandle(intptr_t(ConsoleInput), _O_TEXT);
     FILE* CInputHandle = _fdopen(SystemInput, "r");
 
-    //make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog point to console as well
+    ///
+    /// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog point to console as well
+    ///
     std::ios::sync_with_stdio(true);
 
-    // Redirect the CRT standard input, output, and error handles to the console
+    ///
+    /// Redirect the CRT standard input, output, and error handles to the console
+    ///
     freopen_s(&CInputHandle, "CONIN$", "r", stdin);
     freopen_s(&COutputHandle, "CONOUT$", "w", stdout);
     freopen_s(&CErrorHandle, "CONOUT$", "w", stderr);
 
-    //Clear the error state for each of the C++ standard stream objects. We need to do this, as
-    //attempts to access the standard streams before they refer to a valid target will cause the
-    //iostream objects to enter an error state. In versions of Visual Studio after 2005, this seems
-    //to always occur during startup regardless of whether anything has been read from or written to
-    //the console or not.
+    ///
+    /// Clear the error state for each of the C++ standard stream objects. We need to do this, as attempts to access the standard streams before they refer to a valid target will cause the
+    ///
+
+    ///
+    /// iostream objects to enter an error state. In versions of Visual Studio after 2005, this seems to always occur during startup regardless of whether anything has been read from or written to
+    ///
+
+    ///
+    /// the console or not.
+    ///
     std::wcout.clear();
     std::cout.clear();
     std::wcerr.clear();
@@ -391,17 +454,20 @@ void activateConsole()
 
 }
 
-//--------------------------------------------------------------------------------------
-// Forward declarations
+///
+/// Forward declarations
+///
 HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);
 HRESULT InitDevice();
 void CleanupDevice();
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void Render();
 
-//--------------------------------------------------------------------------------------
-// Entry point to the program. Initializes everything and goes into a message processing 
-// loop. Idle time is used to render the scene.
+
+
+///
+/// Entry point to the program. Initializes everything and goes into a message processing, loop. Idle time is used to render the scene.
+///
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
@@ -418,7 +484,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
     }
 #endif // D3D11
 
-    // Main message loop
+    ///
+    /// Main message loop
+    ///
     MSG msg = { 0 };
     while (WM_QUIT != msg.message)
     {
@@ -459,8 +527,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
     return (int)msg.wParam;
 }
 
-//--------------------------------------------------------------------------------------
-// Register class and create window
+///
+/// Register class and create window
+///
 HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow){
 
     activateConsole();    
@@ -499,8 +568,9 @@ HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow){
     return S_OK;
 }
 
-//--------------------------------------------------------------------------------------
-// Helper for compiling shaders with D3DX11
+///
+/// Helper for compiling shaders with D3DX11
+///
 #ifdef D3D11
 HRESULT CompileShaderFromFile(WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
 {
@@ -508,14 +578,25 @@ HRESULT CompileShaderFromFile(WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szS
 
     DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 #if defined( DEBUG ) || defined( _DEBUG )
-    // Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
-    // Setting this flag improves the shader debugging experience, but still allows 
-    // the shaders to be optimized and to run exactly the way they will run in 
-    // the release configuration of this program.
+
+    ///
+    /// Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
+    ///
+
+    ///
+    /// Setting this flag improves the shader debugging experience, but still allows the shaders to be optimized and to run exactly the way they will run in 
+    ///
+
+    ///
+    /// the release configuration of this program.
+    ///
     dwShaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 
-    ID3DBlob* pErrorBlob; //Un buffer que va a contener el resultado del shader.
+    ///
+    /// Un buffer que va a contener el resultado del shader.
+    ///
+    ID3DBlob* pErrorBlob;
     hr = D3DX11CompileFromFile(szFileName, NULL, NULL, szEntryPoint, szShaderModel,
         dwShaderFlags, 0, NULL, ppBlobOut, &pErrorBlob, NULL);
 
@@ -532,21 +613,30 @@ HRESULT CompileShaderFromFile(WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szS
 }
 #endif
 
-#ifdef D3D11//Dentro de la interfaz y en ni desc del input layout debo pedir el blob TO
+///
+/// Dentro de la interfaz y en ni desc del input layout debo pedir el blob TO
+///
+#ifdef D3D11
 HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID3D11Device* pD3DDevice, ID3D11InputLayout** pInputLayout)
 {
-    // Reflect shader info
+    ///
+    /// Reflect shader info
+    ///
     ID3D11ShaderReflection* pVertexShaderReflection = NULL;
     if (FAILED(D3DReflect(pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), IID_ID3D11ShaderReflection, (void**)&pVertexShaderReflection)))
     {
         return S_FALSE;
     }
 
-    //Get shader info
+    ///
+    /// Get shader info
+    ///
     D3D11_SHADER_DESC shaderDesc;
     pVertexShaderReflection->GetDesc(&shaderDesc);
 
-    //Read input layout description from shader info
+    ///
+    /// Read input layout description from shader info
+    ///
     std::vector<D3D11_INPUT_ELEMENT_DESC> inputLayoutDesc;
 
     int offset = 0;
@@ -556,7 +646,9 @@ HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID
         D3D11_SIGNATURE_PARAMETER_DESC paramDesc;
         pVertexShaderReflection->GetInputParameterDesc(i, &paramDesc);
 
-        //Fill out input element desc
+        ///
+        /// Fill out input element desc
+        ///
         D3D11_INPUT_ELEMENT_DESC elementDesc;
         elementDesc.SemanticName = paramDesc.SemanticName;
         elementDesc.SemanticIndex = paramDesc.SemanticIndex;
@@ -565,7 +657,9 @@ HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID
         elementDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
         elementDesc.InstanceDataStepRate = 0;
 
-        //Determine DXGI format
+        ///
+        /// Determine DXGI format
+        ///
         if (paramDesc.Mask == 1)
         {
             if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32_UINT;
@@ -591,21 +685,28 @@ HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID
             else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
         }
 
-        //save element desc
+        ///
+        /// save element desc
+        ///
         inputLayoutDesc.push_back(elementDesc);
     }
 
-    // Try to create Input Layout
+    ///
+    /// Try to create Input Layout
+    ///
     HRESULT hr = pD3DDevice->CreateInputLayout(&inputLayoutDesc[0], inputLayoutDesc.size(), pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pInputLayout);
 
-    //Free allocation shader reflection memory
+    ///
+    /// Free allocation shader reflection memory
+    ///
     pVertexShaderReflection->Release();
     return hr;
 }
 #endif
 
-//--------------------------------------------------------------------------------------
-// Create Direct3D device and swap chain
+///
+/// Create Direct3D device and swap chain
+///
 #ifdef D3D11
 HRESULT InitDevice()
 {
@@ -624,7 +725,11 @@ HRESULT InitDevice()
     D3D_DRIVER_TYPE driverTypes[] =
     {
         D3D_DRIVER_TYPE_HARDWARE,
-        D3D_DRIVER_TYPE_WARP,//Trabaja de manera combinada
+
+        ///
+        /// Work in combination
+        ///
+        D3D_DRIVER_TYPE_WARP,
         D3D_DRIVER_TYPE_REFERENCE,
     };
 
@@ -639,7 +744,9 @@ HRESULT InitDevice()
 
     UINT numFeatureLevels = ARRAYSIZE(featureLevels);
 
-    //Mis movimientos
+    ///
+    /// Mis movimientos
+    ///
     DeviceDescriptor objDev;
     objDev.g_driverType = DRIVER_TYPE_NULL;
     CDev.g_pd3dDeviceD3D11 = NULL;
@@ -679,7 +786,9 @@ HRESULT InitDevice()
     if (FAILED(hr))
         return hr;
 
-    // Create a render target view
+    ///
+    /// Create a render target view
+    ///
     ID3D11Texture2D* pBackBuffer = NULL;
     hr = CSwap.g_pSwapChainD3D11->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 
@@ -692,7 +801,9 @@ HRESULT InitDevice()
     if (FAILED(hr))
         return hr;
 
-    // Create depth stencil texture
+    ///
+    /// Create depth stencil texture
+    ///
     D3D11_TEXTURE2D_DESC descDepth;
     ZeroMemory(&descDepth, sizeof(descDepth));
     descDepth.Width = width;
@@ -711,8 +822,10 @@ HRESULT InitDevice()
 
     if (FAILED(hr))
         return hr;
-
-    // Create the depth stencil view
+ 
+    ///
+    /// Create the depth stencil view
+    ///
     D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
     ZeroMemory(&descDSV, sizeof(descDSV));
     descDSV.Format = descDepth.Format;
@@ -726,7 +839,9 @@ HRESULT InitDevice()
 
     CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
 
-    // Setup the viewport
+    ///
+    /// Setup the viewport
+    ///
     ViewportDesc  vp2;
     vp2.Width = (FLOAT)width;
     vp2.Height = (FLOAT)height;
@@ -738,7 +853,9 @@ HRESULT InitDevice()
 
     CDevCont.g_pImmediateContextD3D11->RSSetViewports(1, &CView.vpD3D11);
 
-    // Compile the vertex shader
+    ///
+    /// Compile the vertex shader
+    ///
     hr = CompileShaderFromFile(L"Tutorial07.fx", "VS", "vs_4_0", &CShader.m_pVSBlobD3D11);
     if (FAILED(hr))
     {
@@ -747,7 +864,9 @@ HRESULT InitDevice()
         return hr;
     }
 
-    // Create the vertex shader
+    ///
+    /// Create the vertex shader
+    ///
     hr = CDev.g_pd3dDeviceD3D11->CreateVertexShader(CShader.m_pVSBlobD3D11->GetBufferPointer(), CShader.m_pVSBlobD3D11->GetBufferSize(), NULL, &CShader.g_pVertexShaderD3D11);
     if (FAILED(hr))
     {
@@ -755,17 +874,29 @@ HRESULT InitDevice()
         return hr;
     }
 
-    //Define the input layout
-    //Create input layout from compiled VS
+    ///
+    /// Define the input layout
+    ///
+
+    ///
+    /// Create input layout from compiled VS
+    ///
     hr = CreateInputLayoutDescFromVertexShaderSignature(CShader.m_pVSBlobD3D11, CDev.g_pd3dDeviceD3D11, &CShader.LayoutD3D11);
     if (FAILED(hr))
         return hr;
 
-    // Create the input layout
-    // Set the input layout
+    ///
+    /// Create the input layout
+    ///
+
+    ///
+    /// Set the input layout
+    ///
     CDevCont.g_pImmediateContextD3D11->IASetInputLayout(CShader.LayoutD3D11);
 
-    // Compile the pixel shader
+    ///
+    /// Compile the pixel shader
+    ///
     ID3DBlob* pPSBlob = NULL;
     hr = CompileShaderFromFile(L"Tutorial07.fx", "PS", "ps_4_0", &pPSBlob);
     if (FAILED(hr))
@@ -775,13 +906,17 @@ HRESULT InitDevice()
         return hr;
     }
 
-    // Create the pixel shader
+    ///
+    /// Create the pixel shader
+    ///
     hr = CDev.g_pd3dDeviceD3D11->CreatePixelShader(pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), NULL, &g_pPixelShader);
     pPSBlob->Release();
     if (FAILED(hr))
         return hr;
 
-    // Create vertex buffer
+    ///
+    /// Create vertex buffer
+    ///
     SimpleVertex vertices[] =
     {
         {  mathfu::float3(-1.0f, 1.0f, -1.0f), mathfu::float2(0.0f, 0.0f) },
@@ -832,12 +967,16 @@ HRESULT InitDevice()
     if (FAILED(hr))
         return hr;
 
-    // Set vertex buffer
+    ///
+    /// Set vertex buffer
+    ///
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
     CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers(0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
 
-    // Create index buffer
+    ///
+    /// Create index buffer
+    ///
     WORD indices[] =
     {
         3,1,0,
@@ -867,18 +1006,26 @@ HRESULT InitDevice()
 
     CIndexBuffer.Init(initData2, bd2);
 
-    //Set index buffer
+    ///
+    /// Set index buffer
+    ///
     hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&CIndexBuffer.m_Buffer.m_BufferDescD3D11, &CIndexBuffer.m_SubDataD3D11, &CIndexBuffer.m_Buffer.m_BufferD3D11);
     if (FAILED(hr))
         return hr;
 
-    // Set index bufferUINT stride = sizeof(SimpleVertex);
+    ///
+    /// Set index bufferUINT stride = sizeof(SimpleVertex);
+    ///
     CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
-
-    // Set primitive topology
+ 
+    ///
+    /// Set primitive topology
+    ///
     CDevCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-    // Create the constant buffers
+ 
+    ///
+    /// Create the constant buffers
+    ///
     bd2.Usage = USAGE_DEFAULT;
     bd2.ByteWidth = sizeof(CBNeverChanges);
     bd2.BindFlags = BIND_CONSTANT_BUFFER;
@@ -889,44 +1036,58 @@ HRESULT InitDevice()
     if (FAILED(hr))
         return hr;
 
-    //Inicialización NeverChange FirstPersonCamera
+    ///
+    /// Inicialización NeverChange FirstPersonCamera
+    ///
     FPSCamera.g_pCBNeverChangesCamera.Init(bd2);
     hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&FPSCamera.g_pCBNeverChangesCamera.m_BufferDescD3D11, NULL, &FPSCamera.g_pCBNeverChangesCamera.m_BufferD3D11);
     if (FAILED(hr))
         return hr;
 
-    //bd.ByteWidth = sizeof(CBChangeOnResize);
+    ///
+    /// bd.ByteWidth = sizeof(CBChangeOnResize);
+    ///
     bd2.ByteWidth = sizeof(CBChangeOnResize);
     FreeCamera.g_pCBChangeOnResizeCamera.Init(bd2);
     hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&FreeCamera.g_pCBChangeOnResizeCamera.m_BufferDescD3D11, NULL, &FreeCamera.g_pCBChangeOnResizeCamera.m_BufferD3D11);
     if (FAILED(hr))
         return hr;
 
-    //Inicialización Resize FirstPersonCamera
+    ///
+    /// Inicialización Resize FirstPersonCamera
+    ///
     FPSCamera.g_pCBChangeOnResizeCamera.Init(bd2);
     hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&FPSCamera.g_pCBChangeOnResizeCamera.m_BufferDescD3D11, NULL, &FPSCamera.g_pCBChangeOnResizeCamera.m_BufferD3D11);
     if (FAILED(hr))
         return hr;
 
-    //bd.ByteWidth = sizeof(CBChangesEveryFrame);
+    ///
+    /// bd.ByteWidth = sizeof(CBChangesEveryFrame);
+    ///
     bd2.ByteWidth = sizeof(CBChangesEveryFrame);
     FreeCamera.g_pCBChangesEveryFrameCamera.Init(bd2);
     hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&FreeCamera.g_pCBChangesEveryFrameCamera.m_BufferDescD3D11, NULL, &FreeCamera.g_pCBChangesEveryFrameCamera.m_BufferD3D11);
     if (FAILED(hr))
         return hr;
 
-    //Inicialización ChangeEveryFrame FirstPersonCamera
+    ///
+    /// Inicialización ChangeEveryFrame FirstPersonCamera
+    ///
     FPSCamera.g_pCBChangesEveryFrameCamera.Init(bd2);
     hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&FPSCamera.g_pCBChangesEveryFrameCamera.m_BufferDescD3D11, NULL, &FPSCamera.g_pCBChangesEveryFrameCamera.m_BufferD3D11);
     if (FAILED(hr))
         return hr;
 
-    // Load the Texture
+    ///
+    /// Load the Texture
+    ///
     hr = D3DX11CreateShaderResourceViewFromFile(CDev.g_pd3dDeviceD3D11, L"seafloor.dds", NULL, NULL, &g_pTextureRV, NULL);
     if (FAILED(hr))
         return hr;
-
-    // Create the sample state
+ 
+    ///
+    /// Create the sample state
+    ///
     SampleStateDesc sampDesc2;
     //(UN POSIBLE ZERO MEMORY)
     //ZeroMemory(&sampDesc2, sizeof(sampDesc2));
@@ -944,10 +1105,14 @@ HRESULT InitDevice()
         return hr;
 
     //#endif
-        // Initialize the world matrices
+    ///
+    /// Initialize the world matrices
+    ///
     g_World = g_World.Identity();
-
-    // Initialize the view matrix
+ 
+    ///
+    /// Initialize the view matrix
+    ///
     mathfu::Vector<float, 4> Eye(0.0f, 3.0f, -6.0f, 0.0f);
     mathfu::Vector<float, 4> At(0.0f, 1.0f, 0.0f, 0.0f);
     mathfu::Vector<float, 4> Up(0.0f, 1.0f, 0.0f, 0.0f);
@@ -969,7 +1134,9 @@ HRESULT InitDevice()
     CDevCont.g_pImmediateContextD3D11->UpdateSubresource(FreeCamera.g_pCBNeverChangesCamera.m_BufferD3D11, 0, NULL, &cbNeverChanges, 0, 0);
     //#endif
 
-        // Initialize the projection matrix
+    ///
+    /// Initialize the projection matrix
+    ///
     CBChangeOnResize cbChangesOnResize;
     cbChangesOnResize.mProjection = FPSCamera.GetProjection();
     //#ifdef D3D11
@@ -1048,7 +1215,9 @@ HRESULT InitDevice()
     //#endif
     InitCameras();
 
-    //API GRAPHIC
+    ///
+    /// API GRAPHIC
+    ///
     //G_GraphicApi.ChargeMesh("noivern/Noivern.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
     G_GraphicApi.ChargeMesh("ugandan-knuckles/source/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
 
@@ -1056,8 +1225,9 @@ HRESULT InitDevice()
 }
 #endif // D3D11
 
-//--------------------------------------------------------------------------------------
-// Clean up the objects we've created
+///
+/// Clean up the objects we've created
+///
 void CleanupDevice()
 {
 #ifdef D3D11
@@ -1087,17 +1257,20 @@ void CleanupDevice()
 #endif
 }
 
-//--------------------------------------------------------------------------------------
-// Called every time the application receives a message
+///
+/// Called every time the application receives a message
+///
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
-    if (io.WantCaptureMouse)
-    {
+
+    if (io.WantCaptureMouse){
+
         ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam);
         return true;
     }
+
     PAINTSTRUCT ps;
     HDC hdc;
     POINT Temp;
@@ -1105,21 +1278,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_PAINT:
+
             hdc = BeginPaint(hWnd, &ps);
             EndPaint(hWnd, &ps);
             break;
 
         case WM_DESTROY:
+
             PostQuitMessage(0);
             break;
 
-            //WM_SIZE: It is sent to a window after its size has changed.
+        ///
+        /// WM_SIZE: It is sent to a window after its size has changed.
+        ///
         case WM_SIZE: {
+
             Resize();
             break;
         }
-            //WM_KEYDOWN: A window receives keyboard input in the form of keystroke messages and character messages.
+
+        ///
+        /// WM_KEYDOWN: A window receives keyboard input in the form of keystroke messages and character messages.
+        ///
         case WM_KEYDOWN: {
+
             MainCamera->inputs(wParam);
 
             CBNeverChanges cb;
@@ -1130,8 +1312,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 #endif
             break;
         }
-            //WM_LBUTTONDOWN: Posted when the user presses the left mouse button while the cursor is in the client area of a window.
+
+        ///
+        /// WM_LBUTTONDOWN: Posted when the user presses the left mouse button while the cursor is in the client area of a window.
+        ///
         case WM_LBUTTONDOWN:
+
             GetCursorPos(&Temp);
             //MainCamera->SetOriginalMousePos(Temp.x, Temp.y);c
             MainCamera->OriginalMousePos = mathfu::float2(Temp.x, Temp.y);
@@ -1139,6 +1325,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
 
         case WM_MOUSEMOVE:
+
 #ifdef D3D11
             if (MainCamera->m_ClickPressed)
             {
@@ -1151,8 +1338,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 #endif // D3D11            
             break;
 
-            //WM_LBUTTONUP: Posted when the user releases the left mouse button while the cursor is in the client area of a window.
+        ///
+        /// WM_LBUTTONUP: Posted when the user releases the left mouse button while the cursor is in the client area of a window.
+        ///
         case WM_LBUTTONUP:
+
             MainCamera->m_ClickPressed = false;
             break;
     default:
@@ -1161,13 +1351,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-//--------------------------------------------------------------------------------------
-// Render a frame
+///
+/// Render a frame
+///
 #ifdef D3D11
 void Render()
 {
     G_SceneManager.Update(); 
-    // Update our time
+    
+    ///
+    /// Update our time
+    ///
     static float t = 0.0f;
     if (CDev.m_DescDevice.g_driverType == D3D_DRIVER_TYPE_REFERENCE){
 
@@ -1184,22 +1378,33 @@ void Render()
 
     g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(3.0f, 0.0f, 0.0f));
 
-    // Modify the color
+    ///
+    /// Modify the color
+    ///
     g_vMeshColor.x = (sinf(t * 1.0f) + 1.0f) * 0.5f;
     g_vMeshColor.y = (cosf(t * 3.0f) + 1.0f) * 0.5f;
     g_vMeshColor.z = (sinf(t * 5.0f) + 1.0f) * 0.5f;
 
-    // Clear the back buffer
+    ///
+    /// Clear the back buffer
+    ///
     float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
 
     CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets       (1, &InactiveRTV.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
     CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView    (InactiveRTV.g_pRenderTargetViewD3D11, ClearColor);
     
-    // Clear the depth buffer to 1.0 (max depth)
+    ///
+    /// Clear the depth buffer to 1.0 (max depth)
+    ///
     CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView    (CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
-    // Update variables that change once per frame
-    // Render the cube
+    ///
+    /// Update variables that change once per frame
+    ///
+
+    ///
+    /// Render the cube
+    ///
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
     CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers     (0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
@@ -1274,10 +1479,23 @@ void Render()
          UINT offset = 0;
     
          CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers
-         (0,
-             1,//numero de buffers que estamos utilizando
-             &G_SceneManager.m_MeshInScene[i]->m_VertexBuffer->m_BufferD3D11,//puntero a la lista buffers
-             &stride,//un uint que indica el tamaño de un unico vertice
+         (
+             0,
+
+             ///
+             /// number of buffers we are using
+             ///
+             1,
+
+             ///
+             /// pointer to the buffers list
+             ///
+             &G_SceneManager.m_MeshInScene[i]->m_VertexBuffer->m_BufferD3D11,
+
+             ///
+             /// a uint indicating the size of a single vertex
+             ///
+             &stride,
              &offset
          );//un uint que indica el numero del byte en el vertice del que se quiere comenzar a pintar
     
@@ -1288,11 +1506,21 @@ void Render()
              0
          );
     
-         //Tipo de topologia
-         //Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.
-         //_devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-    
-         //Dibuja el búfer de vértices en el búfer posterior 
+         ///
+         /// Tipo de topologia
+         ///
+
+         ///
+         /// This second function tells Direct3D what type of primitive is used.
+         ///
+
+         ///
+         /// _devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+         ///
+
+         ///
+         /// Draws the vertex buffer in the back buffer
+         ///
          CDevCont.g_pImmediateContextD3D11->DrawIndexed(G_SceneManager.m_MeshInScene[i]->m_IndexNum, 0, 0);
     }
     CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets   (1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
@@ -1302,7 +1530,9 @@ void Render()
     CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers(0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
     CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
 
-    // Render the cube
+    ///
+    /// Render the cube
+    ///
     DistanceX = 0;
     DistanceY = 0;
 
@@ -1344,6 +1574,7 @@ void Render()
         DistanceY += 2.5;
         DistanceX = 0;
     }
+
     m_MeshData.mWorld = {
         1,0,0,SecondCamera->GetEye().x,
         0,1,0,SecondCamera->GetEye().y,
@@ -1362,10 +1593,22 @@ void Render()
         UINT offset = 0;
 
         CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers
-        (0,
-            1,//numero de buffers que estamos utilizando
-            &G_SceneManager.m_MeshInScene[i]->m_VertexBuffer->m_BufferD3D11,//puntero a la lista buffers
-            &stride,//un uint que indica el tamaño de un unico vertice
+        (
+            0,
+            ///
+            /// number of buffers we are using
+            ///
+            1,
+
+            ///
+            /// pointer to the buffers list
+            ///
+            &G_SceneManager.m_MeshInScene[i]->m_VertexBuffer->m_BufferD3D11,
+
+            ///
+            /// a uint indicating the size of a single vertex
+            ///
+            &stride,
             &offset
         );//un uint que indica el numero del byte en el vertice del que se quiere comenzar a pintar
 
@@ -1376,21 +1619,35 @@ void Render()
             0
         );
 
-        //Tipo de topologia
-        //Esta segunda función le dice a Direct3D qué tipo de primitiva se usa.
-        //_devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+        ///
+        /// Tipo de topologia
+        ///
+       
+        ///
+        /// This second function tells Direct3D what type of primitive is used.
+        ///
 
-         //Dibuja el búfer de vértices en el búfer posterior 
+        ///
+        /// _devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+        ///
+
+        ///
+        /// Draws the vertex buffer in the back buffer
+        ///
         CDevCont.g_pImmediateContextD3D11->DrawIndexed(G_SceneManager.m_MeshInScene[i]->m_IndexNum, 0, 0);
     }
+
     //G_SceneManager.Render(&CDevCont, &SecondCamera->g_pCBChangesEveryFrameCamera, &CDev);
 
-
-    // Present our back buffer to our front buffer
+    ///
+    /// Present our back buffer to our front buffer
+    ///
     ImGui::Render();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-    // Present our back buffer to our front buffer
+    ///
+    /// Present our back buffer to our front buffer
+    ///
     CSwap.g_pSwapChainD3D11->Present(0, 0);
 }
 #endif

@@ -1,5 +1,8 @@
 #include "../Encabezados/ClaseDepthStencil.h"
 
+///
+/// function to initialize depth stencil values
+///
 void ClaseDepthStencil::Init(DepthStencilViewDesc _stencilDesc){
 
     m_DepthDesc = _stencilDesc;

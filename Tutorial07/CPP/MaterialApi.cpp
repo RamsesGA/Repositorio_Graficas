@@ -18,6 +18,4 @@ void MaterialApi::Shutdown(){
 		m_TexDif->Release();
 }
 #endif // D3D11
-
-	
 }

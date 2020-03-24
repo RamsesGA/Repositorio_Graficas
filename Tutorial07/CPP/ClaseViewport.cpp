@@ -1,5 +1,8 @@
 #include "../Encabezados/ClaseViewport.h"
 
+///
+/// function to initialize viewport values
+///
 void ClaseViewport::Init(ViewportDesc _viewDesc){
 
 	m_ViewDesc = _viewDesc;

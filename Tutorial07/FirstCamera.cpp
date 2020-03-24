@@ -4,6 +4,9 @@ FirstCamera::FirstCamera(){}
 
 FirstCamera::~FirstCamera(){}
 
+///
+/// function to update the view matrix
+///
 void FirstCamera::UpdateVM() {
 
 	m_Right = { m_View.data_[0].x,	m_View.data_[0].y, m_View.data_[0].z };
@@ -13,9 +16,14 @@ void FirstCamera::UpdateVM() {
 	m_Desc.s_At = m_Desc.s_Eye + m_Front;
 }
 
+///
+/// function to create the view matrix
+///
 void FirstCamera::CreateView() {
 
-	//Usamos left hand
+	///
+	/// We use left hand
+	///
 	m_Front = m_Desc.s_At - m_Desc.s_Eye;
 	m_Front.Normalize();
 
@@ -48,6 +56,9 @@ void FirstCamera::CreateView() {
 	m_View = m_Position; //Ya está la matriz view
 }
 
+///
+/// function for mouse movement
+///
 void FirstCamera::MouseRotation(){
 
 	mathfu::float2 FirstPos;
@@ -79,13 +90,6 @@ void FirstCamera::MouseRotation(){
 
 	if (FirstPos.x < OriginalMousePos.x) {
 
-		//Yaw =
-		//{
-		//	cosf(SpeedRot),		0,	sinf(SpeedRot),	0,
-		//	0,					1,	0,				0,
-		//	-sinf(SpeedRot),	0,	cosf(SpeedRot),	0,
-		//	0,					0,	0,				1
-		//};
 		m_Desc.s_At -= m_Right * SpeedRot;
 		m_Desc.s_Up = m_Up;
 
@@ -93,13 +97,6 @@ void FirstCamera::MouseRotation(){
 	}
 	if (FirstPos.x > OriginalMousePos.x) {
 
-		//Yaw =
-		//{
-		//	cosf(-SpeedRot),		0,	sinf(-SpeedRot),	0,
-		//	0,						1,	0,					0,
-		//	-sinf(-SpeedRot),		0,	cosf(-SpeedRot),	0,
-		//	0,						0,	0,					1
-		//};
 		m_Desc.s_At += m_Right * SpeedRot;
 		m_Desc.s_Up = m_Up;
 		CreateView();

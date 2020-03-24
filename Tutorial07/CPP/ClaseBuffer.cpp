@@ -1,5 +1,8 @@
 #include "..\Encabezados\ClaseBuffer.h"
 
+///
+/// function to initialize Buffer values
+///
 void ClaseBuffer::Init(BufferDescriptor _buff){
 
 	m_DescBuff = _buff;
@@ -22,6 +25,9 @@ void ClaseBuffer::Delete(){
 void ClaseBuffer::Render(){
 }
 
+///
+/// function to create the vertex buffer DIRECTX
+///
 #ifdef D3D11
 void ClaseBuffer::createVertexBuffer(int _numvertex, const aiScene* _model, SimpleVertex* _vertex, ID3D11Buffer*& _buffer, ClaseDevice* _dev) {
 
@@ -37,6 +43,9 @@ void ClaseBuffer::createVertexBuffer(int _numvertex, const aiScene* _model, Simp
 	_dev->g_pd3dDeviceD3D11->CreateBuffer(&bd, &InitData, &_buffer);
 }
 
+///
+/// function to create the index buffer DIRECTX
+///
 void ClaseBuffer::createIndexBuffer(int numindices, const aiScene* _model, WORD* _index, ID3D11Buffer*& _buffer, ClaseDevice* _dev) {
 
 	D3D11_BUFFER_DESC bd;
@@ -59,13 +68,14 @@ void ClaseBuffer::createIndexBuffer(int numindices, const aiScene* _model, WORD*
 }
 #endif // D3D11
 
-
-
+///
+/// function to start with OpenGL VAO
+///
 void ClaseBuffer::OpenGLVAO(){
 
-	//VAO
-
-	// An array of 3 vectors which represents 3 vertices
+	///
+	///  An array of 3 vectors which represents 3 vertices
+	///
 	static const GLfloat g_vertex_buffer_data[] =
 	{
 	   -1.0f, -1.0f, 0.0f,
@@ -74,13 +84,21 @@ void ClaseBuffer::OpenGLVAO(){
 	   0.0f,  1.0f, 0.0f,
 	};
 
-	// This will identify our vertex buffer
 	//GLuint vertexbuffer;
-	// Generate 1 buffer, put the resulting identifier in vertexbuffer
+
+	///
+	///  This will identify our vertex buffer, Generate 1 buffer, put the resulting identifier in vertexbuffer
+	///
 	glGenBuffers(1, &m_vertexbuffer);
-	// The following commands will talk about our 'vertexbuffer' buffer
+
+	///
+	/// The following commands will talk about our 'vertexbuffer' buffer
+	///
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexbuffer);
-	// Give our vertices to OpenGL.
+
+	///
+	/// Give our vertices to OpenGL.
+	///
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
 	unsigned int index[] =
@@ -95,18 +113,30 @@ void ClaseBuffer::OpenGLVAO(){
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), &index[0], GL_STATIC_DRAW);
 }
 
-//VertexBuffer OpenGl
+///
+/// function to create the vertex buffer OPENGL
+///
 void ClaseBuffer::createVertexBuffer(int _numvertex, SimpleVertex* _vertex, GLuint& _buffer){
 
-	// Generate 1 buffer, put the resulting identifier in vertexbuffer
+	///
+	/// Generate 1 buffer, put the resulting identifier in vertexbuffer
+	///
 	glGenBuffers(1, &_buffer);
-	// The following commands will talk about our 'vertexbuffer' buffer
+
+	///
+	/// The following commands will talk about our 'vertexbuffer' buffer
+	///
 	glBindBuffer(GL_ARRAY_BUFFER, _buffer);
-	// Give our vertices to OpenGL.
+
+	///
+	/// Give our vertices to OpenGL.
+	///
 	glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * _numvertex, _vertex, GL_STATIC_DRAW);
 }
 
-//IndexBufferOpenGL
+///
+/// function to create the index buffers OPENGL
+///
 void ClaseBuffer::createIndexBuffer(int numindices, WORD* _index, GLuint& _buffer){
 
 	//GLuint elementbuffer;// Index Buffer
