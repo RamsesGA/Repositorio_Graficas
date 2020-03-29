@@ -1,6 +1,9 @@
 #pragma once
 #include "Defines.h"
 
+///
+/// Sample State Descriptor
+///
 struct SampleStateDesc {
 
 	SAMPLER_DESC			sampDesc;
@@ -14,6 +17,9 @@ struct SampleStateDesc {
 	FLOAT MaxLOD;
 };
 
+///
+/// Class with the abstraction of the Sample State
+///
 class ClaseSampleState {
 
 	public:

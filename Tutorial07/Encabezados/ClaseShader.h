@@ -5,6 +5,9 @@ struct ShaderDesc {
 
 };
 
+///
+/// Shader Abstraction Class
+///
 class ClaseShader {
 
 	public:
@@ -36,6 +39,9 @@ class ClaseShader {
 		ID3DBlob* m_pVSBlobD3D11;
 		ID3D11InputLayout* LayoutD3D11;
 #endif 
-		static GLuint 
+
+#ifdef OPENGL
+		static GLuint
 		LoadShaders(const char* vertex_file_path, const char* fragment_file_path);
+#endif // OPENGL
 };

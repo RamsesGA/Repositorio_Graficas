@@ -1,0 +1,3 @@
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\bin\x64\Debug\Tutorial07.pdb
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\x64\Debug\Tutorial07.exe
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\x64\Debug\Tutorial07.pdb

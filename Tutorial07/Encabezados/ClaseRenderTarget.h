@@ -1,6 +1,9 @@
 #pragma once
 #include "Defines.h"
 
+///
+/// Render Target Descriptor
+///
 struct RenderTargetDesc {
 
     UINT Width;
@@ -15,6 +18,9 @@ struct RenderTargetDesc {
     UINT MiscFlags;
 };
 
+///
+/// Class with the Render Target abstraction
+///
 class RenderTarget {
 
 	public:

@@ -1,14 +1,22 @@
 #pragma once
-#include "../assimp/Importer.hpp"
-#include "../assimp/scene.h"
-#include "../assimp/postprocess.h"
-#include "../assimp/matrix4x4.h"
-#include "../assimp/cimport.h"
+//#include "../assimp/Importer.hpp"
+//#include "../assimp/scene.h"
+//#include "../assimp/postprocess.h"
+//#include "../assimp/matrix4x4.h"
+//#include "../assimp/cimport.h"
 #include "ClaseDeviceContext.h"
 #include <string>
 #include "Mesh.h"
 #include "SceneManager.h"
+#include "assimp/Importer.hpp"
+#include "assimp/scene.h"
+#include "assimp/postprocess.h"
+#include "assimp/matrix4x4.h"
+#include "assimp/cimport.h"
 
+///
+/// Class with the necessary functions to load the model
+///
 class GraphicApi {
 
 	public:

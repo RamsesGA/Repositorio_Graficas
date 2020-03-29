@@ -19,24 +19,28 @@
 #endif // D3D11
 
 //OPENGL
-#include <glew.h>
-#include <GLFWInclude/x32/glfw3.h>
+//#include <glew.h>
+#include "GL/glew.h"
 
+#if _WIN32 || _WIN64
+#if _WIN64
+#include <GLFWInclude/x64/glfw3.h>
+
+#else
+#include <GLFWInclude/x32/glfw3.h>
+#endif
+#endif
 
 
 struct SimpleVertex
 {
-    //XMFLOAT3 Pos;
     mathfu::float3 Pos;
-    //XMFLOAT2 Tex;
     mathfu::float2 Tex;
 };
 
 struct CBChangesEveryFrame
 {
-    //XMMATRIX mWorld;
     mathfu::float4x4 mWorld;
-    //XMFLOAT4 vMeshColor;
     mathfu::float4 vMeshColor;
 };
 

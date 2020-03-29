@@ -3,6 +3,9 @@
 #include "mathfu/hlsl_mappings.h"
 #include "Encabezados/ClaseBuffer.h"
 
+///
+/// Structure of the camera descriptor
+///
 struct CameraDescriptor {
 
 	float s_Widht;
@@ -15,6 +18,9 @@ struct CameraDescriptor {
 	mathfu::float3 s_Up;
 };
 
+///
+/// Father class camera
+///
 class Camera {
 
 	protected:

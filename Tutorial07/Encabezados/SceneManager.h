@@ -4,6 +4,9 @@
 #include "ClaseDeviceContext.h"
 #include "ClaseBuffer.h"
 
+///
+/// Scene Controller Class
+///
 class SCENEMANAGER
 {
 	public:

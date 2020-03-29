@@ -1,42 +1,50 @@
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\vc142.pdb
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\vc142.idb
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\firstcamera.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\scenemanager.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\mesh.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\materialapi.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\graphicapi.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\claseviewport.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasevertexbuffer.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasetexture2d.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\claseswapchain.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\claseshader.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasesamplestate.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\claserendertargetview.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\claserendertarget.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\claseopengl.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasemanagerinterfaz.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasedevicecontext.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasedevice.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasedepthstencil.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\clasebuffer.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\camera.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\imgui_widgets.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\imgui_impl_win32.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\imgui_impl_dx11.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\imgui_draw.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\imgui_demo.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\imgui.obj
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\bin\win32\debug\aplication.exe
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\bin\win32\debug\aplication.ilk
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\bin\win32\debug\aplication.pdb
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.res
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\cl.command.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\cl.read.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\cl.write.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\link.command.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\link.read.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\link.write.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\rc.command.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\rc.read.1.tlog
-c:\users\sergi\onedrive\escritorio\tuto7ramses\tutorial07\debug\tutorial07.tlog\rc.write.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\vc142.pdb
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\vc142.idb
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\firstcamera.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\scenemanager.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\mesh.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\materialapi.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\graphicapi.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\claseviewport.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasevertexbuffer.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasetexture2d.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\claseswapchain.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\claseshader.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasesamplestate.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\claserendertargetview.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\claserendertarget.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasemanagerinterfaz.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasedevicecontext.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasedevice.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasedepthstencil.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\clasebuffer.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\imgui_widgets.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\imgui_impl_win32.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\imgui_impl_dx11.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\imgui_draw.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\imgui_demo.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\imgui.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\camera.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\claseopengl.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\imgui_impl_glfw_gl3.obj
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\bin\win32\debug\aplication.exe
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\bin\win32\debug\aplication.ilk
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\bin\win32\debug\aplication.pdb
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.res
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\cl.command.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\cl.read.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\cl.write.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.17756.delete.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.22232.delete.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.24644.delete.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.28508.delete.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.29312.delete.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.8036.delete.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.command.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.delete.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.read.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\link.write.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\rc.command.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\rc.read.1.tlog
+c:\users\ramse\documents\cosas_uni\programacion\graficas 1\proyectotuto7\tutorial07\debug\tutorial07.tlog\rc.write.1.tlog

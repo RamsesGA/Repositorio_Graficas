@@ -1,11 +1,19 @@
 #include "Encabezados/ClaseOpenGL.h"
 #include "Encabezados/ClaseShader.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw_gl3.h"
+#include "../Encabezados/stb_image.h"
 #include <iostream>
 
 ///
 /// Global variables
 ///
 Camera* g_CurrentCamera;
+Camera* g_SecondCamera;
+
+//false Current
+//true Second
+bool g_WhichCamera = false;
 
 ///
 /// The callback function receives the new size of the framebuffer when it is resized, which can for example be used to update the OpenGL viewport.
@@ -63,7 +71,7 @@ HRESULT ClaseOpenGL::FrameBuffer() {
     ///
     /// The texture we're going to render to
     ///
-    GLuint renderedTexture;
+  
     glGenTextures(1, &renderedTexture);
 
     ///
@@ -128,7 +136,7 @@ void ClaseOpenGL::processInput(GLFWwindow* window, int key, int scancode, int ac
 ///
 void CreateInputCallBack(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
-    g_CurrentCamera->Input(key);
+    g_CurrentCamera->inputs(key);
 }
 
 ///
@@ -166,9 +174,6 @@ int ClaseOpenGL::WindowGLFW() {
 
     m_window = glfwCreateWindow(800, 800, "Ventana de OpenGL", NULL, NULL);
     
-    glfwSetKeyCallback(m_window, CreateInputCallBack);
-    glfwSetMouseButtonCallback(m_window, MouseButtonCallBack);
-
     if (m_window == NULL) {
 
         std::cout << "Falla al crear una ventana en GLFW" << std::endl;
@@ -202,6 +207,28 @@ void ClaseOpenGL::GameLoop(){
     float color1 = 0;
     float color2 = 0;
     float color3 = 0;
+    FrameBuffer();
+    BillBoard();
+    ///
+    /// ImGui initialization for OpenGL
+    ///
+
+    ///
+    /// Setup ImGui binding
+    ///
+    ImGui::CreateContext();
+    ImGui_ImplGlfwGL3_Init(m_window, true);
+
+    ///
+    /// Setup style
+    ///
+    ImGui::StyleColorsDark();
+
+    ///
+    /// Functions to identify an input from the client
+    ///
+    glfwSetKeyCallback(m_window, CreateInputCallBack);
+    glfwSetMouseButtonCallback(m_window, MouseButtonCallBack);
 
     ///
     /// Cycle to have the window runnings
@@ -212,175 +239,39 @@ void ClaseOpenGL::GameLoop(){
         color2 = cos(color1);
         color3 = sin(color1);
 
-        if (g_CurrentCamera->m_ClickPressed) {
-
-            g_CurrentCamera->MouseRotation();
-        }
-
-        glUseProgram(m_programShaderID);
-
-        glClearColor(0, 0, 0, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glEnable(GL_DEPTH_TEST);
-
-        mathfu::float4x4 word = {
-        1,0,0,0,
-        0,1,0,0,
-        0,0,1,0,
-        0,0,0,1
-        };
-
-        mathfu::float4x4 view = m_FPSCamera.GetView();
-        view = view.Transpose();
-        mathfu::float4x4 projection = m_FPSCamera.GetProjection();
-        projection = projection.Transpose();
+        UpdateBillBoard();
 
         ///
-        /// word matrix
+        /// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
         ///
-        GLuint MatrixID = glGetUniformLocation(m_programShaderID, "WordMatrix");
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &word[0]);
 
         ///
-        /// view matrix
+        /// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
         ///
-        MatrixID = glGetUniformLocation(m_programShaderID, "ViewMatrix");
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &view[0]);
 
         ///
-        /// projection matrix
+        /// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
         ///
-        MatrixID = glGetUniformLocation(m_programShaderID, "ProjectionMatrix");
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &projection[0]);
 
-        for (int i = 0; i < m_SceneManager.m_MeshInScene.size(); i++) {
-
-           
-            glEnableVertexAttribArray(0);
-            glEnableVertexAttribArray(1);
-            glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
-
-            glVertexAttribPointer
-            (
-                ///
-                /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-                ///
-                0,
-
-                ///
-                /// size
-                ///
-                3,
-
-                ///
-                /// type
-                ///
-                GL_FLOAT,
-
-                ///
-                /// normalized?
-                ///
-                GL_FALSE,
-
-                ///
-                /// stride
-                ///
-                sizeof(SimpleVertex),
-
-                ///
-                /// array buffer offset
-                ///
-                (void*)0
-            );
-
-            glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
-            glVertexAttribPointer
-            (
-                ///
-                /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-                ///
-                1,
-
-                ///
-                /// size
-                ///
-                2,
-
-                ///
-                /// type
-                ///
-                GL_FLOAT,
-
-                ///
-                /// normalized?
-                ///
-                GL_FALSE,
-
-                ///
-                /// stride
-                ///
-                sizeof(SimpleVertex),
-
-                ///
-                /// array buffer offset
-                ///
-                (unsigned char*)NULL + (3 * sizeof(float))
-            );
-
-            ///
-            /// Draw the triangle
-            ///
-            //glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetIndexBuffer()->m_ID);
-
-            ///
-            ///1st attribute buffer : vertices
-            ///
-            GLuint texID = glGetUniformLocation(m_programShaderID, "textureDifuse");
-
-            glUniform1i(texID, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
-
-            glActiveTexture(GL_TEXTURE0 + m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
-
-            //glBindBuffer(GL_ARRAY_BUFFER, g_manager.m_meshes[i].uvBuffer);
-            //glActiveTexture(g_manager.m_meshes[i].m_tex.m_textureID);
-
-            glBindTexture(GL_TEXTURE_2D, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
-            //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA, g_manager.WindowSize.m_Width, g_
-
-            ///
-            ///Draw the triangles
-            ///
-            glDrawElements
-            (
-                ///
-                ///mode
-                ///
-                GL_TRIANGLES,
-
-                ///
-                ///count
-                ///
-                m_SceneManager.m_MeshInScene[i]->GetIndexNum(),
-
-                ///
-                ///type
-                ///
-                GL_UNSIGNED_SHORT,
-                
-                ///
-                ///element array buffer offset
-                ///
-                (void*)0
-            );
-
-            glDisableVertexAttribArray(1);
-            glDisableVertexAttribArray(0);
-        }
+        ///
+        /// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
+        ///
+        ImGui_ImplGlfwGL3_NewFrame();
+        render1();
+        render2();
         
+        ///
+        /// Conditions to know which camera is being used
+        ///
         glfwSwapBuffers(m_window);
         glfwPollEvents();
     }
+
+    ///
+    /// Cleanup ImGui
+    ///
+    ImGui_ImplGlfwGL3_Shutdown();
+    ImGui::DestroyContext();
 }
 
 ///
@@ -388,20 +279,6 @@ void ClaseOpenGL::GameLoop(){
 ///
 void ClaseOpenGL::InitCameras()
 {
-    CameraDescriptor GodCamera;
-    GodCamera.s_At = { 0,0,0 };
-    GodCamera.s_Eye = { 0,0,-10 };
-    GodCamera.s_Up = { 0,1,0 };
-    GodCamera.s_Far = 100000;
-    GodCamera.s_Near = 0.01;
-
-#ifdef D3D11
-    GodCamera.s_FoV = XM_PIDIV4;
-#endif
-
-    GodCamera.s_Height = 800;
-    GodCamera.s_Widht = 800;
-
     CameraDescriptor FirstCamera;
     FirstCamera.s_At = { 0,0,0 };
     FirstCamera.s_Eye = { 0,0,20 };
@@ -416,8 +293,646 @@ void ClaseOpenGL::InitCameras()
     FirstCamera.s_Height = 800;
     FirstCamera.s_Widht = 800;
 
-    m_FreeCamera.Init(GodCamera);
+    m_FreeCamera.Init(FirstCamera);
     m_FPSCamera.Init(FirstCamera);
-
+    
     g_CurrentCamera = &m_FPSCamera;
+    g_SecondCamera = &m_FreeCamera;
+}
+
+///
+/// Function to initialize Billboard
+///
+void ClaseOpenGL::BillBoard(){
+
+    glGenTextures(1, &m_TextureBillboard);
+    glBindTexture(GL_TEXTURE_2D, m_TextureBillboard);
+
+    ///
+    /// set the texture wrapping/filtering options (on the currently bound texture object)
+    ///
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    ///
+    /// load and generate the texture
+    ///
+    int width, height, nrChannels;
+    unsigned char* data = stbi_load("Billboard.jpg", &width, &height, &nrChannels, 0);
+
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    glBindTexture(GL_TEXTURE_2D, 0);
+    stbi_image_free(data);
+    mathfu::float3 upWordSpace = g_CurrentCamera->GetMUp();
+    mathfu::float3 RoghtWordSpace = g_CurrentCamera->GetMRight();
+    mathfu::float3 pos;
+    SimpleVertex billboard[4];
+    billboard[0].Pos = { -0.01f, -0.01f, 0.0f };
+    pos = billboard[0].Pos;
+    billboard[0].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[0].Tex = { -1,1 };
+
+    billboard[1].Pos = { 0.01f, -0.01f, 0.0f };
+    pos = billboard[1].Pos;
+    billboard[1].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[1].Tex = { 1, 1 };
+
+    billboard[2].Pos = { -0.01f, 0.01f, 0.0f };
+    pos = billboard[2].Pos;
+    billboard[2].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[2].Tex = { -1, -1 };
+
+    billboard[3].Pos = { 0.01f, 0.01f, 0.0f };
+    pos = billboard[3].Pos;
+    billboard[3].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[3].Tex = { 1, -1 };
+    ///
+    /// Generate 1 buffer, put the resulting identifier in vertexbuffer
+    ///
+    glGenBuffers(1, &m_vertexBufferBillBoard);
+
+    ///
+    /// The following commands will talk about our 'vertexbuffer' buffer
+    ///
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferBillBoard);
+
+    ///
+    /// Give our vertices to OpenGL.
+    ///
+    glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * 4, &billboard, GL_STATIC_DRAW);
+
+    WORD indexBuffer[] = {0,1,2,1,3,2};
+    //GLuint elementbuffer;// Index Buffer
+    glGenBuffers(1, &m_IndexBufferBillBoard);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferBillBoard);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(WORD), &indexBuffer[0], GL_STATIC_DRAW);
+}
+
+void ClaseOpenGL::UpdateBillBoard()
+{
+    
+    mathfu::float3 upWordSpace = g_CurrentCamera->GetMUp();
+    mathfu::float3 RoghtWordSpace = g_CurrentCamera->GetMRight();
+    mathfu::float3 pos;
+    SimpleVertex billboard[4];
+    billboard[0].Pos = { -0.5f, -0.5f, 0.0f };
+    pos = billboard[0].Pos;
+    billboard[0].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[0].Tex = { 0,0 };
+
+    billboard[1].Pos = { 0.5f, -0.5f, 0.0f };
+    pos = billboard[1].Pos;
+    billboard[1].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[1].Tex = { 1, 0 };
+
+    billboard[2].Pos = { -0.5f, 0.5f, 0.0f };
+    pos = billboard[2].Pos;
+    billboard[2].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[2].Tex = { 0, 1 };
+
+    billboard[3].Pos = { 0.5f, 0.5f, 0.0f };
+    pos = billboard[3].Pos;
+    billboard[3].Pos = RoghtWordSpace * (pos.x * 10)
+        + upWordSpace * (pos.y * 10);
+    billboard[3].Tex = { 1, 1 };
+
+    ///
+    /// The following commands will talk about our 'vertexbuffer' buffer
+    ///
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferBillBoard);
+
+    ///
+    /// Give our vertices to OpenGL.
+    ///
+    glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * 4, &billboard, GL_STATIC_DRAW);
+}
+
+void ClaseOpenGL::render1()
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferName);
+    glUseProgram(m_programShaderID);
+
+    glClearColor(0, 0, 0, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+
+
+    mathfu::float4x4 word = {
+        1,0,0,0,
+        0,1,0,0,
+        0,0,1,0,
+        0,0,0,1
+    };
+
+    mathfu::float4x4 view = g_SecondCamera->GetView();
+    view = view.Transpose();
+    mathfu::float4x4 projection = g_SecondCamera->GetProjection();
+    projection = projection.Transpose();
+
+    ///
+    /// word matrix
+    ///
+    GLuint MatrixID = glGetUniformLocation(m_programShaderID, "WordMatrix");
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &word[0]);
+    ///
+    /// view matrix
+    ///
+    MatrixID = glGetUniformLocation(m_programShaderID, "ViewMatrix");
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &view[0]);
+
+    ///
+    /// projection matrix
+    ///
+    MatrixID = glGetUniformLocation(m_programShaderID, "ProjectionMatrix");
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &projection[0]);
+
+    for (int i = 0; i < m_SceneManager.m_MeshInScene.size(); i++) {
+
+
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
+
+        glVertexAttribPointer
+        (
+            ///
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            ///
+            0,
+
+            ///
+            /// size
+            ///
+            3,
+
+            ///
+            /// type
+            ///
+            GL_FLOAT,
+
+            ///
+            /// normalized?
+            ///
+            GL_FALSE,
+
+            ///
+            /// stride
+            ///
+            sizeof(SimpleVertex),
+
+            ///
+            /// array buffer offset
+            ///
+            (void*)0
+            );
+
+        glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
+        glVertexAttribPointer
+        (
+            ///
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            ///
+            1,
+
+            ///
+            /// size
+            ///
+            2,
+
+            ///
+            /// type
+            ///
+            GL_FLOAT,
+
+            ///
+            /// normalized?
+            ///
+            GL_FALSE,
+
+            ///
+            /// stride
+            ///
+            sizeof(SimpleVertex),
+
+            ///
+            /// array buffer offset
+            ///
+            (unsigned char*)NULL + (3 * sizeof(float))
+            );
+
+        ///
+        /// Draw the triangle
+        ///
+        //glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetIndexBuffer()->m_ID);
+
+        ///
+        ///1st attribute buffer : vertices
+        ///
+        GLuint texID = glGetUniformLocation(m_programShaderID, "textureDifuse");
+
+        glUniform1i(texID, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
+
+        glActiveTexture(GL_TEXTURE0 + m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
+
+        //glBindBuffer(GL_ARRAY_BUFFER, g_manager.m_meshes[i].uvBuffer);
+        //glActiveTexture(g_manager.m_meshes[i].m_tex.m_textureID);
+
+        glBindTexture(GL_TEXTURE_2D, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
+        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA, g_manager.WindowSize.m_Width, g_
+
+        ///
+        ///Draw the triangles
+        ///
+        glDrawElements
+        (
+            ///
+            ///mode
+            ///
+            GL_TRIANGLES,
+
+            ///
+            ///count
+            ///
+            m_SceneManager.m_MeshInScene[i]->GetIndexNum(),
+
+            ///
+            ///type
+            ///
+            GL_UNSIGNED_SHORT,
+
+            ///
+            ///element array buffer offset
+            ///
+            (void*)0
+            );
+
+        glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(0);
+    }
+
+}
+
+void ClaseOpenGL::render2()
+{
+
+    if (g_CurrentCamera->m_ClickPressed) {
+
+        g_CurrentCamera->MouseRotation();
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glUseProgram(m_programShaderID);
+
+    glClearColor(0, 0, 0, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+
+    mathfu::float4x4 word = {
+        1,0,0,0,
+        0,1,0,0,
+        0,0,1,0,
+        0,0,0,1
+    };
+
+    mathfu::float4x4 view = g_CurrentCamera->GetView();
+    view = view.Transpose();
+    mathfu::float4x4 projection = g_CurrentCamera->GetProjection();
+    projection = projection.Transpose();
+
+    ///
+    /// word matrix
+    ///
+    GLuint MatrixID = glGetUniformLocation(m_programShaderID, "WordMatrix");
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &word[0]);
+    ///
+    /// view matrix
+    ///
+    MatrixID = glGetUniformLocation(m_programShaderID, "ViewMatrix");
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &view[0]);
+
+    ///
+    /// projection matrix
+    ///
+    MatrixID = glGetUniformLocation(m_programShaderID, "ProjectionMatrix");
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &projection[0]);
+
+    for (int i = 0; i < m_SceneManager.m_MeshInScene.size(); i++) {
+
+
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
+
+        glVertexAttribPointer
+        (
+            ///
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            ///
+            0,
+
+            ///
+            /// size
+            ///
+            3,
+
+            ///
+            /// type
+            ///
+            GL_FLOAT,
+
+            ///
+            /// normalized?
+            ///
+            GL_FALSE,
+
+            ///
+            /// stride
+            ///
+            sizeof(SimpleVertex),
+
+            ///
+            /// array buffer offset
+            ///
+            (void*)0
+            );
+
+        glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
+        glVertexAttribPointer
+        (
+            ///
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            ///
+            1,
+
+            ///
+            /// size
+            ///
+            2,
+
+            ///
+            /// type
+            ///
+            GL_FLOAT,
+
+            ///
+            /// normalized?
+            ///
+            GL_FALSE,
+
+            ///
+            /// stride
+            ///
+            sizeof(SimpleVertex),
+
+            ///
+            /// array buffer offset
+            ///
+            (unsigned char*)NULL + (3 * sizeof(float))
+            );
+
+        ///
+        /// Draw the triangle
+        ///
+        //glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetIndexBuffer()->m_ID);
+
+        ///
+        ///1st attribute buffer : vertices
+        ///
+        GLuint texID = glGetUniformLocation(m_programShaderID, "textureDifuse");
+
+        glUniform1i(texID, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
+
+        glActiveTexture(GL_TEXTURE0 + m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
+
+        //glBindBuffer(GL_ARRAY_BUFFER, g_manager.m_meshes[i].uvBuffer);
+        //glActiveTexture(g_manager.m_meshes[i].m_tex.m_textureID);
+
+        glBindTexture(GL_TEXTURE_2D, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
+        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA, g_manager.WindowSize.m_Width, g_
+
+        ///
+        ///Draw the triangles
+        ///
+        glDrawElements
+        (
+            ///
+            ///mode
+            ///
+            GL_TRIANGLES,
+
+            ///
+            ///count
+            ///
+            m_SceneManager.m_MeshInScene[i]->GetIndexNum(),
+
+            ///
+            ///type
+            ///
+            GL_UNSIGNED_SHORT,
+
+            ///
+            ///element array buffer offset
+            ///
+            (void*)0
+            );
+
+        glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(0);
+    }
+
+    {
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferBillBoard);
+
+        glVertexAttribPointer
+        (
+            ///
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            ///
+            0,
+
+            ///
+            /// size
+            ///
+            3,
+
+            ///
+            /// type
+            ///
+            GL_FLOAT,
+
+            ///
+            /// normalized?
+            ///
+            GL_FALSE,
+
+            ///
+            /// stride
+            ///
+            sizeof(SimpleVertex),
+
+            ///
+            /// array buffer offset
+            ///
+            (void*)0
+            );
+
+        glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferBillBoard);
+        glVertexAttribPointer
+        (
+            ///
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            ///
+            1,
+
+            ///
+            /// size
+            ///
+            2,
+
+            ///
+            /// type
+            ///
+            GL_FLOAT,
+
+            ///
+            /// normalized?
+            ///
+            GL_FALSE,
+
+            ///
+            /// stride
+            ///
+            sizeof(SimpleVertex),
+
+            ///
+            /// array buffer offset
+            ///
+            (unsigned char*)NULL + (3 * sizeof(float))
+            );
+
+        ///
+        /// Draw the triangle
+        ///
+        //glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferBillBoard);
+
+        ///
+        ///1st attribute buffer : vertices
+        ///
+        GLuint texID = glGetUniformLocation(m_programShaderID, "textureDifuse");
+
+        glUniform1i(texID, renderedTexture);
+
+        glActiveTexture(GL_TEXTURE0 + renderedTexture);
+
+        //glBindBuffer(GL_ARRAY_BUFFER, g_manager.m_meshes[i].uvBuffer);
+        //glActiveTexture(g_manager.m_meshes[i].m_tex.m_textureID);
+
+        glBindTexture(GL_TEXTURE_2D, renderedTexture);
+        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA, g_manager.WindowSize.m_Width, g_
+
+        ///
+        ///Draw the triangles
+        ///
+        glDrawElements
+        (
+            ///
+            ///mode
+            ///
+            GL_TRIANGLES,
+
+            ///
+            ///count
+            ///
+            6,
+
+            ///
+            ///type
+            ///
+            GL_UNSIGNED_SHORT,
+
+            ///
+            ///element array buffer offset
+            ///
+            (void*)0
+            );
+
+        glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(0);
+    }
+
+    ///
+    /// Render ImGui
+    ///
+
+    ///
+    /// 1. Show a simple window.
+    ///
+
+    ///
+    /// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
+    ///
+    // Display some text (you can use a format string too)
+    ImGui::Text("Cambio de Camara");
+
+    ///
+    /// Buttons return true when clicked (NB: most widgets return true when edited/activated)
+    ///
+    if (ImGui::Button("Button")) {
+
+        //Current to Second
+        if (g_WhichCamera == false) {
+
+            g_WhichCamera = true;
+        }
+        //Second to Current
+        else if (g_WhichCamera == true) {
+
+            g_WhichCamera = false;
+        }
+
+        ///
+        /// Camera switch button
+        ///
+        Camera* Temporal = g_SecondCamera;
+        g_SecondCamera = g_CurrentCamera;
+        g_CurrentCamera = Temporal;
+    }
+
+    ImGui::SameLine();
+
+    ///
+    /// Conditions to know which camera is being used
+    ///
+    if (g_WhichCamera == false) {
+
+        ImGui::Text("Primera Camara");
+    }
+    else if (g_WhichCamera == true) {
+
+        ImGui::Text("Segunda Camara");
+    }
+
+    ImGui::Render();
+    ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 }

@@ -1,6 +1,9 @@
 #pragma once
 #include "Defines.h"
 
+///
+/// Render descriptor target view
+///
 struct RenderTargetViewDesc {
 
 	FORMAT Format;
@@ -15,6 +18,9 @@ struct RenderTargetViewDesc {
     TEX3D_RTV Texture3D;
 };
 
+///
+/// Class with the Render Target View abstraction
+///
 class ClaseRenderTargetView {
 
 	public:

@@ -7,6 +7,9 @@
 #include <string>
 #include "MaterialApi.h"
 
+///
+/// Class with functions for loading and set of Mesh values
+///
 class MESH
 {
 	public:

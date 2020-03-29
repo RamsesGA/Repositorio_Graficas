@@ -1,6 +1,9 @@
 #pragma once
 #include "Defines.h"
 
+///
+/// Depth Stencil View Descriptor
+///
 struct DepthStencilViewDesc {
 	FORMAT Format;
 	DSV_DIMENSION ViewDimension;
@@ -8,6 +11,9 @@ struct DepthStencilViewDesc {
 	TEX2D_DSV Texture2D;
 };
 
+///
+/// Depth Stencil Functions Class
+///
 class ClaseDepthStencil {
 
 	public:

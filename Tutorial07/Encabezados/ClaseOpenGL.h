@@ -8,6 +8,9 @@
 #include "Camera.h"
 #include "FirstCamera.h"
 
+///
+/// Class with all the essential functions for OpenGL
+///
 class ClaseOpenGL {
 
 	public:
@@ -22,7 +25,7 @@ class ClaseOpenGL {
 		RenderTarget			m_RenderTarget;
 		ClaseRenderTargetView	m_RenderTargetView;
 		ClaseBuffer				m_Buffers;
-		Camera                  m_FreeCamera;
+		FirstCamera             m_FreeCamera;
 		FirstCamera             m_FPSCamera;
 
 		///
@@ -31,6 +34,10 @@ class ClaseOpenGL {
 		GLuint		m_frameBufferName;
 		GLuint		m_programShaderID;
 		GLFWwindow* m_window;
+		GLuint		m_TextureBillboard;
+		GLuint		m_vertexBufferBillBoard;
+		GLuint		m_IndexBufferBillBoard;
+		GLuint		renderedTexture;
 
 		///
 		/// OPENGL Methods
@@ -52,4 +59,14 @@ class ClaseOpenGL {
 
 		void 
 		InitCameras();
+
+		void
+		BillBoard();
+		void
+		UpdateBillBoard();
+
+		void
+		render1();
+		void
+		render2();
 };

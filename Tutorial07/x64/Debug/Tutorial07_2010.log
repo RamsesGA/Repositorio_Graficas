@@ -1,3 +1,51 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(445,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
 LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-  Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\bin\x64\Debug\Tutorial07.exe
+ClaseBuffer.obj : error LNK2001: símbolo externo __imp___glewBindBuffer sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewBindBuffer sin resolver
+ClaseBuffer.obj : error LNK2001: símbolo externo __imp___glewBufferData sin resolver
+ClaseBuffer.obj : error LNK2001: símbolo externo __imp___glewGenBuffers sin resolver
+ClaseOpenGL.obj : error LNK2019: símbolo externo __imp_glewInit sin resolver al que se hace referencia en la función "public: int __cdecl ClaseOpenGL::WindowGLFW(void)" (?WindowGLFW@ClaseOpenGL@@QEAAHXZ)
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewActiveTexture sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewDisableVertexAttribArray sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewDrawBuffers sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewDrawBuffers sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewEnableVertexAttribArray sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewGetUniformLocation sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewUniform1i sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewUniformMatrix4fv sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewUseProgram sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewVertexAttribPointer sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewFramebufferTexture sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewFramebufferTexture sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewBindFramebuffer sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewBindFramebuffer sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewBindRenderbuffer sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewBindRenderbuffer sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewCheckFramebufferStatus sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewCheckFramebufferStatus sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewFramebufferRenderbuffer sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewFramebufferRenderbuffer sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewGenFramebuffers sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewGenFramebuffers sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewGenRenderbuffers sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewGenRenderbuffers sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp___glewRenderbufferStorage sin resolver
+ClaseRenderTarget.obj : error LNK2001: símbolo externo __imp___glewRenderbufferStorage sin resolver
+ClaseOpenGL.obj : error LNK2001: símbolo externo __imp_glewExperimental sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewAttachShader sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewCompileShader sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewCreateProgram sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewCreateShader sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewDeleteShader sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewDetachShader sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewGetProgramInfoLog sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewGetProgramiv sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewGetShaderInfoLog sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewGetShaderiv sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewLinkProgram sin resolver
+ClaseShader.obj : error LNK2001: símbolo externo __imp___glewShaderSource sin resolver
+GraphicApi.obj : error LNK2001: símbolo externo __imp___glewGenerateMipmap sin resolver
+SceneManager.obj : error LNK2001: símbolo externo __imp___glewBindVertexArray sin resolver
+SceneManager.obj : error LNK2001: símbolo externo __imp___glewGenVertexArrays sin resolver
+assimp-vc140-mt.lib : warning LNK4272: el tipo de máquina de biblioteca 'x86' está en conflicto con el tipo de máquina de destino 'x64'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\bin\x64\Debug\Tutorial07.exe : fatal error LNK1120: 37 externos sin resolver

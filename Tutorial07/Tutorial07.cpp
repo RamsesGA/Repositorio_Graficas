@@ -40,14 +40,7 @@
 #include "Encabezados/GraphicApi.h"
 #include "Encabezados/SceneManager.h"
 
-//GLFW
-#if _WIN32 || _WIN64
-#if _WIN64
-#include <GLFWInclude/x64/glfw3.h>
-#else
 #include "Encabezados/ClaseOpenGL.h"
-#endif
-#endif
 
 //--------------------------------------------------------------------------------------
 //extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -107,7 +100,7 @@ ClaseBuffer                 FCChangeEveryFrame;
 ClaseVertexBuffer           CVertexBuffer;
 ClaseVertexBuffer           CIndexBuffer;
 
-Camera                      FreeCamera;
+FirstCamera                 FreeCamera;
 FirstCamera                 FPSCamera;
 
 ClaseBuffer                 FPCNeverChange;
@@ -314,61 +307,47 @@ void Resize(){
 ///
 /// Function for level data
 ///
-enum LevelStuff {
-
-    Wall = 1,
-    Void = 2,
-    Pilares = 4,
-    NotColideWalls = 5
-};
+//enum LevelStuff {
+//
+//    Wall = 1,
+//    Void = 2,
+//    Pilares = 4,
+//    NotColideWalls = 5
+//};
 
 ///
 /// Function to generate the map
 ///
-void LevelMap(std::string FileLevelName) {
-
-    std::ifstream File;
-    File.open(FileLevelName);
-
-    File >> Columns >> Rows;
-
-    for (int i = 0; i < Rows; i++) {
-
-        for (int j = 0; j < Columns; j++) {
-
-            File >> LevelCubes[i][j];
-        }
-    }
-
-    for (int i = 0; i < Rows; i++) {
-
-        for (int j = 0; j < Columns; j++) {
-
-            std::cout << LevelCubes[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-    File.close();
-}
+//void LevelMap(std::string FileLevelName) {
+//
+//    std::ifstream File;
+//    File.open(FileLevelName);
+//
+//    File >> Columns >> Rows;
+//
+//    for (int i = 0; i < Rows; i++) {
+//
+//        for (int j = 0; j < Columns; j++) {
+//
+//            File >> LevelCubes[i][j];
+//        }
+//    }
+//
+//    for (int i = 0; i < Rows; i++) {
+//
+//        for (int j = 0; j < Columns; j++) {
+//
+//            std::cout << LevelCubes[i][j] << " ";
+//        }
+//        std::cout << std::endl;
+//    }
+//    File.close();
+//}
 
 ///
 /// Function to initialize cameras
 ///
 void InitCameras() {
-
-    CameraDescriptor GodCamera;
-    GodCamera.s_At = { 0,0,0 };
-    GodCamera.s_Eye = { 0,0,-1 };
-    GodCamera.s_Up = { 0,1,0 };
-    GodCamera.s_Far = 1000;
-    GodCamera.s_Near = 0.01;
-
-#ifdef D3D11
-    GodCamera.s_FoV = XM_PIDIV4;
-#endif
-
-    GodCamera.s_Height = height;
-    GodCamera.s_Widht = width;
 
     CameraDescriptor FirstCamera;
     FirstCamera.s_At = { 0,0,0 };
@@ -384,7 +363,7 @@ void InitCameras() {
     FirstCamera.s_Height = height;
     FirstCamera.s_Widht = width;
 
-    FreeCamera.Init(GodCamera);
+    FreeCamera.Init(FirstCamera);
     FPSCamera.Init(FirstCamera);
 
     MainCamera = &FPSCamera;
@@ -523,7 +502,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
     }
 
     CleanupDevice();
-    LevelMap("Mapa.txt");
+    //LevelMap("Mapa.txt");
     return (int)msg.wParam;
 }
 
@@ -534,35 +513,35 @@ HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow){
 
     activateConsole();    
     //Register class
-    /*WNDCLASSEX wcex;
-    wcex.cbSize = sizeof(WNDCLASSEX);
-    wcex.style = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc = WndProc;
-    wcex.cbClsExtra = 0;
-    wcex.cbWndExtra = 0;
-    wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_TUTORIAL1);
-    wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = NULL;
-    wcex.lpszClassName = L"TutorialWindowClass";
-    wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
-    if (!RegisterClassEx(&wcex))
-        return E_FAIL;
+    //WNDCLASSEX wcex;
+    //wcex.cbSize = sizeof(WNDCLASSEX);
+    //wcex.style = CS_HREDRAW | CS_VREDRAW;
+    //wcex.lpfnWndProc = WndProc;
+    //wcex.cbClsExtra = 0;
+    //wcex.cbWndExtra = 0;
+    //wcex.hInstance = hInstance;
+    //wcex.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_TUTORIAL1);
+    //wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+    //wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+    //wcex.lpszMenuName = NULL;
+    //wcex.lpszClassName = L"TutorialWindowClass";
+    //wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
+    //if (!RegisterClassEx(&wcex))
+    //    return E_FAIL;
+    //
+    //// Create window
+    //g_hInst = hInstance;
+    //RECT rc = { 0, 0, 800, 800 };
+    //AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+    //g_hWnd = CreateWindow(L"TutorialWindowClass", L"Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
+    //    CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
+    //    NULL);
+    //if (!g_hWnd)
+    //    return E_FAIL;
+    //
+    //ShowWindow(g_hWnd, nCmdShow);
 
-    // Create window
-    g_hInst = hInstance;
-    RECT rc = { 0, 0, 800, 800 };
-    AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-    g_hWnd = CreateWindow(L"TutorialWindowClass", L"Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
-        NULL);
-    if (!g_hWnd)
-        return E_FAIL;
-
-    ShowWindow(g_hWnd, nCmdShow);
-
-    LevelMap("Mapa.txt");*/
+    //LevelMap("Mapa.txt");
 
     g_OpenGlObj.WindowGLFW();
     return S_OK;
@@ -1219,7 +1198,8 @@ HRESULT InitDevice()
     /// API GRAPHIC
     ///
     //G_GraphicApi.ChargeMesh("noivern/Noivern.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
-    G_GraphicApi.ChargeMesh("ugandan-knuckles/source/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
+    //G_GraphicApi.ChargeMesh("ugandan-knuckles/source/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
+    G_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
 
     return S_OK;
 }
@@ -1407,6 +1387,7 @@ void Render()
     ///
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
+
     CDevCont.g_pImmediateContextD3D11->IASetVertexBuffers     (0, 1, &CVertexBuffer.m_Buffer.m_BufferD3D11, &stride, &offset);
     CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer       (CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
     CDevCont.g_pImmediateContextD3D11->VSSetShader            (CShader.g_pVertexShaderD3D11, NULL, 0);
@@ -1421,44 +1402,44 @@ void Render()
 
     int DistanceX = 0;
     int DistanceY = 0;
-    for (int i = 0; i < Rows; i++){
-
-        for (int j = 0; j < Columns; j++){
-
-            if (LevelCubes[i][j]){
-
-                DistanceX += 2.5;
-            }
-            else if (LevelCubes[i][j] == Pilares){
-
-                DistanceX += 2.5;
-            }
-            else{
-
-                DistanceX += 2.5;
-            }
-            if (LevelCubes[i][j] != 0){
-
-                CBChangesEveryFrame cb;
-                cb.mWorld = g_World.Transpose();
-                cb.vMeshColor = g_vMeshColor;
-
-                CDevCont.g_pImmediateContextD3D11->UpdateSubresource      (SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-                CDevCont.g_pImmediateContextD3D11->VSSetShader            (CShader.g_pVertexShaderD3D11, NULL, 0);
-                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (0, 1, &SecondCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (1, 1, &SecondCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (2, 1, &SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->PSSetShader            (g_pPixelShader, NULL, 0);
-                CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers   (2, 1, &SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->PSSetShaderResources   (0, 1, &g_pTextureRV);
-                CDevCont.g_pImmediateContextD3D11->PSSetSamplers          (0, 1, &CSampleS.g_pSamplerLinearD3D11);
-                CDevCont.g_pImmediateContextD3D11->DrawIndexed            (36, 0, 0);
-            }
-            g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(DistanceX, 0.0f, DistanceY));
-        }
-        DistanceY += 2.5;
-        DistanceX = 0;
-    }
+    //for (int i = 0; i < Rows; i++){
+    //
+    //    for (int j = 0; j < Columns; j++){
+    //
+    //        if (LevelCubes[i][j]){
+    //
+    //            DistanceX += 2.5;
+    //        }
+    //        else if (LevelCubes[i][j] == Pilares){
+    //
+    //            DistanceX += 2.5;
+    //        }
+    //        else{
+    //
+    //            DistanceX += 2.5;
+    //        }
+    //        if (LevelCubes[i][j] != 0){
+    //
+    //            CBChangesEveryFrame cb;
+    //            cb.mWorld = g_World.Transpose();
+    //            cb.vMeshColor = g_vMeshColor;
+    //
+    //            CDevCont.g_pImmediateContextD3D11->UpdateSubresource      (SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &cb, 0, 0);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetShader            (CShader.g_pVertexShaderD3D11, NULL, 0);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (0, 1, &SecondCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (1, 1, &SecondCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers   (2, 1, &SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetShader            (g_pPixelShader, NULL, 0);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers   (2, 1, &SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetShaderResources   (0, 1, &g_pTextureRV);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetSamplers          (0, 1, &CSampleS.g_pSamplerLinearD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->DrawIndexed            (36, 0, 0);
+    //        }
+    //        g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(DistanceX, 0.0f, DistanceY));
+    //    }
+    //    DistanceY += 2.5;
+    //    DistanceX = 0;
+    //}
 
     CBChangesEveryFrame m_MeshData;
     m_MeshData.mWorld = {
@@ -1536,44 +1517,44 @@ void Render()
     DistanceX = 0;
     DistanceY = 0;
 
-    for (int i = 0; i < Rows; i++){
-
-        for (int j = 0; j < Columns; j++){
-
-            if (LevelCubes[i][j]){
-
-                DistanceX += 2.5;
-            }
-            else if (LevelCubes[i][j] == Pilares){
-
-                DistanceX += 2.5;
-            }
-            else{
-
-                DistanceX += 2.5;
-            }
-            if (LevelCubes[i][j] != 0){
-
-                CBChangesEveryFrame cb;
-                cb.mWorld = g_World.Transpose();
-                cb.vMeshColor = g_vMeshColor;
-                
-                CDevCont.g_pImmediateContextD3D11->UpdateSubresource    (MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &cb, 0, 0);
-                CDevCont.g_pImmediateContextD3D11->VSSetShader          (CShader.g_pVertexShaderD3D11, NULL, 0);
-                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers (0, 1, &MainCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers (1, 1, &MainCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers (2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->PSSetShader          (g_pPixelShader, NULL, 0);
-                CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers (2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
-                CDevCont.g_pImmediateContextD3D11->PSSetShaderResources (0, 1, &G_InactiveSRV);
-                CDevCont.g_pImmediateContextD3D11->PSSetSamplers        (0, 1, &CSampleS.g_pSamplerLinearD3D11);
-                CDevCont.g_pImmediateContextD3D11->DrawIndexed          (36, 0, 0);
-            }
-            g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(DistanceX, 0.0f, DistanceY));
-        }   
-        DistanceY += 2.5;
-        DistanceX = 0;
-    }
+    //for (int i = 0; i < Rows; i++){
+    //
+    //    for (int j = 0; j < Columns; j++){
+    //
+    //        if (LevelCubes[i][j]){
+    //
+    //            DistanceX += 2.5;
+    //        }
+    //        else if (LevelCubes[i][j] == Pilares){
+    //
+    //            DistanceX += 2.5;
+    //        }
+    //        else{
+    //
+    //            DistanceX += 2.5;
+    //        }
+    //        if (LevelCubes[i][j] != 0){
+    //
+    //            CBChangesEveryFrame cb;
+    //            cb.mWorld = g_World.Transpose();
+    //            cb.vMeshColor = g_vMeshColor;
+    //            
+    //            CDevCont.g_pImmediateContextD3D11->UpdateSubresource    (MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &cb, 0, 0);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetShader          (CShader.g_pVertexShaderD3D11, NULL, 0);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers (0, 1, &MainCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers (1, 1, &MainCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers (2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetShader          (g_pPixelShader, NULL, 0);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers (2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetShaderResources (0, 1, &G_InactiveSRV);
+    //            CDevCont.g_pImmediateContextD3D11->PSSetSamplers        (0, 1, &CSampleS.g_pSamplerLinearD3D11);
+    //            CDevCont.g_pImmediateContextD3D11->DrawIndexed          (36, 0, 0);
+    //        }
+    //        g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(DistanceX, 0.0f, DistanceY));
+    //    }   
+    //    DistanceY += 2.5;
+    //    DistanceX = 0;
+    //}
 
     m_MeshData.mWorld = {
         1,0,0,SecondCamera->GetEye().x,

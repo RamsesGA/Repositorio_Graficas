@@ -1,6 +1,9 @@
 #pragma once
 #include "Defines.h"
 
+///
+/// 2D Texture Descriptor
+///
 struct Texture2Desc {
 
     UINT Width;
@@ -17,6 +20,9 @@ struct Texture2Desc {
     UINT MiscFlags;
 };
 
+///
+/// Class with 2D Texture abstraction
+///
 class ClaseTextura2D {
 
 	public:

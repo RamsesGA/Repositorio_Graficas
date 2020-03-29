@@ -1,6 +1,9 @@
 #pragma once
 #include "Defines.h"
 
+///
+/// Viewport descriptor
+///
 struct ViewportDesc {
 
 	VIEWPORT vp;
@@ -13,6 +16,9 @@ struct ViewportDesc {
 	FLOAT TopLeftY;
 };
 
+///
+/// Class with Viewport abstraction
+///
 class ClaseViewport {
 
 	public:

@@ -3,6 +3,9 @@
 #include "mathfu/hlsl_mappings.h"
 #include "Camera.h"
 
+///
+/// First Person Camera Descriptor
+///
 struct FirstCameraDescriptor {
 
 	float s_Widht;
@@ -16,6 +19,9 @@ struct FirstCameraDescriptor {
 	mathfu::float3 s_Up;
 };
 
+///
+/// Child class of the camera class
+///
 class FirstCamera :public Camera{
 
 	public:

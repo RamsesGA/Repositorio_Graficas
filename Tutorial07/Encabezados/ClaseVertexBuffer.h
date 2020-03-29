@@ -1,6 +1,9 @@
 #pragma once
 #include "ClaseBuffer.h"
 
+///
+/// Class with the Vertex Buffer abstraction
+///
 class ClaseVertexBuffer {
 
 	public:

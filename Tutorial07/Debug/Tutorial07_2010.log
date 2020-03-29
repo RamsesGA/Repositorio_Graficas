@@ -525,7 +525,6 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-  ClaseManagerInterfaz.cpp
   ClaseOpenGL.cpp
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
@@ -657,22 +656,23 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,44): warning C4100: 'numVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,30): warning C4100: 'MyVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(13,44): warning C4100: 'window': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(120,91): warning C4100: 'mods': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(120,79): warning C4100: 'action': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(120,65): warning C4100: 'scancode': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(120,56): warning C4100: 'key': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(129,85): warning C4100: 'mods': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(129,73): warning C4100: 'action': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(129,59): warning C4100: 'scancode': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(129,38): warning C4100: 'window': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(146,66): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(146,54): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(137,76): warning C4100: '_mods': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(137,37): warning C4100: '_window': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(256,27): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(21,44): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(128,91): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(128,79): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(128,65): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(128,56): warning C4100: 'key': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(137,85): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(137,73): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(137,59): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(137,38): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(154,66): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(154,54): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(145,76): warning C4100: '_mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(145,37): warning C4100: '_window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(466,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(636,23): warning C4018: '<': no coinciden signed/unsigned
   ClaseRenderTarget.cpp
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
@@ -1852,8 +1852,8 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,44): warning C4100: 'numVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,30): warning C4100: 'MyVertex': parámetro formal sin referencia
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(295,11): warning C4189: 'direcTextur': la variable local se ha inicializado pero no se hace referencia a ella
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(287,12): warning C4101: 'wtext': variable local sin referencia
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(342,11): warning C4189: 'direcTextur': la variable local se ha inicializado pero no se hace referencia a ella
@@ -2120,8 +2120,8 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,44): warning C4100: 'numVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,30): warning C4100: 'MyVertex': parámetro formal sin referencia
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp(45,88): warning C4100: '_dev': parámetro formal sin referencia
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp(45,62): warning C4100: '_bufferData': parámetro formal sin referencia
   SceneManager.cpp
@@ -2255,8 +2255,8 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,44): warning C4100: 'numVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,30): warning C4100: 'MyVertex': parámetro formal sin referencia
   Camera.cpp
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
@@ -2558,13 +2558,6 @@ C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutoria
           [
               T=float
           ]
-  Generando código...
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\SceneManager.cpp(27): warning C4715: 'SCENEMANAGER::GetMesh': no todas las rutas de acceso de control devuelven un valor
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseTexture2D.cpp(36): warning C4702: no se puede tener acceso al código
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseSwapChain.cpp(35): warning C4702: no se puede tener acceso al código
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseDeviceContext.cpp(30): warning C4702: no se puede tener acceso al código
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseDevice.cpp(28): warning C4702: no se puede tener acceso al código
-  Compilando...
   Tutorial07.cpp
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
@@ -2696,72 +2689,49 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,44): warning C4100: 'numVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(41,30): warning C4100: 'MyVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(168,22): warning C4459: la declaración de 'width' oculta la declaración global
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(145,29): message : vea la declaración de 'width'
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(169,23): warning C4459: la declaración de 'height' oculta la declaración global
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(146,29): message : vea la declaración de 'height'
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(179,31): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(180,30): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(197,33): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(198,32): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(299,24): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(300,25): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(370,26): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(371,25): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(384,28): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(385,27): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(533,45): warning C4100: 'nCmdShow': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(533,30): warning C4100: 'hInstance': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(644,23): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(745,10): warning C4189: 'numFeatureLevels': la variable local se ha inicializado pero no se hace referencia a ella
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1211,14): warning C4189: 'io': la variable local se ha inicializado pero no se hace referencia a ella
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1323,71): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(44,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(161,22): warning C4459: la declaración de 'width' oculta la declaración global
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(138,29): message : vea la declaración de 'width'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(162,23): warning C4459: la declaración de 'height' oculta la declaración global
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(139,29): message : vea la declaración de 'height'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(172,31): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(173,30): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(190,33): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(191,32): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(292,24): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(293,25): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(363,28): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(364,27): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(512,45): warning C4100: 'nCmdShow': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(512,30): warning C4100: 'hInstance': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(623,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(724,10): warning C4189: 'numFeatureLevels': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1190,14): warning C4189: 'io': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1303,71): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1323,63): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1303,63): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1430,33): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1434,33): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1438,33): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1457,95): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1457,78): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1459,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1478,30): warning C4456: la declaración de 'stride' oculta la declaración local anterior
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1408,10): message : vea la declaración de 'stride'
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1479,24): warning C4456: la declaración de 'offset' oculta la declaración local anterior
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1409,10): message : vea la declaración de 'offset'
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1545,33): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1549,33): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1553,33): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1572,95): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1572,78): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1574,25): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1592,29): warning C4456: la declaración de 'stride' oculta la declaración local anterior
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1408,10): message : vea la declaración de 'stride'
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1593,23): warning C4456: la declaración de 'offset' oculta la declaración local anterior
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1409,10): message : vea la declaración de 'offset'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1459,30): warning C4456: la declaración de 'stride' oculta la declaración local anterior
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1388,10): message : vea la declaración de 'stride'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1460,24): warning C4456: la declaración de 'offset' oculta la declaración local anterior
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1389,10): message : vea la declaración de 'offset'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1573,29): warning C4456: la declaración de 'stride' oculta la declaración local anterior
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1388,10): message : vea la declaración de 'stride'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1574,23): warning C4456: la declaración de 'offset' oculta la declaración local anterior
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1389,10): message : vea la declaración de 'offset'
   Generando código...
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\SceneManager.cpp(27): warning C4715: 'SCENEMANAGER::GetMesh': no todas las rutas de acceso de control devuelven un valor
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseTexture2D.cpp(36): warning C4702: no se puede tener acceso al código
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseSwapChain.cpp(35): warning C4702: no se puede tener acceso al código
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseDeviceContext.cpp(30): warning C4702: no se puede tener acceso al código
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseDevice.cpp(28): warning C4702: no se puede tener acceso al código
+Camera.obj : warning LNK4075: se omite '/EDITANDCONTINUE' debido a la especificación '/SAFESEH'
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
   Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\bin\Win32\Debug\aplication.exe
