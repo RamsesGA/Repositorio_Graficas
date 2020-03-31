@@ -5,6 +5,7 @@ void ClaseShader::Init(){}
 ///
 /// function to load the shaders
 ///
+#ifdef OPENGL
 GLuint ClaseShader::LoadShaders(const char* vertex_file_path, const char* fragment_file_path)
 {
 	///
@@ -114,3 +115,4 @@ GLuint ClaseShader::LoadShaders(const char* vertex_file_path, const char* fragme
 
 	return ProgramID;
 }
+#endif // OPENGL

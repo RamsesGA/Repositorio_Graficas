@@ -180,7 +180,7 @@ assimp-vc140-mt.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\Win32;$(SolutionDir)/GLFWLibs/x32;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\Win32;$(SolutionDir)/GLFWLibs/x32;$(SolutionDir)/assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -224,7 +224,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\x64;$(SolutionDir)/GLFWLibs/x64;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\x64;$(SolutionDir)/GLFWLibs/x64;$(SolutionDir)/assimp;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -267,7 +267,7 @@ assimp-vc140-mt.lib;d3dx11.lib;d3dx9.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\Win32;$(SolutionDir)/GLFWLibs/x32;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\Win32;$(SolutionDir)/GLFWLibs/x32;$(SolutionDir)/assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -312,7 +312,7 @@ xcopy /y /d  "$(SolutionDir)/../assimp-vc140-mt.dll" "$(TargetDir)"</Command>
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\x64;$(SolutionDir)/GLFWLibs/x64;C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\Tutorial07\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/OpenGLRoot/ExternalResources/GLEW32y64/lib/Release\x64;$(SolutionDir)/GLFWLibs/x64;$(SolutionDir)/assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>

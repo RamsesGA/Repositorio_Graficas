@@ -68,8 +68,10 @@ void SCENEMANAGER::Init(){
 
 		return;
 	}
+#ifdef OPENGL
 	glGenVertexArrays(1, &m_VertexArrayID);
 	glBindVertexArray(m_VertexArrayID);
+#endif // OPENGL
 	
 	m_initialize = true;
 }

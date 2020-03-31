@@ -1,7 +1,10 @@
 #pragma once
-#define D3D11
+//#define D3D11
 #define OPENGL
 
+///
+/// Includes
+///
 #include <windows.h>
 #include "mathfu/hlsl_mappings.h"
 #include <string>
@@ -10,7 +13,9 @@
 #include <sstream>
 #include <vector>
 
-//DIRECTX
+///
+/// DIRECTX
+///
 #ifdef D3D11
 #include <d3d11.h>
 #include <d3dx11.h>
@@ -18,18 +23,25 @@
 #include <xnamath.h>
 #endif // D3D11
 
-//OPENGL
-//#include <glew.h>
+///
+/// OPENGL
+///
+#ifdef OPENGL
 #include "GL/glew.h"
 
 #if _WIN32 || _WIN64
 #if _WIN64
 #include <GLFWInclude/x64/glfw3.h>
-
 #else
 #include <GLFWInclude/x32/glfw3.h>
 #endif
 #endif
+#endif // OPENGL
+
+
+///
+/// STRUCTS
+///
 
 
 struct SimpleVertex

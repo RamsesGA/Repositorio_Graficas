@@ -27,20 +27,30 @@ class RenderTarget {
         RenderTarget() {};
         ~RenderTarget() {};
 
+        ///
+        /// OPENGL´S memebers
+        ///
+#ifdef OPENGL
+        GLuint m_IdRenderTarget = 0;
+#endif // OPENGL
+
+        bool m_initialize = false;
         RenderTargetDesc m_RenderTDesc;
 
-        //Miembros OpenGL
-        GLuint m_IdRenderTarget = 0;
-        bool m_initialize = false;
-
-
+        ///
+        /// OPENGL´S methods
+        ///
         void
         Init(RenderTargetDesc _rtd);
 
-        //Funciones OpenGL
+#ifdef OPENGL
         void
         InitFrameBuffer();
+#endif // OPENGL
 
+        ///
+        /// DIRECTX´S memebers
+        ///
 #ifdef D3D11
         ID3D11Texture2D* g_pDepthStencilD3D11;
         D3D11_TEXTURE2D_DESC m_RenderTD3D11;

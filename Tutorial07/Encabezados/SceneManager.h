@@ -11,9 +11,15 @@ class SCENEMANAGER
 {
 	public:
 
+		///
+		/// Builder and destroyer
+		///
 		SCENEMANAGER();
 		~SCENEMANAGER();
 
+		///
+		/// Main methods for the class
+		///
 		void 
 		AddMesh(MESH* newMesh);
 		
@@ -36,7 +42,11 @@ class SCENEMANAGER
 		/// Variables
 		///
 		ClaseBuffer* meshData;
+
+#ifdef OPENGL
 		GLuint m_VertexArrayID;
+#endif // OPENGL
+
 		bool m_initialize = false;
 		std::vector<MESH*> m_MeshInScene;
 

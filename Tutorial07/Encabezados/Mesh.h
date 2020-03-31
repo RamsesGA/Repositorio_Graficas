@@ -13,9 +13,16 @@
 class MESH
 {
 	public:
+
+		///
+		/// Builder and destroyer
+		///
 		MESH();
 		~MESH();
 	
+		///
+		/// Main methods for the class
+		///
 		void
 		Init();
 
@@ -79,7 +86,10 @@ class MESH
 
 
 	public:
-		//Variables-----
+		
+		///
+		/// Members
+		///
 		MESH*				m_Parent;
 		std::vector<MESH*>	m_Children;
 		mathfu::float4		m_Transform;

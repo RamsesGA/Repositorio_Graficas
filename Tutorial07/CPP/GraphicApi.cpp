@@ -82,7 +82,8 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, 
 ///
 /// function for loading the OPENGL mesh
 ///
-bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager){
+#ifdef OPENGL
+bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager) {
 
 	///
 	/// We import the mesh and save it in a temporary variable
@@ -96,7 +97,7 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEM
 		aiProcess_OptimizeMeshes |
 		aiProcess_Debone |
 		0
-	);
+		);
 
 	///
 	/// Condition to check if the reading was corrects
@@ -153,6 +154,7 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEM
 	}
 	return true;
 }
+#endif // OPENGL
 
 ///
 /// DIRECTX mesh reading function
@@ -212,6 +214,7 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 ///
 /// function for reading the OPENGL mesh
 ///
+#ifdef OPENGL
 void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){
 
 	///
@@ -249,6 +252,7 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){
 
 	_mesh->SetVertex(meshVertex, numVertex);
 
+
 	ClaseBuffer::createVertexBuffer(numVertex, meshVertex, _mesh->GetVertexBuffer()->m_ID);
 
 	for (int i = 0; i < numVIndex; i++)
@@ -260,6 +264,7 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){
 
 	ClaseBuffer::createIndexBuffer(numVIndex, meshIndex, _mesh->GetIndexBuffer()->m_ID);
 }
+#endif // OPENGL
 
 ///
 /// function to read DIRECTX mesh texture
@@ -311,6 +316,7 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 ///
 /// function to read OPENGL mesh texture
 ///
+#ifdef OPENGL
 void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex){
 
 	const aiMaterial* pMaterial = _model->mMaterials[_model->mMeshes[_meshIndex]->mMaterialIndex];
@@ -319,14 +325,14 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 	/// Difuse texture
 	///
 	if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
-		
+
 		aiString Path;
 		_mesh->m_Materials->m_HasDifuse = true;
 
 		///
 		/// Within this condition we will look for the extension and format of the textures, in order to assign it to the corresponding mesh
 		///
-		if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &Path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS){
+		if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &Path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
 
 			_mesh->m_Materials->m_DifuseName = _mesh->m_Materials->m_Diroftextures;
 			_mesh->m_Materials->m_DifuseName += (std::string) Path.data;
@@ -347,9 +353,12 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 			MultiByteToWideChar(CP_ACP, 0, pngextencion.data(), pngextencion.length(), &wstr[0], stringLength);
 			dir = (LPCWSTR)wstr.c_str();
 
+
+
 			///
 			/// We generate the textures and the bind with the functions integrated by GLFWs
 			///
+
 			glGenTextures(1, &_mesh->m_Materials->m_TextureId);
 			glBindTexture(GL_TEXTURE_2D, _mesh->m_Materials->m_TextureId);
 
@@ -367,12 +376,12 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 			int width, height, nrChannels;
 			unsigned char* data = stbi_load(pngextencion.c_str(), &width, &height, &nrChannels, 0);
 
-			if (data){
+			if (data) {
 
 				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 				glGenerateMipmap(GL_TEXTURE_2D);
 			}
-			else{
+			else {
 
 				std::cout << "Failed to load texture" << std::endl;
 			}
@@ -382,3 +391,4 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 		}
 	}
 }
+#endif // OPENGL

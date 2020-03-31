@@ -199,6 +199,21 @@ void Camera::GenerateProjectionMatrix(){
 
 	m_Projection = m_Projection.Transpose();
 #endif
+
+#ifdef OPENGL
+	m_MProjection = XMMatrixPerspectiveFovLH(m_Desc.s_FoV, m_Desc.s_Widht / m_Desc.s_Height, m_Desc.s_Near, m_Desc.s_Far);
+
+	m_Projection =
+	{
+		m_MProjection._11, m_MProjection._12, m_MProjection._13, m_MProjection._14,
+		m_MProjection._21, m_MProjection._22, m_MProjection._23, m_MProjection._24,
+		m_MProjection._31, m_MProjection._32, m_MProjection._33, m_MProjection._34,
+		m_MProjection._41, m_MProjection._42, m_MProjection._43, m_MProjection._44
+	};
+
+	m_Projection = m_Projection.Transpose();
+#endif // OPENGL
+
 }
 
 ///
@@ -506,7 +521,8 @@ void Camera::inputs(WPARAM _param){
 ///
 /// Function overload for OpenGL
 ///
-void Camera::Input(int _param){
+#ifdef OPENGL
+void Camera::Input(int _param) {
 
 	if (_param == GLFW_KEY_UP || _param == GLFW_KEY_DOWN) {
 
@@ -526,7 +542,7 @@ void Camera::Input(int _param){
 	}
 }
 
-void Camera::Move(int _param){
+void Camera::Move(int _param) {
 
 	if (_param == GLFW_KEY_W) {
 
@@ -576,7 +592,7 @@ void Camera::Move(int _param){
 	UpdateVM();
 }
 
-void Camera::PitchX(int _param){
+void Camera::PitchX(int _param) {
 
 	mathfu::float4x4 rot;
 	float speedrot = 0.10f;
@@ -636,7 +652,7 @@ void Camera::YawZ(int _param) {
 	UpdateVM();
 }
 
-void Camera::RollY(int _param){
+void Camera::RollY(int _param) {
 
 	mathfu::float4x4 rot;
 	float speedrot = 0.10f;
@@ -665,3 +681,4 @@ void Camera::RollY(int _param){
 
 	UpdateVM();
 }
+#endif // OPENGL

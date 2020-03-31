@@ -27,7 +27,8 @@ void RenderTarget::Init(RenderTargetDesc _rtd) {
 ///
 /// function to initialize Frame Buffer values
 ///
-void RenderTarget::InitFrameBuffer(){
+#ifdef OPENGL
+void RenderTarget::InitFrameBuffer() {
 
     if (m_initialize) {
 
@@ -91,3 +92,4 @@ void RenderTarget::InitFrameBuffer(){
 
     m_initialize = true;
 }
+#endif // OPENGL

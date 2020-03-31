@@ -2,6 +2,7 @@
 #include "Encabezados/Defines.h"
 #include "mathfu/hlsl_mappings.h"
 #include "Encabezados/ClaseBuffer.h"
+#include <xnamath.h>
 
 ///
 /// Structure of the camera descriptor
@@ -25,10 +26,14 @@ class Camera {
 
 	protected:
 
-		//Variables-----
+		///
+		/// Members needed for the chamber
+		///
 		CameraDescriptor m_Desc;
 
-		//-----
+		///
+		/// Members needed for the chamber
+		///
 		mathfu::float3 m_Up;
 		mathfu::float3 m_Front;
 		mathfu::float3 m_locketFront;
@@ -41,21 +46,35 @@ class Camera {
 		mathfu::float3 OriginalAt;
 		mathfu::float3 m_UpLimit;
 
-		//-----
+		///
+		/// Members needed for the chamber
+		///
 		mathfu::float4x4 m_Projection;
 		mathfu::float4x4 m_Axis;
 		mathfu::float4x4 m_Position;
 
-		//-----
+		///
+		/// Members needed for the chamber
+		///
 #ifdef D3D11
 		XMMATRIX m_MProjection;
 #endif // D3D11
 
+#ifdef OPENGL
+		XMMATRIX m_MProjection;
+#endif // OPENGL
+
+		///
+		/// Members needed for the chamber
+		///
 		float angule;
 		float maxAngule = 60;
 
 	public:
 
+		///
+		/// Members needed for the chamber
+		///
 		mathfu::float2 OriginalMousePos;
 
 		ClaseBuffer		g_pCBNeverChangesCamera;
@@ -66,16 +85,22 @@ class Camera {
 
 		mathfu::float4x4 m_View;
 
-		//Functions-----
+		///
+		/// Functions
+		///
 		int 
 		Init(CameraDescriptor _cameraDesc);
 
-		//Get
+		///
+		/// Get
+		///
 		mathfu::float3 GetMUp();
 		mathfu::float3 GetMFront();
 		mathfu::float3 GetMRight();
 
-		//-----
+		///
+		/// Set / Get structures of projection
+		///
 		void
 		SetProjection(mathfu::float4x4 _matProj);
 		mathfu::float4x4 
@@ -86,7 +111,9 @@ class Camera {
 		mathfu::float4x4
 		GetView() { return m_View; };
 
-		//Set/Get structure
+		///
+		/// Set / Get structures
+		///
 		void
 		SetWidht(float _widht);
 		float
@@ -131,7 +158,10 @@ class Camera {
 		SetUp(mathfu::float3 _vec3);
 		mathfu::float3 GetUp();
 		
-		//-----
+		///
+		/// General functions for camera operation
+		///
+
 		virtual void 
 		UpdateVM();
 		
@@ -140,7 +170,10 @@ class Camera {
 		
 		virtual void
 		CreateView();
-		
+
+		///
+		/// Functions for camera movement DIRECTX
+		///
 		void 
 		Move(WPARAM _param);
 		
@@ -162,7 +195,9 @@ class Camera {
 		void
 		inputs(WPARAM _param);
 
-		//Sobrecarga de funciones para OpenGL
+		///
+		/// Functions for camera movement OPENGL
+		///
 		void
 		Input(int _param);
 
@@ -178,8 +213,10 @@ class Camera {
 		void
 		RollY(int _param);
 
-
-		//Constructor and Destructor-----
+		///
+		/// Constructor and Destroyer
+		///
 		Camera();
+
 		~Camera();
 };

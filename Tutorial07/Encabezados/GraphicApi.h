@@ -1,9 +1,4 @@
 #pragma once
-//#include "../assimp/Importer.hpp"
-//#include "../assimp/scene.h"
-//#include "../assimp/postprocess.h"
-//#include "../assimp/matrix4x4.h"
-//#include "../assimp/cimport.h"
 #include "ClaseDeviceContext.h"
 #include <string>
 #include "Mesh.h"
@@ -23,31 +18,45 @@ class GraphicApi {
 		GraphicApi();
 		~GraphicApi();
 
-		//DIRECTX Methods
+		///
+		/// DIRECTX Methods
+		///
 		bool
 		ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer* _importer, ClaseDevice* _dev);
 
-		//OPENGL Methods
+		///
+		/// OPENGL Methods
+		///
+#ifdef OPENGL
 		bool
 		ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager);
-
-		//ASSIMP
+#endif // OPENGL
+		
+		///
+		/// ASSIMP
+		///
 		const aiScene* m_Model = new const aiScene();
 		Assimp::Importer* m_Importer=new Assimp::Importer();
 
 	private:
 
-		//DIRECTX Methods
+		///
+		/// DIRECTX Methods
+		///
 		void
 		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev);
 
 		void
 		ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev);
 
-		//OPENGL Methods
+		///
+		/// OPENGL Methods
+		///
+#ifdef OPENGL
 		void
 		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex);
 
 		void
 		ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex);
+#endif // OPENGL
 };

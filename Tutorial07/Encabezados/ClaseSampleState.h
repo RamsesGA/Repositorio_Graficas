@@ -23,11 +23,21 @@ struct SampleStateDesc {
 class ClaseSampleState {
 
 	public:
+
+		///
+		/// Builders and destroyers
+		///
 		ClaseSampleState() {};
 		~ClaseSampleState() {};
 
+		///
+		/// Members
+		///
 		SampleStateDesc m_SampleDesc;
 
+		///
+		/// Methods
+		///
 		void
 		Init(SampleStateDesc _sampleDesc);
 
@@ -40,6 +50,9 @@ class ClaseSampleState {
 		void
 		Render();
 
+		///
+		/// DIRECTX members
+		///
 #ifdef D3D11
 		ID3D11SamplerState*			g_pSamplerLinearD3D11;
 		D3D11_SAMPLER_DESC			sampDescD3D11;

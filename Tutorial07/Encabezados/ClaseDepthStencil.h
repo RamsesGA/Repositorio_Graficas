@@ -22,6 +22,9 @@ class ClaseDepthStencil {
 
 		DepthStencilViewDesc m_DepthDesc;
 
+		///
+		/// General methods
+		///
 		void
 		Init(DepthStencilViewDesc _stencilDesc);
 
@@ -34,6 +37,9 @@ class ClaseDepthStencil {
 		void
 		Delete();
 
+		///
+		/// DIRECTX Members
+		///
 #ifdef D3D11
 		ID3D11DepthStencilView* g_pDepthStencilViewD3D11;
 		D3D11_DEPTH_STENCIL_VIEW_DESC descDepthViewD3D11;

@@ -512,38 +512,43 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow){
 
     activateConsole();    
+    
+#ifdef D3D11
     //Register class
-    //WNDCLASSEX wcex;
-    //wcex.cbSize = sizeof(WNDCLASSEX);
-    //wcex.style = CS_HREDRAW | CS_VREDRAW;
-    //wcex.lpfnWndProc = WndProc;
-    //wcex.cbClsExtra = 0;
-    //wcex.cbWndExtra = 0;
-    //wcex.hInstance = hInstance;
-    //wcex.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_TUTORIAL1);
-    //wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-    //wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    //wcex.lpszMenuName = NULL;
-    //wcex.lpszClassName = L"TutorialWindowClass";
-    //wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
-    //if (!RegisterClassEx(&wcex))
-    //    return E_FAIL;
-    //
-    //// Create window
-    //g_hInst = hInstance;
-    //RECT rc = { 0, 0, 800, 800 };
-    //AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-    //g_hWnd = CreateWindow(L"TutorialWindowClass", L"Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
-    //    CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
-    //    NULL);
-    //if (!g_hWnd)
-    //    return E_FAIL;
-    //
-    //ShowWindow(g_hWnd, nCmdShow);
+    WNDCLASSEX wcex;
+    wcex.cbSize = sizeof(WNDCLASSEX);
+    wcex.style = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc = WndProc;
+    wcex.cbClsExtra = 0;
+    wcex.cbWndExtra = 0;
+    wcex.hInstance = hInstance;
+    wcex.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_TUTORIAL1);
+    wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+    wcex.lpszMenuName = NULL;
+    wcex.lpszClassName = L"TutorialWindowClass";
+    wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
+    if (!RegisterClassEx(&wcex))
+        return E_FAIL;
+    
+    // Create window
+    g_hInst = hInstance;
+    RECT rc = { 0, 0, 800, 800 };
+    AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+    g_hWnd = CreateWindow(L"TutorialWindowClass", L"Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
+        NULL);
+    if (!g_hWnd)
+        return E_FAIL;
+    
+    ShowWindow(g_hWnd, nCmdShow);
 
     //LevelMap("Mapa.txt");
+#endif // D3D11
 
+#ifdef OPENGL
     g_OpenGlObj.WindowGLFW();
+#endif // OPENGL
     return S_OK;
 }
 

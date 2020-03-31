@@ -26,9 +26,15 @@ class FirstCamera :public Camera{
 
 	public:
 		
+		///
+		/// Builder and destroyer
+		///
 		FirstCamera();
 		~FirstCamera();
 		
+		///
+		/// Main methods for the class
+		///
 		void
 		MouseRotation() override;
 		

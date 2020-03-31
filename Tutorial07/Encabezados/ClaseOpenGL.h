@@ -31,6 +31,7 @@ class ClaseOpenGL {
 		///
 		/// OPENGL Members
 		///
+#ifdef OPENGL
 		GLuint		m_frameBufferName;
 		GLuint		m_programShaderID;
 		GLFWwindow* m_window;
@@ -38,35 +39,47 @@ class ClaseOpenGL {
 		GLuint		m_vertexBufferBillBoard;
 		GLuint		m_IndexBufferBillBoard;
 		GLuint		renderedTexture;
+#endif // OPENGL
+
+		
+#ifdef OPENGL
 
 		///
 		/// OPENGL Methods
 		///
-		void 
+		void
 		InitDevice();
 
-		HRESULT 
+		HRESULT
 		FrameBuffer();
-		
-		void 
+
+		void
 		processInput(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-		int 
+		int
 		WindowGLFW();
 
-		void 
+		void
 		GameLoop();
 
-		void 
+		void
 		InitCameras();
 
+		///
+		/// Methods for the operation of the billboard
+		///
 		void
 		BillBoard();
 		void
 		UpdateBillBoard();
 
+		///
+		/// Methods for the operation of the render on the billboard
+		///
 		void
 		render1();
+		
 		void
 		render2();
+#endif // OPENGL
 };

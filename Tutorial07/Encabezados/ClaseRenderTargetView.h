@@ -24,17 +24,31 @@ struct RenderTargetViewDesc {
 class ClaseRenderTargetView {
 
 	public:
+
+        ///
+        /// Builder and destroyer
+        ///
 		ClaseRenderTargetView() {};
 		~ClaseRenderTargetView() {};
 
         RenderTargetViewDesc m_renderTVD;
 
-        //Miembros OpenGL
+        ///
+        /// OpenGL members
+        ///
+#ifdef OPENGL
         GLuint m_IdRenderTargetView = 0;
-
+#endif // OPENGL
+        
+        ///
+        /// Methods
+        ///
         void
         Init(RenderTargetViewDesc _rtvd);
 
+        ///
+        /// DIRECTX members
+        ///
 #ifdef D3D11
         ID3D11RenderTargetView* g_pRenderTargetViewD3D11;
         D3D11_RENDER_TARGET_VIEW_DESC m_renderTVD3D11;

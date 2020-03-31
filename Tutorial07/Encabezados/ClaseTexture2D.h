@@ -26,6 +26,10 @@ struct Texture2Desc {
 class ClaseTextura2D {
 
 	public:
+
+        ///
+        /// Builder and destroyer
+        ///
 		ClaseTextura2D() {
 #ifdef D3D11
             m_TextureD3D11 = NULL;
@@ -33,14 +37,23 @@ class ClaseTextura2D {
         };
 		~ClaseTextura2D() {};
 
+        ///
+        /// Members
+        ///
         Texture2Desc m_TextDesc;
 
+        ///
+        /// Main methods for the class
+        ///
 		void
 		Init(Texture2Desc _text);
 
         void*
         GetDepth();
 
+        ///
+        /// DIRECTX members
+        ///
 #ifdef D3D11
         ID3D11Texture2D* m_TextureD3D11;
         D3D11_TEXTURE2D_DESC m_TextDescD3D11;

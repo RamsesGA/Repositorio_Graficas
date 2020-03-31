@@ -4,6 +4,7 @@
 #include "imgui/imgui_impl_glfw_gl3.h"
 #include "../Encabezados/stb_image.h"
 #include <iostream>
+#include <xnamath.h>
 
 ///
 /// Global variables
@@ -11,8 +12,9 @@
 Camera* g_CurrentCamera;
 Camera* g_SecondCamera;
 
-//false Current
-//true Second
+///
+/// false Current, true Second
+///
 bool g_WhichCamera = false;
 
 ///
@@ -20,13 +22,17 @@ bool g_WhichCamera = false;
 ///
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     
+#ifdef OPENGL
     glViewport(0, 0, width, height);
+#endif // OPENGL
 }
+
+#ifdef OPENGL
 
 ///
 /// Initialization function
 ///
-void ClaseOpenGL::InitDevice(){
+void ClaseOpenGL::InitDevice() {
 
     //FrameBuffer();
     m_RenderTarget.InitFrameBuffer();
@@ -71,7 +77,7 @@ HRESULT ClaseOpenGL::FrameBuffer() {
     ///
     /// The texture we're going to render to
     ///
-  
+
     glGenTextures(1, &renderedTexture);
 
     ///
@@ -112,7 +118,7 @@ HRESULT ClaseOpenGL::FrameBuffer() {
     ///
     /// "1" is the size of DrawBuffers
     ///
-    glDrawBuffers(1, DrawBuffers); 
+    glDrawBuffers(1, DrawBuffers);
 
     ///
     /// Always check that our framebuffer is ok
@@ -127,8 +133,8 @@ HRESULT ClaseOpenGL::FrameBuffer() {
 ///
 void ClaseOpenGL::processInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
 }
 
 ///
@@ -142,12 +148,12 @@ void CreateInputCallBack(GLFWwindow* window, int key, int scancode, int action, 
 ///
 /// Receive mouse inputs
 ///
-void MouseButtonCallBack(GLFWwindow*_window, int _button, int _action, int _mods) {
+void MouseButtonCallBack(GLFWwindow* _window, int _button, int _action, int _mods) {
 
     if (_button == GLFW_MOUSE_BUTTON_LEFT && _action == GLFW_PRESS) {
 
         g_CurrentCamera->m_ClickPressed = true;
-        
+
         POINT mousePos;
 
         GetCursorPos(&mousePos);
@@ -173,7 +179,7 @@ int ClaseOpenGL::WindowGLFW() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     m_window = glfwCreateWindow(800, 800, "Ventana de OpenGL", NULL, NULL);
-    
+
     if (m_window == NULL) {
 
         std::cout << "Falla al crear una ventana en GLFW" << std::endl;
@@ -202,7 +208,7 @@ int ClaseOpenGL::WindowGLFW() {
 ///
 /// Function to start the windowand its processes
 ///
-void ClaseOpenGL::GameLoop(){
+void ClaseOpenGL::GameLoop() {
 
     float color1 = 0;
     float color2 = 0;
@@ -259,7 +265,7 @@ void ClaseOpenGL::GameLoop(){
         ImGui_ImplGlfwGL3_NewFrame();
         render1();
         render2();
-        
+
         ///
         /// Conditions to know which camera is being used
         ///
@@ -290,12 +296,16 @@ void ClaseOpenGL::InitCameras()
     FirstCamera.s_FoV = XM_PIDIV4;
 #endif
 
+#ifdef OPENGL
+    FirstCamera.s_FoV = XM_PIDIV4;
+#endif // OPENGL
+
     FirstCamera.s_Height = 800;
     FirstCamera.s_Widht = 800;
 
     m_FreeCamera.Init(FirstCamera);
     m_FPSCamera.Init(FirstCamera);
-    
+
     g_CurrentCamera = &m_FPSCamera;
     g_SecondCamera = &m_FreeCamera;
 }
@@ -303,7 +313,7 @@ void ClaseOpenGL::InitCameras()
 ///
 /// Function to initialize Billboard
 ///
-void ClaseOpenGL::BillBoard(){
+void ClaseOpenGL::BillBoard() {
 
     glGenTextures(1, &m_TextureBillboard);
     glBindTexture(GL_TEXTURE_2D, m_TextureBillboard);
@@ -322,6 +332,9 @@ void ClaseOpenGL::BillBoard(){
     int width, height, nrChannels;
     unsigned char* data = stbi_load("Billboard.jpg", &width, &height, &nrChannels, 0);
 
+    ///
+    /// Condition to check the model load
+    ///
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -331,12 +344,24 @@ void ClaseOpenGL::BillBoard(){
     {
         std::cout << "Failed to load texture" << std::endl;
     }
+
+    ///
+    /// Steps to generate a billboard
+    ///
     glBindTexture(GL_TEXTURE_2D, 0);
     stbi_image_free(data);
+
+    ///
+    /// We generate vectors to obtain the camera position
+    ///
     mathfu::float3 upWordSpace = g_CurrentCamera->GetMUp();
     mathfu::float3 RoghtWordSpace = g_CurrentCamera->GetMRight();
     mathfu::float3 pos;
     SimpleVertex billboard[4];
+
+    ///
+    /// We indicate the position of each point, including UV
+    ///
     billboard[0].Pos = { -0.01f, -0.01f, 0.0f };
     pos = billboard[0].Pos;
     billboard[0].Pos = RoghtWordSpace * (pos.x * 10)
@@ -360,6 +385,7 @@ void ClaseOpenGL::BillBoard(){
     billboard[3].Pos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
     billboard[3].Tex = { 1, -1 };
+
     ///
     /// Generate 1 buffer, put the resulting identifier in vertexbuffer
     ///
@@ -375,20 +401,29 @@ void ClaseOpenGL::BillBoard(){
     ///
     glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * 4, &billboard, GL_STATIC_DRAW);
 
-    WORD indexBuffer[] = {0,1,2,1,3,2};
+    WORD indexBuffer[] = { 0,1,2,1,3,2 };
     //GLuint elementbuffer;// Index Buffer
     glGenBuffers(1, &m_IndexBufferBillBoard);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferBillBoard);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(WORD), &indexBuffer[0], GL_STATIC_DRAW);
 }
 
-void ClaseOpenGL::UpdateBillBoard()
-{
-    
+///
+/// Function to initialize Billboard
+///
+void ClaseOpenGL::UpdateBillBoard() {
+
+    ///
+    /// We generate vectors to obtain the camera position
+    ///
     mathfu::float3 upWordSpace = g_CurrentCamera->GetMUp();
     mathfu::float3 RoghtWordSpace = g_CurrentCamera->GetMRight();
     mathfu::float3 pos;
     SimpleVertex billboard[4];
+
+    ///
+    /// We indicate the position of each point, including UV
+    ///
     billboard[0].Pos = { -0.5f, -0.5f, 0.0f };
     pos = billboard[0].Pos;
     billboard[0].Pos = RoghtWordSpace * (pos.x * 10)
@@ -424,15 +459,17 @@ void ClaseOpenGL::UpdateBillBoard()
     glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * 4, &billboard, GL_STATIC_DRAW);
 }
 
-void ClaseOpenGL::render1()
-{
+///
+/// Function to be able to render and load the generation of texture of the first camera
+///
+void ClaseOpenGL::render1() {
+
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferName);
     glUseProgram(m_programShaderID);
 
     glClearColor(0, 0, 0, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
-
 
     mathfu::float4x4 word = {
         1,0,0,0,
@@ -590,6 +627,9 @@ void ClaseOpenGL::render1()
 
 }
 
+///
+/// Function to be able to render and load the generation of texture of the second camera
+///
 void ClaseOpenGL::render2()
 {
 
@@ -936,3 +976,5 @@ void ClaseOpenGL::render2()
     ImGui::Render();
     ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 }
+#endif // OPENGL
+
