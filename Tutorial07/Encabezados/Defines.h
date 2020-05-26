@@ -42,18 +42,17 @@
 ///
 /// STRUCTS
 ///
-
-
 struct SimpleVertex
 {
     mathfu::float3 Pos;
+    mathfu::float3 Norm;
     mathfu::float2 Tex;
 };
 
 struct CBChangesEveryFrame
 {
-    mathfu::float4x4 mWorld;
-    mathfu::float4 vMeshColor;
+    mathfu::float4x4   mWorld;
+    mathfu::float4     lightDir;
 };
 
 /***********

@@ -6,14 +6,10 @@ GraphicApi::GraphicApi(){}
 
 GraphicApi::~GraphicApi(){}
 
-///
 /// function for loading the DIRECTX mesh
-///
 bool GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer *_importer, ClaseDevice* _dev){
 
-	///
 	/// We import the mesh and save it in a temporary variable
-	///
 	_model = _importer->ReadFile
 											 (_meshPath,
 											 aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_ConvertToLeftHanded |
@@ -23,9 +19,7 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, 
 											 aiProcess_Debone |
 											 0);
 
-	///
 	/// Condition to check if the reading was corrects
-	///
 	if (_model == nullptr){
 
 		std::string toAdvice = "\nCouldn't find the object in the direcction:\n";
@@ -33,17 +27,13 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, 
 		return false;
 	}
 
-	///
 	/// We create new resources
-	///
 	MESH* newmesh = new MESH;
 	char* token = NULL;
 	char* nextToken = NULL;
 	std::string path = _meshPath;
 
-	///
 	/// We look for the textures in the project folder
-	///
 	token = strtok_s((char*)path.c_str(), "/", &nextToken);
 
 	std::string teturesFolder = token;
@@ -79,15 +69,11 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, 
 	return true;
 }
 
-///
 /// function for loading the OPENGL mesh
-///
 #ifdef OPENGL
 bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager) {
 
-	///
 	/// We import the mesh and save it in a temporary variable
-	///
 	_model = m_Importer->ReadFile
 	(
 		_meshPath,
@@ -99,9 +85,7 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEM
 		0
 		);
 
-	///
 	/// Condition to check if the reading was corrects
-	///
 	if (_model == nullptr) {
 
 		std::string toAdvice = "\nCouldn't find the object in the direcction:\n";
@@ -109,17 +93,13 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEM
 		return false;
 	}
 
-	///
 	/// We create new resources
-	///
 	MESH* newmesh = new MESH;
 	char* token = NULL;
 	char* nextToken = NULL;
 	std::string path = _meshPath;
 
-	///
 	/// We look for the textures in the project folder
-	///
 	token = strtok_s((char*)path.c_str(), "/", &nextToken);
 
 	std::string teturesFolder = token;
@@ -129,9 +109,7 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEM
 
 	std::string dirName = newmesh->m_Materials->m_Diroftextures;
 
-	///
 	/// We send the following functions to be able to assign the data in their respective place
-	///
 	MeshRead(_model, newmesh, 0);
 	ReadTextureMesh(_model, newmesh, 0);
 	_sceneManager->AddMesh(newmesh);
@@ -156,22 +134,16 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEM
 }
 #endif // OPENGL
 
-///
 /// DIRECTX mesh reading function
-///
 void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev){
 	
-	///
 	/// We generate the necessary resources to read a mesh
-	///
 	std::vector <std::uint32_t> indis;
 	indis.reserve(_model->mMeshes[_meshIndex]->mNumFaces * 3);
 	int numVertex = _model->mMeshes[_meshIndex]->mNumVertices;
 	int numVIndex = (_model->mMeshes[_meshIndex]->mNumFaces * 3);
 
-	///
 	/// We store the indices in our vector
-	///
 	for (std::uint32_t faceIdx = 0u; faceIdx < _model->mMeshes[_meshIndex]->mNumFaces; faceIdx++)
 	{
 		indis.push_back(_model->mMeshes[_meshIndex]->mFaces[faceIdx].mIndices[0u]);
@@ -182,14 +154,17 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 	SimpleVertex* meshVertex = new SimpleVertex[numVertex];
 	WORD* meshIndex = new WORD[numVIndex];
 
-	///
 	/// We assign the vertices and their positions in their respective place
-	///
 	for (int i = 0; i < numVertex; i++)
 	{
 		meshVertex[i].Pos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
 		meshVertex[i].Pos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
 		meshVertex[i].Pos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
+
+		meshVertex[i].Norm.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
+		meshVertex[i].Norm.y = _model->mMeshes[_meshIndex]->mNormals[i].y;
+		meshVertex[i].Norm.z = _model->mMeshes[_meshIndex]->mNormals[i].z;
+
 		meshVertex[i].Tex.x = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].x;
 		meshVertex[i].Tex.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
 	}
@@ -211,23 +186,17 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 #endif // D3D11
 }
 
-///
 /// function for reading the OPENGL mesh
-///
 #ifdef OPENGL
 void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){
 
-	///
 	/// We generate the necessary resources to read a mesh
-	///
 	std::vector <std::uint32_t> indis;
 	indis.reserve(_model->mMeshes[_meshIndex]->mNumFaces * 3);
 	int numVertex = _model->mMeshes[_meshIndex]->mNumVertices;
 	int numVIndex = (_model->mMeshes[_meshIndex]->mNumFaces * 3);
 	
-	///
 	/// We store the indices in our vector
-	///
 	for (std::uint32_t faceIdx = 0u; faceIdx < _model->mMeshes[_meshIndex]->mNumFaces; faceIdx++)
 	{
 		indis.push_back(_model->mMeshes[_meshIndex]->mFaces[faceIdx].mIndices[0u]);
@@ -238,14 +207,18 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){
 	SimpleVertex* meshVertex = new SimpleVertex[numVertex];
 	WORD* meshIndex = new WORD[numVIndex];
 
-	///
 	/// We assign the vertices and their positions in their respective place
-	///
 	for (int i = 0; i < numVertex; i++)
 	{
 		meshVertex[i].Pos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
 		meshVertex[i].Pos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
 		meshVertex[i].Pos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
+		
+		meshVertex[i].Norm.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
+		meshVertex[i].Norm.y = _model->mMeshes[_meshIndex]->mNormals[i].y;
+		meshVertex[i].Norm.z = _model->mMeshes[_meshIndex]->mNormals[i].z;
+
+
 		meshVertex[i].Tex.x = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].x;
 		meshVertex[i].Tex.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
 	}
@@ -266,9 +239,7 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){
 }
 #endif // OPENGL
 
-///
 /// function to read DIRECTX mesh texture
-///
 void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex, ClaseDevice* _dev) {
 	
 	const aiMaterial* pMaterial = _model->mMaterials[_model->mMeshes[_meshIndex]->mMaterialIndex];
@@ -313,25 +284,19 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 	}
 }
 
-///
 /// function to read OPENGL mesh texture
-///
 #ifdef OPENGL
 void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex){
 
 	const aiMaterial* pMaterial = _model->mMaterials[_model->mMeshes[_meshIndex]->mMaterialIndex];
 
-	///
 	/// Difuse texture
-	///
 	if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
 
 		aiString Path;
 		_mesh->m_Materials->m_HasDifuse = true;
 
-		///
 		/// Within this condition we will look for the extension and format of the textures, in order to assign it to the corresponding mesh
-		///
 		if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &Path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
 
 			_mesh->m_Materials->m_DifuseName = _mesh->m_Materials->m_Diroftextures;
@@ -353,26 +318,17 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 			MultiByteToWideChar(CP_ACP, 0, pngextencion.data(), pngextencion.length(), &wstr[0], stringLength);
 			dir = (LPCWSTR)wstr.c_str();
 
-
-
-			///
 			/// We generate the textures and the bind with the functions integrated by GLFWs
-			///
-
 			glGenTextures(1, &_mesh->m_Materials->m_TextureId);
 			glBindTexture(GL_TEXTURE_2D, _mesh->m_Materials->m_TextureId);
 
-			///
 			/// Set the texture wrapping/filtering options (on the currently bound texture object)
-			///
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-			///
 			/// Load and generate the texture
-			///
 			int width, height, nrChannels;
 			unsigned char* data = stbi_load(pngextencion.c_str(), &width, &height, &nrChannels, 0);
 

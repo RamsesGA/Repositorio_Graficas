@@ -11,6 +11,8 @@
 ///
 Camera* g_CurrentCamera;
 Camera* g_SecondCamera;
+float g_DirLight2[3] = { -1.0f, 0.0f, 0.0f };
+
 
 ///
 /// false Current, true Second
@@ -29,36 +31,28 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 
 #ifdef OPENGL
 
-///
 /// Initialization function
-///
 void ClaseOpenGL::InitDevice() {
 
     //FrameBuffer();
     m_RenderTarget.InitFrameBuffer();
 
-    ///
     /// Initialization of the models
-    ///
     m_SceneManager.Init();
 
-    ///
     /// Loading models
-    ///
+    
     //m_GraphicApi.ChargeMesh("ugandan-knuckles/source/Knuckles.fbx", m_GraphicApi.m_Model, &m_SceneManager);
     m_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", m_GraphicApi.m_Model, &m_SceneManager);
 
-    ///
     /// Load vertex and pixel shader
-    ///
-    m_programShaderID = ClaseShader::LoadShaders("GBufferVS.glsl", "GBufferPS.glsl");
+    //m_programShaderID = ClaseShader::LoadShaders("GBufferVS.glsl", "GBufferPS.glsl");
+    m_programShaderID = ClaseShader::LoadShaders("OpenGLBufferVS.glsl", "OpenGLBufferPS.glsl");
     glUseProgram(m_programShaderID);
 
     m_Buffers.OpenGLVAO();
 
-    ///
     /// We send to call the final process, the GameLoop
-    ///
     GameLoop();
 
     glfwDestroyWindow(m_window);
@@ -66,9 +60,7 @@ void ClaseOpenGL::InitDevice() {
     exit(EXIT_SUCCESS);
 }
 
-///
 /// Function to run FrameBuffer processes
-///
 HRESULT ClaseOpenGL::FrameBuffer() {
 
     glGenFramebuffers(1, &m_frameBufferName);
@@ -150,6 +142,15 @@ void CreateInputCallBack(GLFWwindow* window, int key, int scancode, int action, 
 ///
 void MouseButtonCallBack(GLFWwindow* _window, int _button, int _action, int _mods) {
 
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+
+    if (io.WantCaptureMouse) {
+
+        ImGui_ImplGlfw_MouseButtonCallback(_window, _button, _action, _mods);
+        return;
+    }
+
     if (_button == GLFW_MOUSE_BUTTON_LEFT && _action == GLFW_PRESS) {
 
         g_CurrentCamera->m_ClickPressed = true;
@@ -165,14 +166,10 @@ void MouseButtonCallBack(GLFWwindow* _window, int _button, int _action, int _mod
     }
 }
 
-///
 /// Function to be able to initialize the values of the window
-///
 int ClaseOpenGL::WindowGLFW() {
 
-    ///
     /// GLFW window
-    ///
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -190,9 +187,7 @@ int ClaseOpenGL::WindowGLFW() {
     glfwMakeContextCurrent(m_window);
     glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 
-    ///
     /// Needed in core profile
-    ///
     glewExperimental = true;
     if (glewInit() != GLEW_OK) {
         fprintf(stderr, "Failed to initialize GLEW\n");
@@ -205,9 +200,7 @@ int ClaseOpenGL::WindowGLFW() {
     return 0;
 }
 
-///
 /// Function to start the windowand its processes
-///
 void ClaseOpenGL::GameLoop() {
 
     float color1 = 0;
@@ -215,30 +208,20 @@ void ClaseOpenGL::GameLoop() {
     float color3 = 0;
     FrameBuffer();
     BillBoard();
-    ///
-    /// ImGui initialization for OpenGL
-    ///
 
-    ///
+    /// ImGui initialization for OpenGL
     /// Setup ImGui binding
-    ///
     ImGui::CreateContext();
     ImGui_ImplGlfwGL3_Init(m_window, true);
 
-    ///
     /// Setup style
-    ///
     ImGui::StyleColorsDark();
 
-    ///
     /// Functions to identify an input from the client
-    ///
     glfwSetKeyCallback(m_window, CreateInputCallBack);
     glfwSetMouseButtonCallback(m_window, MouseButtonCallBack);
 
-    ///
     /// Cycle to have the window runnings
-    ///
     while (!glfwWindowShouldClose(m_window)) {
 
         color1 += 0.02f;
@@ -247,21 +230,10 @@ void ClaseOpenGL::GameLoop() {
 
         UpdateBillBoard();
 
-        ///
         /// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
-        ///
-
-        ///
         /// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
-        ///
-
-        ///
         /// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
-        ///
-
-        ///
         /// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
-        ///
         ImGui_ImplGlfwGL3_NewFrame();
         render1();
         render2();
@@ -459,9 +431,7 @@ void ClaseOpenGL::UpdateBillBoard() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * 4, &billboard, GL_STATIC_DRAW);
 }
 
-///
 /// Function to be able to render and load the generation of texture of the first camera
-///
 void ClaseOpenGL::render1() {
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferName);
@@ -483,153 +453,111 @@ void ClaseOpenGL::render1() {
     mathfu::float4x4 projection = g_SecondCamera->GetProjection();
     projection = projection.Transpose();
 
-    ///
     /// word matrix
-    ///
     GLuint MatrixID = glGetUniformLocation(m_programShaderID, "WordMatrix");
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &word[0]);
-    ///
+    
     /// view matrix
-    ///
     MatrixID = glGetUniformLocation(m_programShaderID, "ViewMatrix");
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &view[0]);
 
-    ///
     /// projection matrix
-    ///
     MatrixID = glGetUniformLocation(m_programShaderID, "ProjectionMatrix");
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &projection[0]);
 
+    //Dirección de luz
+    GLuint idLight = glGetUniformLocation(m_programShaderID, "LightDir");
+    float DirLight[4] = { g_DirLight2[0], g_DirLight2[1], g_DirLight2[2], 0 };
+    glUniform4fv(idLight, 1, &DirLight[0]);
+
     for (int i = 0; i < m_SceneManager.m_MeshInScene.size(); i++) {
-
-
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
+
         glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
 
         glVertexAttribPointer
         (
-            ///
             /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-            ///
             0,
-
-            ///
             /// size
-            ///
             3,
-
-            ///
             /// type
-            ///
             GL_FLOAT,
-
-            ///
             /// normalized?
-            ///
             GL_FALSE,
-
-            ///
             /// stride
-            ///
             sizeof(SimpleVertex),
-
-            ///
             /// array buffer offset
-            ///
             (void*)0
             );
 
         glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
         glVertexAttribPointer
         (
-            ///
             /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-            ///
             1,
-
-            ///
             /// size
-            ///
-            2,
-
-            ///
+            3,
             /// type
-            ///
             GL_FLOAT,
-
-            ///
             /// normalized?
-            ///
             GL_FALSE,
-
-            ///
             /// stride
-            ///
             sizeof(SimpleVertex),
-
-            ///
-            /// array buffer offset
-            ///
+            /// array buffer offset, va a tomar del 0 + 3 por el tamaño del flotante
             (unsigned char*)NULL + (3 * sizeof(float))
             );
 
-        ///
+        glVertexAttribPointer
+        (
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            2,
+            /// size
+            2,
+            /// type
+            GL_FLOAT,
+            /// normalized?
+            GL_FALSE,
+            /// stride
+            sizeof(SimpleVertex),
+            /// array buffer offset
+            (unsigned char*)NULL + (6 * sizeof(float))
+        );
+
         /// Draw the triangle
-        ///
-        //glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetIndexBuffer()->m_ID);
 
-        ///
         ///1st attribute buffer : vertices
-        ///
         GLuint texID = glGetUniformLocation(m_programShaderID, "textureDifuse");
 
         glUniform1i(texID, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
 
         glActiveTexture(GL_TEXTURE0 + m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
 
-        //glBindBuffer(GL_ARRAY_BUFFER, g_manager.m_meshes[i].uvBuffer);
-        //glActiveTexture(g_manager.m_meshes[i].m_tex.m_textureID);
-
         glBindTexture(GL_TEXTURE_2D, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
-        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA, g_manager.WindowSize.m_Width, g_
 
-        ///
         ///Draw the triangles
-        ///
         glDrawElements
         (
-            ///
             ///mode
-            ///
             GL_TRIANGLES,
-
-            ///
             ///count
-            ///
             m_SceneManager.m_MeshInScene[i]->GetIndexNum(),
-
-            ///
             ///type
-            ///
             GL_UNSIGNED_SHORT,
-
-            ///
             ///element array buffer offset
-            ///
             (void*)0
             );
 
+        glDisableVertexAttribArray(2);
         glDisableVertexAttribArray(1);
         glDisableVertexAttribArray(0);
     }
-
 }
 
-///
 /// Function to be able to render and load the generation of texture of the second camera
-///
 void ClaseOpenGL::render2()
 {
 
@@ -637,6 +565,7 @@ void ClaseOpenGL::render2()
 
         g_CurrentCamera->MouseRotation();
     }
+
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glUseProgram(m_programShaderID);
 
@@ -656,144 +585,109 @@ void ClaseOpenGL::render2()
     mathfu::float4x4 projection = g_CurrentCamera->GetProjection();
     projection = projection.Transpose();
 
-    ///
     /// word matrix
-    ///
     GLuint MatrixID = glGetUniformLocation(m_programShaderID, "WordMatrix");
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &word[0]);
-    ///
+    
     /// view matrix
-    ///
     MatrixID = glGetUniformLocation(m_programShaderID, "ViewMatrix");
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &view[0]);
 
-    ///
     /// projection matrix
-    ///
     MatrixID = glGetUniformLocation(m_programShaderID, "ProjectionMatrix");
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &projection[0]);
 
+    //Dirección de luz
+    GLuint idLight = glGetUniformLocation(m_programShaderID, "LightDir");
+    float DirLight[4] = { g_DirLight2[0], g_DirLight2[1], g_DirLight2[2], 0 };
+    glUniform4fv(idLight, 1, &DirLight[0]);
+
     for (int i = 0; i < m_SceneManager.m_MeshInScene.size(); i++) {
-
-
+        
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
+
         glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
 
         glVertexAttribPointer
         (
-            ///
             /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-            ///
             0,
-
-            ///
             /// size
-            ///
             3,
-
-            ///
             /// type
-            ///
             GL_FLOAT,
-
-            ///
             /// normalized?
-            ///
             GL_FALSE,
-
-            ///
             /// stride
-            ///
             sizeof(SimpleVertex),
-
-            ///
             /// array buffer offset
-            ///
             (void*)0
             );
 
         glBindBuffer(GL_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetVertexBuffer()->m_ID);
         glVertexAttribPointer
         (
-            ///
             /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-            ///
             1,
-
-            ///
             /// size
-            ///
-            2,
-
-            ///
+            3,
             /// type
-            ///
             GL_FLOAT,
-
-            ///
             /// normalized?
-            ///
             GL_FALSE,
-
-            ///
             /// stride
-            ///
             sizeof(SimpleVertex),
-
-            ///
             /// array buffer offset
-            ///
             (unsigned char*)NULL + (3 * sizeof(float))
             );
 
-        ///
+        glVertexAttribPointer
+        (
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            2,
+            /// size
+            2,
+            /// type
+            GL_FLOAT,
+            /// normalized?
+            GL_FALSE,
+            /// stride
+            sizeof(SimpleVertex),
+            /// array buffer offset
+            (unsigned char*)NULL + (6 * sizeof(float))
+        );
+
         /// Draw the triangle
-        ///
-        //glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_SceneManager.m_MeshInScene[i]->GetIndexBuffer()->m_ID);
 
-        ///
         ///1st attribute buffer : vertices
-        ///
         GLuint texID = glGetUniformLocation(m_programShaderID, "textureDifuse");
 
         glUniform1i(texID, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
 
         glActiveTexture(GL_TEXTURE0 + m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
 
-        //glBindBuffer(GL_ARRAY_BUFFER, g_manager.m_meshes[i].uvBuffer);
-        //glActiveTexture(g_manager.m_meshes[i].m_tex.m_textureID);
-
         glBindTexture(GL_TEXTURE_2D, m_SceneManager.m_MeshInScene[i]->m_Materials->m_TextureId);
-        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA, g_manager.WindowSize.m_Width, g_
 
-        ///
         ///Draw the triangles
-        ///
         glDrawElements
         (
-            ///
             ///mode
-            ///
             GL_TRIANGLES,
 
-            ///
             ///count
-            ///
             m_SceneManager.m_MeshInScene[i]->GetIndexNum(),
 
-            ///
             ///type
-            ///
             GL_UNSIGNED_SHORT,
 
-            ///
             ///element array buffer offset
-            ///
             (void*)0
             );
 
+        glDisableVertexAttribArray(2);
         glDisableVertexAttribArray(1);
         glDisableVertexAttribArray(0);
     }
@@ -801,143 +695,95 @@ void ClaseOpenGL::render2()
     {
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
+
         glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferBillBoard);
 
         glVertexAttribPointer
         (
-            ///
             /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-            ///
             0,
-
-            ///
             /// size
-            ///
             3,
-
-            ///
             /// type
-            ///
             GL_FLOAT,
-
-            ///
             /// normalized?
-            ///
             GL_FALSE,
-
-            ///
             /// stride
-            ///
             sizeof(SimpleVertex),
-
-            ///
             /// array buffer offset
-            ///
             (void*)0
             );
 
         glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferBillBoard);
         glVertexAttribPointer
         (
-            ///
             /// attribute 0. No particular reason for 0, but must match the layout in the shader.
-            ///
             1,
-
-            ///
             /// size
-            ///
-            2,
-
-            ///
+            3,
             /// type
-            ///
             GL_FLOAT,
-
-            ///
             /// normalized?
-            ///
             GL_FALSE,
-
-            ///
             /// stride
-            ///
             sizeof(SimpleVertex),
-
-            ///
             /// array buffer offset
-            ///
             (unsigned char*)NULL + (3 * sizeof(float))
             );
 
-        ///
+        glVertexAttribPointer
+        (
+            /// attribute 0. No particular reason for 0, but must match the layout in the shader.
+            2,
+            /// size
+            2,
+            /// type
+            GL_FLOAT,
+            /// normalized?
+            GL_FALSE,
+            /// stride
+            sizeof(SimpleVertex),
+            /// array buffer offset
+            (unsigned char*)NULL + (6 * sizeof(float))
+        );
+
         /// Draw the triangle
-        ///
-        //glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferBillBoard);
 
-        ///
         ///1st attribute buffer : vertices
-        ///
         GLuint texID = glGetUniformLocation(m_programShaderID, "textureDifuse");
 
         glUniform1i(texID, renderedTexture);
 
         glActiveTexture(GL_TEXTURE0 + renderedTexture);
 
-        //glBindBuffer(GL_ARRAY_BUFFER, g_manager.m_meshes[i].uvBuffer);
-        //glActiveTexture(g_manager.m_meshes[i].m_tex.m_textureID);
-
         glBindTexture(GL_TEXTURE_2D, renderedTexture);
-        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA, g_manager.WindowSize.m_Width, g_
-
-        ///
+        
         ///Draw the triangles
-        ///
         glDrawElements
         (
-            ///
             ///mode
-            ///
             GL_TRIANGLES,
-
-            ///
             ///count
-            ///
             6,
-
-            ///
             ///type
-            ///
             GL_UNSIGNED_SHORT,
-
-            ///
             ///element array buffer offset
-            ///
             (void*)0
             );
 
+        glDisableVertexAttribArray(2);
         glDisableVertexAttribArray(1);
         glDisableVertexAttribArray(0);
     }
 
-    ///
     /// Render ImGui
-    ///
-
-    ///
     /// 1. Show a simple window.
-    ///
-
-    ///
-    /// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
-    ///
     // Display some text (you can use a format string too)
     ImGui::Text("Cambio de Camara");
 
-    ///
     /// Buttons return true when clicked (NB: most widgets return true when edited/activated)
-    ///
     if (ImGui::Button("Button")) {
 
         //Current to Second
@@ -951,9 +797,7 @@ void ClaseOpenGL::render2()
             g_WhichCamera = false;
         }
 
-        ///
         /// Camera switch button
-        ///
         Camera* Temporal = g_SecondCamera;
         g_SecondCamera = g_CurrentCamera;
         g_CurrentCamera = Temporal;
@@ -961,9 +805,7 @@ void ClaseOpenGL::render2()
 
     ImGui::SameLine();
 
-    ///
     /// Conditions to know which camera is being used
-    ///
     if (g_WhichCamera == false) {
 
         ImGui::Text("Primera Camara");
@@ -972,6 +814,9 @@ void ClaseOpenGL::render2()
 
         ImGui::Text("Segunda Camara");
     }
+
+    ImGui::Text("Cambio de Luz");
+    ImGui::SliderFloat3("float", g_DirLight2, -1, 1);
 
     ImGui::Render();
     ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());

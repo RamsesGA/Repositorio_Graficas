@@ -1,9 +1,7 @@
 #pragma once
 #include "Defines.h"
 
-///
 /// Device Structure
-///
 struct DeviceDescriptor {
 
 	UINT s_createDeviceFlags;
@@ -13,24 +11,18 @@ struct DeviceDescriptor {
 	FEATURE_LEVEL	g_featureLevel;
 };
 
-///
 /// Class with Device functions
-///
 class ClaseDevice {
 
 	public:
 		
 		DeviceDescriptor m_DescDevice;
 		
-		///
 		/// Builder and destroyer
-		///
 		ClaseDevice() {};
 		~ClaseDevice() {};
 
-		///
 		/// Methods for device function
-		///
 		void
 		Init(DeviceDescriptor _devDesc);
 		void
@@ -43,9 +35,7 @@ class ClaseDevice {
 		void*
 		GetDev();
 
-		///
 		/// Class members
-		///
 #ifdef D3D11
 		ID3D11Device*		g_pd3dDeviceD3D11;
 		D3D_DRIVER_TYPE		g_driverTypeD3D11;

@@ -12,9 +12,7 @@ class ClaseShader {
 
 	public:
 
-		///
 		/// Builder and destroyer
-		///
 		ClaseShader() {
 #ifdef D3D11
 			m_pVSBlobD3D11 = NULL;
@@ -23,14 +21,10 @@ class ClaseShader {
 
 		~ClaseShader() {};
 
-		///
 		/// Members
-		///
 		ShaderDesc m_ShaderD;
 
-		///
 		/// Main methods for class operation
-		///
 		void
 		Init();
 
@@ -44,18 +38,14 @@ class ClaseShader {
 		Destroy();
 
 
-		///
 		/// DIRECTX members
-		///
 #ifdef D3D11
 		ID3D11VertexShader* g_pVertexShaderD3D11;
 		ID3DBlob* m_pVSBlobD3D11;
 		ID3D11InputLayout* LayoutD3D11;
 #endif 
 
-		///
 		/// OPENGL methods
-		///
 #ifdef OPENGL
 		static GLuint
 		LoadShaders(const char* vertex_file_path, const char* fragment_file_path);

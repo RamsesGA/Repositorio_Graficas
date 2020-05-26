@@ -1,8 +1,6 @@
 #include "..\Encabezados\ClaseBuffer.h"
 
-///
 /// function to initialize Buffer values
-///
 void ClaseBuffer::Init(BufferDescriptor _buff){
 
 	m_DescBuff = _buff;
@@ -68,15 +66,11 @@ void ClaseBuffer::createIndexBuffer(int numindices, const aiScene* _model, WORD*
 }
 #endif // D3D11
 
-///
 /// function to start with OpenGL VAO
-///
 #ifdef OPENGL
 void ClaseBuffer::OpenGLVAO() {
 
-	///
 	///  An array of 3 vectors which represents 3 vertices
-	///
 	static const GLfloat g_vertex_buffer_data[] =
 	{
 	   -1.0f, -1.0f, 0.0f,
@@ -86,20 +80,13 @@ void ClaseBuffer::OpenGLVAO() {
 	};
 
 	//GLuint vertexbuffer;
-
-	///
 	///  This will identify our vertex buffer, Generate 1 buffer, put the resulting identifier in vertexbuffer
-	///
 	glGenBuffers(1, &m_vertexbuffer);
 
-	///
 	/// The following commands will talk about our 'vertexbuffer' buffer
-	///
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexbuffer);
 
-	///
 	/// Give our vertices to OpenGL.
-	///
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
 	unsigned int index[] =
@@ -111,7 +98,7 @@ void ClaseBuffer::OpenGLVAO() {
 	//GLuint elementbuffer;// Index Buffer
 	glGenBuffers(1, &m_elementbuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementbuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), &index[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 7 * sizeof(unsigned int), &index[0], GL_STATIC_DRAW);
 }
 #endif // DEBUG
 
@@ -122,19 +109,13 @@ void ClaseBuffer::OpenGLVAO() {
 #ifdef OPENGL
 void ClaseBuffer::createVertexBuffer(int _numvertex, SimpleVertex* _vertex, GLuint& _buffer) {
 
-	///
 	/// Generate 1 buffer, put the resulting identifier in vertexbuffer
-	///
 	glGenBuffers(1, &_buffer);
 
-	///
 	/// The following commands will talk about our 'vertexbuffer' buffer
-	///
 	glBindBuffer(GL_ARRAY_BUFFER, _buffer);
 
-	///
 	/// Give our vertices to OpenGL.
-	///
 	glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * _numvertex, _vertex, GL_STATIC_DRAW);
 }
 #endif // OPENGL

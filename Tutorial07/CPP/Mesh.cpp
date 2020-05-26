@@ -19,7 +19,7 @@ MESH::MESH(){
 		0,0,1,0.010,
 		0,0,0,1
 	};
-	m_MeshData.vMeshColor = { 1,0,0,1 };
+	//m_MeshData.vMeshColor = { 1,0,0,1 };
 }
 
 ///
@@ -50,7 +50,7 @@ void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseD
 		0,0,1,0.0010,
 		0,0,0,1
 	};
-	m_MeshData.vMeshColor = { 1,0,0,1 };
+	//m_MeshData.vMeshColor = { 1,0,0,1 };
 
 #ifdef D3D11
 	_devCont->g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &m_Materials->m_TexDif);

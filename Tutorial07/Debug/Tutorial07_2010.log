@@ -76,19 +76,17 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(23,44): warning C4100: 'window': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(134,91): warning C4100: 'mods': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(134,79): warning C4100: 'action': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(134,65): warning C4100: 'scancode': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(134,56): warning C4100: 'key': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(143,85): warning C4100: 'mods': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(143,73): warning C4100: 'action': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(143,59): warning C4100: 'scancode': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(143,38): warning C4100: 'window': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(160,66): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(160,54): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(151,77): warning C4100: '_mods': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(151,38): warning C4100: '_window': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(503,23): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(676,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(25,44): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,91): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,79): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,65): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,56): warning C4100: 'key': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,85): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,73): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,59): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,38): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(161,66): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(161,54): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(473,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(605,23): warning C4018: '<': no coinciden signed/unsigned
   Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\bin\Win32\Debug\aplication.exe
