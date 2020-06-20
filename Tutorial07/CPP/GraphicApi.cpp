@@ -43,16 +43,12 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, 
 
 	std::string dirName = newmesh->m_Materials->m_Diroftextures;
 
-	///
 	/// We send the following functions to be able to assign the data in their respective place
-	///
 	MeshRead(_model, newmesh, 0, _dev);
 	ReadTextureMesh(_model, newmesh, 0, _dev);
 	_sceneManager->AddMesh(newmesh);
 
-	///
 	/// Finally we check and start generating the resources of the obtained mesh
-	///
 	if (_model->mNumMeshes > 1){
 
 		for (unsigned int i = 1; i < _model->mNumMeshes; i += (unsigned int)1){
@@ -157,16 +153,24 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 	/// We assign the vertices and their positions in their respective place
 	for (int i = 0; i < numVertex; i++)
 	{
-		meshVertex[i].Pos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
-		meshVertex[i].Pos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
-		meshVertex[i].Pos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
+		meshVertex[i].msPos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
+		meshVertex[i].msPos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
+		meshVertex[i].msPos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
 
-		meshVertex[i].Norm.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
-		meshVertex[i].Norm.y = _model->mMeshes[_meshIndex]->mNormals[i].y;
-		meshVertex[i].Norm.z = _model->mMeshes[_meshIndex]->mNormals[i].z;
+		meshVertex[i].msNormal.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
+		meshVertex[i].msNormal.y = _model->mMeshes[_meshIndex]->mNormals[i].y;
+		meshVertex[i].msNormal.z = _model->mMeshes[_meshIndex]->mNormals[i].z;
 
-		meshVertex[i].Tex.x = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].x;
-		meshVertex[i].Tex.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
+		meshVertex[i].msBinormal.x = _model->mMeshes[_meshIndex]->mBitangents[i].x;
+		meshVertex[i].msBinormal.y = _model->mMeshes[_meshIndex]->mBitangents[i].y;
+		meshVertex[i].msBinormal.z = _model->mMeshes[_meshIndex]->mBitangents[i].z;
+
+		meshVertex[i].msTangent.x = _model->mMeshes[_meshIndex]->mTangents[i].x;
+		meshVertex[i].msTangent.y = _model->mMeshes[_meshIndex]->mTangents[i].y;
+		meshVertex[i].msTangent.z = _model->mMeshes[_meshIndex]->mTangents[i].z;
+		
+		meshVertex[i].texcoord.x = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].x;
+		meshVertex[i].texcoord.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
 	}
 
 	_mesh->SetVertex(meshVertex, numVertex);
@@ -210,17 +214,17 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){
 	/// We assign the vertices and their positions in their respective place
 	for (int i = 0; i < numVertex; i++)
 	{
-		meshVertex[i].Pos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
-		meshVertex[i].Pos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
-		meshVertex[i].Pos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
+		meshVertex[i].msPos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
+		meshVertex[i].msPos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
+		meshVertex[i].msPos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
 		
-		meshVertex[i].Norm.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
-		meshVertex[i].Norm.y = _model->mMeshes[_meshIndex]->mNormals[i].y;
-		meshVertex[i].Norm.z = _model->mMeshes[_meshIndex]->mNormals[i].z;
+		meshVertex[i].msNormal.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
+		meshVertex[i].msNormal.y = _model->mMeshes[_meshIndex]->mNormals[i].y;
+		meshVertex[i].msNormal.z = _model->mMeshes[_meshIndex]->mNormals[i].z;
 
 
-		meshVertex[i].Tex.x = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].x;
-		meshVertex[i].Tex.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
+		meshVertex[i].texcoord.x = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].x;
+		meshVertex[i].texcoord.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
 	}
 
 	_mesh->SetVertex(meshVertex, numVertex);
@@ -244,17 +248,13 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 	
 	const aiMaterial* pMaterial = _model->mMaterials[_model->mMeshes[_meshIndex]->mMaterialIndex];
 
-	///
 	/// Difuse texture
-	///
 	if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
 
 		aiString Path;
 		_mesh->m_Materials->m_HasDifuse = true;
 
-		///
 		/// Within this condition we will look for the extension and format of the textures, in order to assign it to the corresponding mesh
-		///
 		if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &Path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS){
 
 			_mesh->m_Materials->m_DifuseName = _mesh->m_Materials->m_Diroftextures;
@@ -279,7 +279,6 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 #ifdef D3D11
 			D3DX11CreateShaderResourceViewFromFile(_dev->g_pd3dDeviceD3D11, dir, NULL, NULL, &_mesh->m_Materials->m_TexDif, NULL);
 #endif // D3D11
-
 		}
 	}
 }

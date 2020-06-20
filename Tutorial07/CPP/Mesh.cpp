@@ -50,17 +50,11 @@ void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseD
 		0,0,1,0.0010,
 		0,0,0,1
 	};
-	//m_MeshData.vMeshColor = { 1,0,0,1 };
 
 #ifdef D3D11
 	_devCont->g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &m_Materials->m_TexDif);
 	_devCont->g_pImmediateContextD3D11->VSSetShaderResources(0, 1, &m_Materials->m_TexDif);
 #endif // D3D11
-
-	//_devCont->g_pImmediateContextD3D11->UpdateSubresource	(_bufferData->m_BufferD3D11, 0, NULL, &m_MeshData, 0, 0);
-	//
-	//_devCont->g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &_bufferData->m_BufferD3D11);
-	//_devCont->g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &_bufferData->m_BufferD3D11);
 
 	std::string title;
 	std::string title2;
@@ -74,10 +68,6 @@ void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseD
 
 	title += " ";
 	title += title2;
-	
-	//ImGui::Begin(title.c_str(), 0);
-	//ImGui::ColorEdit4("color", m_MeshData.vMeshColor.Vector);
-	//ImGui::End();
 
 	UINT stride = sizeof(SimpleVertex);
 	UINT offset = 0;
@@ -87,24 +77,13 @@ void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseD
 	_devCont->g_pImmediateContextD3D11->IASetVertexBuffers
 	(	0,
 
-		///
 		/// number of buffers we are using
-		///
 		1,
-
-		///
 		/// pointer to the buffers list
-		///
 		&m_VertexBuffer->m_BufferD3D11,
-
-		///
 		/// a uint indicating the size of a single vertex
-		///
 		&stride,
-
-		///
 		/// a uint that indicates the number of the byte in the vertex from which you want to start painting
-		///
 		&offset
 	);
 
@@ -115,21 +94,10 @@ void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseD
 		0
 	);
 
-	///
 	/// Topology type
-	///
-
-	///
 	/// This second function tells Direct3D what type of primitive is used.
-	///
-
-	///
 	/// _devCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	///
-
-	///
 	/// Draws the vertex buffer in the back buffer
-	///
 	_devCont->g_pImmediateContextD3D11->DrawIndexed(m_IndexNum, 0, 0);
 	if (m_Children.size() > 0){}
 #endif // D3D11

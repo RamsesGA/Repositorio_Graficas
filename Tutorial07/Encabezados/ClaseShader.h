@@ -11,7 +11,6 @@ struct ShaderDesc {
 class ClaseShader {
 
 	public:
-
 		/// Builder and destroyer
 		ClaseShader() {
 #ifdef D3D11
@@ -43,6 +42,8 @@ class ClaseShader {
 		ID3D11VertexShader* g_pVertexShaderD3D11;
 		ID3DBlob* m_pVSBlobD3D11;
 		ID3D11InputLayout* LayoutD3D11;
+		ID3D11PixelShader* pPixelShader = NULL;
+		ID3DBlob* pPSBlob = NULL;
 #endif 
 
 		/// OPENGL methods

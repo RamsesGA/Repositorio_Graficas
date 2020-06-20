@@ -1,0 +1,769 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  compilation succeeded; see C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\bin\Win32\OPENGL32_R\LightShaderDX.cso
+  Camera.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Camera.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2665,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2666,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2667,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2668,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,46): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,82): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2690,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2691,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2694,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2695,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2698,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,91): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2715,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2727,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2728,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2729,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,60): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,79): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2743,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2754,73): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(2254,71): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4523,69): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4577,68): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4639,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4707,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4770,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4832,63): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Camera.cpp(73,39): warning C4100: '_view': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Camera.cpp(446,20): warning C4244: '=': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Camera.cpp(447,20): warning C4244: '=': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+  ClaseBuffer.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseBuffer.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseDepthStencil.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseDepthStencil.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseDevice.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseDevice.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseDeviceContext.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseDeviceContext.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseManagerInterfaz.cpp
+  ClaseOpenGL.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2665,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2666,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2667,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2668,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,46): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,82): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2690,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2691,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2694,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2695,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2698,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,91): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2715,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2727,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2728,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2729,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,60): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,79): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2743,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2754,73): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(2254,71): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4523,69): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4577,68): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4639,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4707,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4770,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4832,63): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(25,44): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,91): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,79): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,65): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,56): warning C4100: 'key': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,85): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,73): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,59): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,38): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(161,66): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(161,54): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(525,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(657,23): warning C4018: '<': no coinciden signed/unsigned
+  ClaseRenderTarget.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseRenderTarget.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseRenderTargetView.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseRenderTargetView.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseSampleState.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseSampleState.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseShader.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseShader.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseSwapChain.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseSwapChain.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseTexture2D.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseTexture2D.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  ClaseVertexBuffer.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseVertexBuffer.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseVertexBuffer.cpp(7,47): warning C4100: '_data': parámetro formal sin referencia
+  ClaseViewport.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseViewport.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  CPass.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\CPass.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2665,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2666,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2667,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2668,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,46): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,82): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2690,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2691,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2694,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2695,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2698,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,91): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2715,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2727,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2728,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2729,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,60): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,79): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2743,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2754,73): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(2254,71): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4523,69): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4577,68): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4639,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4707,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4770,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4832,63): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\CPass.cpp(48,23): warning C4018: '<': no coinciden signed/unsigned
+  GraphicApi.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(134,92): warning C4100: '_dev': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(247,99): warning C4100: '_dev': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(271,11): warning C4189: 'direcTextur': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(263,12): warning C4101: 'wtext': variable local sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(313,11): warning C4189: 'direcTextur': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(305,12): warning C4101: 'wtext': variable local sin referencia
+  MaterialApi.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\MaterialApi.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+  Mesh.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp(45,88): warning C4100: '_dev': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp(45,62): warning C4100: '_bufferData': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp(45,39): warning C4100: '_devCont': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp(83,7): warning C4189: 'offset': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\Mesh.cpp(82,7): warning C4189: 'stride': la variable local se ha inicializado pero no se hace referencia a ella
+  SceneManager.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\SceneManager.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+  Compilando...
+  FirstCamera.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2665,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2666,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2667,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2668,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,46): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,82): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2690,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2691,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2694,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2695,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2698,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,91): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2715,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2727,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2728,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2729,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,60): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,79): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2743,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2754,73): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(2254,71): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4523,69): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4577,68): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4639,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4707,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4770,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4832,63): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(88,19): warning C4244: '=': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(89,20): warning C4244: '=': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(118,36): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(118,73): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(119,36): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(119,72): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(138,37): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(138,75): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(139,37): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(139,74): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(146,51): warning C4244: 'argumento': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\FirstCamera.cpp(146,31): warning C4244: 'argumento': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_dx11.cpp
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(12,1): warning C4005: 'DXGI_STATUS_OCCLUDED': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55840): message : vea la definición anterior de 'DXGI_STATUS_OCCLUDED'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(13,1): warning C4005: 'DXGI_STATUS_CLIPPED': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55849): message : vea la definición anterior de 'DXGI_STATUS_CLIPPED'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(14,1): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55858): message : vea la definición anterior de 'DXGI_STATUS_NO_REDIRECTION'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(15,1): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55867): message : vea la definición anterior de 'DXGI_STATUS_NO_DESKTOP_ACCESS'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(16,1): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55876): message : vea la definición anterior de 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(17,1): warning C4005: 'DXGI_STATUS_MODE_CHANGED': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55885): message : vea la definición anterior de 'DXGI_STATUS_MODE_CHANGED'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(18,1): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55894): message : vea la definición anterior de 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(21,1): warning C4005: 'DXGI_ERROR_INVALID_CALL': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55909): message : vea la definición anterior de 'DXGI_ERROR_INVALID_CALL'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(22,1): warning C4005: 'DXGI_ERROR_NOT_FOUND': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55918): message : vea la definición anterior de 'DXGI_ERROR_NOT_FOUND'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(23,1): warning C4005: 'DXGI_ERROR_MORE_DATA': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55927): message : vea la definición anterior de 'DXGI_ERROR_MORE_DATA'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(24,1): warning C4005: 'DXGI_ERROR_UNSUPPORTED': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55936): message : vea la definición anterior de 'DXGI_ERROR_UNSUPPORTED'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(25,1): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55945): message : vea la definición anterior de 'DXGI_ERROR_DEVICE_REMOVED'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(26,1): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55954): message : vea la definición anterior de 'DXGI_ERROR_DEVICE_HUNG'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(27,1): warning C4005: 'DXGI_ERROR_DEVICE_RESET': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55964): message : vea la definición anterior de 'DXGI_ERROR_DEVICE_RESET'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(28,1): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55973): message : vea la definición anterior de 'DXGI_ERROR_WAS_STILL_DRAWING'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(29,1): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55983): message : vea la definición anterior de 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(30,1): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(55992): message : vea la definición anterior de 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(31,1): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56002): message : vea la definición anterior de 'DXGI_ERROR_DRIVER_INTERNAL_ERROR'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(32,1): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56011): message : vea la definición anterior de 'DXGI_ERROR_NONEXCLUSIVE'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(33,1): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56020): message : vea la definición anterior de 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(34,1): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56030): message : vea la definición anterior de 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dxgitype.h(35,1): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56039): message : vea la definición anterior de 'DXGI_ERROR_REMOTE_OUTOFMEMORY'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917,1): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56303): message : vea la definición anterior de 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918,1): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56312): message : vea la definición anterior de 'D3D11_ERROR_FILE_NOT_FOUND'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919,1): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56322): message : vea la definición anterior de 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920,1): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56331): message : vea la definición anterior de 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(608,1): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56279): message : vea la definición anterior de 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d10.h(609,1): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': redefinición de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56288): message : vea la definición anterior de 'D3D10_ERROR_FILE_NOT_FOUND'
+  imgui_impl_glfw_gl3.cpp
+  imgui_impl_win32.cpp
+  imgui_widgets.cpp
+  Tutorial07.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2665,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2666,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2667,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2668,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,46): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,82): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2690,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2691,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2694,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2695,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2698,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,91): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2715,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2727,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2728,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2729,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,60): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,79): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2743,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2754,73): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(2254,71): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4523,69): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4577,68): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4639,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4707,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4770,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4832,63): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(289,28): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(290,27): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(417,45): warning C4100: 'nCmdShow': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(417,30): warning C4100: 'hInstance': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1089,71): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1089,63): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+  Generando código
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(200): warning C4702: no se puede tener acceso al código
+  All 1772 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Generación de código finalizada
+  Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\bin\Win32\OPENGL32_R\aplication.exe

@@ -64,17 +64,13 @@ class Camera {
 		XMMATRIX m_MProjection;
 #endif // OPENGL
 
-		///
 		/// Members needed for the chamber
-		///
 		float angule;
 		float maxAngule = 60;
 
 	public:
 
-		///
 		/// Members needed for the chamber
-		///
 		mathfu::float2 OriginalMousePos;
 
 		ClaseBuffer		g_pCBNeverChangesCamera;
@@ -85,15 +81,11 @@ class Camera {
 
 		mathfu::float4x4 m_View;
 
-		///
 		/// Functions
-		///
 		int 
 		Init(CameraDescriptor _cameraDesc);
 
-		///
 		/// Get
-		///
 		mathfu::float3 GetMUp();
 		mathfu::float3 GetMFront();
 		mathfu::float3 GetMRight();

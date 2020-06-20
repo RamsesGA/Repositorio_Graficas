@@ -35,9 +35,7 @@ class ClaseBuffer {
 		};
 		~ClaseBuffer() {};
 
-		///
 		/// Functions
-		///
 		void
 		Init(BufferDescriptor _buff);
 
@@ -50,16 +48,12 @@ class ClaseBuffer {
 		void
 		Render();
 
-		///
 		/// Members of the buffer class
-		///
 #ifdef D3D11
 		ID3D11Buffer* m_BufferD3D11;
 		D3D11_BUFFER_DESC m_BufferDescD3D11;
 
-		///
 		/// Class methods to create the vertex buffer and the index DIRECTX
-		///
 		static void 
 		createVertexBuffer(int _numvertex, const aiScene* _model, SimpleVertex* _vertex, ID3D11Buffer*& _buffer, ClaseDevice* _dev);
 		static void 
@@ -67,22 +61,16 @@ class ClaseBuffer {
 #endif
 
 #ifdef OPENGL
-		///
 		/// Members for OpenGL operation
-		///
 		GLuint m_ID;// Index Buffer
 		GLuint m_vertexbuffer;
 		GLuint m_elementbuffer;
 
-		///
 		/// Metodos for OpenGL operation
-		///
 		void
 		OpenGLVAO();
 
-		///
 		/// Class methods to create the vertex buffer and the index OPENGL
-		///
 		static void
 		createVertexBuffer(int _numvertex, SimpleVertex* _vertex, GLuint& _buffer);
 		

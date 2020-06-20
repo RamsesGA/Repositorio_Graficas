@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "Camera.h"
 #include "FirstCamera.h"
+#include "CPass.h"
 
 ///
 /// Class with all the essential functions for OpenGL
@@ -17,9 +18,7 @@ class ClaseOpenGL {
 		ClaseOpenGL(){};
 		~ClaseOpenGL(){};
 
-		///
 		/// General Members
-		///
 		SCENEMANAGER			m_SceneManager;
 		GraphicApi				m_GraphicApi;
 		RenderTarget			m_RenderTarget;
@@ -28,9 +27,7 @@ class ClaseOpenGL {
 		FirstCamera             m_FreeCamera;
 		FirstCamera             m_FPSCamera;
 
-		///
 		/// OPENGL Members
-		///
 #ifdef OPENGL
 		GLuint		m_frameBufferName;
 		GLuint		m_programShaderID;
@@ -39,6 +36,8 @@ class ClaseOpenGL {
 		GLuint		m_vertexBufferBillBoard;
 		GLuint		m_IndexBufferBillBoard;
 		GLuint		renderedTexture;
+
+		CPass		m_pass;
 #endif // OPENGL
 
 		
@@ -72,6 +71,9 @@ class ClaseOpenGL {
 		BillBoard();
 		void
 		UpdateBillBoard();
+
+		//Función para IMGUI
+		void ImGuiGL();
 
 		///
 		/// Methods for the operation of the render on the billboard

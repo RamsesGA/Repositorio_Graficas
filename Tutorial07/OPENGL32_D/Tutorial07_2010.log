@@ -1,0 +1,94 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  ClaseOpenGL.cpp
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(5,1): warning C4005: 'OPENGL': redefinición de macro
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp : message : vea la definición anterior de 'OPENGL'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(171): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,2>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(151,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(154): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(185,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_3.h(188): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,3>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(157,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(160): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(192,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_4.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::VectorPacked<T,4>" que se está compilando
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,44): warning C4100: 'numVertex': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(51,30): warning C4100: 'MyVertex': parámetro formal sin referencia
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2662,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2663,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2664,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2665,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2666,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2667,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2668,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,46): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2689,82): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2690,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2691,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2694,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2695,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2698,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,76): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2702,88): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2712,91): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2713,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2715,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2716,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,52): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2717,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2727,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2728,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2729,58): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2730,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2731,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,54): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2732,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,60): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2742,79): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2743,70): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamath.h(2754,73): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(2254,71): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4523,69): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4577,68): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4639,65): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4707,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4770,64): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathconvert.inl(4832,63): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.inl(1269,45): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.inl(1269,56): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.inl(1269,67): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.inl(1269,78): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: la conversión de 'unsigned int' en 'INT' requiere una conversión de restricción
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(25,44): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,91): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,79): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,65): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(126,56): warning C4100: 'key': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,85): warning C4100: 'mods': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,73): warning C4100: 'action': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,59): warning C4100: 'scancode': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(135,38): warning C4100: 'window': parámetro formal sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(161,66): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(161,54): warning C4244: 'argumento': conversión de 'LONG' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(525,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\ClaseOpenGL.cpp(657,23): warning C4018: '<': no coinciden signed/unsigned
+  Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\binOPENGL32_Dx86\aplication.exe

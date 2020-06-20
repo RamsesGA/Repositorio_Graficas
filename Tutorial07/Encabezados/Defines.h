@@ -1,6 +1,9 @@
 #pragma once
-//#define D3D11
-#define OPENGL
+#ifdef D3D11
+    #define D3D11
+#elif OPENGL
+    #define OPENGL
+#endif
 
 ///
 /// Includes
@@ -42,18 +45,42 @@
 ///
 /// STRUCTS
 ///
-struct SimpleVertex
-{
-    mathfu::float3 Pos;
-    mathfu::float3 Norm;
-    mathfu::float2 Tex;
-};
-
 struct CBChangesEveryFrame
 {
-    mathfu::float4x4   mWorld;
-    mathfu::float4     lightDir;
+    mathfu::float4x4    mWorld;
+    mathfu::float4      vMeshColor;
+    mathfu::float4      vViewPos;
 };
+
+struct SimpleVertex
+{
+    mathfu::float3 msPos;
+    mathfu::float3 msNormal;
+    mathfu::float3 msBinormal;
+    mathfu::float3 msTangent;
+    mathfu::float2 texcoord;
+};
+
+struct Lights {
+
+    mathfu::float4 mLightDir;
+    mathfu::float4 lightPointPos;
+    mathfu::float4 lightPointAtt = {1.0f, 0.0f, 0.0f, 0.0f};
+};
+
+///
+/// Structures
+///
+struct CBNeverChanges
+{
+    mathfu::float4x4 mView;
+};
+struct CBChangeOnResize
+{
+    mathfu::float4x4 mProjection;
+};
+
+
 
 /***********
 	Device

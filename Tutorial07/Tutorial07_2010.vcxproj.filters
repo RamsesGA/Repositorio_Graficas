@@ -170,6 +170,9 @@
     <ClInclude Include="imgui\imgui_impl_glfw_gl3.h">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="Encabezados\CPass.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -256,6 +259,9 @@
     <ClCompile Include="imgui\imgui_impl_glfw_gl3.cpp">
       <Filter>CPP</Filter>
     </ClCompile>
+    <ClCompile Include="CPP\CPass.cpp">
+      <Filter>CPP</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Tutorial07.fx">
@@ -271,5 +277,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="ShaderDX.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

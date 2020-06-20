@@ -206,6 +206,7 @@ void ClaseOpenGL::GameLoop() {
     float color1 = 0;
     float color2 = 0;
     float color3 = 0;
+
     FrameBuffer();
     BillBoard();
 
@@ -235,26 +236,44 @@ void ClaseOpenGL::GameLoop() {
         /// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
         /// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
         ImGui_ImplGlfwGL3_NewFrame();
-        render1();
-        render2();
 
-        ///
+        //Generamos una matriz de identidad para mWorld
+        mathfu::float4x4 word = {
+        1,0,0,0,
+        0,1,0,0,
+        0,0,1,0,
+        0,0,0,1
+        };
+
+        //Llenamos os datos de nuestra nueva estructura
+        PassData lightPass;
+
+        lightPass.isDeep = true;
+        lightPass.m_programShaderID = m_programShaderID;
+        lightPass.s_RenderTarget.m_IdRenderTarget = 0; ///En OpenGL RTV es igual a 0
+        lightPass.s_ChangeEF.lightDir = { g_DirLight2[0], g_DirLight2[1], g_DirLight2[2], 0 };
+        lightPass.s_ChangeEF.World = word;
+        lightPass.s_ChangeOR.mProjection = g_CurrentCamera->GetProjection();
+        lightPass.s_NeverChanges.mView = g_CurrentCamera->GetView();
+        lightPass.s_Mesh = &m_SceneManager.m_MeshInScene;
+
+        m_pass.Pass(lightPass);
+        ImGuiGL();
+
+        //render1();
+        //render2();
+
         /// Conditions to know which camera is being used
-        ///
         glfwSwapBuffers(m_window);
         glfwPollEvents();
     }
 
-    ///
     /// Cleanup ImGui
-    ///
     ImGui_ImplGlfwGL3_Shutdown();
     ImGui::DestroyContext();
 }
 
-///
 /// Function to initialize cameras
-///
 void ClaseOpenGL::InitCameras()
 {
     CameraDescriptor FirstCamera;
@@ -282,9 +301,7 @@ void ClaseOpenGL::InitCameras()
     g_SecondCamera = &m_FreeCamera;
 }
 
-///
 /// Function to initialize Billboard
-///
 void ClaseOpenGL::BillBoard() {
 
     glGenTextures(1, &m_TextureBillboard);
@@ -334,29 +351,29 @@ void ClaseOpenGL::BillBoard() {
     ///
     /// We indicate the position of each point, including UV
     ///
-    billboard[0].Pos = { -0.01f, -0.01f, 0.0f };
-    pos = billboard[0].Pos;
-    billboard[0].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[0].msPos = { -0.01f, -0.01f, 0.0f };
+    pos = billboard[0].msPos;
+    billboard[0].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[0].Tex = { -1,1 };
+    billboard[0].texcoord = { -1,1 };
 
-    billboard[1].Pos = { 0.01f, -0.01f, 0.0f };
-    pos = billboard[1].Pos;
-    billboard[1].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[1].msPos = { 0.01f, -0.01f, 0.0f };
+    pos = billboard[1].msPos;
+    billboard[1].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[1].Tex = { 1, 1 };
+    billboard[1].texcoord = { 1, 1 };
 
-    billboard[2].Pos = { -0.01f, 0.01f, 0.0f };
-    pos = billboard[2].Pos;
-    billboard[2].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[2].msPos = { -0.01f, 0.01f, 0.0f };
+    pos = billboard[2].msPos;
+    billboard[2].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[2].Tex = { -1, -1 };
+    billboard[2].texcoord = { -1, -1 };
 
-    billboard[3].Pos = { 0.01f, 0.01f, 0.0f };
-    pos = billboard[3].Pos;
-    billboard[3].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[3].msPos = { 0.01f, 0.01f, 0.0f };
+    pos = billboard[3].msPos;
+    billboard[3].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[3].Tex = { 1, -1 };
+    billboard[3].texcoord = { 1, -1 };
 
     ///
     /// Generate 1 buffer, put the resulting identifier in vertexbuffer
@@ -380,55 +397,90 @@ void ClaseOpenGL::BillBoard() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(WORD), &indexBuffer[0], GL_STATIC_DRAW);
 }
 
-///
 /// Function to initialize Billboard
-///
 void ClaseOpenGL::UpdateBillBoard() {
 
-    ///
     /// We generate vectors to obtain the camera position
-    ///
     mathfu::float3 upWordSpace = g_CurrentCamera->GetMUp();
     mathfu::float3 RoghtWordSpace = g_CurrentCamera->GetMRight();
     mathfu::float3 pos;
     SimpleVertex billboard[4];
 
-    ///
     /// We indicate the position of each point, including UV
-    ///
-    billboard[0].Pos = { -0.5f, -0.5f, 0.0f };
-    pos = billboard[0].Pos;
-    billboard[0].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[0].msPos = { -0.5f, -0.5f, 0.0f };
+    pos = billboard[0].msPos;
+    billboard[0].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[0].Tex = { 0,0 };
+    billboard[0].texcoord = { 0,0 };
 
-    billboard[1].Pos = { 0.5f, -0.5f, 0.0f };
-    pos = billboard[1].Pos;
-    billboard[1].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[1].msPos = { 0.5f, -0.5f, 0.0f };
+    pos = billboard[1].msPos;
+    billboard[1].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[1].Tex = { 1, 0 };
+    billboard[1].texcoord = { 1, 0 };
 
-    billboard[2].Pos = { -0.5f, 0.5f, 0.0f };
-    pos = billboard[2].Pos;
-    billboard[2].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[2].msPos = { -0.5f, 0.5f, 0.0f };
+    pos = billboard[2].msPos;
+    billboard[2].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[2].Tex = { 0, 1 };
+    billboard[2].texcoord = { 0, 1 };
 
-    billboard[3].Pos = { 0.5f, 0.5f, 0.0f };
-    pos = billboard[3].Pos;
-    billboard[3].Pos = RoghtWordSpace * (pos.x * 10)
+    billboard[3].msPos = { 0.5f, 0.5f, 0.0f };
+    pos = billboard[3].msPos;
+    billboard[3].msPos = RoghtWordSpace * (pos.x * 10)
         + upWordSpace * (pos.y * 10);
-    billboard[3].Tex = { 1, 1 };
+    billboard[3].texcoord = { 1, 1 };
 
-    ///
     /// The following commands will talk about our 'vertexbuffer' buffer
-    ///
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferBillBoard);
 
-    ///
     /// Give our vertices to OpenGL.
-    ///
     glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * 4, &billboard, GL_STATIC_DRAW);
+}
+
+
+void ClaseOpenGL::ImGuiGL() {
+
+    //EN EL PASS GENERAR UNA FUNCIÓN PARA EL IMGUI
+    ImGui::Text("Cambio de Camara");
+
+    /// Buttons return true when clicked (NB: most widgets return true when edited/activated)
+    if (ImGui::Button("Button")) {
+
+        //Current to Second
+        if (g_WhichCamera == false) {
+
+            g_WhichCamera = true;
+        }
+        //Second to Current
+        else if (g_WhichCamera == true) {
+
+            g_WhichCamera = false;
+        }
+
+        /// Camera switch button
+        Camera* Temporal = g_SecondCamera;
+        g_SecondCamera = g_CurrentCamera;
+        g_CurrentCamera = Temporal;
+    }
+
+    ImGui::SameLine();
+
+    /// Conditions to know which camera is being used
+    if (g_WhichCamera == false) {
+
+        ImGui::Text("Primera Camara");
+    }
+    else if (g_WhichCamera == true) {
+
+        ImGui::Text("Segunda Camara");
+    }
+
+    ImGui::Text("Cambio de Luz");
+    ImGui::SliderFloat3("float", g_DirLight2, -1, 1);
+
+    ImGui::Render();
+    ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 /// Function to be able to render and load the generation of texture of the first camera
@@ -781,45 +833,6 @@ void ClaseOpenGL::render2()
     /// Render ImGui
     /// 1. Show a simple window.
     // Display some text (you can use a format string too)
-    ImGui::Text("Cambio de Camara");
-
-    /// Buttons return true when clicked (NB: most widgets return true when edited/activated)
-    if (ImGui::Button("Button")) {
-
-        //Current to Second
-        if (g_WhichCamera == false) {
-
-            g_WhichCamera = true;
-        }
-        //Second to Current
-        else if (g_WhichCamera == true) {
-
-            g_WhichCamera = false;
-        }
-
-        /// Camera switch button
-        Camera* Temporal = g_SecondCamera;
-        g_SecondCamera = g_CurrentCamera;
-        g_CurrentCamera = Temporal;
-    }
-
-    ImGui::SameLine();
-
-    /// Conditions to know which camera is being used
-    if (g_WhichCamera == false) {
-
-        ImGui::Text("Primera Camara");
-    }
-    else if (g_WhichCamera == true) {
-
-        ImGui::Text("Segunda Camara");
-    }
-
-    ImGui::Text("Cambio de Luz");
-    ImGui::SliderFloat3("float", g_DirLight2, -1, 1);
-
-    ImGui::Render();
-    ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
+    
 }
 #endif // OPENGL
-
