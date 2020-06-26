@@ -41,10 +41,71 @@
 #endif
 #endif // OPENGL
 
+//
+//Animation Info OPENGL
+//
+const int g_NUM_BONES_VERTEX = 4;
+const int g_MAX_BONES = 250;
 
-///
+
+typedef struct BoneInfo {   //mantiene una matriz ósea que desplaza los vértices al espacio óseo y su matriz de Transformación final.
+
+    mathfu::float4x4 boneOffSet;
+    mathfu::float4x4 finalTransformation;
+};
+
+typedef struct AnimationInfo {  //Almacena datos sobre una animación reproducida, cuándo comenzó a reproducirse, tiempo actual, la animación y duración.
+
+    float   timeStart;
+    float   timeNow;
+    int     animation;
+    float   animationTime;
+};
+
+/*
+    Al crear una transición necesitamos los índices de las dos animaciones que se mezclan,
+    el marco en el que comienza y termina la transición, y la hora actual y de inicio de reproducción.
+*/
+typedef struct TransitionInfo {
+
+    int     animation1;
+    int     animation2;
+    int     frameStart;
+    int     frameEnd;
+    float   timeAnimationStart;
+    float   timeAnimationCurrent;
+};
+
+/*
+    Älmacena mezclas creadas por el usuario que necesitan animaciones que se combinan,
+    y el peso al que los mezclamos (0 es 100% de anim1 y 1 es 100% de anim2).
+*/
+typedef struct BlendInfo {
+
+    int     animation1;
+    int     animation2;
+    float   weight;
+    float   timeAnimationStart;
+    float   timeAnimationCurrent;
+};
+
+typedef struct VertexInfo { //Un solo vértice tiene información sobre su posición, coordenadas normales y uv
+
+    mathfu::float3 position;
+    mathfu::float3 normal;
+    mathfu::float2 texcoord;
+};
+
+struct MatStruct {  //Se usa como una solución alternativa para empacar bien las matrices y enviarlas fácilmente al sombreador.
+
+    mathfu::float4x4 mat;
+};
+
+//
+//Animation Info OPENGL
+//
+
 /// STRUCTS
-///
 struct CBChangesEveryFrame
 {
     mathfu::float4x4    mWorld;
@@ -79,8 +140,6 @@ struct CBChangeOnResize
 {
     mathfu::float4x4 mProjection;
 };
-
-
 
 /***********
 	Device

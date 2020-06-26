@@ -7,12 +7,23 @@
 #include <string>
 #include "MaterialApi.h"
 
+
+typedef struct VertexBoneData { //La cantidad de huesos que tienen esos vertex y los pesos de estos
+
+	GLuint  boneID[g_NUM_BONES_VERTEX] = { 0 };
+	GLfloat weights[g_NUM_BONES_VERTEX] = { 0 };
+
+	void AddBonesData(unsigned int _boneId, float _weightBones);
+};
+
 ///
 /// Class with functions for loading and set of Mesh values
 ///
 class MESH
 {
 	public:
+
+		std::vector <VertexBoneData> m_structVertexBoneData;
 
 		///
 		/// Builder and destroyer

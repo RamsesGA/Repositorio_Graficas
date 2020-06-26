@@ -5,9 +5,20 @@
 #include "../imgui/imgui_impl_dx11.h"
 
 
-///
+
+void VertexBoneData::AddBonesData(unsigned int _boneId, float _weightBones){
+
+	for (int i = 0; i < g_NUM_BONES_VERTEX; i++) {
+
+		if (weights[i] == 0.0) {
+
+			boneID[i] = _boneId;
+			weights[i] = _weightBones;
+		}
+	}
+}
+
 /// initializer
-///
 MESH::MESH(){
 
 	m_VertexBuffer	= new ClaseBuffer;
@@ -19,17 +30,12 @@ MESH::MESH(){
 		0,0,1,0.010,
 		0,0,0,1
 	};
-	//m_MeshData.vMeshColor = { 1,0,0,1 };
 }
 
-///
 /// DESTROYER
-///
 MESH::~MESH(){}
 
-///
 /// Creation of new buffers
-///
 void MESH::Init() {
 
 	m_VertexBuffer	= new ClaseBuffer;
@@ -39,9 +45,7 @@ void MESH::Init() {
 void MESH::Update(){
 }
 
-///
 /// function to start rendering the Meshs
-///
 void MESH::Render(ClaseDeviceContext *_devCont, ClaseBuffer* _bufferData, ClaseDevice* _dev){
 
 	m_MeshData.mWorld = {

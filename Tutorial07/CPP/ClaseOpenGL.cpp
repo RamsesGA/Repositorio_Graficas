@@ -42,11 +42,10 @@ void ClaseOpenGL::InitDevice() {
 
     /// Loading models
     
-    //m_GraphicApi.ChargeMesh("ugandan-knuckles/source/Knuckles.fbx", m_GraphicApi.m_Model, &m_SceneManager);
-    m_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", m_GraphicApi.m_Model, &m_SceneManager);
+    m_GraphicApi.ChargeMesh("ugandan/Knuckles.fbx", m_GraphicApi.m_Model, &m_SceneManager);
+    //m_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", m_GraphicApi.m_Model, &m_SceneManager);
 
     /// Load vertex and pixel shader
-    //m_programShaderID = ClaseShader::LoadShaders("GBufferVS.glsl", "GBufferPS.glsl");
     m_programShaderID = ClaseShader::LoadShaders("OpenGLBufferVS.glsl", "OpenGLBufferPS.glsl");
     glUseProgram(m_programShaderID);
 
@@ -208,7 +207,7 @@ void ClaseOpenGL::GameLoop() {
     float color3 = 0;
 
     FrameBuffer();
-    BillBoard();
+    //BillBoard();
 
     /// ImGui initialization for OpenGL
     /// Setup ImGui binding
@@ -229,7 +228,7 @@ void ClaseOpenGL::GameLoop() {
         color2 = cos(color1);
         color3 = sin(color1);
 
-        UpdateBillBoard();
+        //UpdateBillBoard();
 
         /// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
         /// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
@@ -251,17 +250,25 @@ void ClaseOpenGL::GameLoop() {
         lightPass.isDeep = true;
         lightPass.m_programShaderID = m_programShaderID;
         lightPass.s_RenderTarget.m_IdRenderTarget = 0; ///En OpenGL RTV es igual a 0
-        lightPass.s_ChangeEF.lightDir = { g_DirLight2[0], g_DirLight2[1], g_DirLight2[2], 0 };
-        lightPass.s_ChangeEF.World = word;
+        lightPass.s_Lights.mLightDir = { g_DirLight2[0], g_DirLight2[1], g_DirLight2[2], 0 };
+        lightPass.s_ChangeEF.mWorld = word;
         lightPass.s_ChangeOR.mProjection = g_CurrentCamera->GetProjection();
         lightPass.s_NeverChanges.mView = g_CurrentCamera->GetView();
         lightPass.s_Mesh = &m_SceneManager.m_MeshInScene;
 
+        if (g_CurrentCamera->m_ClickPressed) {
+
+            g_CurrentCamera->MouseRotation();
+        }
+
         m_pass.Pass(lightPass);
+
         ImGuiGL();
 
-        //render1();
-        //render2();
+        /*
+            render1();
+            render2();
+        */
 
         /// Conditions to know which camera is being used
         glfwSwapBuffers(m_window);
@@ -438,7 +445,6 @@ void ClaseOpenGL::UpdateBillBoard() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(SimpleVertex) * 4, &billboard, GL_STATIC_DRAW);
 }
 
-
 void ClaseOpenGL::ImGuiGL() {
 
     //EN EL PASS GENERAR UNA FUNCIÓN PARA EL IMGUI
@@ -476,7 +482,7 @@ void ClaseOpenGL::ImGuiGL() {
         ImGui::Text("Segunda Camara");
     }
 
-    ImGui::Text("Cambio de Luz");
+    ImGui::Text("Directional Light");
     ImGui::SliderFloat3("float", g_DirLight2, -1, 1);
 
     ImGui::Render();

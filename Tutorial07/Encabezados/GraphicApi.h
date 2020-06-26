@@ -18,27 +18,21 @@ class GraphicApi {
 		GraphicApi();
 		~GraphicApi();
 
+
+		//Variables
+		unsigned int m_numBones;
+
 		///
 		/// DIRECTX Methods
 		///
 		bool
 		ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer* _importer, ClaseDevice* _dev);
-
-		///
-		/// OPENGL Methods
-		///
-#ifdef OPENGL
-		bool
-		ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager);
-#endif // OPENGL
 		
 		///
 		/// ASSIMP
 		///
 		const aiScene* m_Model = new const aiScene();
 		Assimp::Importer* m_Importer=new Assimp::Importer();
-
-	private:
 
 		///
 		/// DIRECTX Methods
@@ -53,10 +47,10 @@ class GraphicApi {
 		/// OPENGL Methods
 		///
 #ifdef OPENGL
-		void
-		MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex);
+		void MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex);
 
-		void
-		ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex);
+		void ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex);
+
+		bool ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager);
 #endif // OPENGL
 };

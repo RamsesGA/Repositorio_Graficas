@@ -250,35 +250,35 @@ PS_OUTPUT ps_main(VS_OUTPUT Input)
     float3 specular2 = float3(1, 1, 1);
 
     //dir light
-//    {
-//        //Light
-//        float3 light = normalize(-mLightDir.xyz);
-//
-//        //Dot product
-//        float Ndl = clamp(dot(wsNormal, light), 0, 1);
-//
-//        //Diffuse Ligth
-//        diffuse += diffuse2 * Ndl;
-//
-//#ifdef BLINN
-//        //Reflection Vector
-//        float3 wsReflection = normalize(reflect(-light, wsNormal));
-//
-//        //Specular light
-//        float specPow = pow(clamp(dot(wsViewDir.xyz, wsReflection.xyz), 0, 1), 16) * Ndl;
-//        specular += specular2 * specPow;
-//#endif
-//
-//#ifdef BLINN_PHONG
-//
-//        //Half
-//        float3 wsHalf = normalize(light + wsViewDir.xyz);
-//
-//        //Specular light
-//        float specPow = pow(clamp(dot(wsNormal.xyz, wsHalf.xyz), 0, 1), 16) * Ndl;
-//        specular += specular2 * specPow;
-//#endif
-//    }
+    {
+        //Light
+        float3 light = normalize(-mLightDir.xyz);
+
+        //Dot product
+        float Ndl = clamp(dot(wsNormal, light), 0, 1);
+
+        //Diffuse Ligth
+        diffuse += diffuse2 * Ndl;
+
+#ifdef BLINN
+        //Reflection Vector
+        float3 wsReflection = normalize(reflect(-light, wsNormal));
+
+        //Specular light
+        float specPow = pow(clamp(dot(wsViewDir.xyz, wsReflection.xyz), 0, 1), 16) * Ndl;
+        specular += specular2 * specPow;
+#endif
+
+#ifdef BLINN_PHONG
+
+        //Half
+        float3 wsHalf = normalize(light + wsViewDir.xyz);
+
+        //Specular light
+        float specPow = pow(clamp(dot(wsNormal.xyz, wsHalf.xyz), 0, 1), 16) * Ndl;
+        specular += specular2 * specPow;
+#endif
+    }
 
     //point light
     {

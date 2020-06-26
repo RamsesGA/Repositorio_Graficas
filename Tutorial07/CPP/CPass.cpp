@@ -37,12 +37,13 @@ void CPass::Pass(PassData& _sPassData){
 
     //Dirección de luz
     GLuint idLight = glGetUniformLocation(_sPassData.m_programShaderID, "LightDir");
-    float DirLight[4] = { _sPassData.s_ChangeEF.lightDir[0], _sPassData.s_ChangeEF.lightDir[1], _sPassData.s_ChangeEF.lightDir[2], 0 };
+    float DirLight[4] = { _sPassData.s_Lights.mLightDir[0], _sPassData.s_Lights.mLightDir[1], _sPassData.s_Lights.mLightDir[2], 0 };
     glUniform4fv(idLight, 1, &DirLight[0]);
 
     //Aquí debo agregar lo nuevo
 
     for (int i = 0; i < _sPassData.s_Mesh[0].size(); i++) {
+
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
         glEnableVertexAttribArray(2);
@@ -130,6 +131,7 @@ void CPass::Pass(PassData& _sPassData){
 }
 #endif
 
+#ifdef D3D11
 void CPass::Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _depthStencil, ClaseDeviceContext* _devContext, SCENEMANAGER& _sceneManager, Camera* _camera, ClaseBuffer* _light){
 
     // render target
@@ -200,3 +202,4 @@ int CPass::Init(PassDX& _struct){
 #endif
     return 0;
 }
+#endif

@@ -30,7 +30,7 @@ struct PassData {
 	CBChangesEveryFrame				s_ChangeEF;
 	CBNeverChanges					s_NeverChanges;
 	CBChangeOnResize				s_ChangeOR;
-
+	Lights							s_Lights;
 };
 
 struct PassDX {
@@ -51,15 +51,15 @@ class CPass
 		CPass() {};
 		~CPass() {};
 		
-		PassDX m_PassDX;
-
-		void Render(ClaseRenderTargetView &_renderTargView, ClaseDepthStencil& _depthStencil, ClaseDeviceContext* _devContext, SCENEMANAGER &_sceneManager, Camera *_camera, ClaseBuffer* _light);
-		
-		int Init(PassDX &_struct);
-
 #ifdef D3D11
 		//DirectX
 		void Pass(PassData& _sPassData);
+
+		PassDX m_PassDX;
+
+		void Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _depthStencil, ClaseDeviceContext* _devContext, SCENEMANAGER& _sceneManager, Camera* _camera, ClaseBuffer* _light);
+
+		int Init(PassDX& _struct);
 #else
 		//OpenGL
 		void Pass(PassData& _sPassData);
