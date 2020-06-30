@@ -43,7 +43,6 @@ void ClaseOpenGL::InitDevice() {
     /// Loading models
     
     m_GraphicApi.ChargeMesh("ugandan/Knuckles.fbx", m_GraphicApi.m_Model, &m_SceneManager);
-    //m_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", m_GraphicApi.m_Model, &m_SceneManager);
 
     /// Load vertex and pixel shader
     m_programShaderID = ClaseShader::LoadShaders("OpenGLBufferVS.glsl", "OpenGLBufferPS.glsl");

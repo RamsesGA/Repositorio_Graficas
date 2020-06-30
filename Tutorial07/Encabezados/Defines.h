@@ -15,6 +15,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "assimp/matrix4x4.h"
 
 ///
 /// DIRECTX
@@ -47,6 +48,11 @@
 const int g_NUM_BONES_VERTEX = 4;
 const int g_MAX_BONES = 250;
 
+typedef struct BonesMatrix {
+
+    aiMatrix4x4 boneOffSet;
+    aiMatrix4x4 finalTransformation;
+};
 
 typedef struct BoneInfo {   //mantiene una matriz ósea que desplaza los vértices al espacio óseo y su matriz de Transformación final.
 

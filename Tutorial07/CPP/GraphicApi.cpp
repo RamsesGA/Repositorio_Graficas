@@ -167,6 +167,7 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 
 
 
+
 #ifdef OPENGL
 bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager) {	/// function for loading the OPENGL mesh
 
@@ -229,9 +230,38 @@ bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEM
 	}
 	return true;
 }
-#endif // OPENGL
 
-#ifdef OPENGL
+const aiNodeAnim* GraphicApi::FindNodeAnimations(const aiAnimation* _animation, const std::string _node) {	//Función para poder encontrar y validar la animación
+
+	for (int i = 0; i < _animation->mNumChannels; i++) {
+
+		const aiNodeAnim* tempNode = _animation->mChannels[i];
+		if (std::string(tempNode->mNodeName.data) == _node) {
+
+			return tempNode;
+		}
+	}
+	return nullptr;
+}
+
+void GraphicApi::NodeHierarchy(const aiNode* _node, const aiScene* _model, const aiMatrix4x4 _parentTransform, float _animationTime){
+
+	std::string nodeNames(_node->mName.data);
+	const aiAnimation* animation = _model->mAnimations[0];
+	const aiNodeAnim* nodeAnim = FindNodeAnimations(animation, nodeNames);
+
+	aiMatrix4x4 nodeTransform = _node->mTransformation;
+	aiMatrix4x4 globalTransform = _parentTransform * nodeTransform;
+
+	for (int i = 0; i < _node->mNumChildren; i++) {	//Busca el número de hijos del nodo padre y mandamos recursivo hasta que termine todo el árbol
+
+		BonesMatrix tempBone;
+		tempBone.boneOffSet = _node->mChildren[i]->mTransformation;
+		m_vectorBonesMatrix.push_back(tempBone);
+		NodeHierarchy(_node->mChildren[i], _model, globalTransform, _animationTime);
+	}
+}
+
 void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){	/// function for reading the OPENGL mesh
 
 	/// We generate the necessary resources to read a mesh
@@ -263,8 +293,8 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){	/
 	WORD* meshIndex = new WORD[numVIndex];
 
 	/// We assign the vertices and their positions in their respective place
-	for (int i = 0; i < numVertex; i++)
-	{
+	for (int i = 0; i < numVertex; i++){
+
 		meshVertex[i].msPos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
 		meshVertex[i].msPos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
 		meshVertex[i].msPos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
@@ -277,12 +307,21 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){	/
 		meshVertex[i].texcoord.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
 	}
 
+	//
+	aiMatrix4x4 Identity;
+	const aiAnimation* tempAnim = _model[_meshIndex].mAnimations[_meshIndex];	//Va a almacenar la animación
+	std::string nodeNames = _model[_meshIndex].mAnimations[_meshIndex]->mChannels[_meshIndex]->mNodeName.C_Str();
+	const aiNodeAnim* tempNodeAnim = FindNodeAnimations(tempAnim, nodeNames);
+	float modelTime = _model[_meshIndex].mAnimations[_meshIndex]->mDuration;
+
+	NodeHierarchy(_model->mRootNode, _model, Identity, modelTime);
+
 	_mesh->SetVertex(meshVertex, numVertex);
 
 	ClaseBuffer::createVertexBuffer(numVertex, meshVertex, _mesh->GetVertexBuffer()->m_ID);
 
-	for (int i = 0; i < numVIndex; i++)
-	{
+	for (int i = 0; i < numVIndex; i++){
+
 		meshIndex[i] = (WORD)indis[i];
 	}
 
@@ -290,10 +329,7 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex){	/
 
 	ClaseBuffer::createIndexBuffer(numVIndex, meshIndex, _mesh->GetIndexBuffer()->m_ID);
 }
-#endif // OPENGL
 
-
-#ifdef OPENGL
 void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex){	/// function to read OPENGL mesh texture
 
 	const aiMaterial* pMaterial = _model->mMaterials[_model->mMeshes[_meshIndex]->mMaterialIndex];

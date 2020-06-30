@@ -21,6 +21,7 @@ class GraphicApi {
 
 		//Variables
 		unsigned int m_numBones;
+		std::vector<BonesMatrix> m_vectorBonesMatrix;
 
 		///
 		/// DIRECTX Methods
@@ -52,5 +53,9 @@ class GraphicApi {
 		void ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex);
 
 		bool ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager);
+
+		const aiNodeAnim* FindNodeAnimations(const aiAnimation* _animation, const std::string _node);
+
+		void NodeHierarchy(const aiNode* _node, const aiScene* _model, const aiMatrix4x4 _parentTransform, float _animationTime);
 #endif // OPENGL
 };
