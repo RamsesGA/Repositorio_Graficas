@@ -58,6 +58,24 @@ typedef struct BoneInfo {   //mantiene una matriz ósea que desplaza los vértices
 
     mathfu::float4x4 boneOffSet;
     mathfu::float4x4 finalTransformation;
+
+    //Constructor
+    BoneInfo() {
+
+        boneOffSet = {
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0
+        };
+
+        finalTransformation = {
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0
+        };
+    }
 };
 
 typedef struct AnimationInfo {  //Almacena datos sobre una animación reproducida, cuándo comenzó a reproducirse, tiempo actual, la animación y duración.
@@ -107,33 +125,28 @@ struct MatStruct {  //Se usa como una solución alternativa para empacar bien las
     mathfu::float4x4 mat;
 };
 
+
+
 //
 //Animation Info OPENGL
 //
 
-/// STRUCTS
-struct CBChangesEveryFrame
-{
-    mathfu::float4x4    mWorld;
-    mathfu::float4      vMeshColor;
-    mathfu::float4      vViewPos;
-};
 
-struct SimpleVertex
-{
+
+struct SimpleVertex{
+
     mathfu::float3 msPos;
+    mathfu::float2 texcoord;
+    int boneId[4];
+    float weights[4] = { 0.0f };    //Necesario, para decir que el peso 0 no tiene influencia en el vertice
+    /*
     mathfu::float3 msNormal;
     mathfu::float3 msBinormal;
     mathfu::float3 msTangent;
-    mathfu::float2 texcoord;
+    */
 };
 
-struct Lights {
 
-    mathfu::float4 mLightDir;
-    mathfu::float4 lightPointPos;
-    mathfu::float4 lightPointAtt = {1.0f, 0.0f, 0.0f, 0.0f};
-};
 
 ///
 /// Structures
@@ -145,6 +158,23 @@ struct CBNeverChanges
 struct CBChangeOnResize
 {
     mathfu::float4x4 mProjection;
+};
+// STRUCTS
+struct CBChangesEveryFrame
+{
+    mathfu::float4x4    mWorld;
+    mathfu::float4      vMeshColor;
+    mathfu::float4      vViewPos;
+};
+struct Lights {
+
+    mathfu::float4 mLightDir;
+    mathfu::float4 lightPointPos;
+    mathfu::float4 lightPointAtt = { 1.0f, 0.0f, 0.0f, 0.0f };
+};
+struct ConstBufferBones {
+
+    mathfu::float4x4 bones[100];
 };
 
 /***********

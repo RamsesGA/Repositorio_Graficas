@@ -159,6 +159,9 @@ void CPass::Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _d
     _devContext->g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &_camera->g_pCBNeverChangesCamera.m_BufferD3D11);
     _devContext->g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &_camera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
 
+    _devContext->g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &_camera->g_pCBNeverChangesCamera.m_BufferD3D11);
+    _devContext->g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &_camera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
+    _devContext->g_pImmediateContextD3D11->VSSetConstantBuffers(4, 1, &m_bufferConstantBuffer->m_BufferD3D11);
 
     // al final de render en el pase!!!!!
     for (int i = 0; i < _sceneManager.m_MeshInScene.size(); i++)
@@ -199,6 +202,8 @@ int CPass::Init(PassDX& _struct){
     m_PassDX.s_PixelShader = _struct.s_PixelShader;
     m_PassDX.s_VertexShader = _struct.s_VertexShader;
     m_PassDX.s_ViewPort = _struct.s_ViewPort;
+
+    m_bufferConstantBuffer = _struct.s_boneBuffer;
 #endif
     return 0;
 }

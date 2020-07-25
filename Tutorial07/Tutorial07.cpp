@@ -117,6 +117,14 @@ ClaseBuffer                 g_Lights;
 Lights                      g_sLights;
 ClaseShader                 g_pixelShader;
 
+//Animaciones
+ClaseBuffer                 g_boneBuffer;
+long long                   g_startTime;
+
+#ifdef D3D11
+Assimp::Importer*           g_myImporter = new Assimp::Importer();
+const aiScene*              g_myScene;
+#endif
 
 
 //CPass
@@ -328,11 +336,15 @@ void activateConsole()
 }
 
 /// Forward declarations
+///
+///
 HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);
 HRESULT InitDevice();
 void CleanupDevice();
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void Render();
+long long GetCurrentTimeMS();
+float GetRunnningTime();
 //void Update();
 
 /// Entry point to the program. Initializes everything and goes into a message processing, loop. Idle time is used to render the scene.
@@ -675,7 +687,7 @@ HRESULT InitDevice()
 
     if (FAILED(hr))
         return hr;
- 
+
     /// Create the depth stencil view
     D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
     ZeroMemory(&descDSV, sizeof(descDSV));
@@ -701,13 +713,13 @@ HRESULT InitDevice()
     CView.Init(vp2);
 
     CDevCont.g_pImmediateContextD3D11->RSSetViewports(1, &CView.vpD3D11);
-    
+
     //Definimos la estructura
     PassDX sPassDx;
 
     //-----------------------------------------------------------------------------------------------------------------------
     /// Compile the vertex shader (PROXIMAMENTE MÁS VECES)
-    hr = CompileShaderFromFile(L"ShaderDX.fx", "vs_main", "vs_4_0", &CShader.m_pVSBlobD3D11);
+    hr = CompileShaderFromFile(L"ShaderAnimation.fx", "VS", "vs_4_0", &CShader.m_pVSBlobD3D11);
     if (FAILED(hr))
     {
         MessageBox(NULL,
@@ -736,7 +748,7 @@ HRESULT InitDevice()
     //-----------------------------------------------------------------------------------------------------------------------
     /// Compile the pixel shader
     //ID3DBlob* pPSBlob = NULL;
-    hr = CompileShaderFromFile(L"ShaderDX.fx", "ps_main", "ps_4_0", &g_pixelShader.pPSBlob);
+    hr = CompileShaderFromFile(L"ShaderAnimation.fx", "PS", "ps_4_0", &g_pixelShader.pPSBlob);
     if (FAILED(hr))
     {
         MessageBox(NULL,
@@ -753,35 +765,35 @@ HRESULT InitDevice()
     /// Create vertex buffer
     SimpleVertex vertices[] =
     {
-        {  mathfu::float3(-1.0f, 1.0f, -1.0f), mathfu::float3(0.0f, 0.0f,0.0f) },
-        {  mathfu::float3(1.0f, 1.0f, -1.0f),  mathfu::float3(1.0f, 0.0f,0.0f) },
-        {  mathfu::float3(1.0f, 1.0f, 1.0f),   mathfu::float3(1.0f, 1.0f,0.0f) },
-        {  mathfu::float3(-1.0f, 1.0f, 1.0f),  mathfu::float3(0.0f, 1.0f,0.0f) },
+        {  mathfu::float3(-1.0f, 1.0f, -1.0f), mathfu::float2(0.0f, 0.0f) },
+        {  mathfu::float3(1.0f, 1.0f, -1.0f),  mathfu::float2(1.0f, 0.0f) },
+        {  mathfu::float3(1.0f, 1.0f, 1.0f),   mathfu::float2(1.0f, 1.0f) },
+        {  mathfu::float3(-1.0f, 1.0f, 1.0f),  mathfu::float2(0.0f, 1.0f) },
 
-        {  mathfu::float3(-1.0f, -1.0f, -1.0f),mathfu::float3(0.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, -1.0f, -1.0f), mathfu::float3(1.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, -1.0f, 1.0f),  mathfu::float3(1.0f, 1.0f, 0.0f) },
-        {  mathfu::float3(-1.0f, -1.0f, 1.0f), mathfu::float3(0.0f, 1.0f, 0.0f) },
+        {  mathfu::float3(-1.0f, -1.0f, -1.0f),mathfu::float2(0.0f, 0.0f) },
+        {  mathfu::float3(1.0f, -1.0f, -1.0f), mathfu::float2(1.0f, 0.0f) },
+        {  mathfu::float3(1.0f, -1.0f, 1.0f),  mathfu::float2(1.0f, 1.0f) },
+        {  mathfu::float3(-1.0f, -1.0f, 1.0f), mathfu::float2(0.0f, 1.0f) },
 
-        {  mathfu::float3(-1.0f, -1.0f, 1.0f), mathfu::float3(0.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(-1.0f, -1.0f, -1.0f),mathfu::float3(1.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(-1.0f, 1.0f, -1.0f), mathfu::float3(1.0f, 1.0f, 0.0f) },
-        {  mathfu::float3(-1.0f, 1.0f, 1.0f),  mathfu::float3(0.0f, 1.0f, 0.0f) },
+        {  mathfu::float3(-1.0f, -1.0f, 1.0f), mathfu::float2(0.0f, 0.0f) },
+        {  mathfu::float3(-1.0f, -1.0f, -1.0f),mathfu::float2(1.0f, 0.0f) },
+        {  mathfu::float3(-1.0f, 1.0f, -1.0f), mathfu::float2(1.0f, 1.0f) },
+        {  mathfu::float3(-1.0f, 1.0f, 1.0f),  mathfu::float2(0.0f, 1.0f) },
 
-        {  mathfu::float3(1.0f, -1.0f, 1.0f),  mathfu::float3(0.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, -1.0f, -1.0f), mathfu::float3(1.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, 1.0f, -1.0f),  mathfu::float3(1.0f, 1.0f, 0.0f) },
-        {  mathfu::float3(1.0f, 1.0f, 1.0f),   mathfu::float3(0.0f, 1.0f, 0.0f) },
+        {  mathfu::float3(1.0f, -1.0f, 1.0f),  mathfu::float2(0.0f, 0.0f) },
+        {  mathfu::float3(1.0f, -1.0f, -1.0f), mathfu::float2(1.0f, 0.0f) },
+        {  mathfu::float3(1.0f, 1.0f, -1.0f),  mathfu::float2(1.0f, 1.0f) },
+        {  mathfu::float3(1.0f, 1.0f, 1.0f),   mathfu::float2(0.0f, 1.0f) },
 
-        {  mathfu::float3(-1.0f, -1.0f, -1.0f),mathfu::float3(0.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, -1.0f, -1.0f), mathfu::float3(1.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, 1.0f, -1.0f),  mathfu::float3(1.0f, 1.0f, 0.0f) },
-        {  mathfu::float3(-1.0f, 1.0f, -1.0f), mathfu::float3(0.0f, 1.0f, 0.0f) },
+        {  mathfu::float3(-1.0f, -1.0f, -1.0f),mathfu::float2(0.0f, 0.0f) },
+        {  mathfu::float3(1.0f, -1.0f, -1.0f), mathfu::float2(1.0f, 0.0f) },
+        {  mathfu::float3(1.0f, 1.0f, -1.0f),  mathfu::float2(1.0f, 1.0f) },
+        {  mathfu::float3(-1.0f, 1.0f, -1.0f), mathfu::float2(0.0f, 1.0f) },
 
-        {  mathfu::float3(-1.0f, -1.0f, 1.0f), mathfu::float3(0.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, -1.0f, 1.0f),  mathfu::float3(1.0f, 0.0f, 0.0f) },
-        {  mathfu::float3(1.0f, 1.0f, 1.0f),   mathfu::float3(1.0f, 1.0f, 0.0f) },
-        {  mathfu::float3(-1.0f, 1.0f, 1.0f),  mathfu::float3(0.0f, 1.0f, 0.0f) },
+        {  mathfu::float3(-1.0f, -1.0f, 1.0f), mathfu::float2(0.0f, 0.0f) },
+        {  mathfu::float3(1.0f, -1.0f, 1.0f),  mathfu::float2(1.0f, 0.0f) },
+        {  mathfu::float3(1.0f, 1.0f, 1.0f),   mathfu::float2(1.0f, 1.0f) },
+        {  mathfu::float3(-1.0f, 1.0f, 1.0f),  mathfu::float2(0.0f, 1.0f) },
     };
 
     BufferDescriptor bd2;
@@ -845,10 +857,10 @@ HRESULT InitDevice()
 
     /// Set index bufferUINT stride = sizeof(SimpleVertex);
     CDevCont.g_pImmediateContextD3D11->IASetIndexBuffer(CIndexBuffer.m_Buffer.m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
- 
+
     /// Set primitive topology
     CDevCont.g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
- 
+
     /// Create the constant buffers
     bd2.Usage = USAGE_DEFAULT;
     bd2.ByteWidth = sizeof(CBNeverChanges);
@@ -899,11 +911,15 @@ HRESULT InitDevice()
     if (FAILED(hr))
         return hr;
 
+    bd2.ByteWidth = sizeof(ConstBufferBones);
+    g_boneBuffer.Init(bd2);
+    hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&g_boneBuffer.m_BufferDescD3D11, NULL, &g_boneBuffer.m_BufferD3D11);
+
     /// Load the Texture
     hr = D3DX11CreateShaderResourceViewFromFile(CDev.g_pd3dDeviceD3D11, L"seafloor.dds", NULL, NULL, &g_pTextureRV, NULL);
     if (FAILED(hr))
         return hr;
- 
+
     /// Create the sample state
     SampleStateDesc sampDesc2;
     sampDesc2.Filter = FILTER_MIN_MAG_MIP_LINEAR;
@@ -921,7 +937,7 @@ HRESULT InitDevice()
 
     /// Initialize the world matrices
     g_World = g_World.Identity();
- 
+
     /// Initialize the view matrix
     mathfu::Vector<float, 4> Eye(0.0f, 3.0f, -6.0f, 0.0f);
     mathfu::Vector<float, 4> At(0.0f, 1.0f, 0.0f, 0.0f);
@@ -1010,14 +1026,15 @@ HRESULT InitDevice()
     InitCameras();
 
     /// API GRAPHIC
-    G_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
+    //G_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
     //G_GraphicApi.ChargeMesh("PistolaOBJ/drakefire_pistol_low.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
-
+    g_myScene = G_GraphicApi.ChargeMesh("Dwarf/dwarf.x", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev);
 
     sPassDx.s_InputLayout = &CShader;
     sPassDx.s_PixelShader = &g_pixelShader;
     sPassDx.s_VertexShader = &CShader;
     sPassDx.s_ViewPort = &CView;
+    sPassDx.s_boneBuffer = &g_boneBuffer;
 
     g_pass.Init(sPassDx);
 
@@ -1159,6 +1176,27 @@ void Render()
     //        dwTimeStart = dwTimeCur;
     //    t = (dwTimeCur - dwTimeStart) / 1000.0f;
     //}
+
+    //
+    //Animación
+    //
+    std::vector<mathfu::float4x4> transforms;
+
+    float runningTime = GetRunnningTime();
+
+    G_GraphicApi.BoneTransform(runningTime, transforms, g_myScene, &G_SceneManager);
+
+    ConstBufferBones cBBone;
+
+    for (int i = 0; i < transforms.size(); i++) {
+
+        if (i < 100) {
+
+            cBBone.bones[i] = transforms[i];
+        }
+    }
+
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_boneBuffer.m_BufferD3D11, 0 , NULL, &cBBone, 0, 0);
 
     Lights sLights;
     sLights.mLightDir = g_DirLight;
@@ -1324,3 +1362,16 @@ void Render()
     CSwap.g_pSwapChainD3D11->Present(0, 0);
 }
 #endif
+
+long long GetCurrentTimeMS() {
+
+#ifdef WIN32
+    return GetTickCount();
+#endif
+}
+
+float GetRunnningTime() {
+
+    float runningTime = (float)((double)GetCurrentTimeMS() - (double)g_startTime) / 1000.0f;
+    return runningTime;
+}

@@ -42,6 +42,8 @@ struct PassDX {
 	ClaseShader* s_PixelShader;
 
 	ClaseViewport* s_ViewPort;
+
+	ClaseBuffer* s_boneBuffer;
 };
 
 class CPass
@@ -51,6 +53,8 @@ class CPass
 		CPass() {};
 		~CPass() {};
 		
+		ClaseBuffer* m_bufferConstantBuffer;
+
 #ifdef D3D11
 		//DirectX
 		void Pass(PassData& _sPassData);

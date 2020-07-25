@@ -5,7 +5,7 @@
 #include "../imgui/imgui_impl_dx11.h"
 
 
-
+//Función para llenar los pesos de los huesos y darle prioridad para los vertices
 void VertexBoneData::AddBonesData(unsigned int _boneId, float _weightBones){
 
 	for (int i = 0; i < g_NUM_BONES_VERTEX; i++) {
@@ -17,6 +17,7 @@ void VertexBoneData::AddBonesData(unsigned int _boneId, float _weightBones){
 		}
 	}
 }
+
 
 /// initializer
 MESH::MESH(){
@@ -30,6 +31,7 @@ MESH::MESH(){
 		0,0,1,0.010,
 		0,0,0,1
 	};
+	m_numBones = 0;
 }
 
 /// DESTROYER

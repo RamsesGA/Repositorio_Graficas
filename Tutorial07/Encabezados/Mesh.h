@@ -7,11 +7,13 @@
 #include <string>
 #include "MaterialApi.h"
 
+#include <map>
+
 
 typedef struct VertexBoneData { //La cantidad de huesos que tienen esos vertex y los pesos de estos
 
-	GLuint  boneID[g_NUM_BONES_VERTEX] = { 0 };
-	GLfloat weights[g_NUM_BONES_VERTEX] = { 0 };
+	float boneID[g_NUM_BONES_VERTEX] = { 0 };
+	float weights[g_NUM_BONES_VERTEX] = { 0 };
 
 	void AddBonesData(unsigned int _boneId, float _weightBones);
 };
@@ -113,4 +115,9 @@ class MESH
 		int					m_SceneId		= -1;
 		CBChangesEveryFrame m_MeshData;
 
+		//Variables para la animación
+		int m_numBones;
+		std::map<std::string, int> m_boneMapping;
+		std::vector<VertexBoneData> m_bonesVertex;
+		std::vector<BoneInfo> m_boneInfo;
 };
