@@ -36,13 +36,9 @@ struct PassData {
 struct PassDX {
 
 	ClaseShader* s_InputLayout;
-
 	ClaseShader* s_VertexShader;
-
 	ClaseShader* s_PixelShader;
-
 	ClaseViewport* s_ViewPort;
-
 	ClaseBuffer* s_boneBuffer;
 };
 
@@ -50,9 +46,11 @@ class CPass
 {
 
 	public:
-		CPass() {};
-		~CPass() {};
-		
+		CPass() = default;
+		~CPass() = default;
+
+		std::vector<ClaseRenderTargetView*>* m_vectorRTV;
+
 		ClaseBuffer* m_bufferConstantBuffer;
 
 #ifdef D3D11

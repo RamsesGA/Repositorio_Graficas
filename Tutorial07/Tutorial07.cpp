@@ -1028,7 +1028,7 @@ HRESULT InitDevice()
     /// API GRAPHIC
     //G_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
     //G_GraphicApi.ChargeMesh("PistolaOBJ/drakefire_pistol_low.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
-    g_myScene = G_GraphicApi.ChargeMesh("Dwarf/dwarf.x", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev);
+    g_myScene = G_GraphicApi.ChargeMesh("ugandan/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev);
 
     sPassDx.s_InputLayout = &CShader;
     sPassDx.s_PixelShader = &g_pixelShader;

@@ -1,7 +1,7 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-  GraphicApi.cpp
+  Tutorial07.cpp
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Defines.h(3,1): warning C4005: 'D3D11': redefinición de macro
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp : message : vea la definición anterior de 'D3D11'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp : message : vea la definición anterior de 'D3D11'
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(135,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(138): message : Vea la referencia a la creación de una instancia de clase plantilla "mathfu::Vector<T,2>" que se está compilando
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\includes\mathfu\internal\vector_2.h(168,1): warning C4201: se ha utilizado una extensión no estándar: struct/union sin especificar
@@ -141,88 +141,30 @@ C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutoria
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(19,2): warning C4091: 'typedef ': se ha omitido a la izquierda de 'VertexBoneData' cuando no hay ninguna variable declarada
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(64,44): warning C4100: 'numVertex': parámetro formal sin referencia
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(64,30): warning C4100: 'MyVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(75,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(80,23): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(84,22): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(89,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(98,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(100,22): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(111,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(136,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(136,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(137,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(137,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(138,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(138,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(139,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(139,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(141,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(141,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(142,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(142,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(143,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(143,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(144,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(144,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(146,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(146,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(147,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(147,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(148,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(148,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(149,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(149,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(151,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(151,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(152,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(152,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(153,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(153,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(154,23): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(154,18): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(199,27): warning C4244: 'argumento': conversión de 'float' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(199,21): warning C4244: 'argumento': conversión de 'float' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(200,27): warning C4244: 'argumento': conversión de 'float' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(200,21): warning C4244: 'argumento': conversión de 'float' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(201,27): warning C4244: 'argumento': conversión de 'float' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(201,21): warning C4244: 'argumento': conversión de 'float' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(223,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(308,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(325,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(342,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(393,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(393,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(394,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(394,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(395,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(395,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(396,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(396,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(398,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(398,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(399,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(399,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(400,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(400,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(401,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(401,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(403,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(403,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(404,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(404,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(405,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(405,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(406,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(406,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(408,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(408,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(409,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(409,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(410,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(410,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(411,48): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(411,43): warning C4244: 'argumento': conversión de 'double' a 'const int'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(417,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(501,11): warning C4189: 'direcTextur': la variable local se ha inicializado pero no se hace referencia a ella
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\CPP\GraphicApi.cpp(493,12): warning C4101: 'wtext': variable local sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(146,22): warning C4459: la declaración de 'width' oculta la declaración global
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(108,29): message : vea la declaración de 'width'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(147,23): warning C4459: la declaración de 'height' oculta la declaración global
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(109,29): message : vea la declaración de 'height'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(153,31): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(154,30): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(165,33): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(166,32): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(259,24): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(260,25): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(288,28): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(289,27): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(532,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(616,10): warning C4189: 'numFeatureLevels': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1022,14): warning C4189: 'io': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1131,71): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1131,63): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1192,23): warning C4018: '<': no coinciden signed/unsigned
   Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\binDIRECTX_Dx86\aplication.exe
