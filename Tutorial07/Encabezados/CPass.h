@@ -10,6 +10,7 @@
 #include "Encabezados/ClaseDeviceContext.h"
 #include "Encabezados/ClaseViewport.h"
 #include "Encabezados/ClaseRenderTargetView.h"
+#include "Encabezados/ClaseTexture2D.h"
 #include "Camera.h"
 
 struct PassData {
@@ -35,35 +36,79 @@ struct PassData {
 
 struct PassDX {
 
-	ClaseShader* s_InputLayout;
-	ClaseShader* s_VertexShader;
-	ClaseShader* s_PixelShader;
-	ClaseViewport* s_ViewPort;
-	ClaseBuffer* s_boneBuffer;
+	D3D11_RASTERIZER_DESC s_rasterizer;
+	ClaseDeviceContext* s_deviceContext;
+	ClaseDevice* s_device;
+	ClaseViewport* s_viewport;
+	Texture2Desc s_texture2Desc;
+	unsigned int s_renderTargetViewAccountant;
 };
 
 class CPass
 {
-
 	public:
+		//
+		//Miembros;
+		//
+		ClaseBuffer* m_bufferConstantBuffer;
+		std::vector<ClaseRenderTargetView*>* m_vectorRTV;
+	
+		//
+		//Métodos
+		//
+		CPass() : m_deviceContext(nullptr), m_ViewPort(nullptr){};
 		CPass() = default;
 		~CPass() = default;
-
-		std::vector<ClaseRenderTargetView*>* m_vectorRTV;
-
-		ClaseBuffer* m_bufferConstantBuffer;
-
-#ifdef D3D11
+	
 		//DirectX
+	#ifdef D3D11
+		//
+		//Miembros
+		//
+	
+		//Guardamos los resultados de render targets de otros pases que se llegen a necesitar
+		std::vector<ID3D11ShaderResourceView*> m_vectorShaderResorceView;
+		//Guardamos las texturas generadas
+		std::vector<ClaseTextura2D*> m_texture2D;
+		//Resultado de un shader resorce view
+		std::vector<ID3D11RenderTargetView*> m_vectorRendTargView;
+		ID3D11RasterizerState* m_rasterizerState;
+		ClaseDeviceContext* m_deviceContext;
+		ClaseShader* m_InputLayout;
+		ClaseShader* m_VertexShader;
+		ClaseShader* m_PixelShader;
+		ClaseViewport* m_ViewPort;
+	
+		//
+		//Métodos
+		//
+	
+		//Función para poder agregarlos al vector de nuestro shader resource
+		void SetShaderResource(ClaseDevice* _device, ClaseTextura2D* _texture2d);
+	
+		//Función para mandar a llamar SetRT y SetShader
+		void SetPass(ClaseDepthStencil* _depthStencilView);
+	
+		//Función para decirle a la tarjeta que dibujar
+		void Draw(SCENEMANAGER* _sceneManager, UINT _sizeSimpleVertex);
+			
+		//Función para limpiar la pantalla
+		void ClearWindow(float _clearColor[4], ClaseDepthStencil* _depthStencilView);
+	
+		//Le decimos a la tarjeta que shader usar
+		void SetShader();
+	
+		//Le decimos al shader el o las diferentes RT que va a dibujar
+		void SetRenderTarget(ClaseDepthStencil* _depthStencilView);
+	
 		void Pass(PassData& _sPassData);
-
-		PassDX m_PassDX;
-
+	
 		void Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _depthStencil, ClaseDeviceContext* _devContext, SCENEMANAGER& _sceneManager, Camera* _camera, ClaseBuffer* _light);
-
-		int Init(PassDX& _struct);
-#else
+	
+		void Init(PassDX _struct);
+	
+	#else
 		//OpenGL
 		void Pass(PassData& _sPassData);
-#endif
+	#endif
 };

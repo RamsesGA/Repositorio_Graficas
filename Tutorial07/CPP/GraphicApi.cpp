@@ -7,7 +7,7 @@ GraphicApi::GraphicApi(){}
 GraphicApi::~GraphicApi(){}
 
 /// function for loading the DIRECTX mesh
-const aiScene* GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer *_importer, ClaseDevice* _dev){
+const aiScene* GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer *_importer, ClaseDevice* _dev, char* _diffuse, char* _normal, char* _specular){
 
 	/// We import the mesh and save it in a temporary variable
 	_model = _importer->ReadFile
@@ -45,7 +45,30 @@ const aiScene* GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _scen
 
 	/// We send the following functions to be able to assign the data in their respective place
 	MeshRead(_model, newmesh, 0, _dev);
-	ReadTextureMesh(_model, newmesh, 0, _dev);
+
+	//Nuevo, guardamos los datos
+	if (_diffuse != ""){
+
+		wchar_t text[50];
+		mbstowcs(text, _diffuse, strlen(_diffuse) + 1);
+		LPWSTR srcFile = text;
+		D3DX11CreateShaderResourceViewFromFile(_dev->g_pd3dDeviceD3D11, srcFile, NULL, NULL, &newmesh->m_Materials->m_TexDif, NULL);
+	}
+	if (_normal != ""){
+
+		wchar_t text[50];
+		mbstowcs(text, _normal, strlen(_normal) + 1);
+		LPWSTR srcFile = text;
+		D3DX11CreateShaderResourceViewFromFile(_dev->g_pd3dDeviceD3D11, srcFile, NULL, NULL, &newmesh->m_Materials->m_TexNorm, NULL);
+	}
+	if (_specular != ""){
+
+		wchar_t text[50];
+		mbstowcs(text, _specular, strlen(_specular) + 1);
+		LPWSTR srcFile = text;
+		D3DX11CreateShaderResourceViewFromFile(_dev->g_pd3dDeviceD3D11, srcFile, NULL, NULL, &newmesh->m_Materials->m_TexSpec, NULL);
+	}
+
 	_sceneManager->AddMesh(newmesh);
 
 	/// Finally we check and start generating the resources of the obtained mesh
@@ -55,10 +78,13 @@ const aiScene* GraphicApi::ChargeMesh(const char* _meshPath, SCENEMANAGER* _scen
 
 			MESH* childmesh = new MESH;
 			childmesh->SetParent(newmesh);
+
 			newmesh->AddChildren(childmesh);
+
 			childmesh->m_Materials->m_Diroftextures = dirName;
+
 			MeshRead(_model, childmesh, i, _dev);
-			ReadTextureMesh(_model, childmesh, i, _dev);
+
 			_sceneManager->AddMesh(childmesh);
 		}
 	}
@@ -368,7 +394,8 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 	SimpleVertex* meshVertex = new SimpleVertex[numVertex];
 	WORD* meshIndex = new WORD[numVIndex];
 
-	for (int i = 0; i < numBones; i++) {
+	//Descomentar para regresar a las animaciones
+	/*for (int i = 0; i < numBones; i++) {
 
 		int boneIndex = 0;
 
@@ -423,24 +450,24 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 
 			}
 		}
-	}
+	}*/
 
 	/// We store the indices in our vector
-	for (std::uint32_t faceIdx = 0u; faceIdx < _model->mMeshes[_meshIndex]->mNumFaces; faceIdx++)
-	{
+	for (std::uint32_t faceIdx = 0u; faceIdx < _model->mMeshes[_meshIndex]->mNumFaces; faceIdx++){
+
 		indis.push_back(_model->mMeshes[_meshIndex]->mFaces[faceIdx].mIndices[0u]);
 		indis.push_back(_model->mMeshes[_meshIndex]->mFaces[faceIdx].mIndices[1u]);
 		indis.push_back(_model->mMeshes[_meshIndex]->mFaces[faceIdx].mIndices[2u]);
 	}
 
 	/// We assign the vertices and their positions in their respective place
-	for (int i = 0; i < numVertex; i++)
-	{
+	for (int i = 0; i < numVertex; i++){
+
 		meshVertex[i].msPos.x = _model->mMeshes[_meshIndex]->mVertices[i].x;
 		meshVertex[i].msPos.y = _model->mMeshes[_meshIndex]->mVertices[i].y;
 		meshVertex[i].msPos.z = _model->mMeshes[_meshIndex]->mVertices[i].z;
 
-		/*meshVertex[i].msNormal.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
+		meshVertex[i].msNormal.x = _model->mMeshes[_meshIndex]->mNormals[i].x;
 		meshVertex[i].msNormal.y = _model->mMeshes[_meshIndex]->mNormals[i].y;
 		meshVertex[i].msNormal.z = _model->mMeshes[_meshIndex]->mNormals[i].z;
 
@@ -450,7 +477,7 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 
 		meshVertex[i].msTangent.x = _model->mMeshes[_meshIndex]->mTangents[i].x;
 		meshVertex[i].msTangent.y = _model->mMeshes[_meshIndex]->mTangents[i].y;
-		meshVertex[i].msTangent.z = _model->mMeshes[_meshIndex]->mTangents[i].z;*/
+		meshVertex[i].msTangent.z = _model->mMeshes[_meshIndex]->mTangents[i].z;
 		
 		meshVertex[i].texcoord.x = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].x;
 		meshVertex[i].texcoord.y = _model->mMeshes[_meshIndex]->mTextureCoords[0][i].y;
@@ -462,8 +489,8 @@ void GraphicApi::MeshRead(const aiScene* _model, MESH* _mesh, int _meshIndex, Cl
 	ClaseBuffer::createVertexBuffer(numVertex, _model, meshVertex, _mesh->GetVertexBuffer()->m_BufferD3D11, _dev);
 #endif // D3D11
 
-	for (int i = 0; i < numVIndex; i++)
-	{
+	for (int i = 0; i < numVIndex; i++){
+
 		meshIndex[i] = (WORD)indis[i];
 	}
 	_mesh->SetIndexList(meshIndex, numVIndex);
@@ -512,9 +539,6 @@ void GraphicApi::ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIn
 		}
 	}
 }
-
-
-
 
 #ifdef OPENGL
 bool GraphicApi::ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager) {	/// function for loading the OPENGL mesh

@@ -10,14 +10,11 @@ class MaterialApi
 	public:
 
 		///
-		/// Builder and destroyer
+		/// Main methods for the class
 		///
 		MaterialApi();
 		~MaterialApi();
 	
-		///
-		/// Main methods for the class
-		///
 		void 
 		Shutdown();
 
@@ -41,7 +38,8 @@ class MaterialApi
 		/// Members DIRECTX
 		///
 #ifdef D3D11
-		ID3D11ShaderResourceView* m_TexDif = NULL;
-		ID3D11ShaderResourceView* m_TexNorm = NULL;
+		ID3D11ShaderResourceView* m_TexDif;
+		ID3D11ShaderResourceView* m_TexNorm;
+		ID3D11ShaderResourceView* m_TexSpec;
 #endif // D3D11
 };

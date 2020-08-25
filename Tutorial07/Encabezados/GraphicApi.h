@@ -25,7 +25,7 @@ class GraphicApi {
 		///
 		/// DIRECTX Methods
 		///
-		const aiScene* ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer* _importer, ClaseDevice* _dev);
+		const aiScene* ChargeMesh(const char* _meshPath, SCENEMANAGER* _sceneManager, const aiScene* _model, ClaseDeviceContext _devCont, Assimp::Importer* _importer, ClaseDevice* _dev, char* _diffuse , char* _normal, char* _specular);
 		
 		///
 		/// ASSIMP
@@ -77,6 +77,5 @@ class GraphicApi {
 		void ReadTextureMesh(const aiScene* _model, MESH* _mesh, int _meshIndex);
 
 		bool ChargeMesh(const char* _meshPath, const aiScene* _model, SCENEMANAGER* _sceneManager);
-
 #endif // OPENGL
 };

@@ -125,28 +125,37 @@ struct MatStruct {  //Se usa como una solución alternativa para empacar bien las
     mathfu::float4x4 mat;
 };
 
-
-
 //
-//Animation Info OPENGL
+//Info
 //
-
-
-
 struct SimpleVertex{
 
     mathfu::float3 msPos;
     mathfu::float2 texcoord;
-    int boneId[4];
-    float weights[4] = { 0.0f };    //Necesario, para decir que el peso 0 no tiene influencia en el vertice
-    /*
+
+    //int boneId[4];
+    //float weights[4] = { 0.0f };    //Necesario, para decir que el peso 0 no tiene influencia en el vertice
+
     mathfu::float3 msNormal;
     mathfu::float3 msBinormal;
     mathfu::float3 msTangent;
-    */
 };
 
+struct SuperSamplerAmbientOclussion {
 
+
+};
+
+struct NewLight {
+
+    float s_diffuse;
+    float s_ambient;
+    float s_specular;
+    float s_specPower;
+
+    mathfu::float3 s_lightDir;
+    mathfu::float4 s_vViewPos;
+};
 
 ///
 /// Structures

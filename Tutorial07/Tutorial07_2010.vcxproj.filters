@@ -24,6 +24,9 @@
     <Filter Include="CPP">
       <UniqueIdentifier>{d23e8da2-36d2-4091-981d-028527176208}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CPP\IMGUI">
+      <UniqueIdentifier>{95657b9e-fa16-4601-99e3-62679d3f4d30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\mathfu\constants.h">
@@ -223,24 +226,6 @@
     <ClCompile Include="CPP\GraphicApi.cpp">
       <Filter>CPP</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_demo.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_dx11.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_win32.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_widgets.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
     <ClCompile Include="CPP\MaterialApi.cpp">
       <Filter>CPP</Filter>
     </ClCompile>
@@ -256,11 +241,29 @@
     <ClCompile Include="CPP\ClaseOpenGL.cpp">
       <Filter>CPP</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_glfw_gl3.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
     <ClCompile Include="CPP\CPass.cpp">
       <Filter>CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>CPP\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>CPP\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>CPP\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>CPP\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp">
+      <Filter>CPP\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>CPP\IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_win32.cpp">
+      <Filter>CPP\IMGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

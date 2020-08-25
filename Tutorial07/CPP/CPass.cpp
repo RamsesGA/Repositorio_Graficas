@@ -1,7 +1,6 @@
 #include "..\Encabezados\CPass.h"
 
 #ifdef OPENGL
-
 void CPass::Pass(PassData& _sPassData){
 
     glBindFramebuffer(GL_FRAMEBUFFER, _sPassData.s_RenderTarget.m_IdRenderTarget);
@@ -132,6 +131,89 @@ void CPass::Pass(PassData& _sPassData){
 #endif
 
 #ifdef D3D11
+void CPass::SetShaderResource(ClaseDevice* _device, ClaseTextura2D* _texture2d) {
+
+    D3D11_SHADER_RESOURCE_VIEW_DESC shaderResViewDesc;
+    ZeroMemory(&shaderResViewDesc, sizeof(shaderResViewDesc));
+
+    shaderResViewDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+    shaderResViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+    shaderResViewDesc.Texture2D.MipLevels = 1;
+    shaderResViewDesc.Texture2D.MostDetailedMip = 0;
+
+    ID3D11ShaderResourceView* shaderResoView;
+
+    if (FAILED(_device->g_pd3dDeviceD3D11->CreateShaderResourceView(_texture2d->m_TextureD3D11, &shaderResViewDesc, &shaderResoView))) {
+
+        return;
+    }
+
+    m_vectorShaderResorceView.push_back(shaderResoView);
+}
+
+void CPass::SetPass(ClaseDepthStencil* _depthStencilView){
+
+    SetRenderTarget(_depthStencilView);
+    SetShader();
+}
+
+void CPass::Draw(SCENEMANAGER* _sceneManager, UINT _sizeSimpleVertex) {
+
+    for (int i = 0; i < _sceneManager->m_MeshInScene.size(); i++) {
+
+        UINT offset = 0;
+        UINT sizeSimpleVertex = sizeof(SimpleVertex);
+
+        m_deviceContext->g_pImmediateContextD3D11->IASetVertexBuffers(0, 1, &_sceneManager->m_MeshInScene[i]->m_VertexBuffer->m_BufferD3D11, &sizeSimpleVertex, &offset);
+        m_deviceContext->g_pImmediateContextD3D11->IASetIndexBuffer(_sceneManager->m_MeshInScene[i]->m_Index->m_BufferD3D11, DXGI_FORMAT_R16_UINT, 0);
+        m_deviceContext->g_pImmediateContextD3D11->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+        if (_sceneManager->m_MeshInScene[i]->m_Materials->m_TexDif != nullptr) {
+
+            m_deviceContext->g_pImmediateContextD3D11->PSSetShaderResources(0, 1, &_sceneManager->m_MeshInScene[i]->m_Materials->m_TexDif);
+
+            if (_sceneManager->m_MeshInScene[i]->m_Materials->m_TexSpec != nullptr && _sceneManager->m_MeshInScene[i]->m_Materials->m_TexNorm != nullptr) {
+
+                m_deviceContext->g_pImmediateContextD3D11->PSSetShaderResources(1, 1, &_sceneManager->m_MeshInScene[i]->m_Materials->m_TexNorm);
+                m_deviceContext->g_pImmediateContextD3D11->PSSetShaderResources(2, 1, &_sceneManager->m_MeshInScene[i]->m_Materials->m_TexSpec);
+            }
+        }
+        else {
+
+            for (int i = 0; i < m_vectorShaderResorceView.size(); i++) {
+
+                m_deviceContext->g_pImmediateContextD3D11->PSSetShaderResources(i, 1, &m_vectorShaderResorceView[i]);
+            }
+        }
+        m_deviceContext->g_pImmediateContextD3D11->DrawIndexed(_sceneManager->m_MeshInScene[i]->m_IndexNum, 0, 0);
+    }
+}
+
+void CPass::ClearWindow(float _clearColor[4], ClaseDepthStencil* _depthStencilView){
+
+    if (m_deviceContext != nullptr) {
+
+        for (int i = 0; i < m_vectorRendTargView.size(); i++) {
+
+            m_deviceContext->g_pImmediateContextD3D11->ClearRenderTargetView(m_vectorRendTargView[i], _clearColor);
+        }
+        m_deviceContext->g_pImmediateContextD3D11->ClearDepthStencilView(_depthStencilView->g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
+    }
+}
+
+void CPass::SetShader() {
+
+    m_deviceContext->g_pImmediateContextD3D11->IASetInputLayout(m_VertexShader->LayoutD3D11);
+    m_deviceContext->g_pImmediateContextD3D11->VSSetShader(m_VertexShader->g_pVertexShaderD3D11, NULL, 0);
+    m_deviceContext->g_pImmediateContextD3D11->PSSetShader(m_PixelShader->pPixelShader, NULL, 0);
+}
+
+void CPass::SetRenderTarget(ClaseDepthStencil* _depthStencilView){
+
+    m_deviceContext->g_pImmediateContextD3D11->OMSetRenderTargets(m_vectorRendTargView.size(), &m_vectorRendTargView[0], _depthStencilView->g_pDepthStencilViewD3D11);
+    m_deviceContext->g_pImmediateContextD3D11->RSSetState(m_rasterizerState);
+}
+
 void CPass::Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _depthStencil, ClaseDeviceContext* _devContext, SCENEMANAGER& _sceneManager, Camera* _camera, ClaseBuffer* _light){
 
     // render target
@@ -142,17 +224,17 @@ void CPass::Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _d
     // shaders
     {
         // vertex
-        _devContext->g_pImmediateContextD3D11->IASetInputLayout(m_PassDX.s_InputLayout->LayoutD3D11);
-        _devContext->g_pImmediateContextD3D11->VSSetShader(m_PassDX.s_VertexShader->g_pVertexShaderD3D11, NULL, 0);
+        _devContext->g_pImmediateContextD3D11->IASetInputLayout(m_InputLayout->LayoutD3D11);
+        _devContext->g_pImmediateContextD3D11->VSSetShader(m_VertexShader->g_pVertexShaderD3D11, NULL, 0);
 
         // fragment
-        _devContext->g_pImmediateContextD3D11->PSSetShader(m_PassDX.s_PixelShader->pPixelShader, NULL, 0);
+        _devContext->g_pImmediateContextD3D11->PSSetShader(m_PixelShader->pPixelShader, NULL, 0);
     }
 
     // misc config
     {
         // viewport
-        _devContext->g_pImmediateContextD3D11->RSSetViewports(1, &m_PassDX.s_ViewPort->vpD3D11);
+        _devContext->g_pImmediateContextD3D11->RSSetViewports(1, &m_ViewPort->vpD3D11);
     }
 
     //Agregamos esto como extra
@@ -195,16 +277,39 @@ void CPass::Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _d
     }
 }
 
-int CPass::Init(PassDX& _struct){
+void CPass::Init(PassDX _struct){
 
-#ifdef D3D11
-    m_PassDX.s_InputLayout = _struct.s_InputLayout;
-    m_PassDX.s_PixelShader = _struct.s_PixelShader;
-    m_PassDX.s_VertexShader = _struct.s_VertexShader;
-    m_PassDX.s_ViewPort = _struct.s_ViewPort;
+    m_deviceContext = _struct.s_deviceContext;
 
-    m_bufferConstantBuffer = _struct.s_boneBuffer;
-#endif
-    return 0;
+    for (int i = 0; i < _struct.s_renderTargetViewAccountant; i++) {
+
+        ClaseTextura2D* newText2D = new ClaseTextura2D();
+        newText2D->Init(_struct.s_texture2Desc);
+
+        if (FAILED(_struct.s_device->g_pd3dDeviceD3D11->CreateTexture2D(&newText2D->m_TextDescD3D11, NULL, &newText2D->m_TextureD3D11))) {
+
+            return;
+        }
+
+        m_texture2D.push_back(newText2D);
+
+        D3D11_RENDER_TARGET_VIEW_DESC renderTargViewDesc;
+        ZeroMemory(&renderTargViewDesc, sizeof(renderTargViewDesc));
+
+        renderTargViewDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+        renderTargViewDesc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+        renderTargViewDesc.Texture2D.MipSlice = 0;
+
+        ID3D11RenderTargetView* renderTargViewD3D11;
+
+        if (FAILED(_struct.s_device->g_pd3dDeviceD3D11->CreateRenderTargetView(newText2D->m_TextureD3D11, &renderTargViewDesc, &renderTargViewD3D11))) {
+
+            return;
+        }
+
+        m_vectorRendTargView.push_back(renderTargViewD3D11);
+
+        _struct.s_device->g_pd3dDeviceD3D11->CreateRasterizerState(&_struct.s_rasterizer, &m_rasterizerState);
+    }
 }
 #endif
