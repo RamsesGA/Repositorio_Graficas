@@ -203,9 +203,9 @@ void CPass::ClearWindow(float _clearColor[4], ClaseDepthStencil* _depthStencilVi
 
 void CPass::SetShader() {
 
-    m_deviceContext->g_pImmediateContextD3D11->IASetInputLayout(m_VertexShader->LayoutD3D11);
-    m_deviceContext->g_pImmediateContextD3D11->VSSetShader(m_VertexShader->g_pVertexShaderD3D11, NULL, 0);
-    m_deviceContext->g_pImmediateContextD3D11->PSSetShader(m_PixelShader->pPixelShader, NULL, 0);
+    m_deviceContext->g_pImmediateContextD3D11->IASetInputLayout(m_InputLayoutVertexShaderPixelShader.LayoutD3D11);
+    m_deviceContext->g_pImmediateContextD3D11->VSSetShader(m_InputLayoutVertexShaderPixelShader.g_pVertexShaderD3D11, NULL, 0);
+    m_deviceContext->g_pImmediateContextD3D11->PSSetShader(m_InputLayoutVertexShaderPixelShader.pPixelShader, NULL, 0);
 }
 
 void CPass::SetRenderTarget(ClaseDepthStencil* _depthStencilView){
@@ -224,11 +224,11 @@ void CPass::Render(ClaseRenderTargetView& _renderTargView, ClaseDepthStencil& _d
     // shaders
     {
         // vertex
-        _devContext->g_pImmediateContextD3D11->IASetInputLayout(m_InputLayout->LayoutD3D11);
-        _devContext->g_pImmediateContextD3D11->VSSetShader(m_VertexShader->g_pVertexShaderD3D11, NULL, 0);
+        _devContext->g_pImmediateContextD3D11->IASetInputLayout(m_InputLayoutVertexShaderPixelShader.LayoutD3D11);
+        _devContext->g_pImmediateContextD3D11->VSSetShader(m_InputLayoutVertexShaderPixelShader.g_pVertexShaderD3D11, NULL, 0);
 
         // fragment
-        _devContext->g_pImmediateContextD3D11->PSSetShader(m_PixelShader->pPixelShader, NULL, 0);
+        _devContext->g_pImmediateContextD3D11->PSSetShader(m_InputLayoutVertexShaderPixelShader.pPixelShader, NULL, 0);
     }
 
     // misc config
@@ -308,6 +308,21 @@ void CPass::Init(PassDX _struct){
         }
 
         m_vectorRendTargView.push_back(renderTargViewD3D11);
+
+        D3D11_SHADER_RESOURCE_VIEW_DESC resourceViewDesc;
+        resourceViewDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+        resourceViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+        resourceViewDesc.Texture2D.MipLevels = 1;
+        resourceViewDesc.Texture2D.MostDetailedMip = 0;
+
+        ID3D11ShaderResourceView* shaderResource;
+
+        if (FAILED(_struct.s_device->g_pd3dDeviceD3D11->CreateShaderResourceView(newText2D->m_TextureD3D11, &resourceViewDesc, &shaderResource))) {
+
+            return;
+        }
+
+        m_saveTextures2D.push_back(shaderResource);
 
         _struct.s_device->g_pd3dDeviceD3D11->CreateRasterizerState(&_struct.s_rasterizer, &m_rasterizerState);
     }

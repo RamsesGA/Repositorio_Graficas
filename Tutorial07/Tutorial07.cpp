@@ -95,6 +95,8 @@ Camera                      CamaraPrimeraPersona;
 /// API
 ///
 SCENEMANAGER                G_SceneManager;
+SCENEMANAGER                g_screenAligneQuadSM;
+SCENEMANAGER                g_skyboxSM;
 GraphicApi                  G_GraphicApi;
 
 #if defined(D3D11)
@@ -128,7 +130,13 @@ const aiScene*              g_myScene;
 
 
 //CPass
-CPass g_pass;
+CPass g_pass;   //Buffer
+CPass g_superSamplingAmbientOclussion;
+CPass g_skyBox;
+//Faltan mas pases por implementar
+
+//Buffers
+ClaseBuffer g_superSamplingAmbientOclussionBuffer;
 
 /// OpenGl variables
 unsigned int g_ColorShaderID;
@@ -275,8 +283,8 @@ void Resize(){
 void InitCameras() {
 
     CameraDescriptor FirstCamera;
-    FirstCamera.s_At = { 0,0,0 };
-    FirstCamera.s_Eye = { 0,0,-6 };
+    FirstCamera.s_At = { 10,0,0 };
+    FirstCamera.s_Eye = { 0,0,0 };
     FirstCamera.s_Up = { 0,1,0 };
     FirstCamera.s_Far = 1000;
     FirstCamera.s_Near = 0.01;
@@ -381,48 +389,65 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
             ImGui_ImplDX11_NewFrame();
             ImGui_ImplWin32_NewFrame();
-
             ImGui::NewFrame();
-            ImGui::Begin("Change Cameras");
 
-            if (ImGui::Button("Click"))
-            {
-                Camera* Temporal = SecondCamera;
-                SecondCamera = MainCamera;
-                MainCamera = Temporal;
+            //ImGui::Begin("Change Cameras");
+            //if (ImGui::Button("Click"))
+            //{
+            //    Camera* Temporal = SecondCamera;
+            //    SecondCamera = MainCamera;
+            //    MainCamera = Temporal;
+            //}
+            //ImGui::End();
+
+            //-----------------------------------
+            //ImGui::Begin("Shader from Camera");
+            //ImGui::Image(G_InactiveSRV, ScreenImGui);
+            //ImGui::GetIO().FontGlobalScale;
+            //ImGui::End();
+
+            //-----------------------------------
+            //ImGui::Begin("Directional Light");
+            //ImGui::SliderFloat("Direction X", &g_DirLight.x, -1, 1);
+            //ImGui::SliderFloat("Direction Y", &g_DirLight.y, -1, 1);
+            //ImGui::SliderFloat("Direction Z", &g_DirLight.z, -1, 1);
+            //ImGui::End();
+
+            //-----------------------------------
+           //ImGui::Begin("Position Light");
+           //ImGui::SliderFloat("Position X", &g_lightPointPos.x, -1000, 1000);
+           //ImGui::SliderFloat("Position Y", &g_lightPointPos.y, -1000, 1000);
+           //ImGui::SliderFloat("Position Z", &g_lightPointPos.z, -1000, 1000);
+           //ImGui::End();
+
+            //-----------------------------------
+            //ImGui::Begin("Att Light");
+            //ImGui::SliderFloat("Atenuacion X", &g_lightPointAt.x, 0.01, 2);
+            //ImGui::End();
+
+            //-----------------------------------
+
+            ImGui::Begin("Pase - GBuffer");
+            for (int i = 0; i < g_pass.m_saveTextures2D.size(); i++) {
+
+                ImGui::Image(g_pass.m_saveTextures2D[i], ScreenImGui);
             }
-
             ImGui::End();
-
             //-----------------------------------
-            ImGui::Begin("Shader from Camera");
-            ImGui::Image(G_InactiveSRV, ScreenImGui);
-            ImGui::GetIO().FontGlobalScale;
+            ImGui::Begin("Pase - SSAO");
+            for (int i = 0; i < g_superSamplingAmbientOclussion.m_saveTextures2D.size(); i++) {
 
+                ImGui::Image(g_superSamplingAmbientOclussion.m_saveTextures2D[i], ScreenImGui);
+            }
             ImGui::End();
-
             //-----------------------------------
-            ImGui::Begin("Directional Light");
-            ImGui::SliderFloat("Direction X", &g_DirLight.x, -1, 1);
-            ImGui::SliderFloat("Direction Y", &g_DirLight.y, -1, 1);
-            ImGui::SliderFloat("Direction Z", &g_DirLight.z, -1, 1);
-            
-            ImGui::End();
+            ImGui::Begin("Pase - Skybox");
+            for (int i = 0; i < g_skyBox.m_saveTextures2D.size(); i++) {
 
+                ImGui::Image(g_skyBox.m_saveTextures2D[i], ScreenImGui);
+            }
+            ImGui::End();
             //-----------------------------------
-            ImGui::Begin("Position Light");
-            ImGui::SliderFloat("Position X", &g_lightPointPos.x, -1000, 1000);
-            ImGui::SliderFloat("Position Y", &g_lightPointPos.y, -1000, 1000);
-            ImGui::SliderFloat("Position Z", &g_lightPointPos.z, -1000, 1000);
-
-            ImGui::End();
-
-            //-----------------------------------
-            ImGui::Begin("Att Light");
-            ImGui::SliderFloat("Atenuacion X", &g_lightPointAt.x, 0.01, 2);
-
-            ImGui::End();
-
             Render();
 #endif // D3D11
         }
@@ -582,6 +607,50 @@ HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID
 }
 #endif
 
+#ifdef D3D11
+HRESULT CompileShaders(WCHAR* _shaderfile, const char* _vertexEntryPoint, const char* _pixelEntryPoint, ClaseShader& _shader){
+
+    //Compilar el vertex shader
+    HRESULT hr = CompileShaderFromFile(_shaderfile, _vertexEntryPoint, "vs_4_0", &_shader.m_pVSBlobD3D11);
+    if (FAILED(hr)){
+
+        MessageBox(NULL,L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
+        return hr;
+    }
+
+    //Creamos el vertex shader nuevo
+    hr = CDev.g_pd3dDeviceD3D11->CreateVertexShader(_shader.m_pVSBlobD3D11->GetBufferPointer(), _shader.m_pVSBlobD3D11->GetBufferSize(), NULL, &_shader.g_pVertexShaderD3D11);
+    if (FAILED(hr)){
+
+        _shader.m_pVSBlobD3D11->Release();
+        return hr;
+    }
+
+    //Creamos el input layout del vertex shader
+    hr = CreateInputLayoutDescFromVertexShaderSignature(_shader.m_pVSBlobD3D11, CDev.g_pd3dDeviceD3D11, &_shader.LayoutD3D11);
+    if (FAILED(hr)) {
+
+        return hr;
+    }
+
+    // Compile the pixel shader
+    hr = CompileShaderFromFile(_shaderfile, _pixelEntryPoint, "ps_4_0", &_shader.pPSBlob);
+    if (FAILED(hr)){
+
+        MessageBox(NULL,L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
+        return hr;
+    }
+
+    // Create the pixel shader
+    hr = CDev.g_pd3dDeviceD3D11->CreatePixelShader(_shader.pPSBlob->GetBufferPointer(), _shader.pPSBlob->GetBufferSize(), NULL, &_shader.pPixelShader);
+    _shader.pPSBlob->Release();
+    if (FAILED(hr)) {
+
+        return hr;
+    }
+}
+#endif
+
 /// Create Direct3D device and swap chain
 #ifdef D3D11
 HRESULT InitDevice()
@@ -719,7 +788,7 @@ HRESULT InitDevice()
 
     //-----------------------------------------------------------------------------------------------------------------------
     /// Compile the vertex shader (PROXIMAMENTE MÁS VECES)
-    hr = CompileShaderFromFile(L"ShaderAnimation.fx", "VS", "vs_4_0", &CShader.m_pVSBlobD3D11);
+    hr = CompileShaderFromFile(L"ShaderGbuffer.fx", "vs_main", "vs_4_0", &CShader.m_pVSBlobD3D11);
     if (FAILED(hr))
     {
         MessageBox(NULL,
@@ -748,7 +817,7 @@ HRESULT InitDevice()
     //-----------------------------------------------------------------------------------------------------------------------
     /// Compile the pixel shader
     //ID3DBlob* pPSBlob = NULL;
-    hr = CompileShaderFromFile(L"ShaderAnimation.fx", "PS", "ps_4_0", &g_pixelShader.pPSBlob);
+    hr = CompileShaderFromFile(L"ShaderGbuffer.fx", "ps_main", "ps_4_0", &g_pixelShader.pPSBlob);
     if (FAILED(hr))
     {
         MessageBox(NULL,
@@ -976,11 +1045,11 @@ HRESULT InitDevice()
     T.Width = width;
     T.Height = height;
     T.MipLevels = T.ArraySize = 1;
-    T.Format = FORMAT_R8G8B8A8_UNORM;
+    T.Format = FORMAT_R16G16B16A16_FLOAT;
     T.SampleDesc.My_Count = 1;
     T.Usage = USAGE_DEFAULT;
-    T.BindFlags = BIND_SHADER_RESOURCE | BIND_RENDER_TARGET;
-    T.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+    T.BindFlags = 8 | 32;
+    T.CPUAccessFlags = 65536;   //enum
     T.MiscFlags = 0;
 
     InactiveTexture.Init(T);
@@ -1027,16 +1096,87 @@ HRESULT InitDevice()
 
     /// API GRAPHIC
     //G_GraphicApi.ChargeMesh("EscenaDelMaestro/Model/Scene/Scene.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
-    //G_GraphicApi.ChargeMesh("PistolaOBJ/drakefire_pistol_low.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, G_GraphicApi.m_Importer, &CDev);
-    g_myScene = G_GraphicApi.ChargeMesh("ugandan/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev);
+    G_GraphicApi.ChargeMesh("PistolaOBJ/drakefire_pistol_low.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev, "PistolaOBJ/base_albedo.png", "PistolaOBJ/base_normal.png", "PistolaOBJ/base_metallic.png" );
+    G_GraphicApi.ChargeMesh("ModelRenderMonkey/ScreenAlignedQuad.3ds", &g_screenAligneQuadSM, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev, "", "", "");
+    G_GraphicApi.ChargeMesh("ModelRenderMonkey/Sphere.3ds", &g_skyboxSM, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev, "", "", "");
+    
+    //g_myScene = G_GraphicApi.ChargeMesh("ugandan/Knuckles.fbx", &G_SceneManager, G_GraphicApi.m_Model, CDevCont, g_myImporter, &CDev);
 
-    sPassDx.s_InputLayout = &CShader;
-    sPassDx.s_PixelShader = &g_pixelShader;
-    sPassDx.s_VertexShader = &CShader;
-    sPassDx.s_ViewPort = &CView;
-    sPassDx.s_boneBuffer = &g_boneBuffer;
+    PassDX gBufferStruct;
+    gBufferStruct.s_device = &CDev;
+    gBufferStruct.s_deviceContext = &CDevCont;
+    gBufferStruct.s_renderTargetViewAccountant = 4;
+    gBufferStruct.s_texture2Desc = T;
 
-    g_pass.Init(sPassDx);
+    ZeroMemory(&gBufferStruct.s_rasterizer, sizeof(gBufferStruct.s_rasterizer));
+    gBufferStruct.s_rasterizer.FillMode = D3D11_FILL_SOLID;
+    gBufferStruct.s_rasterizer.CullMode = D3D11_CULL_FRONT;
+    gBufferStruct.s_rasterizer.FrontCounterClockwise = true;
+
+    CompileShaders(L"ShaderGbuffer.fx", "vs_main", "ps_main", g_pass.m_InputLayoutVertexShaderPixelShader);
+
+    g_pass.Init(gBufferStruct);
+
+    //AmbientOclussion
+    gBufferStruct.s_renderTargetViewAccountant = 1;
+    gBufferStruct.s_rasterizer.CullMode = D3D11_CULL_NONE;
+
+    CompileShaders(L"ShaderSSAO.fx", "vs_main", "ps_main", g_superSamplingAmbientOclussion.m_InputLayoutVertexShaderPixelShader);
+
+    g_superSamplingAmbientOclussion.Init(gBufferStruct);
+
+    BufferDescriptor ssaoBuffer;
+    ssaoBuffer.Usage = USAGE_DEFAULT;
+    ssaoBuffer.ByteWidth = sizeof(SuperSamplerAmbientOclussion);
+    ssaoBuffer.BindFlags = 4;
+    ssaoBuffer.CPUAccessFlags = 0;
+
+    g_superSamplingAmbientOclussionBuffer.Init(ssaoBuffer);
+    hr = CDev.g_pd3dDeviceD3D11->CreateBuffer(&g_superSamplingAmbientOclussionBuffer.m_BufferDescD3D11, NULL, &g_superSamplingAmbientOclussionBuffer.m_BufferD3D11);
+    if (FAILED(hr)) {
+
+        return hr;
+    }
+
+    SuperSamplerAmbientOclussion superSamplerDesc;
+    superSamplerDesc.s_bias = 0.1f;
+    superSamplerDesc.s_intensity = 8.2f;
+    superSamplerDesc.s_sample = 2.4f;
+    superSamplerDesc.s_scale = 0.5f;
+
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_superSamplingAmbientOclussionBuffer.m_BufferD3D11, 0, NULL, &superSamplerDesc, 0, 0);
+    g_superSamplingAmbientOclussion.SetShaderResource(&CDev, g_pass.m_texture2D.at(2));
+    g_superSamplingAmbientOclussion.SetShaderResource(&CDev, g_pass.m_texture2D.at(0));
+
+    //Skybox
+    CompileShaders(L"ShaderSkybox.fx", "vs_main", "ps_main", g_skyBox.m_InputLayoutVertexShaderPixelShader);
+    g_skyBox.Init(gBufferStruct);
+
+    D3DX11_IMAGE_LOAD_INFO loadImageInfo;
+    loadImageInfo.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
+
+    ID3D11Texture2D* texture2D;
+    hr = D3DX11CreateTextureFromFile(CDev.g_pd3dDeviceD3D11, L"ModelRenderMonkey/grace_cube.dds", &loadImageInfo, 0, (ID3D11Resource**)&texture2D, 0);
+    if (FAILED(hr)) {
+
+        return hr;
+    }
+
+    D3D11_TEXTURE2D_DESC textureDesc;
+    texture2D->GetDesc(&textureDesc);
+
+    D3D11_SHADER_RESOURCE_VIEW_DESC cheiderDesc;
+    ZeroMemory(&cheiderDesc, sizeof(cheiderDesc));
+    cheiderDesc.Format = textureDesc.Format;
+    cheiderDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
+    cheiderDesc.TextureCube.MipLevels = textureDesc.MipLevels;
+    cheiderDesc.TextureCube.MostDetailedMip = 0;
+
+    hr = CDev.g_pd3dDeviceD3D11->CreateShaderResourceView(texture2D, &cheiderDesc, &g_skyboxSM.GetMesh(0)->m_Materials->m_TexDif);
+    if (FAILED(hr)) {
+
+        return hr;
+    }
 
     return S_OK;
 }
@@ -1180,38 +1320,42 @@ void Render()
     //
     //Animación
     //
-    std::vector<mathfu::float4x4> transforms;
-
-    float runningTime = GetRunnningTime();
-
-    G_GraphicApi.BoneTransform(runningTime, transforms, g_myScene, &G_SceneManager);
-
-    ConstBufferBones cBBone;
-
-    for (int i = 0; i < transforms.size(); i++) {
-
-        if (i < 100) {
-
-            cBBone.bones[i] = transforms[i];
-        }
-    }
-
-    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_boneBuffer.m_BufferD3D11, 0 , NULL, &cBBone, 0, 0);
-
-    Lights sLights;
-    sLights.mLightDir = g_DirLight;
-    sLights.lightPointPos = g_lightPointPos;
-    sLights.lightPointAtt = g_lightPointAt;
-    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_Lights.m_BufferD3D11, 0, NULL, &sLights, 0, 0);
 
     /// Clear the back buffer
     float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
 
+    g_pass.SetPass(&CDepthStencilView);
+    g_pass.ClearWindow(ClearColor, &CDepthStencilView);
+
+    //std::vector<mathfu::float4x4> transforms;
+    //
+    //float runningTime = GetRunnningTime();
+    //
+    //G_GraphicApi.BoneTransform(runningTime, transforms, g_myScene, &G_SceneManager);
+    //
+    //ConstBufferBones cBBone;
+    //
+    //for (int i = 0; i < transforms.size(); i++) {
+    //
+    //    if (i < 100) {
+    //
+    //        cBBone.bones[i] = transforms[i];
+    //    }
+    //}
+    //
+    //CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_boneBuffer.m_BufferD3D11, 0 , NULL, &cBBone, 0, 0);
+
+    /*Lights sLights;
+    sLights.mLightDir = g_DirLight;
+    sLights.lightPointPos = g_lightPointPos;
+    sLights.lightPointAtt = g_lightPointAt;
+    CDevCont.g_pImmediateContextD3D11->UpdateSubresource(g_Lights.m_BufferD3D11, 0, NULL, &sLights, 0, 0);*/
+
     //CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(InactiveRTV.g_pRenderTargetViewD3D11, ClearColor);
-    CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
+   // CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
 
     /// Clear the depth buffer to 1.0 (max depth)
-    CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
+    //CDevCont.g_pImmediateContextD3D11->ClearDepthStencilView(CDepthStencilView.g_pDepthStencilViewD3D11, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
     CDevCont.g_pImmediateContextD3D11->PSSetSamplers(0, 1, &CSampleS.g_pSamplerLinearD3D11);
 
@@ -1222,15 +1366,20 @@ void Render()
         0,0,1,0,
         0,0,0,1
     };
-    m_MeshData.vMeshColor = { 1,1,1,1 };
-    m_MeshData.vViewPos = { MainCamera->GetEye().x, MainCamera->GetEye().y, MainCamera->GetEye().z, 0};
 
+   // m_MeshData.vMeshColor = { 1,1,1,1 };
+   // m_MeshData.vViewPos = { MainCamera->GetEye().x, MainCamera->GetEye().y, MainCamera->GetEye().z, 0};
     //CDevCont.g_pImmediateContextD3D11->UpdateSubresource(SecondCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &m_MeshData, 0, 0);
 
     CDevCont.g_pImmediateContextD3D11->UpdateSubresource(MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11, 0, NULL, &m_MeshData, 0, 0);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &MainCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &MainCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+    CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
 
-    g_pass.Render(CRendTarView, CDepthStencilView, &CDevCont, G_SceneManager, MainCamera, &g_Lights);
+    g_pass.Draw(&G_SceneManager, sizeof(SimpleVertex));
 
+    //g_pass.Render(CRendTarView, CDepthStencilView, &CDevCont, G_SceneManager, MainCamera, &g_Lights);
 /*
     //g_World = g_World.FromTranslationVector(mathfu::Vector<float, 3>(3.0f, 0.0f, 0.0f));
     /// Modify the color
@@ -1354,6 +1503,31 @@ void Render()
     //}
     /// Present our back buffer to our front buffer
     */
+
+    //SSAO
+    ClearColor[0] = 0.0f;
+    ClearColor[1] = 0.0f;
+    ClearColor[2] = 0.0f;
+    ClearColor[3] = 0.0f;
+
+    g_superSamplingAmbientOclussion.SetPass(&CDepthStencilView);
+    g_superSamplingAmbientOclussion.ClearWindow(ClearColor, &CDepthStencilView);
+
+    CDevCont.g_pImmediateContextD3D11->PSSetConstantBuffers(0,1, &g_superSamplingAmbientOclussionBuffer.m_BufferD3D11);
+
+    g_superSamplingAmbientOclussion.Draw(&g_screenAligneQuadSM , sizeof(SimpleVertex));
+
+    //Skybots
+    g_skyBox.SetPass(&CDepthStencilView);
+    g_skyBox.ClearWindow(ClearColor, &CDepthStencilView);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(0, 1, &MainCamera->g_pCBNeverChangesCamera.m_BufferD3D11);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(1, 1, &MainCamera->g_pCBChangeOnResizeCamera.m_BufferD3D11);
+    CDevCont.g_pImmediateContextD3D11->VSSetConstantBuffers(2, 1, &MainCamera->g_pCBChangesEveryFrameCamera.m_BufferD3D11);
+
+    g_skyBox.Draw(&g_skyboxSM , sizeof(SimpleVertex));
+
+    CDevCont.g_pImmediateContextD3D11->OMSetRenderTargets(1, &CRendTarView.g_pRenderTargetViewD3D11, CDepthStencilView.g_pDepthStencilViewD3D11);
+    CDevCont.g_pImmediateContextD3D11->ClearRenderTargetView(CRendTarView.g_pRenderTargetViewD3D11, ClearColor);
 
     ImGui::Render();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

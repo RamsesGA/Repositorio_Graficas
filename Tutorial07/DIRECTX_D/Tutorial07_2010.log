@@ -141,30 +141,34 @@ C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutoria
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(19,2): warning C4091: 'typedef ': se ha omitido a la izquierda de 'VertexBoneData' cuando no hay ninguna variable declarada
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(64,44): warning C4100: 'numVertex': parámetro formal sin referencia
 C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Encabezados\Mesh.h(64,30): warning C4100: 'MyVertex': parámetro formal sin referencia
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(146,22): warning C4459: la declaración de 'width' oculta la declaración global
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(108,29): message : vea la declaración de 'width'
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(147,23): warning C4459: la declaración de 'height' oculta la declaración global
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(109,29): message : vea la declaración de 'height'
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(153,31): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(154,30): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(165,33): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(166,32): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(259,24): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(260,25): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(288,28): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(289,27): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(532,23): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(616,10): warning C4189: 'numFeatureLevels': la variable local se ha inicializado pero no se hace referencia a ella
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1022,14): warning C4189: 'io': la variable local se ha inicializado pero no se hace referencia a ella
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1131,71): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(154,22): warning C4459: la declaración de 'width' oculta la declaración global
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(110,29): message : vea la declaración de 'width'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(155,23): warning C4459: la declaración de 'height' oculta la declaración global
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(111,29): message : vea la declaración de 'height'
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(161,31): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(162,30): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(173,33): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(174,32): warning C4244: 'argumento': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(267,24): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(268,25): warning C4244: '=': conversión de 'UINT' a 'FLOAT'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(296,28): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(297,27): warning C4244: '=': conversión de 'UINT' a 'float'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(431,31): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(438,31): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(445,31): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(557,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(685,10): warning C4189: 'numFeatureLevels': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1091,14): warning C4189: 'io': la variable local se ha inicializado pero no se hace referencia a ella
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(787,12): warning C4101: 'sPassDx': variable local sin referencia
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1270,71): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1131,63): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1270,63): warning C4244: 'argumento': conversión de 'LONG' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(1192,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\Tutorial07.cpp(651): warning C4715: 'CompileShaders': no todas las rutas de acceso de control devuelven un valor
   Tutorial07_2010.vcxproj -> C:\Users\ramse\Documents\Cosas_Uni\Programacion\Graficas 1\ProyectoTuto7\Tutorial07\binDIRECTX_Dx86\aplication.exe

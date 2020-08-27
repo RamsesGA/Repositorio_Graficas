@@ -21,6 +21,8 @@ class GraphicApi {
 
 		//Variables
 		std::vector<BonesMatrix> m_vectorBonesMatrix;
+		Assimp::Importer* m_importer;
+		
 
 		///
 		/// DIRECTX Methods

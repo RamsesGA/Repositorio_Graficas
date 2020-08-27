@@ -57,7 +57,7 @@ class CPass
 		//Métodos
 		//
 		CPass() : m_deviceContext(nullptr), m_ViewPort(nullptr){};
-		CPass() = default;
+		//CPass() = default;
 		~CPass() = default;
 	
 		//DirectX
@@ -66,6 +66,8 @@ class CPass
 		//Miembros
 		//
 	
+		//
+		std::vector<ID3D11ShaderResourceView*> m_saveTextures2D;
 		//Guardamos los resultados de render targets de otros pases que se llegen a necesitar
 		std::vector<ID3D11ShaderResourceView*> m_vectorShaderResorceView;
 		//Guardamos las texturas generadas
@@ -74,9 +76,7 @@ class CPass
 		std::vector<ID3D11RenderTargetView*> m_vectorRendTargView;
 		ID3D11RasterizerState* m_rasterizerState;
 		ClaseDeviceContext* m_deviceContext;
-		ClaseShader* m_InputLayout;
-		ClaseShader* m_VertexShader;
-		ClaseShader* m_PixelShader;
+		ClaseShader m_InputLayoutVertexShaderPixelShader;
 		ClaseViewport* m_ViewPort;
 	
 		//

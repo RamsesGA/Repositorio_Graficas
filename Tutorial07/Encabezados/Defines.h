@@ -141,10 +141,7 @@ struct SimpleVertex{
     mathfu::float3 msTangent;
 };
 
-struct SuperSamplerAmbientOclussion {
 
-
-};
 
 struct NewLight {
 
@@ -172,8 +169,6 @@ struct CBChangeOnResize
 struct CBChangesEveryFrame
 {
     mathfu::float4x4    mWorld;
-    mathfu::float4      vMeshColor;
-    mathfu::float4      vViewPos;
 };
 struct Lights {
 
@@ -613,4 +608,12 @@ struct BUFFER_DESC
     UINT CPUAccessFlags;
     UINT MiscFlags;
     UINT StructureByteStride;
+};
+
+struct SuperSamplerAmbientOclussion {
+
+    float s_intensity;
+    float s_scale;
+    float s_bias;
+    float s_sample;
 };
